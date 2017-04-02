@@ -245,6 +245,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "formMenuAdmin";
             this.Text = "Arcmage - Menu";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMenuAdmin_FormClosed);
             this.tbMenu.ResumeLayout(false);
             this.tpGestao.ResumeLayout(false);
             this.tbVer.ResumeLayout(false);

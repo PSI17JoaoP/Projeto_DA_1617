@@ -87,6 +87,9 @@
     <EmbeddedResource Include="formMenuAdmin.resx">
       <DependentUpon>formMenuAdmin.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="formMenuArbitro.resx">
+      <DependentUpon>formMenuArbitro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

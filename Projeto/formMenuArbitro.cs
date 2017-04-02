@@ -16,5 +16,11 @@ namespace Projeto
         {
             InitializeComponent();
         }
+
+        private void formMenuArbitro_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formLogin Login = new formLogin();
+            Login.Show();
+        }
     }
 }

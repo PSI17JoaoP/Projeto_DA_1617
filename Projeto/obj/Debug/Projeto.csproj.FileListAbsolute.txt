@@ -9,3 +9,5 @@ C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.Properties
 C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.csproj.GenerateResource.Cache
 C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.exe
 C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.pdb
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.formMenuAdmin.resources
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.formMenuArbitro.resources
