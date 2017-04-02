@@ -1,3 +1,11 @@
 D:\Desktop\TESP - PSI\S2\PL\DA\Projeto\Etapa 2\Projeto\Projeto\bin\Debug\Projeto.exe.config
 D:\Desktop\TESP - PSI\S2\PL\DA\Projeto\Etapa 2\Projeto_DA_1617\Projeto\bin\Debug\Projeto.exe.config
 C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\bin\Debug\Projeto.exe.config
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\bin\Debug\Projeto.exe
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\bin\Debug\Projeto.pdb
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.csprojResolveAssemblyReference.cache
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.formLogin.resources
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.Properties.Resources.resources
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.csproj.GenerateResource.Cache
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.exe
+C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\obj\Debug\Projeto.pdb
