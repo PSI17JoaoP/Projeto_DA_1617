@@ -25,7 +25,6 @@ log/
 # Visual Studio 2015 cache/options directory
 .vs/
 
-# Temp Files (Acho eu)
 *_i.c
 *_p.c
 *_i.h
