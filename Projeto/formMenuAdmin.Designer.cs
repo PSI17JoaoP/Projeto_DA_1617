@@ -54,6 +54,8 @@
             this.txtGJogadoresPesquisa = new System.Windows.Forms.TextBox();
             this.tbGestaoEquipas = new System.Windows.Forms.TabPage();
             this.gbGEquipasForm = new System.Windows.Forms.GroupBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
             this.gbGEquipasAcoes = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -74,8 +76,7 @@
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -349,6 +350,7 @@
             // 
             this.gbGEquipasForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGEquipasForm.Controls.Add(this.button4);
             this.gbGEquipasForm.Controls.Add(this.label8);
             this.gbGEquipasForm.Controls.Add(this.label7);
             this.gbGEquipasForm.Location = new System.Drawing.Point(382, 94);
@@ -357,6 +359,24 @@
             this.gbGEquipasForm.TabIndex = 6;
             this.gbGEquipasForm.TabStop = false;
             this.gbGEquipasForm.Text = "Campos";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(24, 108);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 17);
+            this.label8.TabIndex = 1;
+            this.label8.Text = "Avatar";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(24, 63);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(45, 17);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "Nome";
             // 
             // gbGEquipasAcoes
             // 
@@ -524,7 +544,7 @@
             this.tbVerEquipas.Location = new System.Drawing.Point(4, 25);
             this.tbVerEquipas.Name = "tbVerEquipas";
             this.tbVerEquipas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerEquipas.Size = new System.Drawing.Size(823, 429);
+            this.tbVerEquipas.Size = new System.Drawing.Size(714, 387);
             this.tbVerEquipas.TabIndex = 1;
             this.tbVerEquipas.Text = "Equipas";
             this.tbVerEquipas.UseVisualStyleBackColor = true;
@@ -534,7 +554,7 @@
             this.tbVerTorneios.Location = new System.Drawing.Point(4, 25);
             this.tbVerTorneios.Name = "tbVerTorneios";
             this.tbVerTorneios.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerTorneios.Size = new System.Drawing.Size(823, 429);
+            this.tbVerTorneios.Size = new System.Drawing.Size(714, 387);
             this.tbVerTorneios.TabIndex = 2;
             this.tbVerTorneios.Text = "Torneios";
             this.tbVerTorneios.UseVisualStyleBackColor = true;
@@ -544,7 +564,7 @@
             this.tbVerCartas.Location = new System.Drawing.Point(4, 25);
             this.tbVerCartas.Name = "tbVerCartas";
             this.tbVerCartas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerCartas.Size = new System.Drawing.Size(823, 429);
+            this.tbVerCartas.Size = new System.Drawing.Size(714, 387);
             this.tbVerCartas.TabIndex = 3;
             this.tbVerCartas.Text = "Cartas";
             this.tbVerCartas.UseVisualStyleBackColor = true;
@@ -554,7 +574,7 @@
             this.tbVerBaralhos.Location = new System.Drawing.Point(4, 25);
             this.tbVerBaralhos.Name = "tbVerBaralhos";
             this.tbVerBaralhos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerBaralhos.Size = new System.Drawing.Size(823, 429);
+            this.tbVerBaralhos.Size = new System.Drawing.Size(714, 387);
             this.tbVerBaralhos.TabIndex = 4;
             this.tbVerBaralhos.Text = "Baralhos";
             this.tbVerBaralhos.UseVisualStyleBackColor = true;
@@ -564,28 +584,19 @@
             this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 25);
             this.tbVerUtilizadores.Name = "tbVerUtilizadores";
             this.tbVerUtilizadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerUtilizadores.Size = new System.Drawing.Size(823, 429);
+            this.tbVerUtilizadores.Size = new System.Drawing.Size(714, 387);
             this.tbVerUtilizadores.TabIndex = 5;
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
             // 
-            // label7
+            // button4
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 63);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(45, 17);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "Nome";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(24, 108);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(49, 17);
-            this.label8.TabIndex = 1;
-            this.label8.Text = "Avatar";
+            this.button4.Location = new System.Drawing.Point(130, 227);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(85, 36);
+            this.button4.TabIndex = 2;
+            this.button4.Text = "button4";
+            this.button4.UseVisualStyleBackColor = true;
             // 
             // formMenuAdmin
             // 
@@ -670,5 +681,6 @@
         private System.Windows.Forms.GroupBox gbGEquipasForm;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button button4;
     }
 }
