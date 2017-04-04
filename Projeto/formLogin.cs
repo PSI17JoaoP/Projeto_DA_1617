@@ -29,5 +29,10 @@ namespace Projeto
             menu.Show();
             Hide();
         }
+
+        private void formLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
