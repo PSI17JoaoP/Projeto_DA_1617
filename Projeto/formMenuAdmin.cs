@@ -16,5 +16,23 @@ namespace Projeto
         {
             InitializeComponent();
         }
+
+        private void formMenuAdmin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            formLogin Login = new formLogin();
+            Login.Show();
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            gbGTorneiosForm.Visible = true;
+            gbGJogosForm.Visible = false;
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            gbGTorneiosForm.Visible = false;
+            gbGJogosForm.Visible = true;
+        }
     }
 }
