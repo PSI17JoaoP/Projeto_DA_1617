@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a139963ec9dc4676869dcfc47f1b880a" Name="Diagram1" ZoomLevel="85" >
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.User" Width="1.5" PointX="13.375" PointY="4.5" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Referee" Width="1.5" PointX="10.625" PointY="4.75" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.Referee" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Administrator" Width="1.5" PointX="16.75" PointY="4.875" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.Administrator" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Game" Width="1.5" PointX="10.625" PointY="7" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Deck" Width="1.5" PointX="13.875" PointY="7.25" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Card" Width="1.5" PointX="16.75" PointY="7.25" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.StandardGame" Width="1.5" PointX="10.625" PointY="11.75" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.StandardGame" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.TeamGame" Width="1.875" PointX="12.75" PointY="9.875" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.TeamGame" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Team" Width="1.875" PointX="19.5" PointY="10.375" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Tournament" Width="1.5" PointX="20.75" PointY="5.125" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.TeamTournament" Width="1.875" PointX="19.375" PointY="7.875" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.TeamTournament" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.StandardTournament" Width="2.125" PointX="22" PointY="7.75" />
+        <InheritanceConnector EntityType="DiagramaMonstrosTerraADM.StandardTournament" />
+        <EntityTypeShape EntityType="DiagramaMonstrosTerraADM.Player" Width="1.75" PointX="22.5" PointY="11.25" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.RefereeGame" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.GameDeck" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.DeckCard" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.TeamPlayer" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.StandardTournamentPlayer" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.TeamTeamTournament" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.StandardGamePlayer" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.StandardGamePlayer1" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.TeamGameTeam" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.TeamGameTeam1" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.GameDeck1" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.TeamGameTeamTournament" />
+        <AssociationConnector Association="DiagramaMonstrosTerraADM.StandardGameStandardTournament" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
