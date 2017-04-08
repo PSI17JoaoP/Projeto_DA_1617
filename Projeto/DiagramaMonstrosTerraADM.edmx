@@ -20,14 +20,6 @@
           <EntitySet Name="TeamSet" EntityType="DiagramaMonstrosTerraADM.Team" />
           <EntitySet Name="TournamentSet" EntityType="DiagramaMonstrosTerraADM.Tournament" />
           <EntitySet Name="PlayerSet" EntityType="DiagramaMonstrosTerraADM.Player" />
-          <AssociationSet Name="RefereeGame" Association="DiagramaMonstrosTerraADM.RefereeGame">
-            <End Role="Referee" EntitySet="UserSet" />
-            <End Role="Game" EntitySet="GameSet" />
-          </AssociationSet>
-          <AssociationSet Name="GameDeck" Association="DiagramaMonstrosTerraADM.GameDeck">
-            <End Role="Game" EntitySet="GameSet" />
-            <End Role="Deck" EntitySet="DeckSet" />
-          </AssociationSet>
           <AssociationSet Name="DeckCard" Association="DiagramaMonstrosTerraADM.DeckCard">
             <End Role="Deck" EntitySet="DeckSet" />
             <End Role="Card" EntitySet="CardSet" />
@@ -44,26 +36,6 @@
             <End Role="Team" EntitySet="TeamSet" />
             <End Role="TeamTournament" EntitySet="TournamentSet" />
           </AssociationSet>
-          <AssociationSet Name="StandardGamePlayer" Association="DiagramaMonstrosTerraADM.StandardGamePlayer">
-            <End Role="StandardGame" EntitySet="GameSet" />
-            <End Role="Player" EntitySet="PlayerSet" />
-          </AssociationSet>
-          <AssociationSet Name="StandardGamePlayer1" Association="DiagramaMonstrosTerraADM.StandardGamePlayer1">
-            <End Role="StandardGame" EntitySet="GameSet" />
-            <End Role="Player" EntitySet="PlayerSet" />
-          </AssociationSet>
-          <AssociationSet Name="TeamGameTeam" Association="DiagramaMonstrosTerraADM.TeamGameTeam">
-            <End Role="TeamGame" EntitySet="GameSet" />
-            <End Role="Team" EntitySet="TeamSet" />
-          </AssociationSet>
-          <AssociationSet Name="TeamGameTeam1" Association="DiagramaMonstrosTerraADM.TeamGameTeam1">
-            <End Role="TeamGame" EntitySet="GameSet" />
-            <End Role="Team" EntitySet="TeamSet" />
-          </AssociationSet>
-          <AssociationSet Name="GameDeck1" Association="DiagramaMonstrosTerraADM.GameDeck1">
-            <End Role="Game" EntitySet="GameSet" />
-            <End Role="Deck" EntitySet="DeckSet" />
-          </AssociationSet>
           <AssociationSet Name="TeamGameTeamTournament" Association="DiagramaMonstrosTerraADM.TeamGameTeamTournament">
             <End Role="TeamGame" EntitySet="GameSet" />
             <End Role="TeamTournament" EntitySet="TournamentSet" />
@@ -71,6 +43,34 @@
           <AssociationSet Name="StandardGameStandardTournament" Association="DiagramaMonstrosTerraADM.StandardGameStandardTournament">
             <End Role="StandardGame" EntitySet="GameSet" />
             <End Role="StandardTournament" EntitySet="TournamentSet" />
+          </AssociationSet>
+          <AssociationSet Name="RefereeGame" Association="DiagramaMonstrosTerraADM.RefereeGame">
+            <End Role="Referee" EntitySet="UserSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="DeckGame" Association="DiagramaMonstrosTerraADM.DeckGame">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="DeckGame1" Association="DiagramaMonstrosTerraADM.DeckGame1">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerStandardGame" Association="DiagramaMonstrosTerraADM.PlayerStandardGame">
+            <End Role="Player" EntitySet="PlayerSet" />
+            <End Role="StandardGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerStandardGame1" Association="DiagramaMonstrosTerraADM.PlayerStandardGame1">
+            <End Role="Player" EntitySet="PlayerSet" />
+            <End Role="StandardGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamTeamGame" Association="DiagramaMonstrosTerraADM.TeamTeamGame">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="TeamGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamTeamGame1" Association="DiagramaMonstrosTerraADM.TeamTeamGame1">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="TeamGame" EntitySet="GameSet" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
@@ -98,11 +98,11 @@
           <Property Name="Date" Type="DateTime" Nullable="false" />
           <Property Name="Number" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Referee" Relationship="DiagramaMonstrosTerraADM.RefereeGame" FromRole="Game" ToRole="Referee" />
-          <Property Name="RefereeId" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Deck1" Relationship="DiagramaMonstrosTerraADM.GameDeck" FromRole="Game" ToRole="Deck" />
-          <Property Name="DeckId1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Deck2" Relationship="DiagramaMonstrosTerraADM.GameDeck1" FromRole="Game" ToRole="Deck" />
-          <Property Name="DeckId2" Type="Int32" Nullable="false" />
+          <Property Name="RefereeId" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Deck1" Relationship="DiagramaMonstrosTerraADM.DeckGame" FromRole="Game" ToRole="Deck" />
+          <Property Name="DeckId1" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Deck2" Relationship="DiagramaMonstrosTerraADM.DeckGame1" FromRole="Game" ToRole="Deck" />
+          <Property Name="DeckId2" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Deck">
           <Key>
@@ -110,9 +110,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="GameAs1" Relationship="DiagramaMonstrosTerraADM.GameDeck" FromRole="Deck" ToRole="Game" />
           <NavigationProperty Name="Cards" Relationship="DiagramaMonstrosTerraADM.DeckCard" FromRole="Deck" ToRole="Card" />
-          <NavigationProperty Name="GameAs2" Relationship="DiagramaMonstrosTerraADM.GameDeck1" FromRole="Deck" ToRole="Game" />
+          <NavigationProperty Name="GameAs1" Relationship="DiagramaMonstrosTerraADM.DeckGame" FromRole="Deck" ToRole="Game" />
+          <NavigationProperty Name="GameAs2" Relationship="DiagramaMonstrosTerraADM.DeckGame1" FromRole="Deck" ToRole="Game" />
         </EntityType>
         <EntityType Name="Card">
           <Key>
@@ -123,20 +123,20 @@
           <NavigationProperty Name="Deck" Relationship="DiagramaMonstrosTerraADM.DeckCard" FromRole="Card" ToRole="Deck" />
         </EntityType>
         <EntityType Name="StandardGame" BaseType="DiagramaMonstrosTerraADM.Game" >
-          <NavigationProperty Name="Player1" Relationship="DiagramaMonstrosTerraADM.StandardGamePlayer" FromRole="StandardGame" ToRole="Player" />
-          <Property Name="PlayerId1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Player2" Relationship="DiagramaMonstrosTerraADM.StandardGamePlayer1" FromRole="StandardGame" ToRole="Player" />
-          <Property Name="PlayerId2" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tournament" Relationship="DiagramaMonstrosTerraADM.StandardGameStandardTournament" FromRole="StandardGame" ToRole="StandardTournament" />
           <Property Name="StandardTournamentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Player1" Relationship="DiagramaMonstrosTerraADM.PlayerStandardGame" FromRole="StandardGame" ToRole="Player" />
+          <Property Name="PlayerId1" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Player2" Relationship="DiagramaMonstrosTerraADM.PlayerStandardGame1" FromRole="StandardGame" ToRole="Player" />
+          <Property Name="PlayerId2" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="TeamGame" BaseType="DiagramaMonstrosTerraADM.Game" >
-          <NavigationProperty Name="Team1" Relationship="DiagramaMonstrosTerraADM.TeamGameTeam" FromRole="TeamGame" ToRole="Team" />
-          <Property Name="TeamId1" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Team2" Relationship="DiagramaMonstrosTerraADM.TeamGameTeam1" FromRole="TeamGame" ToRole="Team" />
-          <Property Name="TeamId2" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Tournament" Relationship="DiagramaMonstrosTerraADM.TeamGameTeamTournament" FromRole="TeamGame" ToRole="TeamTournament" />
           <Property Name="TeamTournamentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Team1" Relationship="DiagramaMonstrosTerraADM.TeamTeamGame" FromRole="TeamGame" ToRole="Team" />
+          <Property Name="TeamId1" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Team2" Relationship="DiagramaMonstrosTerraADM.TeamTeamGame1" FromRole="TeamGame" ToRole="Team" />
+          <Property Name="TeamId2" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Team">
           <Key>
@@ -147,8 +147,8 @@
           <Property Name="Name" Type="String" Nullable="false" />
           <Property Name="Avatar" Type="String" Nullable="false" />
           <NavigationProperty Name="TeamTournaments" Relationship="DiagramaMonstrosTerraADM.TeamTeamTournament" FromRole="Team" ToRole="TeamTournament" />
-          <NavigationProperty Name="GameAsTeam1" Relationship="DiagramaMonstrosTerraADM.TeamGameTeam" FromRole="Team" ToRole="TeamGame" />
-          <NavigationProperty Name="GameAsTeam2" Relationship="DiagramaMonstrosTerraADM.TeamGameTeam1" FromRole="Team" ToRole="TeamGame" />
+          <NavigationProperty Name="GameAsTeam1" Relationship="DiagramaMonstrosTerraADM.TeamTeamGame" FromRole="Team" ToRole="TeamGame" />
+          <NavigationProperty Name="GameAsTeam2" Relationship="DiagramaMonstrosTerraADM.TeamTeamGame1" FromRole="Team" ToRole="TeamGame" />
         </EntityType>
         <EntityType Name="Tournament">
           <Key>
@@ -179,33 +179,9 @@
           <Property Name="Nickname" Type="String" Nullable="false" />
           <Property Name="Age" Type="String" Nullable="false" />
           <Property Name="Avatar" Type="String" Nullable="false" />
-          <NavigationProperty Name="StandardGame1" Relationship="DiagramaMonstrosTerraADM.StandardGamePlayer" FromRole="Player" ToRole="StandardGame" />
-          <NavigationProperty Name="StandardGame2" Relationship="DiagramaMonstrosTerraADM.StandardGamePlayer1" FromRole="Player" ToRole="StandardGame" />
+          <NavigationProperty Name="StandardGame1" Relationship="DiagramaMonstrosTerraADM.PlayerStandardGame" FromRole="Player" ToRole="StandardGame" />
+          <NavigationProperty Name="StandardGame2" Relationship="DiagramaMonstrosTerraADM.PlayerStandardGame1" FromRole="Player" ToRole="StandardGame" />
         </EntityType>
-        <Association Name="RefereeGame">
-          <End Type="DiagramaMonstrosTerraADM.Referee" Role="Referee" Multiplicity="0..1" />
-          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Referee">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="RefereeId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GameDeck">
-          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Deck" Role="Deck" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Deck">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="DeckId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="DeckCard">
           <End Type="DiagramaMonstrosTerraADM.Deck" Role="Deck" Multiplicity="*" />
           <End Type="DiagramaMonstrosTerraADM.Card" Role="Card" Multiplicity="*" />
@@ -221,66 +197,6 @@
         <Association Name="TeamTeamTournament">
           <End Type="DiagramaMonstrosTerraADM.Team" Role="Team" Multiplicity="*" />
           <End Type="DiagramaMonstrosTerraADM.TeamTournament" Role="TeamTournament" Multiplicity="*" />
-        </Association>
-        <Association Name="StandardGamePlayer">
-          <End Type="DiagramaMonstrosTerraADM.StandardGame" Role="StandardGame" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Player" Role="Player" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Player">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StandardGame">
-              <PropertyRef Name="PlayerId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="StandardGamePlayer1">
-          <End Type="DiagramaMonstrosTerraADM.StandardGame" Role="StandardGame" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Player" Role="Player" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Player">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="StandardGame">
-              <PropertyRef Name="PlayerId2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TeamGameTeam">
-          <End Type="DiagramaMonstrosTerraADM.TeamGame" Role="TeamGame" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Team" Role="Team" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TeamGame">
-              <PropertyRef Name="TeamId1" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="TeamGameTeam1">
-          <End Type="DiagramaMonstrosTerraADM.TeamGame" Role="TeamGame" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Team" Role="Team" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Team">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="TeamGame">
-              <PropertyRef Name="TeamId2" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="GameDeck1">
-          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
-          <End Type="DiagramaMonstrosTerraADM.Deck" Role="Deck" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Deck">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Game">
-              <PropertyRef Name="DeckId2" />
-            </Dependent>
-          </ReferentialConstraint>
         </Association>
         <Association Name="TeamGameTeamTournament">
           <End Type="DiagramaMonstrosTerraADM.TeamGame" Role="TeamGame" Multiplicity="*" />
@@ -303,6 +219,90 @@
             </Principal>
             <Dependent Role="StandardGame">
               <PropertyRef Name="StandardTournamentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RefereeGame">
+          <End Type="DiagramaMonstrosTerraADM.Referee" Role="Referee" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Referee">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="RefereeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeckGame">
+          <End Type="DiagramaMonstrosTerraADM.Deck" Role="Deck" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DeckId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeckGame1">
+          <End Type="DiagramaMonstrosTerraADM.Deck" Role="Deck" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DeckId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlayerStandardGame">
+          <End Type="DiagramaMonstrosTerraADM.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.StandardGame" Role="StandardGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardGame">
+              <PropertyRef Name="PlayerId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlayerStandardGame1">
+          <End Type="DiagramaMonstrosTerraADM.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.StandardGame" Role="StandardGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardGame">
+              <PropertyRef Name="PlayerId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamTeamGame">
+          <End Type="DiagramaMonstrosTerraADM.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.TeamGame" Role="TeamGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamGame">
+              <PropertyRef Name="TeamId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamTeamGame1">
+          <End Type="DiagramaMonstrosTerraADM.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="DiagramaMonstrosTerraADM.TeamGame" Role="TeamGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamGame">
+              <PropertyRef Name="TeamId2" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
