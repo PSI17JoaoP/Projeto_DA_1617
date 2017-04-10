@@ -25,6 +25,11 @@ namespace Projeto
         /// </summary>
         private DiagramaArcmageContainer container;
 
+        /// <summary>
+        /// Variável usada para guardar o id da carta selecionada para alterar/remover
+        /// </summary>
+        private int idCarta;
+
         private void formMenuAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
             formLogin Login = new formLogin();
@@ -53,7 +58,7 @@ namespace Projeto
 
         /// <summary>
         /// Ativa o formulário para preencher os dados da nova carta.
-        /// Ajusta o texto do botao de ações.
+        /// Ajusta o texto do botão de ações.
         /// </summary>
         private void btnInserirCarta_Click(object sender, EventArgs e)
         {
@@ -61,9 +66,26 @@ namespace Projeto
             btnAcaoCarta.Text = "Criar";
         }
 
+        /// <summary>
+        /// Ativa o formulário e carrega os valores da carta selecionada para
+        /// os respetivos campos.
+        /// Ajusta o texto do botão de ações
+        /// </summary>
         private void btnAlterarCarta_Click(object sender, EventArgs e)
         {
+            gbGCartasForm.Enabled = true;
+            btnAcaoCarta.Text = "Guardar";
 
+            idCarta = (int)dgvGCartasLista.CurrentRow.Cells[0].Value;
+
+            txtGNomeCarta.Text = dgvGCartasLista.CurrentRow.Cells[1].Value.ToString();
+            cmbFacaoCarta.SelectedItem = dgvGCartasLista.CurrentRow.Cells[2].Value.ToString();
+            cmbGTipoCarta.SelectedItem = dgvGCartasLista.CurrentRow.Cells[3].Value.ToString();
+            txtGCustoCarta.Text = dgvGCartasLista.CurrentRow.Cells[4].Value.ToString();
+            nudGLealdadeCarta.Value = (int)dgvGCartasLista.CurrentRow.Cells[5].Value;
+            txtGRegrasCarta.Text = dgvGCartasLista.CurrentRow.Cells[6].Value.ToString();
+            nudGAtaqueCarta.Value = (int)dgvGCartasLista.CurrentRow.Cells[7].Value;
+            nudGDefesaCarta.Value = (int)dgvGCartasLista.CurrentRow.Cells[8].Value;
         }
 
         /// <summary>
@@ -81,9 +103,9 @@ namespace Projeto
 
             if (confirm == DialogResult.Yes)
             {
-                int idCartaRemover = (int)dgvGCartasLista.CurrentRow.Cells[0].Value;
+                idCarta = (int)dgvGCartasLista.CurrentRow.Cells[0].Value;
 
-                if (RemoverCarta(idCartaRemover))
+                if (RemoverCarta())
                 {
                     MessageBox.Show("Carta eliminada com sucesso!", "Informação");
                 }
@@ -144,6 +166,7 @@ namespace Projeto
 
 
                 // Verifica se o utilizador está a criar ou a alterar uma carta
+                //Executa a função respetiva
                 if (btnAcaoCarta.Text == "Criar")
                 {
                     if (InserirCarta(name, faction, type, cost, loyalty, rules, attack, defense))
@@ -154,6 +177,18 @@ namespace Projeto
                     {
                         MessageBox.Show("Erro ao criar a carta", "Informação");
                     }
+                }
+                else if (btnAcaoCarta.Text == "Guardar")
+                {
+                    if(AlterarCarta(name, faction, type, cost, loyalty, rules, attack, defense))
+                    {
+                        MessageBox.Show("Carta alterada com sucesso!", "Informação");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar a carta", "Informação");
+                    }
+                    
                 }
 
                 RefreshTabelaCartas();
@@ -234,14 +269,49 @@ namespace Projeto
             return result;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        private Boolean AlterarCarta(string name, string faction, string type, string cost,
+            int loyalty, string rules, int attack, int defense)
+        {
+            Boolean result;
+
+            try
+            {
+                Card carta;
+
+                carta = container.CardSet.Find(idCarta);
+
+                carta.Name = name;
+                carta.Faction = faction;
+                carta.Type = type;
+                carta.Cost = cost;
+                carta.Loyalty = loyalty;
+                carta.RuleText = rules;
+                carta.Attack = attack;
+                carta.Defense = defense;
+
+                container.Entry(carta).State = System.Data.Entity.EntityState.Modified;
+                container.SaveChanges();
+
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
 
         /// <summary>
-        /// Recebe como parâmetros o id da carta a remover
-        /// Procura na base de dados a carta com o mesmo id
+        /// Procura na base de dados a carta com o mesmo id da carta selecionada
         /// Tenta remover a carta da base de dados
         /// Retorna o resultado da operação
         /// </summary>
-        private Boolean RemoverCarta(int idCarta)
+        private Boolean RemoverCarta()
         {
             Boolean result;
 
