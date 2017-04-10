@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\DiagramaArcmage.edmx'. 
+﻿// T4 code generation is enabled for model 'D:\Desktop\TESP - PSI\S2\PL\DA\Projeto\Etapa 2\Projeto_DA_1617\Projeto\DiagramaArcmage.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.
