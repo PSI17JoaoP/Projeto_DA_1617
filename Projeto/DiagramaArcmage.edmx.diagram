@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8bc5a3412e784e169e4c04483365de69" Name="Diagram1" ZoomLevel="65" >
+        <EntityTypeShape EntityType="DiagramaArcmage.User" Width="1.5" PointX="6" PointY="1.5" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Referee" Width="1.5" PointX="2" PointY="1.5" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Administrator" Width="1.5" PointX="9.625" PointY="1.5" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Game" Width="1.5" PointX="1.75" PointY="4.375" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Deck" Width="1.5" PointX="6" PointY="4.25" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Card" Width="1.5" PointX="9.625" PointY="3.75" />
+        <EntityTypeShape EntityType="DiagramaArcmage.StandardGame" Width="1.5" PointX="1.875" PointY="10.875" />
+        <EntityTypeShape EntityType="DiagramaArcmage.TeamGame" Width="1.5" PointX="5.125" PointY="8.625" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Team" Width="1.5" PointX="13.375" PointY="8.375" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Tournament" Width="1.5" PointX="15.625" PointY="3.5" />
+        <EntityTypeShape EntityType="DiagramaArcmage.TeamTournament" Width="1.5" PointX="13.625" PointY="6.25" />
+        <EntityTypeShape EntityType="DiagramaArcmage.StandardTournament" Width="1.5" PointX="17.375" PointY="6.375" />
+        <EntityTypeShape EntityType="DiagramaArcmage.Player" Width="1.5" PointX="17.375" PointY="8.375" />
+        <AssociationConnector Association="DiagramaArcmage.RefereeGame" />
+        <AssociationConnector Association="DiagramaArcmage.DeckCard" />
+        <AssociationConnector Association="DiagramaArcmage.DeckGame" />
+        <AssociationConnector Association="DiagramaArcmage.DeckGame1" />
+        <AssociationConnector Association="DiagramaArcmage.StandardGameStandardTournament" />
+        <AssociationConnector Association="DiagramaArcmage.PlayerStandardGame" />
+        <AssociationConnector Association="DiagramaArcmage.PlayerStandardGame1" />
+        <AssociationConnector Association="DiagramaArcmage.TeamGameTeamTournament" />
+        <AssociationConnector Association="DiagramaArcmage.TeamTeamGame" />
+        <AssociationConnector Association="DiagramaArcmage.TeamTeamGame1" />
+        <AssociationConnector Association="DiagramaArcmage.TeamPlayer" />
+        <AssociationConnector Association="DiagramaArcmage.TeamTeamTournament" />
+        <AssociationConnector Association="DiagramaArcmage.StandardTournamentPlayer" />
+        <InheritanceConnector EntityType="DiagramaArcmage.StandardGame" />
+        <InheritanceConnector EntityType="DiagramaArcmage.TeamTournament" />
+        <InheritanceConnector EntityType="DiagramaArcmage.TeamGame" />
+        <InheritanceConnector EntityType="DiagramaArcmage.Administrator" />
+        <InheritanceConnector EntityType="DiagramaArcmage.StandardTournament" />
+        <InheritanceConnector EntityType="DiagramaArcmage.Referee" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

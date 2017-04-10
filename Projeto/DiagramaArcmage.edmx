@@ -1,0 +1,322 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl" Namespace="DiagramaArcmage.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005">
+        <EntityContainer Name="DiagramaArcmageTargetContainer" >
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="DiagramaArcmage" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="DiagramaArcmageContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="UserSet" EntityType="DiagramaArcmage.User" />
+          <EntitySet Name="GameSet" EntityType="DiagramaArcmage.Game" />
+          <EntitySet Name="DeckSet" EntityType="DiagramaArcmage.Deck" />
+          <EntitySet Name="CardSet" EntityType="DiagramaArcmage.Card" />
+          <EntitySet Name="TeamSet" EntityType="DiagramaArcmage.Team" />
+          <EntitySet Name="TournamentSet" EntityType="DiagramaArcmage.Tournament" />
+          <EntitySet Name="PlayerSet" EntityType="DiagramaArcmage.Player" />
+          <AssociationSet Name="RefereeGame" Association="DiagramaArcmage.RefereeGame">
+            <End Role="Referee" EntitySet="UserSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="DeckCard" Association="DiagramaArcmage.DeckCard">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="Card" EntitySet="CardSet" />
+          </AssociationSet>
+          <AssociationSet Name="DeckGame" Association="DiagramaArcmage.DeckGame">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="DeckGame1" Association="DiagramaArcmage.DeckGame1">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="Game" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="StandardGameStandardTournament" Association="DiagramaArcmage.StandardGameStandardTournament">
+            <End Role="StandardGame" EntitySet="GameSet" />
+            <End Role="StandardTournament" EntitySet="TournamentSet" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerStandardGame" Association="DiagramaArcmage.PlayerStandardGame">
+            <End Role="Player" EntitySet="PlayerSet" />
+            <End Role="StandardGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="PlayerStandardGame1" Association="DiagramaArcmage.PlayerStandardGame1">
+            <End Role="Player" EntitySet="PlayerSet" />
+            <End Role="StandardGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamGameTeamTournament" Association="DiagramaArcmage.TeamGameTeamTournament">
+            <End Role="TeamGame" EntitySet="GameSet" />
+            <End Role="TeamTournament" EntitySet="TournamentSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamTeamGame" Association="DiagramaArcmage.TeamTeamGame">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="TeamGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamTeamGame1" Association="DiagramaArcmage.TeamTeamGame1">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="TeamGame" EntitySet="GameSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamPlayer" Association="DiagramaArcmage.TeamPlayer">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="Player" EntitySet="PlayerSet" />
+          </AssociationSet>
+          <AssociationSet Name="TeamTeamTournament" Association="DiagramaArcmage.TeamTeamTournament">
+            <End Role="Team" EntitySet="TeamSet" />
+            <End Role="TeamTournament" EntitySet="TournamentSet" />
+          </AssociationSet>
+          <AssociationSet Name="StandardTournamentPlayer" Association="DiagramaArcmage.StandardTournamentPlayer">
+            <End Role="StandardTournament" EntitySet="TournamentSet" />
+            <End Role="Player" EntitySet="PlayerSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Referee" BaseType="DiagramaArcmage.User">
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Avatar" Type="String" Nullable="false" />
+          <NavigationProperty Name="Game" Relationship="DiagramaArcmage.RefereeGame" FromRole="Referee" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Administrator" BaseType="DiagramaArcmage.User">
+          <Property Name="email" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Game">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Number" Type="Int32" Nullable="false" />
+          <Property Name="RefereeId" Type="Int32" Nullable="true" />
+          <Property Name="DeckId1" Type="Int32" Nullable="true" />
+          <Property Name="DeckId2" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Referee" Relationship="DiagramaArcmage.RefereeGame" FromRole="Game" ToRole="Referee" />
+          <NavigationProperty Name="Deck1" Relationship="DiagramaArcmage.DeckGame" FromRole="Game" ToRole="Deck" />
+          <NavigationProperty Name="Deck2" Relationship="DiagramaArcmage.DeckGame1" FromRole="Game" ToRole="Deck" />
+        </EntityType>
+        <EntityType Name="Deck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <NavigationProperty Name="Cards" Relationship="DiagramaArcmage.DeckCard" FromRole="Deck" ToRole="Card" />
+          <NavigationProperty Name="GameAs1" Relationship="DiagramaArcmage.DeckGame" FromRole="Deck" ToRole="Game" />
+          <NavigationProperty Name="GameAs2" Relationship="DiagramaArcmage.DeckGame1" FromRole="Deck" ToRole="Game" />
+        </EntityType>
+        <EntityType Name="Card">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Faction" Type="String" Nullable="false" />
+          <Property Name="Type" Type="String" Nullable="false" />
+          <Property Name="Cost" Type="String" Nullable="false" />
+          <Property Name="Loyalty" Type="Int32" Nullable="false" />
+          <Property Name="RuleText" Type="String" Nullable="false" />
+          <Property Name="Attack" Type="Int32" Nullable="false" />
+          <Property Name="Defense" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Deck" Relationship="DiagramaArcmage.DeckCard" FromRole="Card" ToRole="Deck" />
+        </EntityType>
+        <EntityType Name="StandardGame" BaseType="DiagramaArcmage.Game">
+          <Property Name="StandardTournamentId" Type="Int32" Nullable="false" />
+          <Property Name="PlayerId1" Type="Int32" Nullable="true" />
+          <Property Name="PlayerId2" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Tournament" Relationship="DiagramaArcmage.StandardGameStandardTournament" FromRole="StandardGame" ToRole="StandardTournament" />
+          <NavigationProperty Name="Player1" Relationship="DiagramaArcmage.PlayerStandardGame" FromRole="StandardGame" ToRole="Player" />
+          <NavigationProperty Name="Player2" Relationship="DiagramaArcmage.PlayerStandardGame1" FromRole="StandardGame" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="TeamGame" BaseType="DiagramaArcmage.Game">
+          <Property Name="TeamTournamentId" Type="Int32" Nullable="false" />
+          <Property Name="TeamId1" Type="Int32" Nullable="true" />
+          <Property Name="TeamId2" Type="Int32" Nullable="true" />
+          <NavigationProperty Name="Tournament" Relationship="DiagramaArcmage.TeamGameTeamTournament" FromRole="TeamGame" ToRole="TeamTournament" />
+          <NavigationProperty Name="Team1" Relationship="DiagramaArcmage.TeamTeamGame" FromRole="TeamGame" ToRole="Team" />
+          <NavigationProperty Name="Team2" Relationship="DiagramaArcmage.TeamTeamGame1" FromRole="TeamGame" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="Team">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Avatar" Type="String" Nullable="false" />
+          <NavigationProperty Name="GameAsTeam1" Relationship="DiagramaArcmage.TeamTeamGame" FromRole="Team" ToRole="TeamGame" />
+          <NavigationProperty Name="GameAsTeam2" Relationship="DiagramaArcmage.TeamTeamGame1" FromRole="Team" ToRole="TeamGame" />
+          <NavigationProperty Name="Players" Relationship="DiagramaArcmage.TeamPlayer" FromRole="Team" ToRole="Player" />
+          <NavigationProperty Name="TeamTournaments" Relationship="DiagramaArcmage.TeamTeamTournament" FromRole="Team" ToRole="TeamTournament" />
+        </EntityType>
+        <EntityType Name="Tournament">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TeamTournament" BaseType="DiagramaArcmage.Tournament">
+          <NavigationProperty Name="Games" Relationship="DiagramaArcmage.TeamGameTeamTournament" FromRole="TeamTournament" ToRole="TeamGame" />
+          <NavigationProperty Name="Teams" Relationship="DiagramaArcmage.TeamTeamTournament" FromRole="TeamTournament" ToRole="Team" />
+        </EntityType>
+        <EntityType Name="StandardTournament" BaseType="DiagramaArcmage.Tournament">
+          <NavigationProperty Name="Games" Relationship="DiagramaArcmage.StandardGameStandardTournament" FromRole="StandardTournament" ToRole="StandardGame" />
+          <NavigationProperty Name="Players" Relationship="DiagramaArcmage.StandardTournamentPlayer" FromRole="StandardTournament" ToRole="Player" />
+        </EntityType>
+        <EntityType Name="Player">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
+          <Property Name="Nickname" Type="String" Nullable="false" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Avatar" Type="String" Nullable="false" />
+          <NavigationProperty Name="StandardGame1" Relationship="DiagramaArcmage.PlayerStandardGame" FromRole="Player" ToRole="StandardGame" />
+          <NavigationProperty Name="StandardGame2" Relationship="DiagramaArcmage.PlayerStandardGame1" FromRole="Player" ToRole="StandardGame" />
+          <NavigationProperty Name="Teams" Relationship="DiagramaArcmage.TeamPlayer" FromRole="Player" ToRole="Team" />
+          <NavigationProperty Name="StandardTournaments" Relationship="DiagramaArcmage.StandardTournamentPlayer" FromRole="Player" ToRole="StandardTournament" />
+        </EntityType>
+        <Association Name="RefereeGame">
+          <End Type="DiagramaArcmage.Referee" Role="Referee" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.Game" Role="Game" Multiplicity="*" />
+        </Association>
+        <Association Name="DeckCard">
+          <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="*" />
+          <End Type="DiagramaArcmage.Card" Role="Card" Multiplicity="*" />
+        </Association>
+        <Association Name="DeckGame">
+          <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DeckId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DeckGame1">
+          <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.Game" Role="Game" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Game">
+              <PropertyRef Name="DeckId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="StandardGameStandardTournament">
+          <End Type="DiagramaArcmage.StandardGame" Role="StandardGame" Multiplicity="*" />
+          <End Type="DiagramaArcmage.StandardTournament" Role="StandardTournament" Multiplicity="1" />
+        </Association>
+        <Association Name="PlayerStandardGame">
+          <End Type="DiagramaArcmage.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.StandardGame" Role="StandardGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardGame">
+              <PropertyRef Name="PlayerId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PlayerStandardGame1">
+          <End Type="DiagramaArcmage.Player" Role="Player" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.StandardGame" Role="StandardGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Player">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="StandardGame">
+              <PropertyRef Name="PlayerId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamGameTeamTournament">
+          <End Type="DiagramaArcmage.TeamGame" Role="TeamGame" Multiplicity="*" />
+          <End Type="DiagramaArcmage.TeamTournament" Role="TeamTournament" Multiplicity="1" />
+        </Association>
+        <Association Name="TeamTeamGame">
+          <End Type="DiagramaArcmage.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.TeamGame" Role="TeamGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamGame">
+              <PropertyRef Name="TeamId1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamTeamGame1">
+          <End Type="DiagramaArcmage.Team" Role="Team" Multiplicity="0..1" />
+          <End Type="DiagramaArcmage.TeamGame" Role="TeamGame" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Team">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TeamGame">
+              <PropertyRef Name="TeamId2" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeamPlayer">
+          <End Type="DiagramaArcmage.Team" Role="Team" Multiplicity="*" />
+          <End Type="DiagramaArcmage.Player" Role="Player" Multiplicity="*" />
+        </Association>
+        <Association Name="TeamTeamTournament">
+          <End Type="DiagramaArcmage.Team" Role="Team" Multiplicity="*" />
+          <End Type="DiagramaArcmage.TeamTournament" Role="TeamTournament" Multiplicity="*" />
+        </Association>
+        <Association Name="StandardTournamentPlayer">
+          <End Type="DiagramaArcmage.StandardTournament" Role="StandardTournament" Multiplicity="*" />
+          <End Type="DiagramaArcmage.Player" Role="Player" Multiplicity="*" />
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs" Space="C-S">
+        <Alias Key="Model" Value="DiagramaArcmage" />
+        <Alias Key="Target" Value="DiagramaArcmage.Store" />
+        <EntityContainerMapping CdmEntityContainer="DiagramaArcmageContainer" StorageEntityContainer="DiagramaArcmageTargetContainer">
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

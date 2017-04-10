@@ -63,10 +63,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DiagramaMonstrosTerraADM.Designer.cs">
+    <Compile Include="DiagramaArcmage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>DiagramaMonstrosTerraADM.edmx</DependentUpon>
+      <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
     </Compile>
     <Compile Include="formLogin.cs">
       <SubType>Form</SubType>
@@ -106,12 +106,12 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EntityDeploy Include="DiagramaMonstrosTerraADM.edmx">
+    <EntityDeploy Include="DiagramaArcmage.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DiagramaMonstrosTerraADM.Designer.cs</LastGenOutput>
+      <LastGenOutput>DiagramaArcmage.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="DiagramaMonstrosTerraADM.edmx.diagram">
-      <DependentUpon>DiagramaMonstrosTerraADM.edmx</DependentUpon>
+    <None Include="DiagramaArcmage.edmx.diagram">
+      <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
