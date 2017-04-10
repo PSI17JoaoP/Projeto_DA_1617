@@ -1337,6 +1337,8 @@
             this.dgvGCartasLista.RowTemplate.Height = 24;
             this.dgvGCartasLista.Size = new System.Drawing.Size(367, 217);
             this.dgvGCartasLista.TabIndex = 8;
+            this.dgvGCartasLista.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGCartasLista_CellEnter);
+            this.dgvGCartasLista.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGCartasLista_CellLeave);
             // 
             // label18
             // 

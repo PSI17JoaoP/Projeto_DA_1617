@@ -66,9 +66,59 @@ namespace Projeto
 
         }
 
+        /// <summary>
+        /// Confirma a intenção do utilizador de eliminar a carta selecionada
+        /// Caso confirme, obtém o id da carta e chama a função para remover a carta
+        /// Informa o utilizador do resultado da operação
+        /// </summary>
         private void btnRemoverCarta_Click(object sender, EventArgs e)
         {
+            string nomeCarta = dgvGCartasLista.CurrentRow.Cells[1].Value.ToString();
 
+            DialogResult confirm = 
+                MessageBox.Show("Tem a certeza que quer eliminar a carta '" + nomeCarta + "'?", 
+                "Atenção", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
+            {
+                int idCartaRemover = (int)dgvGCartasLista.CurrentRow.Cells[0].Value;
+
+                if (RemoverCarta(idCartaRemover))
+                {
+                    MessageBox.Show("Carta eliminada com sucesso!", "Informação");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao eliminar a carta", "Informação");
+                }
+
+                RefreshTabelaCartas();
+            }
+                            
+        }
+
+        /// <summary>
+        /// Desbloqueia os botões para alterar e remover se estiver um registo selecionado
+        /// </summary
+        private void dgvGCartasLista_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvGCartasLista.SelectedCells.Count > 0)
+            {
+                btnAlterarCarta.Enabled = true;
+                btnRemoverCarta.Enabled = true;
+            }
+        }
+
+        /// <summary>
+        /// Bloqueia os botões para alterar e remover cartas se nenhum registo estiver selecionado
+        /// </summary>
+        private void dgvGCartasLista_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvGCartasLista.SelectedCells.Count == 0)
+            {
+                btnAlterarCarta.Enabled = false;
+                btnRemoverCarta.Enabled = false;
+            }
         }
 
         private void btnAcaoCarta_Click(object sender, EventArgs e)
@@ -86,10 +136,10 @@ namespace Projeto
                 string faction = cmbFacaoCarta.SelectedItem.ToString();
                 string type = cmbGTipoCarta.SelectedItem.ToString();
                 string cost = txtGCustoCarta.Text;
-                Int32 loyalty = (int)nudGLealdadeCarta.Value;
+                int loyalty = (int)nudGLealdadeCarta.Value;
                 string rules = txtGRegrasCarta.Text;
-                Int32 attack = (int)nudGAtaqueCarta.Value;
-                Int32 defense = (int)nudGDefesaCarta.Value;
+                int attack = (int)nudGAtaqueCarta.Value;
+                int defense = (int)nudGDefesaCarta.Value;
                 //-------------------------------------------
 
 
@@ -152,8 +202,8 @@ namespace Projeto
         /// Tenta adicionar a nova carta à base de dados
         /// Retorna o resultado da operação
         /// </summary>
-        private Boolean InserirCarta(string name, string faction, string type, string cost, 
-            Int32 loyalty, string rules, Int32 attack, Int32 defense)
+        private Boolean InserirCarta(string name, string faction, string type, string cost,
+            int loyalty, string rules, int attack, int defense)
         {
             Boolean result;
 
@@ -184,6 +234,39 @@ namespace Projeto
             return result;
         }
 
-     
+
+        /// <summary>
+        /// Recebe como parâmetros o id da carta a remover
+        /// Procura na base de dados a carta com o mesmo id
+        /// Tenta remover a carta da base de dados
+        /// Retorna o resultado da operação
+        /// </summary>
+        private Boolean RemoverCarta(int idCarta)
+        {
+            Boolean result;
+
+            try
+            {
+                foreach (Card carta in container.CardSet)
+                {
+                    if (carta.Id == idCarta)
+                    {
+                        container.CardSet.Remove(carta);
+                    }
+                }
+
+                container.SaveChanges();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+                throw;
+            }
+
+            return result;
+        }
+
+       
     }
 }
