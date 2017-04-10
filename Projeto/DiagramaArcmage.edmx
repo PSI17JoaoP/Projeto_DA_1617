@@ -87,7 +87,7 @@
           <NavigationProperty Name="Game" Relationship="DiagramaArcmage.RefereeGame" FromRole="Referee" ToRole="Game" />
         </EntityType>
         <EntityType Name="Administrator" BaseType="DiagramaArcmage.User">
-          <Property Name="email" Type="String" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Game">
           <Key>
