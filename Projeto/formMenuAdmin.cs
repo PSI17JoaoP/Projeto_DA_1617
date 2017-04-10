@@ -33,6 +33,13 @@ namespace Projeto
             Login.Show();
         }
 
+        private void formMenuAdmin_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
+            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
+
+        }
+
         private void btnRemoverTorneio_Click(object sender, EventArgs e)
         {
             gbGTorneiosForm.Visible = true;
@@ -346,13 +353,6 @@ namespace Projeto
         {
             dgvGUtilizadoresLista.Refresh();
             dgvGUtilizadoresLista.Update();
-        }
-
-        private void formMenuAdmin_Load(object sender, EventArgs e)
-        {
-            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
-            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
-
         }
     }
 }

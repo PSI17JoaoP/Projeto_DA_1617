@@ -75,6 +75,11 @@
     <Compile Include="Administrator.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
     </Compile>
+    <Compile Include="BD_DA_ProjetoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Card.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
     </Compile>
@@ -168,6 +173,17 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DiagramaArcmage.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="BD_DA_ProjetoDataSet.xsc">
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_DA_ProjetoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet.xss">
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DiagramaArcmage.edmx.diagram">
       <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
     </None>
