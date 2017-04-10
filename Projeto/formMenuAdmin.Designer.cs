@@ -161,6 +161,8 @@
             this.labPesquisarUtilizador = new System.Windows.Forms.Label();
             this.btnAlterarUtilizador = new System.Windows.Forms.Button();
             this.dgvGUtilizadoresLista = new System.Windows.Forms.DataGridView();
+            this.userSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
             this.btnInserirUtilizador = new System.Windows.Forms.Button();
             this.txtGUtilizadoresPesquisa = new System.Windows.Forms.TextBox();
             this.gbGAdministradorForm = new System.Windows.Forms.GroupBox();
@@ -192,12 +194,9 @@
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
-            this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
-            this.userSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.userSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.UserSetTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -237,12 +236,12 @@
             this.tbGestaoUtilizadores.SuspendLayout();
             this.gbGUtilizadoresDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
             this.gbGAdministradorForm.SuspendLayout();
             this.gbGArbitroForm.SuspendLayout();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -1522,7 +1521,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 570);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 653);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1806,8 +1805,7 @@
             this.dgvGUtilizadoresLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGUtilizadoresLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
-            this.usernameDataGridViewTextBoxColumn,
-            this.passwordDataGridViewTextBoxColumn});
+            this.usernameDataGridViewTextBoxColumn});
             this.dgvGUtilizadoresLista.DataSource = this.userSetBindingSource;
             this.dgvGUtilizadoresLista.Location = new System.Drawing.Point(14, 68);
             this.dgvGUtilizadoresLista.Margin = new System.Windows.Forms.Padding(2);
@@ -1816,6 +1814,16 @@
             this.dgvGUtilizadoresLista.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvGUtilizadoresLista.Size = new System.Drawing.Size(494, 287);
             this.dgvGUtilizadoresLista.TabIndex = 3;
+            // 
+            // userSetBindingSource
+            // 
+            this.userSetBindingSource.DataMember = "UserSet";
+            this.userSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
+            // 
+            // bD_DA_ProjetoDataSet
+            // 
+            this.bD_DA_ProjetoDataSet.DataSetName = "BD_DA_ProjetoDataSet";
+            this.bD_DA_ProjetoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnInserirUtilizador
             // 
@@ -2166,16 +2174,6 @@
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
             // 
-            // bD_DA_ProjetoDataSet
-            // 
-            this.bD_DA_ProjetoDataSet.DataSetName = "BD_DA_ProjetoDataSet";
-            this.bD_DA_ProjetoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // userSetBindingSource
-            // 
-            this.userSetBindingSource.DataMember = "UserSet";
-            this.userSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
-            // 
             // userSetTableAdapter
             // 
             this.userSetTableAdapter.ClearBeforeFill = true;
@@ -2192,12 +2190,6 @@
             this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
             this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
             this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
-            // 
-            // passwordDataGridViewTextBoxColumn
-            // 
-            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
-            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
-            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
             // 
             // formMenuAdmin
             // 
@@ -2266,14 +2258,14 @@
             this.gbGUtilizadoresDados.ResumeLayout(false);
             this.gbGUtilizadoresDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
             this.gbGAdministradorForm.ResumeLayout(false);
             this.gbGAdministradorForm.PerformLayout();
             this.gbGArbitroForm.ResumeLayout(false);
             this.gbGArbitroForm.PerformLayout();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2447,6 +2439,5 @@
         private BD_DA_ProjetoDataSetTableAdapters.UserSetTableAdapter userSetTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
     }
 }

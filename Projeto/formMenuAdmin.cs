@@ -133,17 +133,11 @@ namespace Projeto
 
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
-                    foreach (User utilizador in containerDados.UserSet)
+                    if (containerDados.UserSet.Count() > 0)
                     {
-                        if (utilizador.Username != usernameForm)
+                        if (VerificarDadosAdmnistrador(usernameForm, emailForm))
                         {
-                            foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
-                            {
-                                if (admin.Email != emailForm)
-                                {
-                                    AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
-                                }
-                            }
+                            AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                         }
                     }
                 }
@@ -153,18 +147,17 @@ namespace Projeto
             {
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
-                    foreach (User utilizador in containerDados.UserSet)
+                    if (containerDados.UserSet.Count() > 0)
                     {
-                        if (utilizador.Username != usernameForm)
+                        if (VerificarDadosAdmnistrador(usernameForm, emailForm))
                         {
-                            foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
-                            {
-                                if (admin.Email != emailForm)
-                                {
-                                    AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
-                                }
-                            }
+                            AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                         }
+                    }
+
+                    else
+                    {
+                        AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                     }
                 }
             }
@@ -185,17 +178,11 @@ namespace Projeto
 
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
-                    foreach (User utilizador in containerDados.UserSet)
+                    if (containerDados.UserSet.Count() > 0)
                     {
-                        if (utilizador.Username != usernameForm)
+                        if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
                         {
-                            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
-                            {
-                                if (arbitro.Name != nomeForm || arbitro.Avatar != avatarForm)
-                                {
-                                    AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                                }
-                            }
+                            AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
                         }
                     }
                 }
@@ -205,18 +192,17 @@ namespace Projeto
             {
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
-                    foreach (User utilizador in containerDados.UserSet)
+                    if (containerDados.UserSet.Count() > 0)
                     {
-                        if (utilizador.Username != usernameForm)
+                        if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
                         {
-                            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
-                            {
-                                if (arbitro.Name != nomeForm || arbitro.Avatar != avatarForm)
-                                {
-                                    AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                                }
-                            }
+                            AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
                         }
+                    }
+
+                    else
+                    {
+                        AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
                     }
                 }
             }
@@ -283,22 +269,6 @@ namespace Projeto
 
         private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
-            /*foreach (Referee arbitroSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Referee>())
-            {
-                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
-                {
-                    if (arbitroSelecionado.Id == arbitro.Id)
-                    {
-                        arbitro.Username = usernameArbitro;
-                        arbitro.Password = HashPassword(passArbitro);
-                        arbitro.Name = nomeArbitro;
-                        arbitro.Avatar = avatarPathArbitro;
-
-                        containerDados.Entry(arbitro).State = EntityState.Modified;
-                    }
-                }
-            }*/
-
             Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
             arbitro.Username = usernameArbitro;
@@ -314,19 +284,6 @@ namespace Projeto
 
         private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
-            /*foreach (Administrator adminSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>())
-            {
-                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
-                {
-                    if (adminSelecionado.Id == admin.Id)
-                    {
-                        admin.Username = nomeAdministrador;
-                        admin.Password = HashPassword(passAdministrador);
-                        admin.Email = emailAdministrador;
-                    }
-                }
-            }*/
-
             Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
 
             admin.Username = usernameAdministrador;
@@ -351,8 +308,61 @@ namespace Projeto
 
         private void RefreshGridView()
         {
-            dgvGUtilizadoresLista.Refresh();
-            dgvGUtilizadoresLista.Update();
+            dgvGCartasLista.DataSource = null;
+            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
+            dgvGCartasLista.DataSource = this.userSetBindingSource;
+        }
+
+        private bool VerificarDadosAdmnistrador(string usernameAdministrador, string emailAdministrador)
+        {
+            bool naoExisteDados = true;
+
+            foreach (User utilizador in containerDados.UserSet)
+            {
+                if (utilizador.Username == usernameAdministrador)
+                {
+                    naoExisteDados = false;
+                }
+
+                else
+                {
+                    foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+                    {
+                        if (admin.Email == emailAdministrador)
+                        {
+                            naoExisteDados = false;
+                        }
+                    }
+                }
+            }
+
+            return naoExisteDados;
+        }
+
+        private bool VerificarDadosArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
+        {
+            bool naoExisteDados = true;
+
+            foreach (User utilizador in containerDados.UserSet)
+            {
+                if (utilizador.Username == usernameArbitro)
+                {
+                    naoExisteDados = false;
+                }
+
+                else
+                {
+                    foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+                    {
+                        if (arbitro.Name == nomeArbitro || arbitro.Avatar == avatarPathArbitro)
+                        {
+                            naoExisteDados = false;
+                        }
+                    }
+                }
+            }
+
+            return naoExisteDados;
         }
     }
 }
