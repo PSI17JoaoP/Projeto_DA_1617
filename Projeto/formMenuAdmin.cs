@@ -119,7 +119,19 @@ namespace Projeto
             {
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
-
+                    foreach (User utilizador in containerDados.UserSet)
+                    {
+                        if (utilizador.Username != usernameForm)
+                        {
+                            foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+                            {
+                                if (admin.Email != emailForm)
+                                {
+                                    AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
@@ -157,23 +169,35 @@ namespace Projeto
             {
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
-
+                    foreach (User utilizador in containerDados.UserSet)
+                    {
+                        if (utilizador.Username != usernameForm)
+                        {
+                            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+                            {
+                                if (arbitro.Name != nomeForm || arbitro.Avatar != avatarForm)
+                                {
+                                    AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                                }
+                            }
+                        }
+                    }
                 }
             }
 
             else
             {
-                if (txtUsernameArbitro.Text.Trim().Length > 0 && txtPasswordArbitro.Text.Trim().Length > 0 && txtNomeArbitro.Text.Trim().Length > 0 && txtAvatarArbitro.Text.Trim().Length > 0)
+                if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
                     foreach (User utilizador in containerDados.UserSet)
                     {
-                        if(utilizador.Username != txtUsernameArbitro.Text.Trim())
+                        if (utilizador.Username != usernameForm)
                         {
                             foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                             {
-                                if(arbitro.Name != txtNomeArbitro.Text.Trim() || arbitro.Avatar != txtAvatarArbitro.Text.Trim())
+                                if (arbitro.Name != nomeForm || arbitro.Avatar != avatarForm)
                                 {
-                                    AdicionarArbitro(txtUsernameArbitro.Text, txtPasswordArbitro.Text, txtNomeArbitro.Text, txtAvatarArbitro.Text);
+                                    AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
                                 }
                             }
                         }
@@ -197,35 +221,31 @@ namespace Projeto
             gbGUtilizadoresDados.Enabled = true;
         }
 
-        private void AdicionarArbitro(string usernameUtilizador, string passUtilizador, string nomeUtilizador, string avatarPathUtilizador)
+        private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             Referee novoArbitro = new Referee
             {
-                //Id = containerDados.UserSet.Local.Count() + 1,
-                Username = usernameUtilizador,
-                Password = HashPassword(passUtilizador),
-                Name = nomeUtilizador,
-                Avatar = avatarPathUtilizador
+                Username = usernameArbitro,
+                Password = HashPassword(passArbitro),
+                Name = nomeArbitro,
+                Avatar = avatarPathArbitro
             };
 
             containerDados.UserSet.Add(novoArbitro);
             containerDados.SaveChanges();
-            RefreshGridArbitros();
         }
 
-        private void AdicionarAdministrador(string nomeUtilizador, string passUtilizador, string emailUtilizador)
+        private void AdicionarAdministrador(string nomeAdministrador, string passAdministrador, string emailAdministrador)
         {
             Administrator novoAdministrador = new Administrator
             {
-                //Id = containerDados.UserSet.Local.Count() + 1,
-                Username = nomeUtilizador,
-                Password = HashPassword(passUtilizador),
-                Email = emailUtilizador                            
+                Username = nomeAdministrador,
+                Password = HashPassword(passAdministrador),
+                Email = emailAdministrador
             };
 
             containerDados.UserSet.Add(novoAdministrador);
             containerDados.SaveChanges();
-            RefreshGridAdministradores();
         }
 
         private string HashPassword(string password)
@@ -243,26 +263,41 @@ namespace Projeto
             return passwordHash;
         }
 
-        private void RefreshGridAdministradores()
+        private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
-            foreach(Administrator admin in containerDados.UserSet.OfType<Administrator>())
+            foreach (Referee arbitroSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Referee>())
             {
-                dgvGUtilizadoresLista.Rows.Add(admin.Id, admin.Username, admin.Email);
+                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+                {
+                    if (arbitroSelecionado.Id == arbitro.Id)
+                    {
+                        arbitro.Username = usernameArbitro;
+                        arbitro.Password = HashPassword(passArbitro);
+                        arbitro.Name = nomeArbitro;
+                        arbitro.Avatar = avatarPathArbitro;
+                    }
+                }
             }
 
-            dgvGUtilizadoresLista.Update();
-            dgvGUtilizadoresLista.Refresh();
+            containerDados.SaveChanges();
         }
 
-        private void RefreshGridArbitros()
+        private void AlterarAdministrador(string nomeAdministrador, string passAdministrador, string emailAdministrador)
         {
-            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+            foreach (Administrator adminSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>())
             {
-                dgvGUtilizadoresLista.Rows.Add(arbitro.Id, arbitro.Username, arbitro.Name);
+                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+                {
+                    if (adminSelecionado.Id == admin.Id)
+                    {
+                        admin.Username = nomeAdministrador;
+                        admin.Password = HashPassword(passAdministrador);
+                        admin.Email = emailAdministrador;
+                    }
+                }
             }
 
-            dgvGUtilizadoresLista.Update();
-            dgvGUtilizadoresLista.Refresh();
+            containerDados.SaveChanges();
         }
     }
 }
