@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -14,6 +15,10 @@ namespace Projeto
     public partial class formMenuAdmin : Form
     {
         public DiagramaArcmageContainer containerDados;
+
+        private int idArbitro;
+
+        private int idAdministrador;
 
         public formMenuAdmin()
         {
@@ -265,7 +270,7 @@ namespace Projeto
 
         private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
-            foreach (Referee arbitroSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Referee>())
+            /*foreach (Referee arbitroSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Referee>())
             {
                 foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                 {
@@ -275,9 +280,13 @@ namespace Projeto
                         arbitro.Password = HashPassword(passArbitro);
                         arbitro.Name = nomeArbitro;
                         arbitro.Avatar = avatarPathArbitro;
+
+                        containerDados.Entry(arbitro).State = EntityState.Modified;
                     }
                 }
-            }
+            }*/
+
+
 
             containerDados.SaveChanges();
         }
