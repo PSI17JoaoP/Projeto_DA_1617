@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(formMenuAdmin));
             this.tbMenu = new System.Windows.Forms.TabControl();
             this.tpGestao = new System.Windows.Forms.TabPage();
@@ -162,6 +163,15 @@
             this.dgvGUtilizadoresLista = new System.Windows.Forms.DataGridView();
             this.btnInserirUtilizador = new System.Windows.Forms.Button();
             this.txtGUtilizadoresPesquisa = new System.Windows.Forms.TextBox();
+            this.gbGAdministradorForm = new System.Windows.Forms.GroupBox();
+            this.btnCancelarAdministrador = new System.Windows.Forms.Button();
+            this.btnAcaoAdministrador = new System.Windows.Forms.Button();
+            this.txtEmailAdministrador = new System.Windows.Forms.TextBox();
+            this.txtPasswordAdministrador = new System.Windows.Forms.TextBox();
+            this.txtUsernameAdministrador = new System.Windows.Forms.TextBox();
+            this.labEmailAdministrador = new System.Windows.Forms.Label();
+            this.labPasswordAdministrador = new System.Windows.Forms.Label();
+            this.labUsernameAdministrador = new System.Windows.Forms.Label();
             this.gbGArbitroForm = new System.Windows.Forms.GroupBox();
             this.labUsernameArbitro = new System.Windows.Forms.Label();
             this.txtUsernameArbitro = new System.Windows.Forms.TextBox();
@@ -174,15 +184,6 @@
             this.button4 = new System.Windows.Forms.Button();
             this.btnAcaoArbitro = new System.Windows.Forms.Button();
             this.btnCancelarArbitro = new System.Windows.Forms.Button();
-            this.gbGAdministradorForm = new System.Windows.Forms.GroupBox();
-            this.btnCancelarAdministrador = new System.Windows.Forms.Button();
-            this.btnAcaoAdministrador = new System.Windows.Forms.Button();
-            this.txtEmailAdministrador = new System.Windows.Forms.TextBox();
-            this.txtPasswordAdministrador = new System.Windows.Forms.TextBox();
-            this.txtUsernameAdministrador = new System.Windows.Forms.TextBox();
-            this.labEmailAdministrador = new System.Windows.Forms.Label();
-            this.labPasswordAdministrador = new System.Windows.Forms.Label();
-            this.labUsernameAdministrador = new System.Windows.Forms.Label();
             this.tbVer = new System.Windows.Forms.TabPage();
             this.tcVer = new System.Windows.Forms.TabControl();
             this.tbVerJogadores = new System.Windows.Forms.TabPage();
@@ -191,6 +192,12 @@
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
+            this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
+            this.userSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.userSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.UserSetTableAdapter();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.passwordDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -230,10 +237,12 @@
             this.tbGestaoUtilizadores.SuspendLayout();
             this.gbGUtilizadoresDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
-            this.gbGArbitroForm.SuspendLayout();
             this.gbGAdministradorForm.SuspendLayout();
+            this.gbGArbitroForm.SuspendLayout();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -1513,7 +1522,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 487);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 570);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1793,7 +1802,13 @@
             this.dgvGUtilizadoresLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvGUtilizadoresLista.AutoGenerateColumns = false;
             this.dgvGUtilizadoresLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGUtilizadoresLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn,
+            this.usernameDataGridViewTextBoxColumn,
+            this.passwordDataGridViewTextBoxColumn});
+            this.dgvGUtilizadoresLista.DataSource = this.userSetBindingSource;
             this.dgvGUtilizadoresLista.Location = new System.Drawing.Point(14, 68);
             this.dgvGUtilizadoresLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGUtilizadoresLista.Name = "dgvGUtilizadoresLista";
@@ -1823,6 +1838,107 @@
             this.txtGUtilizadoresPesquisa.Name = "txtGUtilizadoresPesquisa";
             this.txtGUtilizadoresPesquisa.Size = new System.Drawing.Size(443, 20);
             this.txtGUtilizadoresPesquisa.TabIndex = 6;
+            // 
+            // gbGAdministradorForm
+            // 
+            this.gbGAdministradorForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGAdministradorForm.Controls.Add(this.btnCancelarAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.btnAcaoAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.txtEmailAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.txtPasswordAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.txtUsernameAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.labEmailAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.labPasswordAdministrador);
+            this.gbGAdministradorForm.Controls.Add(this.labUsernameAdministrador);
+            this.gbGAdministradorForm.Location = new System.Drawing.Point(529, 0);
+            this.gbGAdministradorForm.Margin = new System.Windows.Forms.Padding(2);
+            this.gbGAdministradorForm.Name = "gbGAdministradorForm";
+            this.gbGAdministradorForm.Padding = new System.Windows.Forms.Padding(2);
+            this.gbGAdministradorForm.Size = new System.Drawing.Size(244, 403);
+            this.gbGAdministradorForm.TabIndex = 1;
+            this.gbGAdministradorForm.TabStop = false;
+            this.gbGAdministradorForm.Text = "Campos";
+            this.gbGAdministradorForm.Visible = false;
+            // 
+            // btnCancelarAdministrador
+            // 
+            this.btnCancelarAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelarAdministrador.Location = new System.Drawing.Point(161, 367);
+            this.btnCancelarAdministrador.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelarAdministrador.Name = "btnCancelarAdministrador";
+            this.btnCancelarAdministrador.Size = new System.Drawing.Size(62, 25);
+            this.btnCancelarAdministrador.TabIndex = 15;
+            this.btnCancelarAdministrador.Text = "Cancelar";
+            this.btnCancelarAdministrador.UseVisualStyleBackColor = true;
+            this.btnCancelarAdministrador.Click += new System.EventHandler(this.BotaoCancelarAdministrador);
+            // 
+            // btnAcaoAdministrador
+            // 
+            this.btnAcaoAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcaoAdministrador.Location = new System.Drawing.Point(101, 368);
+            this.btnAcaoAdministrador.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAcaoAdministrador.Name = "btnAcaoAdministrador";
+            this.btnAcaoAdministrador.Size = new System.Drawing.Size(56, 24);
+            this.btnAcaoAdministrador.TabIndex = 14;
+            this.btnAcaoAdministrador.Text = "Ação";
+            this.btnAcaoAdministrador.UseVisualStyleBackColor = true;
+            this.btnAcaoAdministrador.Click += new System.EventHandler(this.BotaoAcaoAdministrador);
+            // 
+            // txtEmailAdministrador
+            // 
+            this.txtEmailAdministrador.Location = new System.Drawing.Point(51, 96);
+            this.txtEmailAdministrador.Margin = new System.Windows.Forms.Padding(2);
+            this.txtEmailAdministrador.Name = "txtEmailAdministrador";
+            this.txtEmailAdministrador.Size = new System.Drawing.Size(172, 20);
+            this.txtEmailAdministrador.TabIndex = 13;
+            // 
+            // txtPasswordAdministrador
+            // 
+            this.txtPasswordAdministrador.Location = new System.Drawing.Point(72, 65);
+            this.txtPasswordAdministrador.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPasswordAdministrador.Name = "txtPasswordAdministrador";
+            this.txtPasswordAdministrador.Size = new System.Drawing.Size(151, 20);
+            this.txtPasswordAdministrador.TabIndex = 8;
+            this.txtPasswordAdministrador.UseSystemPasswordChar = true;
+            // 
+            // txtUsernameAdministrador
+            // 
+            this.txtUsernameAdministrador.Location = new System.Drawing.Point(74, 38);
+            this.txtUsernameAdministrador.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsernameAdministrador.Name = "txtUsernameAdministrador";
+            this.txtUsernameAdministrador.Size = new System.Drawing.Size(149, 20);
+            this.txtUsernameAdministrador.TabIndex = 7;
+            // 
+            // labEmailAdministrador
+            // 
+            this.labEmailAdministrador.AutoSize = true;
+            this.labEmailAdministrador.Location = new System.Drawing.Point(15, 99);
+            this.labEmailAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labEmailAdministrador.Name = "labEmailAdministrador";
+            this.labEmailAdministrador.Size = new System.Drawing.Size(32, 13);
+            this.labEmailAdministrador.TabIndex = 6;
+            this.labEmailAdministrador.Text = "Email";
+            // 
+            // labPasswordAdministrador
+            // 
+            this.labPasswordAdministrador.AutoSize = true;
+            this.labPasswordAdministrador.Location = new System.Drawing.Point(15, 68);
+            this.labPasswordAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labPasswordAdministrador.Name = "labPasswordAdministrador";
+            this.labPasswordAdministrador.Size = new System.Drawing.Size(53, 13);
+            this.labPasswordAdministrador.TabIndex = 2;
+            this.labPasswordAdministrador.Text = "Password";
+            // 
+            // labUsernameAdministrador
+            // 
+            this.labUsernameAdministrador.AutoSize = true;
+            this.labUsernameAdministrador.Location = new System.Drawing.Point(15, 41);
+            this.labUsernameAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labUsernameAdministrador.Name = "labUsernameAdministrador";
+            this.labUsernameAdministrador.Size = new System.Drawing.Size(55, 13);
+            this.labUsernameAdministrador.TabIndex = 1;
+            this.labUsernameAdministrador.Text = "Username";
             // 
             // gbGArbitroForm
             // 
@@ -1956,107 +2072,6 @@
             this.btnCancelarArbitro.UseVisualStyleBackColor = true;
             this.btnCancelarArbitro.Click += new System.EventHandler(this.BotaoCancelarArbitro);
             // 
-            // gbGAdministradorForm
-            // 
-            this.gbGAdministradorForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbGAdministradorForm.Controls.Add(this.btnCancelarAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.btnAcaoAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.txtEmailAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.txtPasswordAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.txtUsernameAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.labEmailAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.labPasswordAdministrador);
-            this.gbGAdministradorForm.Controls.Add(this.labUsernameAdministrador);
-            this.gbGAdministradorForm.Location = new System.Drawing.Point(529, 0);
-            this.gbGAdministradorForm.Margin = new System.Windows.Forms.Padding(2);
-            this.gbGAdministradorForm.Name = "gbGAdministradorForm";
-            this.gbGAdministradorForm.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGAdministradorForm.Size = new System.Drawing.Size(244, 403);
-            this.gbGAdministradorForm.TabIndex = 1;
-            this.gbGAdministradorForm.TabStop = false;
-            this.gbGAdministradorForm.Text = "Campos";
-            this.gbGAdministradorForm.Visible = false;
-            // 
-            // btnCancelarAdministrador
-            // 
-            this.btnCancelarAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelarAdministrador.Location = new System.Drawing.Point(161, 367);
-            this.btnCancelarAdministrador.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelarAdministrador.Name = "btnCancelarAdministrador";
-            this.btnCancelarAdministrador.Size = new System.Drawing.Size(62, 25);
-            this.btnCancelarAdministrador.TabIndex = 15;
-            this.btnCancelarAdministrador.Text = "Cancelar";
-            this.btnCancelarAdministrador.UseVisualStyleBackColor = true;
-            this.btnCancelarAdministrador.Click += new System.EventHandler(this.BotaoCancelarAdministrador);
-            // 
-            // btnAcaoAdministrador
-            // 
-            this.btnAcaoAdministrador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcaoAdministrador.Location = new System.Drawing.Point(101, 368);
-            this.btnAcaoAdministrador.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAcaoAdministrador.Name = "btnAcaoAdministrador";
-            this.btnAcaoAdministrador.Size = new System.Drawing.Size(56, 24);
-            this.btnAcaoAdministrador.TabIndex = 14;
-            this.btnAcaoAdministrador.Text = "Ação";
-            this.btnAcaoAdministrador.UseVisualStyleBackColor = true;
-            this.btnAcaoAdministrador.Click += new System.EventHandler(this.BotaoAcaoAdministrador);
-            // 
-            // txtEmailAdministrador
-            // 
-            this.txtEmailAdministrador.Location = new System.Drawing.Point(51, 96);
-            this.txtEmailAdministrador.Margin = new System.Windows.Forms.Padding(2);
-            this.txtEmailAdministrador.Name = "txtEmailAdministrador";
-            this.txtEmailAdministrador.Size = new System.Drawing.Size(172, 20);
-            this.txtEmailAdministrador.TabIndex = 13;
-            // 
-            // txtPasswordAdministrador
-            // 
-            this.txtPasswordAdministrador.Location = new System.Drawing.Point(72, 65);
-            this.txtPasswordAdministrador.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPasswordAdministrador.Name = "txtPasswordAdministrador";
-            this.txtPasswordAdministrador.Size = new System.Drawing.Size(151, 20);
-            this.txtPasswordAdministrador.TabIndex = 8;
-            this.txtPasswordAdministrador.UseSystemPasswordChar = true;
-            // 
-            // txtUsernameAdministrador
-            // 
-            this.txtUsernameAdministrador.Location = new System.Drawing.Point(74, 38);
-            this.txtUsernameAdministrador.Margin = new System.Windows.Forms.Padding(2);
-            this.txtUsernameAdministrador.Name = "txtUsernameAdministrador";
-            this.txtUsernameAdministrador.Size = new System.Drawing.Size(149, 20);
-            this.txtUsernameAdministrador.TabIndex = 7;
-            // 
-            // labEmailAdministrador
-            // 
-            this.labEmailAdministrador.AutoSize = true;
-            this.labEmailAdministrador.Location = new System.Drawing.Point(15, 99);
-            this.labEmailAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labEmailAdministrador.Name = "labEmailAdministrador";
-            this.labEmailAdministrador.Size = new System.Drawing.Size(32, 13);
-            this.labEmailAdministrador.TabIndex = 6;
-            this.labEmailAdministrador.Text = "Email";
-            // 
-            // labPasswordAdministrador
-            // 
-            this.labPasswordAdministrador.AutoSize = true;
-            this.labPasswordAdministrador.Location = new System.Drawing.Point(15, 68);
-            this.labPasswordAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labPasswordAdministrador.Name = "labPasswordAdministrador";
-            this.labPasswordAdministrador.Size = new System.Drawing.Size(53, 13);
-            this.labPasswordAdministrador.TabIndex = 2;
-            this.labPasswordAdministrador.Text = "Password";
-            // 
-            // labUsernameAdministrador
-            // 
-            this.labUsernameAdministrador.AutoSize = true;
-            this.labUsernameAdministrador.Location = new System.Drawing.Point(15, 41);
-            this.labUsernameAdministrador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labUsernameAdministrador.Name = "labUsernameAdministrador";
-            this.labUsernameAdministrador.Size = new System.Drawing.Size(55, 13);
-            this.labUsernameAdministrador.TabIndex = 1;
-            this.labUsernameAdministrador.Text = "Username";
-            // 
             // tbVer
             // 
             this.tbVer.Controls.Add(this.tcVer);
@@ -2151,6 +2166,39 @@
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
             // 
+            // bD_DA_ProjetoDataSet
+            // 
+            this.bD_DA_ProjetoDataSet.DataSetName = "BD_DA_ProjetoDataSet";
+            this.bD_DA_ProjetoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // userSetBindingSource
+            // 
+            this.userSetBindingSource.DataMember = "UserSet";
+            this.userSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
+            // 
+            // userSetTableAdapter
+            // 
+            this.userSetTableAdapter.ClearBeforeFill = true;
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
+            // passwordDataGridViewTextBoxColumn
+            // 
+            this.passwordDataGridViewTextBoxColumn.DataPropertyName = "Password";
+            this.passwordDataGridViewTextBoxColumn.HeaderText = "Password";
+            this.passwordDataGridViewTextBoxColumn.Name = "passwordDataGridViewTextBoxColumn";
+            // 
             // formMenuAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -2165,6 +2213,7 @@
             this.Name = "formMenuAdmin";
             this.Text = "Arcmage - Menu";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.formMenuAdmin_FormClosed);
+            this.Load += new System.EventHandler(this.formMenuAdmin_Load);
             this.tbMenu.ResumeLayout(false);
             this.tpGestao.ResumeLayout(false);
             this.tcGestao.ResumeLayout(false);
@@ -2217,12 +2266,14 @@
             this.gbGUtilizadoresDados.ResumeLayout(false);
             this.gbGUtilizadoresDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
-            this.gbGArbitroForm.ResumeLayout(false);
-            this.gbGArbitroForm.PerformLayout();
             this.gbGAdministradorForm.ResumeLayout(false);
             this.gbGAdministradorForm.PerformLayout();
+            this.gbGArbitroForm.ResumeLayout(false);
+            this.gbGArbitroForm.PerformLayout();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.userSetBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2391,5 +2442,11 @@
         private System.Windows.Forms.Label labUsernameArbitro;
         private System.Windows.Forms.Label labAvatarArbitro;
         private System.Windows.Forms.Label labNomeArbitro;
+        private BD_DA_ProjetoDataSet bD_DA_ProjetoDataSet;
+        private System.Windows.Forms.BindingSource userSetBindingSource;
+        private BD_DA_ProjetoDataSetTableAdapters.UserSetTableAdapter userSetTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn usernameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn passwordDataGridViewTextBoxColumn;
     }
 }

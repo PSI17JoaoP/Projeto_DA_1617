@@ -122,6 +122,8 @@ namespace Projeto
 
             if (btnAcaoAdministrador.Text == "Aplicar")
             {
+                idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
                     foreach (User utilizador in containerDados.UserSet)
@@ -172,6 +174,8 @@ namespace Projeto
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
+                idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
                     foreach (User utilizador in containerDados.UserSet)
@@ -238,19 +242,21 @@ namespace Projeto
 
             containerDados.UserSet.Add(novoArbitro);
             containerDados.SaveChanges();
+            RefreshGridView();
         }
 
-        private void AdicionarAdministrador(string nomeAdministrador, string passAdministrador, string emailAdministrador)
+        private void AdicionarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
             Administrator novoAdministrador = new Administrator
             {
-                Username = nomeAdministrador,
+                Username = usernameAdministrador,
                 Password = HashPassword(passAdministrador),
                 Email = emailAdministrador
             };
 
             containerDados.UserSet.Add(novoAdministrador);
             containerDados.SaveChanges();
+            RefreshGridView();
         }
 
         private string HashPassword(string password)
@@ -286,14 +292,22 @@ namespace Projeto
                 }
             }*/
 
+            Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
+            arbitro.Username = usernameArbitro;
+            arbitro.Password = HashPassword(passArbitro);
+            arbitro.Name = nomeArbitro;
+            arbitro.Avatar = avatarPathArbitro;
+
+            containerDados.Entry(arbitro).State = EntityState.Modified;
 
             containerDados.SaveChanges();
+            RefreshGridView();
         }
 
-        private void AlterarAdministrador(string nomeAdministrador, string passAdministrador, string emailAdministrador)
+        private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
-            foreach (Administrator adminSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>())
+            /*foreach (Administrator adminSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>())
             {
                 foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
                 {
@@ -304,9 +318,41 @@ namespace Projeto
                         admin.Email = emailAdministrador;
                     }
                 }
-            }
+            }*/
+
+            Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+
+            admin.Username = usernameAdministrador;
+            admin.Password = HashPassword(passAdministrador);
+            admin.Email = emailAdministrador;
+
+            containerDados.Entry(admin).State = EntityState.Modified;
 
             containerDados.SaveChanges();
+            RefreshGridView();
+        }
+
+        private void RemoverAdministrador()
+        {
+
+        }
+
+        private void RemoverArbitro()
+        {
+
+        }
+
+        private void RefreshGridView()
+        {
+            dgvGUtilizadoresLista.Refresh();
+            dgvGUtilizadoresLista.Update();
+        }
+
+        private void formMenuAdmin_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
+            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
+
         }
     }
 }
