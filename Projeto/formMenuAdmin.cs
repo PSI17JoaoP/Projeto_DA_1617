@@ -16,8 +16,14 @@ namespace Projeto
     {
         public DiagramaArcmageContainer containerDados;
 
+        /// <summary>
+        /// Variavel privada que guarda o id do árbitro selecionado.
+        /// </summary>
         private int idArbitro;
 
+        /// <summary>
+        /// Variavel privada que guarda o id do administrador selecionado.
+        /// </summary>
         private int idAdministrador;
 
         public formMenuAdmin()
@@ -52,6 +58,10 @@ namespace Projeto
             gbGJogosForm.Visible = true;
         }
 
+        /// <summary>
+        /// Evento do botão "Inserir" da tab de Utilizadores.
+        /// Verifica qual é o tipo de uilizador selecionado, prepara e mostra o formulário para a inserção de novos dados.
+        /// </summary>
         private void BotaoInserirUtilizador(object sender, EventArgs e)
         {
             if(radioAdmins.Checked == true)
@@ -80,6 +90,10 @@ namespace Projeto
             gbGUtilizadoresDados.Enabled = false;
         }
 
+        /// <summary>
+        /// Evento do botão "Alterar" da tab de Utilizadores.
+        /// Verifica qual é o tipo de utilizador selecionado, prepara e mostra o formulário com os dados do utilizador selecionado.
+        /// </summary>
         private void BotaoAlterarUtilizador(object sender, EventArgs e)
         {
             if(VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
@@ -124,6 +138,10 @@ namespace Projeto
             gbGUtilizadoresDados.Enabled = false;
         }
 
+        /// <summary>
+        /// Evento do botão "Eliminar" da tab de Utilizadores.
+        /// Mostra uma mensagem de confirmação a perguntar se deseja remover o utilizador. Se sim, verifica qual o tipo de utilizador selecionado e remove-o.
+        /// </summary>
         private void BotaoEliminarUtilizador(object sender, EventArgs e)
         {
             DialogResult confirmacaoEliminar = MessageBox.Show("Tem a certeza que quer eliminar o utilizador '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?","Atenção", MessageBoxButtons.YesNo);
@@ -146,6 +164,9 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Evento do botão no formulário de preenchimento do Administrador, que realiza as funções de "Adicionar" ou "Aplicar".
+        /// </summary>
         private void BotaoAcaoAdministrador(object sender, EventArgs e)
         {
             string usernameForm = txtUsernameAdministrador.Text.Trim();
@@ -214,6 +235,9 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Evento do botão no formulário de preenchimento do Arbitro, que realiza as funções de "Adicionar" ou "Aplicar".
+        /// </summary>
         private void BotaoAcaoArbitro(object sender, EventArgs e)
         {
             string usernameForm = txtUsernameArbitro.Text.Trim();
@@ -283,12 +307,20 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Evento do botão "Cancelar" no formulário de preenchimento do Arbitro.
+        /// Esconde o formulário.
+        /// </summary>
         private void BotaoCancelarArbitro(object sender, EventArgs e)
         {
             gbGArbitroForm.Visible = false;
             gbGUtilizadoresDados.Enabled = true;
         }
 
+        /// <summary>
+        /// Evento do botão "Cancelar" no formulário de preenchimento do Administrador.
+        /// Esconde o formulário.
+        /// </summary>
         private void BotaoCancelarAdministrador(object sender, EventArgs e)
         {
             gbGAdministradorForm.Visible = false;
@@ -329,6 +361,9 @@ namespace Projeto
             }*/
         }
 
+        /// <summary>
+        /// Evento de pesquisar utilizadores, quando o utilizador insere dados na Textbox de pesquisar.
+        /// </summary>
         private void PesquisarUtilizador(object sender, EventArgs e)
         {
             if (txtGUtilizadoresPesquisa.Text.Length > 0)
@@ -344,6 +379,15 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Método de inserção de um arbitro.
+        /// Cria uma instancia da classe Referee com os dados enviados por parêmetro e insere a instância no DataSet "UserSet".
+        /// No final, faz refresh da tabela através do método RefreshTabelaUtilizadores.
+        /// </summary>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <param name="passArbitro">Password do Arbitro</param>
+        /// <param name="nomeArbitro">Nome do Arbitro</param>
+        /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             Referee novoArbitro = new Referee
@@ -359,6 +403,14 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método de inserção de um administrador.
+        /// Cria uma instancia da classe Administrator com os dados enviados por parêmetro e insere a instância no DataSet "UserSet".
+        /// No final, faz refresh da tabela através do método RefreshTabelaUtilizadores.
+        /// </summary>
+        /// <param name="usernameAdministrador">Username do Administrador</param>
+        /// <param name="passAdministrador">Password do Administrador</param>
+        /// <param name="emailAdministrador">Email do Administrador</param>
         private void AdicionarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
             Administrator novoAdministrador = new Administrator
@@ -373,6 +425,12 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método de encriptação da password de um utilizador.
+        /// Encripta a password em hash de SHA1 e devolve a hash da password.
+        /// </summary>
+        /// <param name="password">Password do utilizador</param>
+        /// <returns></returns>
         private string HashPassword(string password)
         {
             string passwordHash;
@@ -388,6 +446,15 @@ namespace Projeto
             return passwordHash;
         }
 
+        /// <summary>
+        /// Método da alteração de um árbitro.
+        /// Pesquisa pelo árbitro com o id idArbitro, e guarda os novos dados no mesmo.
+        /// No final, guarda as alterações na base de dados e faz refresh da tabela através do método RefreshTabelaUtilizadores.
+        /// </summary>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <param name="passArbitro">Password do Arbitro</param>
+        /// <param name="nomeArbitro">Nome do Arbitro</param>
+        /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
@@ -403,6 +470,12 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Overload no método AlterarArbitro, sem a password para o caso do utilizador querer manter a password existente.
+        /// </summary>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <param name="nomeArbitro">Nome do Arbitro</param>
+        /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
@@ -417,6 +490,14 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método da alteração de um administrador.
+        /// Pesquisa pelo árbitro com o id idAdmininstrador, e guarda os novos dados no mesmo.
+        /// No final, guarda as alterações na base de dados e faz refresh da tabela através do método RefreshTabelaUtilizadores.
+        /// </summary>
+        /// <param name="usernameAdministrador">Username do Admnistrador</param>
+        /// <param name="passAdministrador">Password do Administrador</param>
+        /// <param name="emailAdministrador">Email do Administrador</param>
         private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
             Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
@@ -431,6 +512,11 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Overload no método AlterarAdministrador, sem a password para o caso do utilizador querer manter a password existente.
+        /// </summary>
+        /// <param name="usernameAdministrador">Username do Admnistrador</param>
+        /// <param name="emailAdministrador">Email do Administrador</param>
         private void AlterarAdministrador(string usernameAdministrador, string emailAdministrador)
         {
             Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
@@ -444,6 +530,11 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método de remoção de um administrador.
+        /// Remove um administrador do Data Set "UserSet".
+        /// De seguida, guarda as modificações do UserSet na base de dados e faz refresh à tabela.
+        /// </summary>
         private void RemoverAdministrador()
         {
             foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
@@ -458,6 +549,11 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método de remoção de um arbitro.
+        /// Remove um arbitro do Data Set "UserSet".
+        /// De seguida, guarda as modificações do UserSet na base de dados e faz refresh à tabela.
+        /// </summary>
         private void RemoverArbitro()
         {
             foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
@@ -472,6 +568,9 @@ namespace Projeto
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Método para fazer refresh à DataGridView (Tabela) na tab dos Utilizadores.
+        /// </summary>
         private void RefreshTabelaUtilizadores()
         {
             dgvGUtilizadoresLista.DataSource = null;
