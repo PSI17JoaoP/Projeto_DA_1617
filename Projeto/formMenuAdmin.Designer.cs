@@ -1521,7 +1521,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 902);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 985);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1749,6 +1749,7 @@
             this.radioAdmins.TabStop = true;
             this.radioAdmins.Text = "Administradores";
             this.radioAdmins.UseVisualStyleBackColor = true;
+            this.radioAdmins.CheckedChanged += new System.EventHandler(this.RadioFiltrarAdministradores);
             // 
             // radioArbitros
             // 
@@ -1761,6 +1762,7 @@
             this.radioArbitros.TabStop = true;
             this.radioArbitros.Text = "Arbitros";
             this.radioArbitros.UseVisualStyleBackColor = true;
+            this.radioArbitros.CheckedChanged += new System.EventHandler(this.RadioFiltrarArbitros);
             // 
             // btnEliminarUtilizador
             // 
@@ -1859,6 +1861,7 @@
             this.txtGUtilizadoresPesquisa.Name = "txtGUtilizadoresPesquisa";
             this.txtGUtilizadoresPesquisa.Size = new System.Drawing.Size(443, 20);
             this.txtGUtilizadoresPesquisa.TabIndex = 6;
+            this.txtGUtilizadoresPesquisa.TextChanged += new System.EventHandler(this.PesquisarUtilizador);
             // 
             // gbGAdministradorForm
             // 

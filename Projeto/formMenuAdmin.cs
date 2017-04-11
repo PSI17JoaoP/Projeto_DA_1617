@@ -36,7 +36,8 @@ namespace Projeto
         private void formMenuAdmin_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
-            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);           
+            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
+            radioAdmins.Checked = true;
         }
 
         private void btnRemoverTorneio_Click(object sender, EventArgs e)
@@ -125,18 +126,23 @@ namespace Projeto
 
         private void BotaoEliminarUtilizador(object sender, EventArgs e)
         {
-            if (VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
+            DialogResult confirmacaoEliminar = MessageBox.Show("Tem a certeza que quer eliminar o utilizador '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?","Atenção", MessageBoxButtons.YesNo);
+
+            if (confirmacaoEliminar == DialogResult.Yes)
             {
-                idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+                if (VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
+                {
+                    idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                RemoverAdministrador();
-            }
+                    RemoverAdministrador();
+                }
 
-            else if (VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
-            {
-                idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+                else if (VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
+                {
+                    idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                RemoverArbitro();
+                    RemoverArbitro();
+                }
             }
         }
 
@@ -147,28 +153,33 @@ namespace Projeto
 
             if (btnAcaoAdministrador.Text == "Aplicar")
             {
-                if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+
+                if (confirmacaoAlterar == DialogResult.Yes)
                 {
-                    if (containerDados.UserSet.Count() > 0)
+                    if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                     {
-                        if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
+                        if (containerDados.UserSet.Count() > 0)
                         {
-                            AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
-                            gbGUtilizadoresDados.Enabled = true;
-                            gbGAdministradorForm.Visible = false;
+                            if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
+                            {
+                                AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGAdministradorForm.Visible = false;
+                            }
                         }
                     }
-                }
 
-                else if(usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length == 0 && emailForm.Length > 0)
-                {
-                    if (containerDados.UserSet.Count() > 0)
+                    else if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length == 0 && emailForm.Length > 0)
                     {
-                        if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
+                        if (containerDados.UserSet.Count() > 0)
                         {
-                            AlterarAdministrador(usernameForm, emailForm);
-                            gbGUtilizadoresDados.Enabled = true;
-                            gbGAdministradorForm.Visible = false;
+                            if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
+                            {
+                                AlterarAdministrador(usernameForm, emailForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGAdministradorForm.Visible = false;
+                            }
                         }
                     }
                 }
@@ -176,23 +187,28 @@ namespace Projeto
 
             else if (btnAcaoAdministrador.Text == "Adicionar")
             {
-                if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
+                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+
+                if (confirmacaoAdicionar == DialogResult.Yes)
                 {
-                    if (containerDados.UserSet.Count() > 0)
+                    if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                     {
-                        if (VerificarDadosAdmnistrador(usernameForm, emailForm))
+                        if (containerDados.UserSet.Count() > 0)
+                        {
+                            if (VerificarDadosAdmnistrador(usernameForm, emailForm))
+                            {
+                                AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGAdministradorForm.Visible = false;
+                            }
+                        }
+
+                        else
                         {
                             AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                             gbGUtilizadoresDados.Enabled = true;
                             gbGAdministradorForm.Visible = false;
                         }
-                    }
-
-                    else
-                    {
-                        AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
-                        gbGUtilizadoresDados.Enabled = true;
-                        gbGAdministradorForm.Visible = false;
                     }
                 }
             }
@@ -206,28 +222,33 @@ namespace Projeto
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
-                if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+
+                if (confirmacaoAlterar == DialogResult.Yes)
                 {
-                    if (containerDados.UserSet.Count() > 0)
+                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                     {
-                        if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                        if (containerDados.UserSet.Count() > 0)
                         {
-                            AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                            gbGUtilizadoresDados.Enabled = true;
-                            gbGArbitroForm.Visible = false;
+                            if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                            {
+                                AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGArbitroForm.Visible = false;
+                            }
                         }
                     }
-                }
 
-                else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
-                {
-                    if (containerDados.UserSet.Count() > 0)
+                    else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                     {
-                        if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                        if (containerDados.UserSet.Count() > 0)
                         {
-                            AlterarArbitro(usernameForm, nomeForm, avatarForm);
-                            gbGUtilizadoresDados.Enabled = true;
-                            gbGArbitroForm.Visible = false;
+                            if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                            {
+                                AlterarArbitro(usernameForm, nomeForm, avatarForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGArbitroForm.Visible = false;
+                            }
                         }
                     }
                 }
@@ -235,23 +256,28 @@ namespace Projeto
 
             else if (btnAcaoArbitro.Text == "Adicionar")
             {
-                if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+
+                if (confirmacaoAdicionar == DialogResult.Yes)
                 {
-                    if (containerDados.UserSet.Count() > 0)
+                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                     {
-                        if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
+                        if (containerDados.UserSet.Count() > 0)
+                        {
+                            if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
+                            {
+                                AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                                gbGUtilizadoresDados.Enabled = true;
+                                gbGArbitroForm.Visible = false;
+                            }
+                        }
+
+                        else
                         {
                             AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
                             gbGUtilizadoresDados.Enabled = true;
                             gbGArbitroForm.Visible = false;
                         }
-                    }
-
-                    else
-                    {
-                        AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                        gbGUtilizadoresDados.Enabled = true;
-                        gbGArbitroForm.Visible = false;
                     }
                 }
             }
@@ -269,6 +295,55 @@ namespace Projeto
             gbGUtilizadoresDados.Enabled = true;
         }
 
+        private void RadioFiltrarAdministradores(object sender, EventArgs e)
+        {
+            /*if(radioAdmins.Checked == true)
+            {
+                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }
+
+            else
+            {
+                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }*/
+        }
+
+        private void RadioFiltrarArbitros(object sender, EventArgs e)
+        {
+            /*if (radioArbitros.Checked == true)
+            {
+                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }
+
+            else
+            {
+                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }*/
+        }
+
+        private void PesquisarUtilizador(object sender, EventArgs e)
+        {
+            if (txtGUtilizadoresPesquisa.Text.Length > 0)
+            {
+                var queryLinq = from users in containerDados.UserSet where users.Username.Contains(txtGUtilizadoresPesquisa.Text) select users;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }
+
+            else
+            {
+                RefreshTabelaUtilizadores();
+            }
+        }
+
         private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             Referee novoArbitro = new Referee
@@ -281,7 +356,7 @@ namespace Projeto
 
             containerDados.UserSet.Add(novoArbitro);
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void AdicionarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
@@ -295,7 +370,7 @@ namespace Projeto
 
             containerDados.UserSet.Add(novoAdministrador);
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private string HashPassword(string password)
@@ -325,7 +400,7 @@ namespace Projeto
             containerDados.Entry(arbitro).State = EntityState.Modified;
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
@@ -339,7 +414,7 @@ namespace Projeto
             containerDados.Entry(arbitro).State = EntityState.Modified;
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
@@ -353,7 +428,7 @@ namespace Projeto
             containerDados.Entry(admin).State = EntityState.Modified;
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void AlterarAdministrador(string usernameAdministrador, string emailAdministrador)
@@ -366,7 +441,7 @@ namespace Projeto
             containerDados.Entry(admin).State = EntityState.Modified;
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void RemoverAdministrador()
@@ -380,7 +455,7 @@ namespace Projeto
             }
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
         private void RemoverArbitro()
@@ -394,10 +469,10 @@ namespace Projeto
             }
 
             containerDados.SaveChanges();
-            RefreshGridView();
+            RefreshTabelaUtilizadores();
         }
 
-        private void RefreshGridView()
+        private void RefreshTabelaUtilizadores()
         {
             dgvGUtilizadoresLista.DataSource = null;
             userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
