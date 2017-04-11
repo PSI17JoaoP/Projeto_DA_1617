@@ -143,6 +143,13 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Verifica se os dados obrigatórios do formulário estão preenchidos
+        /// Verifica se a carta já existe
+        /// Verifica se o utilizador tenta criar ou alterar uma carta
+        /// Realiza a operação adequada
+        /// Atualiza a tabela com os dados e limpa o formulário
+        /// </summary>
         private void btnAcaoCarta_Click(object sender, EventArgs e)
         {
             if (txtGNomeCarta.Text.Length == 0 || cmbFacaoCarta.SelectedIndex == -1 || 
@@ -164,36 +171,44 @@ namespace Projeto
                 int defense = (int)nudGDefesaCarta.Value;
                 //-------------------------------------------
 
+                //Verifica se a carta já existe
 
-                // Verifica se o utilizador está a criar ou a alterar uma carta
-                //Executa a função respetiva
-                if (btnAcaoCarta.Text == "Criar")
+                if (VerificarCartaExiste(name))
                 {
-                    if (InserirCarta(name, faction, type, cost, loyalty, rules, attack, defense))
-                    {
-                        MessageBox.Show("Carta criada com sucesso!", "Informação");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Erro ao criar a carta", "Informação");
-                    }
+                    MessageBox.Show("A carta '" + name + "' já existe", "Informação");
                 }
-                else if (btnAcaoCarta.Text == "Guardar")
+                else
                 {
-                    if(AlterarCarta(name, faction, type, cost, loyalty, rules, attack, defense))
+                    // Verifica se o utilizador está a criar ou a alterar uma carta
+                    //Executa a função respetiva
+                    if (btnAcaoCarta.Text == "Criar")
                     {
-                        MessageBox.Show("Carta alterada com sucesso!", "Informação");
+                        if (InserirCarta(name, faction, type, cost, loyalty, rules, attack, defense))
+                        {
+                            MessageBox.Show("Carta criada com sucesso!", "Informação");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao criar a carta", "Informação");
+                        }
                     }
-                    else
+                    else if (btnAcaoCarta.Text == "Guardar")
                     {
-                        MessageBox.Show("Erro ao alterar a carta", "Informação");
+                        if (AlterarCarta(name, faction, type, cost, loyalty, rules, attack, defense))
+                        {
+                            MessageBox.Show("Carta alterada com sucesso!", "Informação");
+                        }
+                        else
+                        {
+                            MessageBox.Show("Erro ao alterar a carta", "Informação");
+                        }
+
                     }
-                    
+
+                    RefreshTabelaCartas();
+
+                    ResetFormCartas();
                 }
-
-                RefreshTabelaCartas();
-
-                ResetFormCartas();
             }
         }
 
@@ -229,6 +244,26 @@ namespace Projeto
             dgvGCartasLista.DataSource = null;
             this.cardSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.CardSet);
             dgvGCartasLista.DataSource = this.cardSetBindingSource;
+        }
+       
+        /// <summary>
+        /// Recebe como parâmetro o nome de uma carta
+        /// Verifica se existe na base de dados
+        /// Retorna o resultado da operação
+        /// </summary>
+        private Boolean VerificarCartaExiste(string nome)
+        {
+            Boolean result = false;
+
+            foreach (Card carta in container.CardSet)
+            {
+                if (carta.Name.Equals(nome))
+                {
+                    result = true;
+                }
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -270,7 +305,11 @@ namespace Projeto
         }
 
         /// <summary>
-        /// 
+        /// Recebe como parãmetros os novos dados da carta
+        /// Procura a carta na base de dados
+        /// Atualiza os dados
+        /// Modifica e guarda alterações
+        /// Retorna o resultado da operação
         /// </summary>
         private Boolean AlterarCarta(string name, string faction, string type, string cost,
             int loyalty, string rules, int attack, int defense)
