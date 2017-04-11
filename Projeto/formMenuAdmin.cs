@@ -36,8 +36,7 @@ namespace Projeto
         private void formMenuAdmin_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
-            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
-
+            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);           
         }
 
         private void btnRemoverTorneio_Click(object sender, EventArgs e)
@@ -51,9 +50,6 @@ namespace Projeto
             gbGTorneiosForm.Visible = false;
             gbGJogosForm.Visible = true;
         }
-
-
-
 
         private void BotaoInserirUtilizador(object sender, EventArgs e)
         {
@@ -85,41 +81,63 @@ namespace Projeto
 
         private void BotaoAlterarUtilizador(object sender, EventArgs e)
         {
-            if(dgvGUtilizadoresLista.SelectedRows.Count == 1)
+            if(VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
             {
-                if(dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>().Count() == 1)
-                {
-                    foreach (Administrator adminSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Administrator>())
-                    {
-                        txtUsernameAdministrador.Text = adminSelecionado.Username;
-                    }
+                idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                    btnAcaoAdministrador.Text = "Aplicar";
-                    gbGAdministradorForm.Visible = true;
-                    gbGArbitroForm.Visible = false;
+                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+                {
+                    if (admin.Id == idAdministrador)
+                    {
+                        txtUsernameAdministrador.Text = admin.Username;
+                        txtEmailAdministrador.Text = admin.Email;
+                    }
                 }
 
-                else
-                {
-                    foreach (Referee arbitroSelecionado in dgvGUtilizadoresLista.SelectedRows.OfType<Referee>())
-                    {
-                        txtUsernameArbitro.Text = arbitroSelecionado.Username;
-                        txtNomeArbitro.Text = arbitroSelecionado.Name;
-                        txtAvatarArbitro.Text = arbitroSelecionado.Avatar;
-                    }
-
-                    btnAcaoArbitro.Text = "Aplicar";
-                    gbGAdministradorForm.Visible = false;
-                    gbGArbitroForm.Visible = true;
-                }
-
-                gbGUtilizadoresDados.Enabled = false;
+                txtPasswordAdministrador.Clear();
+                btnAcaoAdministrador.Text = "Aplicar";
+                gbGAdministradorForm.Visible = true;
+                gbGArbitroForm.Visible = false;
             }
+
+            else if(VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
+            {
+                idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+
+                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+                {
+                    if (arbitro.Id == idArbitro)
+                    {
+                        txtUsernameArbitro.Text = arbitro.Username;
+                        txtNomeArbitro.Text = arbitro.Name;
+                        txtAvatarArbitro.Text = arbitro.Avatar;
+                    }
+                }
+
+                txtPasswordArbitro.Clear();
+                btnAcaoArbitro.Text = "Aplicar";
+                gbGAdministradorForm.Visible = false;
+                gbGArbitroForm.Visible = true;
+            }
+
+            gbGUtilizadoresDados.Enabled = false;
         }
 
         private void BotaoEliminarUtilizador(object sender, EventArgs e)
         {
+            if (VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
+            {
+                idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
+                RemoverAdministrador();
+            }
+
+            else if (VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
+            {
+                idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+
+                RemoverArbitro();
+            }
         }
 
         private void BotaoAcaoAdministrador(object sender, EventArgs e)
@@ -129,21 +147,34 @@ namespace Projeto
 
             if (btnAcaoAdministrador.Text == "Aplicar")
             {
-                idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
-
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
                     if (containerDados.UserSet.Count() > 0)
                     {
-                        if (VerificarDadosAdmnistrador(usernameForm, emailForm))
+                        if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
                         {
                             AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGAdministradorForm.Visible = false;
+                        }
+                    }
+                }
+
+                else if(usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length == 0 && emailForm.Length > 0)
+                {
+                    if (containerDados.UserSet.Count() > 0)
+                    {
+                        if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
+                        {
+                            AlterarAdministrador(usernameForm, emailForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGAdministradorForm.Visible = false;
                         }
                     }
                 }
             }
 
-            else
+            else if (btnAcaoAdministrador.Text == "Adicionar")
             {
                 if (usernameForm.Length > 0 && txtPasswordAdministrador.Text.Length > 0 && emailForm.Length > 0)
                 {
@@ -152,18 +183,19 @@ namespace Projeto
                         if (VerificarDadosAdmnistrador(usernameForm, emailForm))
                         {
                             AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGAdministradorForm.Visible = false;
                         }
                     }
 
                     else
                     {
                         AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                        gbGUtilizadoresDados.Enabled = true;
+                        gbGAdministradorForm.Visible = false;
                     }
                 }
             }
-
-            gbGUtilizadoresDados.Enabled = true;
-            gbGAdministradorForm.Visible = false;
         }
 
         private void BotaoAcaoArbitro(object sender, EventArgs e)
@@ -174,21 +206,34 @@ namespace Projeto
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
-                idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
-
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
                     if (containerDados.UserSet.Count() > 0)
                     {
-                        if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
+                        if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
                         {
                             AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGArbitroForm.Visible = false;
+                        }
+                    }
+                }
+
+                else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                {
+                    if (containerDados.UserSet.Count() > 0)
+                    {
+                        if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                        {
+                            AlterarArbitro(usernameForm, nomeForm, avatarForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGArbitroForm.Visible = false;
                         }
                     }
                 }
             }
 
-            else
+            else if (btnAcaoArbitro.Text == "Adicionar")
             {
                 if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
                 {
@@ -197,18 +242,19 @@ namespace Projeto
                         if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
                         {
                             AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                            gbGUtilizadoresDados.Enabled = true;
+                            gbGArbitroForm.Visible = false;
                         }
                     }
 
                     else
                     {
                         AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                        gbGUtilizadoresDados.Enabled = true;
+                        gbGArbitroForm.Visible = false;
                     }
                 }
             }
-
-            gbGUtilizadoresDados.Enabled = true;
-            gbGArbitroForm.Visible = false;
         }
 
         private void BotaoCancelarArbitro(object sender, EventArgs e)
@@ -282,6 +328,20 @@ namespace Projeto
             RefreshGridView();
         }
 
+        private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
+        {
+            Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
+
+            arbitro.Username = usernameArbitro;
+            arbitro.Name = nomeArbitro;
+            arbitro.Avatar = avatarPathArbitro;
+
+            containerDados.Entry(arbitro).State = EntityState.Modified;
+
+            containerDados.SaveChanges();
+            RefreshGridView();
+        }
+
         private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
             Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
@@ -296,21 +356,52 @@ namespace Projeto
             RefreshGridView();
         }
 
+        private void AlterarAdministrador(string usernameAdministrador, string emailAdministrador)
+        {
+            Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+
+            admin.Username = usernameAdministrador;
+            admin.Email = emailAdministrador;
+
+            containerDados.Entry(admin).State = EntityState.Modified;
+
+            containerDados.SaveChanges();
+            RefreshGridView();
+        }
+
         private void RemoverAdministrador()
         {
+            foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+            {
+                if(admin.Id == idAdministrador)
+                {
+                    containerDados.UserSet.Remove(admin);
+                }
+            }
 
+            containerDados.SaveChanges();
+            RefreshGridView();
         }
 
         private void RemoverArbitro()
         {
+            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+            {
+                if (arbitro.Id == idArbitro)
+                {
+                    containerDados.UserSet.Remove(arbitro);
+                }
+            }
 
+            containerDados.SaveChanges();
+            RefreshGridView();
         }
 
         private void RefreshGridView()
         {
-            dgvGCartasLista.DataSource = null;
-            this.userSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.UserSet);
-            dgvGCartasLista.DataSource = this.userSetBindingSource;
+            dgvGUtilizadoresLista.DataSource = null;
+            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
+            dgvGUtilizadoresLista.DataSource = userSetBindingSource;
         }
 
         private bool VerificarDadosAdmnistrador(string usernameAdministrador, string emailAdministrador)
@@ -354,7 +445,7 @@ namespace Projeto
                 {
                     foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                     {
-                        if (arbitro.Name == nomeArbitro || arbitro.Avatar == avatarPathArbitro)
+                        if (arbitro.Name == nomeArbitro && arbitro.Avatar == avatarPathArbitro)
                         {
                             naoExisteDados = false;
                         }
@@ -363,6 +454,88 @@ namespace Projeto
             }
 
             return naoExisteDados;
+        }
+
+        private bool VerificarTipoAdministrator(DataGridViewRow rowUtilizador)
+        {
+            bool isTipoAdministrator = false;
+
+            foreach(Administrator admin in containerDados.UserSet.OfType<Administrator>())
+            {
+                if(admin.Id == (int)rowUtilizador.Cells[0].Value)
+                {
+                    isTipoAdministrator = true;
+                }
+            }
+
+            return isTipoAdministrator;
+        }
+
+        private bool VerificarTipoReferee(DataGridViewRow rowUtilizador)
+        {
+            bool isTipoArbitro = false;
+
+            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+            {
+                if (arbitro.Id == (int)rowUtilizador.Cells[0].Value)
+                {
+                    isTipoArbitro = true;
+                }
+            }
+
+            return isTipoArbitro;
+        }
+
+        private bool VerificarAlteracoesAdministrador(string usernameAdministrador, string emailAdministrador)
+        {
+            bool aplicaAlteracoes = true;
+
+            foreach (User utilizador in containerDados.UserSet)
+            {
+                if(utilizador.Username == usernameAdministrador && utilizador.Id != idAdministrador)
+                {
+                    aplicaAlteracoes = false;
+                }
+
+                else
+                {
+                    foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+                    {
+                        if(admin.Email == emailAdministrador && admin.Id != idAdministrador)
+                        {
+                            aplicaAlteracoes = false;
+                        }
+                    }
+                }
+            }
+
+            return aplicaAlteracoes;
+        }
+
+        private bool VerificarAlteracoesArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
+        {
+            bool aplicaAlteracoes = true;
+
+            foreach (User utilizador in containerDados.UserSet)
+            {
+                if (utilizador.Username == usernameArbitro && utilizador.Id != idArbitro)
+                {
+                    aplicaAlteracoes = false;
+                }
+
+                else
+                {
+                    foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+                    {
+                        if ((arbitro.Name == nomeArbitro || arbitro.Avatar == avatarPathArbitro) && arbitro.Id != idArbitro)
+                        {
+                            aplicaAlteracoes = false;
+                        }
+                    }
+                }
+            }
+
+            return aplicaAlteracoes;
         }
     }
 }

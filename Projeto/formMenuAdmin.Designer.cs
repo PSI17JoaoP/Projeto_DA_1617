@@ -161,6 +161,8 @@
             this.labPesquisarUtilizador = new System.Windows.Forms.Label();
             this.btnAlterarUtilizador = new System.Windows.Forms.Button();
             this.dgvGUtilizadoresLista = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.userSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
             this.btnInserirUtilizador = new System.Windows.Forms.Button();
@@ -195,8 +197,6 @@
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.userSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.UserSetTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.usernameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -1521,7 +1521,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 653);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 902);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1742,7 +1742,7 @@
             // 
             this.radioAdmins.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioAdmins.AutoSize = true;
-            this.radioAdmins.Location = new System.Drawing.Point(215, 371);
+            this.radioAdmins.Location = new System.Drawing.Point(14, 372);
             this.radioAdmins.Name = "radioAdmins";
             this.radioAdmins.Size = new System.Drawing.Size(99, 17);
             this.radioAdmins.TabIndex = 10;
@@ -1754,7 +1754,7 @@
             // 
             this.radioArbitros.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.radioArbitros.AutoSize = true;
-            this.radioArbitros.Location = new System.Drawing.Point(149, 371);
+            this.radioArbitros.Location = new System.Drawing.Point(119, 372);
             this.radioArbitros.Name = "radioArbitros";
             this.radioArbitros.Size = new System.Drawing.Size(60, 17);
             this.radioArbitros.TabIndex = 9;
@@ -1777,7 +1777,7 @@
             // labPesquisarUtilizador
             // 
             this.labPesquisarUtilizador.AutoSize = true;
-            this.labPesquisarUtilizador.Location = new System.Drawing.Point(9, 40);
+            this.labPesquisarUtilizador.Location = new System.Drawing.Point(8, 36);
             this.labPesquisarUtilizador.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labPesquisarUtilizador.Name = "labPesquisarUtilizador";
             this.labPesquisarUtilizador.Size = new System.Drawing.Size(53, 13);
@@ -1815,6 +1815,19 @@
             this.dgvGUtilizadoresLista.Size = new System.Drawing.Size(494, 287);
             this.dgvGUtilizadoresLista.TabIndex = 3;
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // usernameDataGridViewTextBoxColumn
+            // 
+            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
+            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
+            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
+            // 
             // userSetBindingSource
             // 
             this.userSetBindingSource.DataMember = "UserSet";
@@ -1841,7 +1854,7 @@
             // 
             this.txtGUtilizadoresPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGUtilizadoresPesquisa.Location = new System.Drawing.Point(66, 38);
+            this.txtGUtilizadoresPesquisa.Location = new System.Drawing.Point(65, 34);
             this.txtGUtilizadoresPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGUtilizadoresPesquisa.Name = "txtGUtilizadoresPesquisa";
             this.txtGUtilizadoresPesquisa.Size = new System.Drawing.Size(443, 20);
@@ -2177,19 +2190,6 @@
             // userSetTableAdapter
             // 
             this.userSetTableAdapter.ClearBeforeFill = true;
-            // 
-            // idDataGridViewTextBoxColumn
-            // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // usernameDataGridViewTextBoxColumn
-            // 
-            this.usernameDataGridViewTextBoxColumn.DataPropertyName = "Username";
-            this.usernameDataGridViewTextBoxColumn.HeaderText = "Username";
-            this.usernameDataGridViewTextBoxColumn.Name = "usernameDataGridViewTextBoxColumn";
             // 
             // formMenuAdmin
             // 
