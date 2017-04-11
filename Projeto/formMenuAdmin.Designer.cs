@@ -189,7 +189,7 @@
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panelGestaoBaralho = new System.Windows.Forms.TableLayoutPanel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.btnRemoverCartaBaralho = new System.Windows.Forms.Button();
             this.btnAdicionarCartaBaralho = new System.Windows.Forms.Button();
@@ -245,7 +245,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.panelGestaoBaralho.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gbGCartasNoBaralho.SuspendLayout();
             this.gbGListaDeCartas.SuspendLayout();
@@ -1447,10 +1447,11 @@
             this.txtGCartasPesquisa.Name = "txtGCartasPesquisa";
             this.txtGCartasPesquisa.Size = new System.Drawing.Size(202, 22);
             this.txtGCartasPesquisa.TabIndex = 6;
+            this.txtGCartasPesquisa.TextChanged += new System.EventHandler(this.txtGCartasPesquisa_TextChanged);
             // 
             // tbGestaoBaralhos
             // 
-            this.tbGestaoBaralhos.Controls.Add(this.tableLayoutPanel1);
+            this.tbGestaoBaralhos.Controls.Add(this.panelGestaoBaralho);
             this.tbGestaoBaralhos.Controls.Add(this.gbGBaralhosDados);
             this.tbGestaoBaralhos.Location = new System.Drawing.Point(4, 25);
             this.tbGestaoBaralhos.Name = "tbGestaoBaralhos";
@@ -1562,7 +1563,7 @@
             // 
             this.txtGBaralhosPesquisa.Location = new System.Drawing.Point(101, 22);
             this.txtGBaralhosPesquisa.Name = "txtGBaralhosPesquisa";
-            this.txtGBaralhosPesquisa.Size = new System.Drawing.Size(130, 22);
+            this.txtGBaralhosPesquisa.Size = new System.Drawing.Size(163, 22);
             this.txtGBaralhosPesquisa.TabIndex = 12;
             // 
             // btnGerirBaralho
@@ -1924,22 +1925,22 @@
             // 
             this.cardSetTableAdapter.ClearBeforeFill = true;
             // 
-            // tableLayoutPanel1
+            // panelGestaoBaralho
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.gbGCartasNoBaralho, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.gbGListaDeCartas, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 162);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(757, 227);
-            this.tableLayoutPanel1.TabIndex = 1;
+            this.panelGestaoBaralho.ColumnCount = 3;
+            this.panelGestaoBaralho.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelGestaoBaralho.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.panelGestaoBaralho.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.panelGestaoBaralho.Controls.Add(this.groupBox1, 1, 0);
+            this.panelGestaoBaralho.Controls.Add(this.gbGCartasNoBaralho, 0, 0);
+            this.panelGestaoBaralho.Controls.Add(this.gbGListaDeCartas, 2, 0);
+            this.panelGestaoBaralho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelGestaoBaralho.Location = new System.Drawing.Point(3, 162);
+            this.panelGestaoBaralho.Name = "panelGestaoBaralho";
+            this.panelGestaoBaralho.RowCount = 1;
+            this.panelGestaoBaralho.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.panelGestaoBaralho.Size = new System.Drawing.Size(757, 227);
+            this.panelGestaoBaralho.TabIndex = 1;
             // 
             // groupBox1
             // 
@@ -2066,7 +2067,7 @@
             // chCarta
             // 
             this.chCarta.Text = "Carta";
-            this.chCarta.Width = 248;
+            this.chCarta.Width = 217;
             // 
             // chQtd
             // 
@@ -2075,7 +2076,7 @@
             // cCarta
             // 
             this.cCarta.Text = "Carta";
-            this.cCarta.Width = 246;
+            this.cCarta.Width = 216;
             // 
             // cQtd
             // 
@@ -2149,7 +2150,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panelGestaoBaralho.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.gbGCartasNoBaralho.ResumeLayout(false);
@@ -2319,7 +2320,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ruleTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attackDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defenseDataGridViewTextBoxColumn;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel panelGestaoBaralho;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label lblNCartasNoBaralho;
         private System.Windows.Forms.Label label36;

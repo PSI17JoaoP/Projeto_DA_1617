@@ -376,6 +376,22 @@ namespace Projeto
             return result;
         }
 
-       
+        private void txtGCartasPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            if (txtGCartasPesquisa.Text.Length > 0)
+            {
+                
+                var query =
+                    from cards in container.CardSet
+                    where cards.Name.Contains(txtGCartasPesquisa.Text)
+                    select cards;
+
+                dgvGCartasLista.DataSource = query.ToList();
+            }
+            else
+            {
+                RefreshTabelaCartas();
+            }
+        }
     }
 }
