@@ -130,17 +130,20 @@
             this.btnAlterarCarta = new System.Windows.Forms.Button();
             this.btnInserirCarta = new System.Windows.Forms.Button();
             this.dgvGCartasLista = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.factionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loyaltyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ruleTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.attackDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.defenseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cardSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
             this.label18 = new System.Windows.Forms.Label();
             this.txtGCartasPesquisa = new System.Windows.Forms.TextBox();
             this.tbGestaoBaralhos = new System.Windows.Forms.TabPage();
-            this.btnGuardarAltBaralho = new System.Windows.Forms.Button();
-            this.btnRemoverCartaBaralho = new System.Windows.Forms.Button();
-            this.btnCancelarAltBaralho = new System.Windows.Forms.Button();
-            this.gbGCartasnoBaralho = new System.Windows.Forms.GroupBox();
-            this.dataGridView2 = new System.Windows.Forms.DataGridView();
-            this.btnAdicionarCartaBaralho = new System.Windows.Forms.Button();
-            this.gbGCartasparaBaralho = new System.Windows.Forms.GroupBox();
-            this.dataGridView3 = new System.Windows.Forms.DataGridView();
             this.gbGBaralhosDados = new System.Windows.Forms.GroupBox();
             this.gbGBaralhosForm = new System.Windows.Forms.GroupBox();
             this.label28 = new System.Windows.Forms.Label();
@@ -185,18 +188,23 @@
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
-            this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
-            this.cardSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.factionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.typeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.costDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.loyaltyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ruleTextDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.attackDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.defenseDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnRemoverCartaBaralho = new System.Windows.Forms.Button();
+            this.btnAdicionarCartaBaralho = new System.Windows.Forms.Button();
+            this.btnCancelarAltBaralho = new System.Windows.Forms.Button();
+            this.btnGuardarAltBaralho = new System.Windows.Forms.Button();
+            this.gbGCartasNoBaralho = new System.Windows.Forms.GroupBox();
+            this.lvCartasBaralho = new System.Windows.Forms.ListView();
+            this.gbGListaDeCartas = new System.Windows.Forms.GroupBox();
+            this.lvListaCartas = new System.Windows.Forms.ListView();
+            this.label36 = new System.Windows.Forms.Label();
+            this.lblNCartasNoBaralho = new System.Windows.Forms.Label();
+            this.chCarta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chQtd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cCarta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cQtd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -225,11 +233,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudGLealdadeCarta)).BeginInit();
             this.gbGCartasDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGCartasLista)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardSetBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
             this.tbGestaoBaralhos.SuspendLayout();
-            this.gbGCartasnoBaralho.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
-            this.gbGCartasparaBaralho.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).BeginInit();
             this.gbGBaralhosDados.SuspendLayout();
             this.gbGBaralhosForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGBaralhosLista)).BeginInit();
@@ -239,8 +245,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardSetBindingSource)).BeginInit();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.groupBox1.SuspendLayout();
+            this.gbGCartasNoBaralho.SuspendLayout();
+            this.gbGListaDeCartas.SuspendLayout();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -1340,6 +1348,88 @@
             this.dgvGCartasLista.CellEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGCartasLista_CellEnter);
             this.dgvGCartasLista.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGCartasLista_CellLeave);
             // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.idDataGridViewTextBoxColumn.Width = 48;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 74;
+            // 
+            // factionDataGridViewTextBoxColumn
+            // 
+            this.factionDataGridViewTextBoxColumn.DataPropertyName = "Faction";
+            this.factionDataGridViewTextBoxColumn.HeaderText = "Faction";
+            this.factionDataGridViewTextBoxColumn.Name = "factionDataGridViewTextBoxColumn";
+            this.factionDataGridViewTextBoxColumn.ReadOnly = true;
+            this.factionDataGridViewTextBoxColumn.Width = 83;
+            // 
+            // typeDataGridViewTextBoxColumn
+            // 
+            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
+            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
+            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
+            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.typeDataGridViewTextBoxColumn.Width = 69;
+            // 
+            // costDataGridViewTextBoxColumn
+            // 
+            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
+            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
+            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
+            this.costDataGridViewTextBoxColumn.ReadOnly = true;
+            this.costDataGridViewTextBoxColumn.Width = 65;
+            // 
+            // loyaltyDataGridViewTextBoxColumn
+            // 
+            this.loyaltyDataGridViewTextBoxColumn.DataPropertyName = "Loyalty";
+            this.loyaltyDataGridViewTextBoxColumn.HeaderText = "Loyalty";
+            this.loyaltyDataGridViewTextBoxColumn.Name = "loyaltyDataGridViewTextBoxColumn";
+            this.loyaltyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.loyaltyDataGridViewTextBoxColumn.Width = 82;
+            // 
+            // ruleTextDataGridViewTextBoxColumn
+            // 
+            this.ruleTextDataGridViewTextBoxColumn.DataPropertyName = "RuleText";
+            this.ruleTextDataGridViewTextBoxColumn.HeaderText = "RuleText";
+            this.ruleTextDataGridViewTextBoxColumn.Name = "ruleTextDataGridViewTextBoxColumn";
+            this.ruleTextDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ruleTextDataGridViewTextBoxColumn.Width = 93;
+            // 
+            // attackDataGridViewTextBoxColumn
+            // 
+            this.attackDataGridViewTextBoxColumn.DataPropertyName = "Attack";
+            this.attackDataGridViewTextBoxColumn.HeaderText = "Attack";
+            this.attackDataGridViewTextBoxColumn.Name = "attackDataGridViewTextBoxColumn";
+            this.attackDataGridViewTextBoxColumn.ReadOnly = true;
+            this.attackDataGridViewTextBoxColumn.Width = 76;
+            // 
+            // defenseDataGridViewTextBoxColumn
+            // 
+            this.defenseDataGridViewTextBoxColumn.DataPropertyName = "Defense";
+            this.defenseDataGridViewTextBoxColumn.HeaderText = "Defense";
+            this.defenseDataGridViewTextBoxColumn.Name = "defenseDataGridViewTextBoxColumn";
+            this.defenseDataGridViewTextBoxColumn.ReadOnly = true;
+            this.defenseDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // cardSetBindingSource
+            // 
+            this.cardSetBindingSource.DataMember = "CardSet";
+            this.cardSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
+            // 
+            // bD_DA_ProjetoDataSet
+            // 
+            this.bD_DA_ProjetoDataSet.DataSetName = "BD_DA_ProjetoDataSet";
+            this.bD_DA_ProjetoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // label18
             // 
             this.label18.AutoSize = true;
@@ -1360,12 +1450,7 @@
             // 
             // tbGestaoBaralhos
             // 
-            this.tbGestaoBaralhos.Controls.Add(this.btnGuardarAltBaralho);
-            this.tbGestaoBaralhos.Controls.Add(this.btnRemoverCartaBaralho);
-            this.tbGestaoBaralhos.Controls.Add(this.btnCancelarAltBaralho);
-            this.tbGestaoBaralhos.Controls.Add(this.gbGCartasnoBaralho);
-            this.tbGestaoBaralhos.Controls.Add(this.btnAdicionarCartaBaralho);
-            this.tbGestaoBaralhos.Controls.Add(this.gbGCartasparaBaralho);
+            this.tbGestaoBaralhos.Controls.Add(this.tableLayoutPanel1);
             this.tbGestaoBaralhos.Controls.Add(this.gbGBaralhosDados);
             this.tbGestaoBaralhos.Location = new System.Drawing.Point(4, 25);
             this.tbGestaoBaralhos.Name = "tbGestaoBaralhos";
@@ -1374,95 +1459,6 @@
             this.tbGestaoBaralhos.TabIndex = 4;
             this.tbGestaoBaralhos.Text = "Baralhos";
             this.tbGestaoBaralhos.UseVisualStyleBackColor = true;
-            // 
-            // btnGuardarAltBaralho
-            // 
-            this.btnGuardarAltBaralho.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnGuardarAltBaralho.Location = new System.Drawing.Point(339, 320);
-            this.btnGuardarAltBaralho.Name = "btnGuardarAltBaralho";
-            this.btnGuardarAltBaralho.Size = new System.Drawing.Size(86, 23);
-            this.btnGuardarAltBaralho.TabIndex = 12;
-            this.btnGuardarAltBaralho.Text = "Guardar";
-            this.btnGuardarAltBaralho.UseVisualStyleBackColor = true;
-            // 
-            // btnRemoverCartaBaralho
-            // 
-            this.btnRemoverCartaBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRemoverCartaBaralho.Location = new System.Drawing.Point(354, 268);
-            this.btnRemoverCartaBaralho.Name = "btnRemoverCartaBaralho";
-            this.btnRemoverCartaBaralho.Size = new System.Drawing.Size(55, 29);
-            this.btnRemoverCartaBaralho.TabIndex = 13;
-            this.btnRemoverCartaBaralho.Text = ">>";
-            this.btnRemoverCartaBaralho.UseVisualStyleBackColor = true;
-            // 
-            // btnCancelarAltBaralho
-            // 
-            this.btnCancelarAltBaralho.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancelarAltBaralho.Location = new System.Drawing.Point(339, 349);
-            this.btnCancelarAltBaralho.Name = "btnCancelarAltBaralho";
-            this.btnCancelarAltBaralho.Size = new System.Drawing.Size(86, 23);
-            this.btnCancelarAltBaralho.TabIndex = 11;
-            this.btnCancelarAltBaralho.Text = "Cancelar";
-            this.btnCancelarAltBaralho.UseVisualStyleBackColor = true;
-            // 
-            // gbGCartasnoBaralho
-            // 
-            this.gbGCartasnoBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left)));
-            this.gbGCartasnoBaralho.Controls.Add(this.dataGridView2);
-            this.gbGCartasnoBaralho.Location = new System.Drawing.Point(3, 162);
-            this.gbGCartasnoBaralho.MaximumSize = new System.Drawing.Size(358, 0);
-            this.gbGCartasnoBaralho.MinimumSize = new System.Drawing.Size(330, 225);
-            this.gbGCartasnoBaralho.Name = "gbGCartasnoBaralho";
-            this.gbGCartasnoBaralho.Size = new System.Drawing.Size(330, 225);
-            this.gbGCartasnoBaralho.TabIndex = 2;
-            this.gbGCartasnoBaralho.TabStop = false;
-            this.gbGCartasnoBaralho.Text = "Cartas no baralho";
-            // 
-            // dataGridView2
-            // 
-            this.dataGridView2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView2.Location = new System.Drawing.Point(6, 32);
-            this.dataGridView2.Name = "dataGridView2";
-            this.dataGridView2.RowTemplate.Height = 24;
-            this.dataGridView2.Size = new System.Drawing.Size(318, 176);
-            this.dataGridView2.TabIndex = 10;
-            // 
-            // btnAdicionarCartaBaralho
-            // 
-            this.btnAdicionarCartaBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAdicionarCartaBaralho.Location = new System.Drawing.Point(354, 194);
-            this.btnAdicionarCartaBaralho.Name = "btnAdicionarCartaBaralho";
-            this.btnAdicionarCartaBaralho.Size = new System.Drawing.Size(55, 29);
-            this.btnAdicionarCartaBaralho.TabIndex = 14;
-            this.btnAdicionarCartaBaralho.Text = "<<";
-            this.btnAdicionarCartaBaralho.UseVisualStyleBackColor = true;
-            // 
-            // gbGCartasparaBaralho
-            // 
-            this.gbGCartasparaBaralho.Controls.Add(this.dataGridView3);
-            this.gbGCartasparaBaralho.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gbGCartasparaBaralho.Location = new System.Drawing.Point(430, 162);
-            this.gbGCartasparaBaralho.Name = "gbGCartasparaBaralho";
-            this.gbGCartasparaBaralho.Size = new System.Drawing.Size(330, 227);
-            this.gbGCartasparaBaralho.TabIndex = 1;
-            this.gbGCartasparaBaralho.TabStop = false;
-            this.gbGCartasparaBaralho.Text = "Lista de cartas";
-            // 
-            // dataGridView3
-            // 
-            this.dataGridView3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView3.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView3.Location = new System.Drawing.Point(16, 32);
-            this.dataGridView3.Name = "dataGridView3";
-            this.dataGridView3.RowTemplate.Height = 24;
-            this.dataGridView3.Size = new System.Drawing.Size(308, 178);
-            this.dataGridView3.TabIndex = 11;
             // 
             // gbGBaralhosDados
             // 
@@ -1879,7 +1875,7 @@
             this.tbVerEquipas.Location = new System.Drawing.Point(4, 25);
             this.tbVerEquipas.Name = "tbVerEquipas";
             this.tbVerEquipas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerEquipas.Size = new System.Drawing.Size(728, 392);
+            this.tbVerEquipas.Size = new System.Drawing.Size(763, 392);
             this.tbVerEquipas.TabIndex = 1;
             this.tbVerEquipas.Text = "Equipas";
             this.tbVerEquipas.UseVisualStyleBackColor = true;
@@ -1889,7 +1885,7 @@
             this.tbVerTorneios.Location = new System.Drawing.Point(4, 25);
             this.tbVerTorneios.Name = "tbVerTorneios";
             this.tbVerTorneios.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerTorneios.Size = new System.Drawing.Size(728, 392);
+            this.tbVerTorneios.Size = new System.Drawing.Size(763, 392);
             this.tbVerTorneios.TabIndex = 2;
             this.tbVerTorneios.Text = "Torneios";
             this.tbVerTorneios.UseVisualStyleBackColor = true;
@@ -1899,7 +1895,7 @@
             this.tbVerCartas.Location = new System.Drawing.Point(4, 25);
             this.tbVerCartas.Name = "tbVerCartas";
             this.tbVerCartas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerCartas.Size = new System.Drawing.Size(728, 392);
+            this.tbVerCartas.Size = new System.Drawing.Size(763, 392);
             this.tbVerCartas.TabIndex = 3;
             this.tbVerCartas.Text = "Cartas";
             this.tbVerCartas.UseVisualStyleBackColor = true;
@@ -1909,7 +1905,7 @@
             this.tbVerBaralhos.Location = new System.Drawing.Point(4, 25);
             this.tbVerBaralhos.Name = "tbVerBaralhos";
             this.tbVerBaralhos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerBaralhos.Size = new System.Drawing.Size(728, 392);
+            this.tbVerBaralhos.Size = new System.Drawing.Size(763, 392);
             this.tbVerBaralhos.TabIndex = 4;
             this.tbVerBaralhos.Text = "Baralhos";
             this.tbVerBaralhos.UseVisualStyleBackColor = true;
@@ -1919,96 +1915,171 @@
             this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 25);
             this.tbVerUtilizadores.Name = "tbVerUtilizadores";
             this.tbVerUtilizadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerUtilizadores.Size = new System.Drawing.Size(728, 392);
+            this.tbVerUtilizadores.Size = new System.Drawing.Size(763, 392);
             this.tbVerUtilizadores.TabIndex = 5;
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
-            // 
-            // bD_DA_ProjetoDataSet
-            // 
-            this.bD_DA_ProjetoDataSet.DataSetName = "BD_DA_ProjetoDataSet";
-            this.bD_DA_ProjetoDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cardSetBindingSource
-            // 
-            this.cardSetBindingSource.DataMember = "CardSet";
-            this.cardSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
             // 
             // cardSetTableAdapter
             // 
             this.cardSetTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // tableLayoutPanel1
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
-            this.idDataGridViewTextBoxColumn.Width = 48;
+            this.tableLayoutPanel1.ColumnCount = 3;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 100F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.Controls.Add(this.groupBox1, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gbGCartasNoBaralho, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.gbGListaDeCartas, 2, 0);
+            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(3, 162);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(757, 227);
+            this.tableLayoutPanel1.TabIndex = 1;
             // 
-            // nameDataGridViewTextBoxColumn
+            // groupBox1
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 74;
+            this.groupBox1.Controls.Add(this.lblNCartasNoBaralho);
+            this.groupBox1.Controls.Add(this.label36);
+            this.groupBox1.Controls.Add(this.btnRemoverCartaBaralho);
+            this.groupBox1.Controls.Add(this.btnAdicionarCartaBaralho);
+            this.groupBox1.Controls.Add(this.btnCancelarAltBaralho);
+            this.groupBox1.Controls.Add(this.btnGuardarAltBaralho);
+            this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBox1.Location = new System.Drawing.Point(331, 3);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(94, 221);
+            this.groupBox1.TabIndex = 2;
+            this.groupBox1.TabStop = false;
             // 
-            // factionDataGridViewTextBoxColumn
+            // btnRemoverCartaBaralho
             // 
-            this.factionDataGridViewTextBoxColumn.DataPropertyName = "Faction";
-            this.factionDataGridViewTextBoxColumn.HeaderText = "Faction";
-            this.factionDataGridViewTextBoxColumn.Name = "factionDataGridViewTextBoxColumn";
-            this.factionDataGridViewTextBoxColumn.ReadOnly = true;
-            this.factionDataGridViewTextBoxColumn.Width = 83;
+            this.btnRemoverCartaBaralho.Location = new System.Drawing.Point(25, 96);
+            this.btnRemoverCartaBaralho.Name = "btnRemoverCartaBaralho";
+            this.btnRemoverCartaBaralho.Size = new System.Drawing.Size(43, 23);
+            this.btnRemoverCartaBaralho.TabIndex = 3;
+            this.btnRemoverCartaBaralho.Text = ">>";
+            this.btnRemoverCartaBaralho.UseVisualStyleBackColor = true;
             // 
-            // typeDataGridViewTextBoxColumn
+            // btnAdicionarCartaBaralho
             // 
-            this.typeDataGridViewTextBoxColumn.DataPropertyName = "Type";
-            this.typeDataGridViewTextBoxColumn.HeaderText = "Type";
-            this.typeDataGridViewTextBoxColumn.Name = "typeDataGridViewTextBoxColumn";
-            this.typeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.typeDataGridViewTextBoxColumn.Width = 69;
+            this.btnAdicionarCartaBaralho.Location = new System.Drawing.Point(25, 58);
+            this.btnAdicionarCartaBaralho.Name = "btnAdicionarCartaBaralho";
+            this.btnAdicionarCartaBaralho.Size = new System.Drawing.Size(43, 23);
+            this.btnAdicionarCartaBaralho.TabIndex = 2;
+            this.btnAdicionarCartaBaralho.Text = "<<";
+            this.btnAdicionarCartaBaralho.UseVisualStyleBackColor = true;
             // 
-            // costDataGridViewTextBoxColumn
+            // btnCancelarAltBaralho
             // 
-            this.costDataGridViewTextBoxColumn.DataPropertyName = "Cost";
-            this.costDataGridViewTextBoxColumn.HeaderText = "Cost";
-            this.costDataGridViewTextBoxColumn.Name = "costDataGridViewTextBoxColumn";
-            this.costDataGridViewTextBoxColumn.ReadOnly = true;
-            this.costDataGridViewTextBoxColumn.Width = 65;
+            this.btnCancelarAltBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelarAltBaralho.Location = new System.Drawing.Point(6, 192);
+            this.btnCancelarAltBaralho.Name = "btnCancelarAltBaralho";
+            this.btnCancelarAltBaralho.Size = new System.Drawing.Size(82, 23);
+            this.btnCancelarAltBaralho.TabIndex = 1;
+            this.btnCancelarAltBaralho.Text = "Cancelar";
+            this.btnCancelarAltBaralho.UseVisualStyleBackColor = true;
             // 
-            // loyaltyDataGridViewTextBoxColumn
+            // btnGuardarAltBaralho
             // 
-            this.loyaltyDataGridViewTextBoxColumn.DataPropertyName = "Loyalty";
-            this.loyaltyDataGridViewTextBoxColumn.HeaderText = "Loyalty";
-            this.loyaltyDataGridViewTextBoxColumn.Name = "loyaltyDataGridViewTextBoxColumn";
-            this.loyaltyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.loyaltyDataGridViewTextBoxColumn.Width = 82;
+            this.btnGuardarAltBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnGuardarAltBaralho.Location = new System.Drawing.Point(6, 163);
+            this.btnGuardarAltBaralho.Name = "btnGuardarAltBaralho";
+            this.btnGuardarAltBaralho.Size = new System.Drawing.Size(82, 23);
+            this.btnGuardarAltBaralho.TabIndex = 0;
+            this.btnGuardarAltBaralho.Text = "Guardar";
+            this.btnGuardarAltBaralho.UseVisualStyleBackColor = true;
             // 
-            // ruleTextDataGridViewTextBoxColumn
+            // gbGCartasNoBaralho
             // 
-            this.ruleTextDataGridViewTextBoxColumn.DataPropertyName = "RuleText";
-            this.ruleTextDataGridViewTextBoxColumn.HeaderText = "RuleText";
-            this.ruleTextDataGridViewTextBoxColumn.Name = "ruleTextDataGridViewTextBoxColumn";
-            this.ruleTextDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ruleTextDataGridViewTextBoxColumn.Width = 93;
+            this.gbGCartasNoBaralho.Controls.Add(this.lvCartasBaralho);
+            this.gbGCartasNoBaralho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbGCartasNoBaralho.Location = new System.Drawing.Point(3, 3);
+            this.gbGCartasNoBaralho.Name = "gbGCartasNoBaralho";
+            this.gbGCartasNoBaralho.Size = new System.Drawing.Size(322, 221);
+            this.gbGCartasNoBaralho.TabIndex = 3;
+            this.gbGCartasNoBaralho.TabStop = false;
+            this.gbGCartasNoBaralho.Text = "Cartas no baralho";
             // 
-            // attackDataGridViewTextBoxColumn
+            // lvCartasBaralho
             // 
-            this.attackDataGridViewTextBoxColumn.DataPropertyName = "Attack";
-            this.attackDataGridViewTextBoxColumn.HeaderText = "Attack";
-            this.attackDataGridViewTextBoxColumn.Name = "attackDataGridViewTextBoxColumn";
-            this.attackDataGridViewTextBoxColumn.ReadOnly = true;
-            this.attackDataGridViewTextBoxColumn.Width = 76;
+            this.lvCartasBaralho.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chCarta,
+            this.chQtd});
+            this.lvCartasBaralho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvCartasBaralho.FullRowSelect = true;
+            this.lvCartasBaralho.Location = new System.Drawing.Point(3, 18);
+            this.lvCartasBaralho.MultiSelect = false;
+            this.lvCartasBaralho.Name = "lvCartasBaralho";
+            this.lvCartasBaralho.Size = new System.Drawing.Size(316, 200);
+            this.lvCartasBaralho.TabIndex = 0;
+            this.lvCartasBaralho.UseCompatibleStateImageBehavior = false;
+            this.lvCartasBaralho.View = System.Windows.Forms.View.Details;
             // 
-            // defenseDataGridViewTextBoxColumn
+            // gbGListaDeCartas
             // 
-            this.defenseDataGridViewTextBoxColumn.DataPropertyName = "Defense";
-            this.defenseDataGridViewTextBoxColumn.HeaderText = "Defense";
-            this.defenseDataGridViewTextBoxColumn.Name = "defenseDataGridViewTextBoxColumn";
-            this.defenseDataGridViewTextBoxColumn.ReadOnly = true;
-            this.defenseDataGridViewTextBoxColumn.Width = 90;
+            this.gbGListaDeCartas.Controls.Add(this.lvListaCartas);
+            this.gbGListaDeCartas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.gbGListaDeCartas.Location = new System.Drawing.Point(431, 3);
+            this.gbGListaDeCartas.Name = "gbGListaDeCartas";
+            this.gbGListaDeCartas.Size = new System.Drawing.Size(323, 221);
+            this.gbGListaDeCartas.TabIndex = 4;
+            this.gbGListaDeCartas.TabStop = false;
+            this.gbGListaDeCartas.Text = "Lista de cartas";
+            // 
+            // lvListaCartas
+            // 
+            this.lvListaCartas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cCarta,
+            this.cQtd});
+            this.lvListaCartas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvListaCartas.Location = new System.Drawing.Point(3, 18);
+            this.lvListaCartas.MultiSelect = false;
+            this.lvListaCartas.Name = "lvListaCartas";
+            this.lvListaCartas.Size = new System.Drawing.Size(317, 200);
+            this.lvListaCartas.TabIndex = 0;
+            this.lvListaCartas.UseCompatibleStateImageBehavior = false;
+            this.lvListaCartas.View = System.Windows.Forms.View.Details;
+            // 
+            // label36
+            // 
+            this.label36.AutoSize = true;
+            this.label36.Location = new System.Drawing.Point(40, 18);
+            this.label36.Name = "label36";
+            this.label36.Size = new System.Drawing.Size(28, 17);
+            this.label36.TabIndex = 4;
+            this.label36.Text = "/45";
+            // 
+            // lblNCartasNoBaralho
+            // 
+            this.lblNCartasNoBaralho.Location = new System.Drawing.Point(8, 18);
+            this.lblNCartasNoBaralho.Name = "lblNCartasNoBaralho";
+            this.lblNCartasNoBaralho.Size = new System.Drawing.Size(36, 17);
+            this.lblNCartasNoBaralho.TabIndex = 5;
+            this.lblNCartasNoBaralho.Text = "0";
+            this.lblNCartasNoBaralho.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // chCarta
+            // 
+            this.chCarta.Text = "Carta";
+            this.chCarta.Width = 248;
+            // 
+            // chQtd
+            // 
+            this.chQtd.Text = "Qtd";
+            // 
+            // cCarta
+            // 
+            this.cCarta.Text = "Carta";
+            this.cCarta.Width = 246;
+            // 
+            // cQtd
+            // 
+            this.cQtd.Text = "Qtd";
             // 
             // formMenuAdmin
             // 
@@ -2062,11 +2133,9 @@
             this.gbGCartasDados.ResumeLayout(false);
             this.gbGCartasDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGCartasLista)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cardSetBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
             this.tbGestaoBaralhos.ResumeLayout(false);
-            this.gbGCartasnoBaralho.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
-            this.gbGCartasparaBaralho.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView3)).EndInit();
             this.gbGBaralhosDados.ResumeLayout(false);
             this.gbGBaralhosDados.PerformLayout();
             this.gbGBaralhosForm.ResumeLayout(false);
@@ -2080,8 +2149,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.cardSetBindingSource)).EndInit();
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            this.gbGCartasNoBaralho.ResumeLayout(false);
+            this.gbGListaDeCartas.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -2207,14 +2279,6 @@
         private System.Windows.Forms.TextBox txtGBaralhosPesquisa;
         private System.Windows.Forms.Button btnGerirBaralho;
         private System.Windows.Forms.Button btnEliminarBaralho;
-        private System.Windows.Forms.Button btnRemoverCartaBaralho;
-        private System.Windows.Forms.Button btnGuardarAltBaralho;
-        private System.Windows.Forms.Button btnCancelarAltBaralho;
-        private System.Windows.Forms.DataGridView dataGridView2;
-        private System.Windows.Forms.Button btnAdicionarCartaBaralho;
-        private System.Windows.Forms.DataGridView dataGridView3;
-        private System.Windows.Forms.GroupBox gbGCartasnoBaralho;
-        private System.Windows.Forms.GroupBox gbGCartasparaBaralho;
         private System.Windows.Forms.GroupBox gbGBaralhosForm;
         private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Button btnGuardarBaralho;
@@ -2255,5 +2319,21 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ruleTextDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attackDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn defenseDataGridViewTextBoxColumn;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblNCartasNoBaralho;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Button btnRemoverCartaBaralho;
+        private System.Windows.Forms.Button btnAdicionarCartaBaralho;
+        private System.Windows.Forms.Button btnCancelarAltBaralho;
+        private System.Windows.Forms.Button btnGuardarAltBaralho;
+        private System.Windows.Forms.GroupBox gbGCartasNoBaralho;
+        private System.Windows.Forms.GroupBox gbGListaDeCartas;
+        private System.Windows.Forms.ListView lvListaCartas;
+        private System.Windows.Forms.ListView lvCartasBaralho;
+        private System.Windows.Forms.ColumnHeader chCarta;
+        private System.Windows.Forms.ColumnHeader chQtd;
+        private System.Windows.Forms.ColumnHeader cCarta;
+        private System.Windows.Forms.ColumnHeader cQtd;
     }
 }
