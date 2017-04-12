@@ -578,6 +578,16 @@ namespace Projeto
             dgvGUtilizadoresLista.DataSource = userSetBindingSource;
         }
 
+        /// <summary>
+        /// Método para verificar se o utilizador inseriu dados já existentes na base de dados, sende estes o username e o email do administrador.
+        /// Verifica se o username inserido é igual ao username de cada utilizador.
+        /// De seguida, verifica se o email inserido é igual ao email de cada administrador.
+        /// Se for igual para qualquer dos casos, a variável boolean "naoExisteDados" é igual a false.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="usernameAdministrador">Username do Administrador</param>
+        /// <param name="emailAdministrador">Email do Administrador</param>
+        /// <returns></returns>
         private bool VerificarDadosAdmnistrador(string usernameAdministrador, string emailAdministrador)
         {
             bool naoExisteDados = true;
@@ -604,6 +614,17 @@ namespace Projeto
             return naoExisteDados;
         }
 
+        /// <summary>
+        /// Método para verificar se o utilizador inseriu dados já existentes na base de dados, sende estes o username, o nome e avtar do arbitro.
+        /// Verifica se o username inserido é igual ao username de cada utilizador.
+        /// De seguida, verifica se o nome e avatar inserido é igual ao nome e avatar de cada arbitro.
+        /// Se for igual para qualquer dos casos, a variável boolean "naoExisteDados" é igual a false.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <param name="nomeArbitro">Nome do Arbitro</param>
+        /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
+        /// <returns>Variavel Boolean "naoExisteDados"</returns>
         private bool VerificarDadosArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             bool naoExisteDados = true;
@@ -630,6 +651,14 @@ namespace Projeto
             return naoExisteDados;
         }
 
+        /// <summary>
+        /// Método para verificar se a linha da tabela na tab dos Utilizadores é do tipo Administrator.
+        /// Verifica se o id da linha selecionada é igual ao id de um administrador.
+        /// Se for igual, a variavel Boolean "isTipoAdministrator" é igual a true.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="rowUtilizador">Linha da Tabela do utilizador selecionado</param>
+        /// <returns>Variavel Boolean "isTipoAdministrator"</returns>
         private bool VerificarTipoAdministrator(DataGridViewRow rowUtilizador)
         {
             bool isTipoAdministrator = false;
@@ -645,6 +674,14 @@ namespace Projeto
             return isTipoAdministrator;
         }
 
+        /// <summary>
+        /// Método para verificar se a linha da tabela na tab dos Utilizadores é do tipo Referee.
+        /// Verifica se o id da linha selecionada é igual ao id de um arbitro.
+        /// Se for igual, a variavel Boolean "isTipoArbitro" é igual a true.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="rowUtilizador">Linha da Tabela do utilizador selecionado</param>
+        /// <returns>Variavel Boolean "isTipoArbitro"</returns>
         private bool VerificarTipoReferee(DataGridViewRow rowUtilizador)
         {
             bool isTipoArbitro = false;
@@ -660,6 +697,16 @@ namespace Projeto
             return isTipoArbitro;
         }
 
+        /// <summary>
+        /// Método para verificar se os dados alterados já existem na base de dados.
+        /// Verifica se o username alterado é igual ao username de cada administrador, exceto o administrador a ser alterado.
+        /// De seguida, verifica se o email é igual ao email de cada adminstrador, excetp o administrador a ser alterado.
+        /// Se for igual para qualquer dos casos, a variavel Boolean "aplicaAlteracoes" é igual a false.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="usernameAdministrador">Username do Administrador</param>
+        /// <param name="emailAdministrador">Email do Administrador</param>
+        /// <returns>Variavel Boolean "aplicaAlteracoes"</returns>
         private bool VerificarAlteracoesAdministrador(string usernameAdministrador, string emailAdministrador)
         {
             bool aplicaAlteracoes = true;
@@ -686,6 +733,17 @@ namespace Projeto
             return aplicaAlteracoes;
         }
 
+        /// <summary>
+        /// Método para verificar se os dados alterados já existem na base de dados.
+        /// Verifica se o username alterado é igual ao username de cada arbitro, exceto o arbitro a ser alterado.
+        /// De seguida, verifica se o nome ou o avatar é igual ao nome ou o avatar de cada arbitro, exceto o arbitro a ser alterado.
+        /// Se for igual para qualquer dos casos, a variavel Boolean "aplicaAlteracoes" é igual a false.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <param name="nomeArbitro">Nome do Arbitro</param>
+        /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
+        /// <returns>Variavel Boolean "aplicaAlteracoes"</returns>
         private bool VerificarAlteracoesArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
         {
             bool aplicaAlteracoes = true;
