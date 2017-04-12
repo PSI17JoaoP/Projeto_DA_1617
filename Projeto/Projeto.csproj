@@ -80,6 +80,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="BD_DA_ProjetoDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_DA_ProjetoDataSet1.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Card.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
     </Compile>
@@ -183,6 +188,17 @@
     </None>
     <None Include="BD_DA_ProjetoDataSet.xss">
       <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet1.xsc">
+      <DependentUpon>BD_DA_ProjetoDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_DA_ProjetoDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet1.xss">
+      <DependentUpon>BD_DA_ProjetoDataSet1.xsd</DependentUpon>
     </None>
     <None Include="DiagramaArcmage.edmx.diagram">
       <DependentUpon>DiagramaArcmage.edmx</DependentUpon>

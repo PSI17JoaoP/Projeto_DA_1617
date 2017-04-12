@@ -26,9 +26,11 @@ namespace Projeto
         private DiagramaArcmageContainer container;
 
         /// <summary>
-        /// Variável usada para guardar o id da carta selecionada para alterar/remover
+        /// Variáveis usada para guardar o id do objeto selecionado para alterar/remover
         /// </summary>
         private int idCarta;
+        private int idBaralho;
+
 
         private void formMenuAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -50,6 +52,8 @@ namespace Projeto
 
         private void formMenuAdmin_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet1.DeckSet' table. You can move, or remove it, as needed.
+            this.deckSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet1.DeckSet);
             // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.CardSet' table. You can move, or remove it, as needed.
             this.cardSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.CardSet);
 
@@ -376,6 +380,12 @@ namespace Projeto
             return result;
         }
 
+        /// <summary>
+        /// Se a caixa de texto tiver algo
+        ///     Cria uma query e procura cartas cujo nome contenha o que foi escrito
+        /// Senão
+        ///     recarrega a tabela
+        /// </summary>
         private void txtGCartasPesquisa_TextChanged(object sender, EventArgs e)
         {
             if (txtGCartasPesquisa.Text.Length > 0)
@@ -391,6 +401,233 @@ namespace Projeto
             else
             {
                 RefreshTabelaCartas();
+            }
+        }
+
+
+        private void dgvGBaralhosLista_CellEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvGBaralhosLista.SelectedCells.Count > 0)
+            {
+                btnGerirBaralho.Enabled = true;
+                btnEliminarBaralho.Enabled = true;
+            }
+        }
+
+        private void dgvGBaralhosLista_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (dgvGBaralhosLista.SelectedCells.Count == 0)
+            {
+                btnGerirBaralho.Enabled = false;
+                btnEliminarBaralho.Enabled = false;
+            }
+        }
+
+        private void btnInserirBaralho_Click(object sender, EventArgs e)
+        {
+            gbGBaralhosForm.Visible = true;
+        }
+
+        private void btnGerirBaralho_Click(object sender, EventArgs e)
+        {
+            panelGestaoBaralho.Enabled = true;
+        }
+
+        /// <summary>
+        /// Confirma a intenção do utilizador de eliminar a carta selecionada
+        /// Caso confirme, obtém o id da carta e chama a função para remover a carta
+        /// Informa o utilizador do resultado da operação
+        /// </summary>
+        private void btnEliminarBaralho_Click(object sender, EventArgs e)
+        {
+            string nomeBaralho = dgvGBaralhosLista.CurrentRow.Cells[1].Value.ToString();
+
+            DialogResult confirm =
+                MessageBox.Show("Tem a certeza que quer eliminar o baralho '" + nomeBaralho + "'?",
+                "Atenção", MessageBoxButtons.YesNo);
+
+            if (confirm == DialogResult.Yes)
+            {
+                idBaralho = (int)dgvGBaralhosLista.CurrentRow.Cells[0].Value;
+
+                if (RemoverBaralho())
+                {
+                    MessageBox.Show("Baralho eliminado com sucesso!", "Informação");
+                }
+                else
+                {
+                    MessageBox.Show("Erro ao eliminar o baralho", "Informação");
+                }
+
+                RefreshTabelaBaralhos();
+            }
+        }
+        /// <summary>
+        /// Atualiza a fonte de dados da tabela e volta a carregá-la
+        /// </summary>
+        private void RefreshTabelaBaralhos()
+        {
+            dgvGBaralhosLista.DataSource = null;
+            this.deckSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet1.DeckSet);
+            dgvGBaralhosLista.DataSource = this.deckSetBindingSource;
+        }
+
+        /// <summary>
+        /// Limpa o formulário de criação de baralho para novo uso
+        /// </summary>
+        private void ResetFormBaralhos()
+        {
+            txtNomeBaralho.ResetText();
+            gbGBaralhosForm.Visible = false;
+        }
+
+        /// <summary>
+        /// Verifica se o nome do baralho está preenchido
+        /// Verifica se o baralho já existe
+        /// Insere o baralho na base de dados
+        /// Recarrega a tabela e limpa o formulário
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnCriarBaralho_Click(object sender, EventArgs e)
+        {
+            if (txtNomeBaralho.Text.Length == 0)
+            {
+                MessageBox.Show("Tem de preencher o nome do baralho", "Informação");
+            }
+            else
+            {
+                string name = txtNomeBaralho.Text;
+
+                if (VerificarBaralhoExiste(name))
+                {
+                    MessageBox.Show("O baralho '" + name + "' já existe", "Informação");
+                }
+                else
+                {
+                    if (InserirBaralho(name))
+                    {
+                        MessageBox.Show("Baralho criado com sucesso", "Informação");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao criar o baralho", "Informação");
+                    }
+
+                    RefreshTabelaBaralhos();
+                    
+                    ResetFormBaralhos();
+                }
+            }
+                       
+        }
+
+        private void btnCancelarNovoBaralho_Click(object sender, EventArgs e)
+        {
+            ResetFormBaralhos();
+        }
+
+        /// <summary>
+        /// Recebe o nome do baralho como parâmetro
+        /// Verifica se existe um baralho com o mesmo nome
+        /// Retorna o resultado
+        /// </summary>
+        private Boolean VerificarBaralhoExiste(string nome)
+        {
+            Boolean result = false;
+
+            foreach (Deck baralho in container.DeckSet)
+            {
+                if (baralho.Name.Equals(nome))
+                {
+                    result = true;
+                }
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Recebe o nome do baralho como parâmetro
+        /// Tenta criar um novo baralho na base de dados
+        /// Retorna o resultado
+        /// </summary>
+        private Boolean InserirBaralho(string nome)
+        {
+            Boolean result;
+
+            try
+            {
+                Deck novoDeck = new Deck
+                {
+                    Name = nome
+                };
+                
+                container.DeckSet.Add(novoDeck);
+                container.SaveChanges();
+
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Procura na base de dados o baralho com o mesmo id do baralho selecionado
+        /// Tenta remover o baralho da base de dados
+        /// Retorna o resultado da operação
+        /// </summary>
+        /// <returns></returns>
+        private Boolean RemoverBaralho()
+        {
+            Boolean result;
+
+            try
+            {
+                foreach (Deck baralho in container.DeckSet)
+                {
+                    if (baralho.Id == idBaralho)
+                    {
+                        container.DeckSet.Remove(baralho);
+                    }
+                }
+
+                container.SaveChanges();
+                result = true;
+            }
+            catch (Exception)
+            {
+                result = false;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// Se a caixa de texto tiver algo
+        ///     Cria uma query e procura baralhos cujo nome contenha o que foi escrito
+        /// Senão
+        ///     recarrega a tabela
+        /// </summary>
+        private void txtGBaralhosPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            if (txtGBaralhosPesquisa.Text.Length > 0)
+            {
+
+                var query =
+                    from decks in container.DeckSet
+                    where decks.Name.Contains(txtGBaralhosPesquisa.Text)
+                    select decks;
+
+                dgvGBaralhosLista.DataSource = query.ToList();
+            }
+            else
+            {
+                RefreshTabelaBaralhos();
             }
         }
     }
