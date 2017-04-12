@@ -342,6 +342,8 @@ namespace Projeto
 
                 dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
             }*/
+
+            RefreshTabelaUtilizadores();
         }
 
         private void RadioFiltrarArbitros(object sender, EventArgs e)
@@ -359,6 +361,8 @@ namespace Projeto
 
                 dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
             }*/
+
+            RefreshTabelaUtilizadores();
         }
 
         /// <summary>
@@ -573,9 +577,23 @@ namespace Projeto
         /// </summary>
         private void RefreshTabelaUtilizadores()
         {
-            dgvGUtilizadoresLista.DataSource = null;
+            /*dgvGUtilizadoresLista.DataSource = null;
             userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
-            dgvGUtilizadoresLista.DataSource = userSetBindingSource;
+            dgvGUtilizadoresLista.DataSource = userSetBindingSource;*/
+
+            if(radioAdmins.Checked == true)
+            {
+                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }
+
+            else
+            {
+                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
+
+                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+            }
         }
 
         /// <summary>
