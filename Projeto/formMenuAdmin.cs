@@ -327,41 +327,21 @@ namespace Projeto
             gbGUtilizadoresDados.Enabled = true;
         }
 
+        /// <summary>
+        /// Evento do radio button "Administradores".
+        /// Apenas invoca o método RefreshTabelaUtilizadores para fazer refresh à tabela.
+        /// </summary>
         private void RadioFiltrarAdministradores(object sender, EventArgs e)
         {
-            /*if(radioAdmins.Checked == true)
-            {
-                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
-            }
-
-            else
-            {
-                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
-            }*/
-
             RefreshTabelaUtilizadores();
         }
 
+        /// <summary>
+        /// Evento do radio button "Arbitros".
+        /// Apenas invoca o método RefreshTabelaUtilizadores para fazer refresh à tabela.
+        /// </summary>
         private void RadioFiltrarArbitros(object sender, EventArgs e)
         {
-            /*if (radioArbitros.Checked == true)
-            {
-                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
-            }
-
-            else
-            {
-                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
-            }*/
-
             RefreshTabelaUtilizadores();
         }
 
