@@ -210,6 +210,8 @@
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
             this.deckSetTableAdapter = new Projeto.BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter();
+            this.CTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -1521,21 +1523,25 @@
             // 
             // btnRemoverCartaBaralho
             // 
+            this.btnRemoverCartaBaralho.Enabled = false;
             this.btnRemoverCartaBaralho.Location = new System.Drawing.Point(25, 96);
             this.btnRemoverCartaBaralho.Name = "btnRemoverCartaBaralho";
             this.btnRemoverCartaBaralho.Size = new System.Drawing.Size(43, 23);
             this.btnRemoverCartaBaralho.TabIndex = 3;
             this.btnRemoverCartaBaralho.Text = ">>";
             this.btnRemoverCartaBaralho.UseVisualStyleBackColor = true;
+            this.btnRemoverCartaBaralho.Click += new System.EventHandler(this.btnRemoverCartaBaralho_Click);
             // 
             // btnAdicionarCartaBaralho
             // 
+            this.btnAdicionarCartaBaralho.Enabled = false;
             this.btnAdicionarCartaBaralho.Location = new System.Drawing.Point(25, 58);
             this.btnAdicionarCartaBaralho.Name = "btnAdicionarCartaBaralho";
             this.btnAdicionarCartaBaralho.Size = new System.Drawing.Size(43, 23);
             this.btnAdicionarCartaBaralho.TabIndex = 2;
             this.btnAdicionarCartaBaralho.Text = "<<";
             this.btnAdicionarCartaBaralho.UseVisualStyleBackColor = true;
+            this.btnAdicionarCartaBaralho.Click += new System.EventHandler(this.btnAdicionarCartaBaralho_Click);
             // 
             // btnCancelarAltBaralho
             // 
@@ -1546,6 +1552,7 @@
             this.btnCancelarAltBaralho.TabIndex = 1;
             this.btnCancelarAltBaralho.Text = "Cancelar";
             this.btnCancelarAltBaralho.UseVisualStyleBackColor = true;
+            this.btnCancelarAltBaralho.Click += new System.EventHandler(this.btnCancelarAltBaralho_Click);
             // 
             // btnGuardarAltBaralho
             // 
@@ -1556,6 +1563,7 @@
             this.btnGuardarAltBaralho.TabIndex = 0;
             this.btnGuardarAltBaralho.Text = "Guardar";
             this.btnGuardarAltBaralho.UseVisualStyleBackColor = true;
+            this.btnGuardarAltBaralho.Click += new System.EventHandler(this.btnGuardarAltBaralho_Click);
             // 
             // gbGCartasNoBaralho
             // 
@@ -1572,6 +1580,7 @@
             // 
             this.lvCartasBaralho.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chCarta,
+            this.chTipo,
             this.chQtd});
             this.lvCartasBaralho.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvCartasBaralho.FullRowSelect = true;
@@ -1582,15 +1591,17 @@
             this.lvCartasBaralho.TabIndex = 0;
             this.lvCartasBaralho.UseCompatibleStateImageBehavior = false;
             this.lvCartasBaralho.View = System.Windows.Forms.View.Details;
+            this.lvCartasBaralho.SelectedIndexChanged += new System.EventHandler(this.lvCartasBaralho_SelectedIndexChanged);
             // 
             // chCarta
             // 
             this.chCarta.Text = "Carta";
-            this.chCarta.Width = 206;
+            this.chCarta.Width = 83;
             // 
             // chQtd
             // 
             this.chQtd.Text = "Qtd";
+            this.chQtd.Width = 37;
             // 
             // gbGListaDeCartas
             // 
@@ -1607,8 +1618,10 @@
             // 
             this.lvListaCartas.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cCarta,
+            this.CTipo,
             this.cQtd});
             this.lvListaCartas.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lvListaCartas.FullRowSelect = true;
             this.lvListaCartas.Location = new System.Drawing.Point(3, 18);
             this.lvListaCartas.MultiSelect = false;
             this.lvListaCartas.Name = "lvListaCartas";
@@ -1616,15 +1629,17 @@
             this.lvListaCartas.TabIndex = 0;
             this.lvListaCartas.UseCompatibleStateImageBehavior = false;
             this.lvListaCartas.View = System.Windows.Forms.View.Details;
+            this.lvListaCartas.SelectedIndexChanged += new System.EventHandler(this.lvListaCartas_SelectedIndexChanged);
             // 
             // cCarta
             // 
             this.cCarta.Text = "Carta";
-            this.cCarta.Width = 199;
+            this.cCarta.Width = 106;
             // 
             // cQtd
             // 
             this.cQtd.Text = "Qtd";
+            this.cQtd.Width = 40;
             // 
             // gbGBaralhosDados
             // 
@@ -2137,6 +2152,16 @@
             // 
             this.deckSetTableAdapter.ClearBeforeFill = true;
             // 
+            // CTipo
+            // 
+            this.CTipo.Text = "Tipo";
+            this.CTipo.Width = 67;
+            // 
+            // chTipo
+            // 
+            this.chTipo.Text = "Tipo";
+            this.chTipo.Width = 70;
+            // 
             // formMenuAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -2398,5 +2423,7 @@
         private BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter deckSetTableAdapter;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.ColumnHeader chTipo;
+        private System.Windows.Forms.ColumnHeader CTipo;
     }
 }

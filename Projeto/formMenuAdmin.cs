@@ -430,6 +430,38 @@ namespace Projeto
 
         private void btnGerirBaralho_Click(object sender, EventArgs e)
         {
+            idBaralho = (int)dgvGBaralhosLista.CurrentRow.Cells[0].Value;
+
+            ListViewItem linhaCarta;
+
+            //---------------------------------
+            //Preencher Lista de cartas
+            lvListaCartas.Items.Clear();
+
+            foreach (Card carta in container.CardSet)
+            {
+                linhaCarta = new ListViewItem(carta.Name);
+                linhaCarta.SubItems.Add(carta.Type);
+                linhaCarta.SubItems.Add("3");
+                lvListaCartas.Items.Add(linhaCarta);
+            }
+
+            //----------------------------------
+            //Preencher cartas no baralho
+            lvCartasBaralho.Items.Clear();
+
+            Deck baralhoGerir = container.DeckSet.Find(idBaralho);
+
+            foreach (Card carta in baralhoGerir.Cards)
+            {
+                linhaCarta = new ListViewItem(carta.Name);
+                linhaCarta.SubItems.Add(carta.Type);
+                linhaCarta.SubItems.Add("1");
+                lvCartasBaralho.Items.Add(linhaCarta);
+            }
+
+            //----------------------------------
+
             panelGestaoBaralho.Enabled = true;
         }
 
@@ -629,6 +661,155 @@ namespace Projeto
             {
                 RefreshTabelaBaralhos();
             }
+        }
+
+        private void lvListaCartas_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lvListaCartas_Leave(object sender, EventArgs e)
+        {
+            btnAdicionarCartaBaralho.Enabled = false;
+        }
+
+        private void lvCartasBaralho_Leave(object sender, EventArgs e)
+        {
+            btnRemoverCartaBaralho.Enabled = false;
+        }
+
+        private void lvListaCartas_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvListaCartas.SelectedItems.Count > 0 && Convert.ToInt32(lblNCartasNoBaralho.Text) < 45)
+            {
+                btnAdicionarCartaBaralho.Enabled = true;
+            }
+            else
+            {
+                btnAdicionarCartaBaralho.Enabled = false;
+            }
+        }
+
+        private void lvCartasBaralho_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lvCartasBaralho.SelectedItems.Count > 0)
+            {
+                btnRemoverCartaBaralho.Enabled = true;
+            }
+            else
+            {
+                btnRemoverCartaBaralho.Enabled = false;
+            }
+        }
+
+        private void btnAdicionarCartaBaralho_Click(object sender, EventArgs e)
+        {
+            ListViewItem cartaAdicionar = lvListaCartas.SelectedItems[0];
+            int qtdCarta = Convert.ToInt32(cartaAdicionar.SubItems[2].Text);
+            int numCartas = Convert.ToInt32(lblNCartasNoBaralho.Text);
+            Boolean cartanova = true;
+
+            lvListaCartas.SelectedItems[0].SubItems[2].Text = Convert.ToString(--qtdCarta);
+
+            //---------------------------------------------------
+
+            foreach (ListViewItem item in lvCartasBaralho.Items)
+            {
+                if (item.Text.Equals(cartaAdicionar.Text))
+                {
+                    item.SubItems[2].Text = Convert.ToString(3 - qtdCarta);
+                    cartanova = false;
+                }
+            }
+
+            if (cartanova)
+            {
+                ListViewItem novacarta = new ListViewItem(cartaAdicionar.Text);
+                novacarta.SubItems.Add(cartaAdicionar.SubItems[1].Text);
+                novacarta.SubItems.Add("1");
+
+                lvCartasBaralho.Items.Add(novacarta);
+            }
+
+            //---------------------------------------------------
+
+            if (qtdCarta == 0)
+            {
+                lvListaCartas.Items.Remove(cartaAdicionar);
+            }
+
+            //--------------------------------------------------
+
+            lblNCartasNoBaralho.Text = Convert.ToString(++numCartas);
+
+            if (numCartas == 45)
+            {
+                btnAdicionarCartaBaralho.Enabled = false;
+            }
+
+        }
+
+        private void btnRemoverCartaBaralho_Click(object sender, EventArgs e)
+        {
+            ListViewItem cartaRemover = lvCartasBaralho.SelectedItems[0];
+            int qtdCarta = Convert.ToInt32(cartaRemover.SubItems[2].Text);
+            int numCartas = Convert.ToInt32(lblNCartasNoBaralho.Text);
+            Boolean cartanova = true;
+
+            lvCartasBaralho.SelectedItems[0].SubItems[2].Text = Convert.ToString(--qtdCarta);
+
+            //---------------------------------------------------
+
+            foreach (ListViewItem item in lvListaCartas.Items)
+            {
+                if (item.Text.Equals(cartaRemover.Text))
+                {
+                    item.SubItems[2].Text = Convert.ToString(3 - qtdCarta);
+                    cartanova = false;
+                }
+            }
+
+            if (cartanova)
+            {
+                ListViewItem novacarta = new ListViewItem(cartaRemover.Text);
+                novacarta.SubItems.Add(cartaRemover.SubItems[1].Text);
+                novacarta.SubItems.Add("1");
+
+                lvListaCartas.Items.Add(novacarta);
+            }
+
+            //---------------------------------------------------
+
+            if (qtdCarta == 0)
+            {
+                lvCartasBaralho.Items.Remove(cartaRemover);
+            }
+
+            //--------------------------------------------------
+
+            lblNCartasNoBaralho.Text = Convert.ToString(--numCartas);           
+        }
+
+        private void btnCancelarAltBaralho_Click(object sender, EventArgs e)
+        {
+            RefreshGestaoBaralho();
+        }
+
+        private void btnGuardarAltBaralho_Click(object sender, EventArgs e)
+        {
+
+
+            RefreshGestaoBaralho();
+        }
+
+        private void RefreshGestaoBaralho()
+        {
+            lvCartasBaralho.Items.Clear();
+            lvListaCartas.Items.Clear();
+            lblNCartasNoBaralho.Text = "0";
+            btnAdicionarCartaBaralho.Enabled = false;
+            btnRemoverCartaBaralho.Enabled = false;
+            panelGestaoBaralho.Enabled = false;
         }
     }
 }
