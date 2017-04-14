@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/10/2017 16:41:10
+-- Date Created: 04/14/2017 18:25:55
 -- Generated from EDMX file: C:\Users\leona\Source\Repos\Projeto_DA_1617\Projeto\DiagramaArcmage.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,131 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_RefereeGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_RefereeGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckCard_Deck]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DeckCard] DROP CONSTRAINT [FK_DeckCard_Deck];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckCard_Card]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DeckCard] DROP CONSTRAINT [FK_DeckCard_Card];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_DeckGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_DeckGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardGameStandardTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_StandardGameStandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerStandardGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_PlayerStandardGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerStandardGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_PlayerStandardGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamGameTeamTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamGameTeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamTeamGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamTeamGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamPlayer_Team]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamPlayer] DROP CONSTRAINT [FK_TeamPlayer_Team];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamPlayer_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamPlayer] DROP CONSTRAINT [FK_TeamPlayer_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamTournament_Team]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamTeamTournament] DROP CONSTRAINT [FK_TeamTeamTournament_Team];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamTournament_TeamTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamTeamTournament] DROP CONSTRAINT [FK_TeamTeamTournament_TeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournamentPlayer_StandardTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StandardTournamentPlayer] DROP CONSTRAINT [FK_StandardTournamentPlayer_StandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournamentPlayer_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StandardTournamentPlayer] DROP CONSTRAINT [FK_StandardTournamentPlayer_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Referee_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet_Referee] DROP CONSTRAINT [FK_Referee_inherits_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardGame_inherits_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_StandardGame_inherits_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournament_inherits_Tournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TournamentSet_StandardTournament] DROP CONSTRAINT [FK_StandardTournament_inherits_Tournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamGame_inherits_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamGame_inherits_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTournament_inherits_Tournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TournamentSet_TeamTournament] DROP CONSTRAINT [FK_TeamTournament_inherits_Tournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Administrator_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet_Administrator] DROP CONSTRAINT [FK_Administrator_inherits_User];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet];
+GO
+IF OBJECT_ID(N'[dbo].[DeckSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DeckSet];
+GO
+IF OBJECT_ID(N'[dbo].[CardSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CardSet];
+GO
+IF OBJECT_ID(N'[dbo].[TeamSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamSet];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet];
+GO
+IF OBJECT_ID(N'[dbo].[PlayerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerSet];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet_Referee]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet_Referee];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet_StandardGame]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet_StandardGame];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet_StandardTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet_StandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet_TeamGame]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet_TeamGame];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet_TeamTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet_TeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet_Administrator]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet_Administrator];
+GO
+IF OBJECT_ID(N'[dbo].[DeckCard]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DeckCard];
+GO
+IF OBJECT_ID(N'[dbo].[TeamPlayer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[TeamTeamTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamTeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[StandardTournamentPlayer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StandardTournamentPlayer];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables

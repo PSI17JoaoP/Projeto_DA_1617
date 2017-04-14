@@ -431,6 +431,8 @@ namespace Projeto
         private void btnGerirBaralho_Click(object sender, EventArgs e)
         {
             idBaralho = (int)dgvGBaralhosLista.CurrentRow.Cells[0].Value;
+            int ncartas = 0;
+            Boolean nova = true;
 
             ListViewItem linhaCarta;
 
@@ -454,15 +456,30 @@ namespace Projeto
 
             foreach (Card carta in baralhoGerir.Cards)
             {
-                linhaCarta = new ListViewItem(carta.Name);
-                linhaCarta.SubItems.Add(carta.Type);
-                linhaCarta.SubItems.Add("1");
-                lvCartasBaralho.Items.Add(linhaCarta);
+                foreach (ListViewItem item in lvCartasBaralho.Items)
+                {
+                    if (item.Text.Equals(carta.Name))
+                    {
+                        item.SubItems[2].Text = Convert.ToString(Convert.ToInt32(item.SubItems[2].Text) + 1);
+                        nova = false;
+                    }
+                }
+                if (nova)
+                {
+                    linhaCarta = new ListViewItem(carta.Name);
+                    linhaCarta.SubItems.Add(carta.Type);
+                    linhaCarta.SubItems.Add("1");
+                    lvCartasBaralho.Items.Add(linhaCarta);
+                }
+
+                ncartas++;
             }
 
             //----------------------------------
 
+            lblNCartasNoBaralho.Text = Convert.ToString(ncartas);
             panelGestaoBaralho.Enabled = true;
+            
         }
 
         /// <summary>
@@ -663,21 +680,6 @@ namespace Projeto
             }
         }
 
-        private void lvListaCartas_Enter(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lvListaCartas_Leave(object sender, EventArgs e)
-        {
-            btnAdicionarCartaBaralho.Enabled = false;
-        }
-
-        private void lvCartasBaralho_Leave(object sender, EventArgs e)
-        {
-            btnRemoverCartaBaralho.Enabled = false;
-        }
-
         private void lvListaCartas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvListaCartas.SelectedItems.Count > 0 && Convert.ToInt32(lblNCartasNoBaralho.Text) < 45)
@@ -797,7 +799,24 @@ namespace Projeto
 
         private void btnGuardarAltBaralho_Click(object sender, EventArgs e)
         {
+            Deck baralhoatual = container.DeckSet.Find(idBaralho);
+            Card carta;
+            int qtdcarta;
+            
+            baralhoatual.Cards.Clear();
 
+            foreach (ListViewItem item in lvCartasBaralho.Items)
+            {
+                qtdcarta = Convert.ToInt32(item.SubItems[2].Text);
+
+                var search = container.CardSet.Where(f => f.Name.Equals(item.Text));
+                carta = search.ToList<Card>().First<Card>();
+
+                baralhoatual.Cards.Add(carta);
+                
+            }
+
+            container.SaveChanges();
 
             RefreshGestaoBaralho();
         }
