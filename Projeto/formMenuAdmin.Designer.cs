@@ -212,6 +212,21 @@
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
             this.deckSetTableAdapter = new Projeto.BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.label40 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -258,6 +273,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
+            this.tbVerCartas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -2127,6 +2147,21 @@
             // 
             // tbVerCartas
             // 
+            this.tbVerCartas.Controls.Add(this.numericUpDown1);
+            this.tbVerCartas.Controls.Add(this.numericUpDown2);
+            this.tbVerCartas.Controls.Add(this.numericUpDown3);
+            this.tbVerCartas.Controls.Add(this.textBox1);
+            this.tbVerCartas.Controls.Add(this.comboBox1);
+            this.tbVerCartas.Controls.Add(this.comboBox2);
+            this.tbVerCartas.Controls.Add(this.textBox2);
+            this.tbVerCartas.Controls.Add(this.label37);
+            this.tbVerCartas.Controls.Add(this.label38);
+            this.tbVerCartas.Controls.Add(this.label39);
+            this.tbVerCartas.Controls.Add(this.label40);
+            this.tbVerCartas.Controls.Add(this.label41);
+            this.tbVerCartas.Controls.Add(this.label42);
+            this.tbVerCartas.Controls.Add(this.label43);
+            this.tbVerCartas.Controls.Add(this.dataGridView1);
             this.tbVerCartas.Location = new System.Drawing.Point(4, 25);
             this.tbVerCartas.Name = "tbVerCartas";
             this.tbVerCartas.Padding = new System.Windows.Forms.Padding(3);
@@ -2162,6 +2197,145 @@
             // deckSetTableAdapter
             // 
             this.deckSetTableAdapter.ClearBeforeFill = true;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(22, 159);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(723, 212);
+            this.dataGridView1.TabIndex = 0;
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown1.Location = new System.Drawing.Point(667, 94);
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown1.TabIndex = 29;
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDown2.Location = new System.Drawing.Point(467, 94);
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown2.TabIndex = 28;
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(292, 94);
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(55, 22);
+            this.numericUpDown3.TabIndex = 27;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(83, 93);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(69, 22);
+            this.textBox1.TabIndex = 26;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Criatura",
+            "Evento",
+            "Equipamento",
+            "Magia",
+            "Encantamento",
+            "Cidade"});
+            this.comboBox1.Location = new System.Drawing.Point(586, 34);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(159, 24);
+            this.comboBox1.TabIndex = 25;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Gaian Love for Life",
+            "Uneasy Alliance"});
+            this.comboBox2.Location = new System.Drawing.Point(365, 34);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(157, 24);
+            this.comboBox2.TabIndex = 24;
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(83, 34);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(202, 22);
+            this.textBox2.TabIndex = 23;
+            // 
+            // label37
+            // 
+            this.label37.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(583, 96);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(53, 17);
+            this.label37.TabIndex = 22;
+            this.label37.Text = "Defesa";
+            // 
+            // label38
+            // 
+            this.label38.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(382, 96);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(53, 17);
+            this.label38.TabIndex = 21;
+            this.label38.Text = "Ataque";
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(201, 96);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(67, 17);
+            this.label39.TabIndex = 20;
+            this.label39.Text = "Lealdade";
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(19, 96);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(44, 17);
+            this.label40.TabIndex = 19;
+            this.label40.Text = "Custo";
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(543, 37);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(36, 17);
+            this.label41.TabIndex = 18;
+            this.label41.Text = "Tipo";
+            // 
+            // label42
+            // 
+            this.label42.AutoSize = true;
+            this.label42.Location = new System.Drawing.Point(300, 37);
+            this.label42.Name = "label42";
+            this.label42.Size = new System.Drawing.Size(47, 17);
+            this.label42.TabIndex = 17;
+            this.label42.Text = "Fação";
+            // 
+            // label43
+            // 
+            this.label43.AutoSize = true;
+            this.label43.Location = new System.Drawing.Point(19, 37);
+            this.label43.Name = "label43";
+            this.label43.Size = new System.Drawing.Size(45, 17);
+            this.label43.TabIndex = 16;
+            this.label43.Text = "Nome";
             // 
             // formMenuAdmin
             // 
@@ -2238,6 +2412,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
+            this.tbVerCartas.ResumeLayout(false);
+            this.tbVerCartas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2426,5 +2606,20 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
         private System.Windows.Forms.ColumnHeader chTipo;
         private System.Windows.Forms.ColumnHeader CTipo;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBox2;
+        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.DataGridView dataGridView1;
     }
 }

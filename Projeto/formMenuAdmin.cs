@@ -174,7 +174,8 @@ namespace Projeto
                 int attack = (int)nudGAtaqueCarta.Value;
                 int defense = (int)nudGDefesaCarta.Value;
                 //-------------------------------------------
-          
+                
+
                 // Verifica se o utilizador está a criar ou a alterar uma carta
                 //Executa a função respetiva
                 if (btnAcaoCarta.Text == "Criar")
