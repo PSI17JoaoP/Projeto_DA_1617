@@ -155,10 +155,12 @@
             this.gbGCartasNoBaralho = new System.Windows.Forms.GroupBox();
             this.lvCartasBaralho = new System.Windows.Forms.ListView();
             this.chCarta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.chTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chQtd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbGListaDeCartas = new System.Windows.Forms.GroupBox();
             this.lvListaCartas = new System.Windows.Forms.ListView();
             this.cCarta = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.CTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cQtd = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.gbGBaralhosDados = new System.Windows.Forms.GroupBox();
             this.gbGBaralhosForm = new System.Windows.Forms.GroupBox();
@@ -210,8 +212,6 @@
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
             this.deckSetTableAdapter = new Projeto.BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter();
-            this.CTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.chTipo = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -1598,6 +1598,11 @@
             this.chCarta.Text = "Carta";
             this.chCarta.Width = 83;
             // 
+            // chTipo
+            // 
+            this.chTipo.Text = "Tipo";
+            this.chTipo.Width = 70;
+            // 
             // chQtd
             // 
             this.chQtd.Text = "Qtd";
@@ -1635,6 +1640,11 @@
             // 
             this.cCarta.Text = "Carta";
             this.cCarta.Width = 106;
+            // 
+            // CTipo
+            // 
+            this.CTipo.Text = "Tipo";
+            this.CTipo.Width = 67;
             // 
             // cQtd
             // 
@@ -1728,6 +1738,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvGBaralhosLista.AutoGenerateColumns = false;
+            this.dgvGBaralhosLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvGBaralhosLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvGBaralhosLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn1,
@@ -2151,16 +2162,6 @@
             // deckSetTableAdapter
             // 
             this.deckSetTableAdapter.ClearBeforeFill = true;
-            // 
-            // CTipo
-            // 
-            this.CTipo.Text = "Tipo";
-            this.CTipo.Width = 67;
-            // 
-            // chTipo
-            // 
-            this.chTipo.Text = "Tipo";
-            this.chTipo.Width = 70;
             // 
             // formMenuAdmin
             // 

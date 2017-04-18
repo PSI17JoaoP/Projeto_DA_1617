@@ -174,19 +174,19 @@ namespace Projeto
                 int attack = (int)nudGAtaqueCarta.Value;
                 int defense = (int)nudGDefesaCarta.Value;
                 //-------------------------------------------
-
-                //Verifica se a carta já existe
-
-                if (VerificarCartaExiste(name))
+          
+                // Verifica se o utilizador está a criar ou a alterar uma carta
+                //Executa a função respetiva
+                if (btnAcaoCarta.Text == "Criar")
                 {
-                    MessageBox.Show("A carta '" + name + "' já existe", "Informação");
-                }
-                else
-                {
-                    // Verifica se o utilizador está a criar ou a alterar uma carta
-                    //Executa a função respetiva
-                    if (btnAcaoCarta.Text == "Criar")
+                    //Verifica se a carta já existe
+                    if (VerificarCartaExiste(name))
                     {
+                        MessageBox.Show("A carta '" + name + "' já existe", "Informação");
+                    }
+                    else
+                    {
+
                         if (InserirCarta(name, faction, type, cost, loyalty, rules, attack, defense))
                         {
                             MessageBox.Show("Carta criada com sucesso!", "Informação");
@@ -196,23 +196,24 @@ namespace Projeto
                             MessageBox.Show("Erro ao criar a carta", "Informação");
                         }
                     }
-                    else if (btnAcaoCarta.Text == "Guardar")
+                }
+                else if (btnAcaoCarta.Text == "Guardar")
+                {
+                    if (AlterarCarta(name, faction, type, cost, loyalty, rules, attack, defense))
                     {
-                        if (AlterarCarta(name, faction, type, cost, loyalty, rules, attack, defense))
-                        {
-                            MessageBox.Show("Carta alterada com sucesso!", "Informação");
-                        }
-                        else
-                        {
-                            MessageBox.Show("Erro ao alterar a carta", "Informação");
-                        }
-
+                        MessageBox.Show("Carta alterada com sucesso!", "Informação");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Erro ao alterar a carta", "Informação");
                     }
 
-                    RefreshTabelaCartas();
-
-                    ResetFormCartas();
                 }
+
+                RefreshTabelaCartas();
+
+                ResetFormCartas();
+                
             }
         }
 
@@ -371,10 +372,14 @@ namespace Projeto
                 container.SaveChanges();
                 result = true;
             }
+            catch (System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                MessageBox.Show("Não pode eliminar uma carta que está a ser usada num baralho." + Environment.NewLine + ex.Message, "Erro");
+                result = false;
+            }
             catch (Exception)
             {
                 result = false;
-                throw;
             }
 
             return result;
