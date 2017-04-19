@@ -12,6 +12,7 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -24,7 +25,6 @@
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -48,8 +48,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
@@ -63,6 +69,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Administrator.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BD_DA_ProjetoDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="Card.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Deck.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DiagramaArcmage.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiagramaArcmage.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DiagramaArcmage.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
     <Compile Include="DiagramaArcmage.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -86,8 +116,38 @@
     <Compile Include="formMenuArbitro.Designer.cs">
       <DependentUpon>formMenuArbitro.cs</DependentUpon>
     </Compile>
+    <Compile Include="Game.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Player.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Referee.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StandardGame.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="StandardTournament.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Team.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamGame.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="TeamTournament.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Tournament.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
+    <Compile Include="User.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="formLogin.resx">
       <DependentUpon>formLogin.cs</DependentUpon>
     </EmbeddedResource>
@@ -110,9 +170,21 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DiagramaArcmage.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="BD_DA_ProjetoDataSet.xsc">
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_DA_ProjetoDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet.xss">
+      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DiagramaArcmage.edmx.diagram">
       <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -137,6 +209,25 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DiagramaArcmage.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DiagramaArcmage.Context.cs</LastGenOutput>
+      <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
+    </Content>
+    <Content Include="DiagramaArcmage.edmx.sql" />
+    <Content Include="DiagramaArcmage.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>DiagramaArcmage.cs</LastGenOutput>
+      <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="System\Data\Entity\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
