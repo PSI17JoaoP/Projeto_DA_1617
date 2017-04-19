@@ -20,9 +20,9 @@ namespace Projeto {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("BD_DA_ProjetoDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("BD_DA_ProjetoDataSet_Arbitros")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class BD_DA_ProjetoDataSet : global::System.Data.DataSet {
+    public partial class BD_DA_ProjetoDataSet_Arbitros : global::System.Data.DataSet {
         
         private UserSetDataTable tableUserSet;
         
@@ -30,7 +30,7 @@ namespace Projeto {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public BD_DA_ProjetoDataSet() {
+        public BD_DA_ProjetoDataSet_Arbitros() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace Projeto {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        protected BD_DA_ProjetoDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected BD_DA_ProjetoDataSet_Arbitros(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace Projeto {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            BD_DA_ProjetoDataSet cln = ((BD_DA_ProjetoDataSet)(base.Clone()));
+            BD_DA_ProjetoDataSet_Arbitros cln = ((BD_DA_ProjetoDataSet_Arbitros)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace Projeto {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "BD_DA_ProjetoDataSet";
+            this.DataSetName = "BD_DA_ProjetoDataSet_Arbitros";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/BD_DA_ProjetoDataSet.xsd";
+            this.Namespace = "http://tempuri.org/BD_DA_ProjetoDataSet_Arbitros.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableUserSet = new UserSetDataTable();
@@ -225,7 +225,7 @@ namespace Projeto {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            BD_DA_ProjetoDataSet ds = new BD_DA_ProjetoDataSet();
+            BD_DA_ProjetoDataSet_Arbitros ds = new BD_DA_ProjetoDataSet_Arbitros();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -283,7 +283,9 @@ namespace Projeto {
             
             private global::System.Data.DataColumn columnUsername;
             
-            private global::System.Data.DataColumn columnPassword;
+            private global::System.Data.DataColumn columnName;
+            
+            private global::System.Data.DataColumn columnAvatar;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
@@ -336,9 +338,17 @@ namespace Projeto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public global::System.Data.DataColumn PasswordColumn {
+            public global::System.Data.DataColumn NameColumn {
                 get {
-                    return this.columnPassword;
+                    return this.columnName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn AvatarColumn {
+                get {
+                    return this.columnAvatar;
                 }
             }
             
@@ -379,12 +389,13 @@ namespace Projeto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public UserSetRow AddUserSetRow(string Username, string Password) {
+            public UserSetRow AddUserSetRow(string Username, string Name, string Avatar) {
                 UserSetRow rowUserSetRow = ((UserSetRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         Username,
-                        Password};
+                        Name,
+                        Avatar};
                 rowUserSetRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowUserSetRow);
                 return rowUserSetRow;
@@ -416,7 +427,8 @@ namespace Projeto {
             internal void InitVars() {
                 this.columnId = base.Columns["Id"];
                 this.columnUsername = base.Columns["Username"];
-                this.columnPassword = base.Columns["Password"];
+                this.columnName = base.Columns["Name"];
+                this.columnAvatar = base.Columns["Avatar"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -426,8 +438,10 @@ namespace Projeto {
                 base.Columns.Add(this.columnId);
                 this.columnUsername = new global::System.Data.DataColumn("Username", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnUsername);
-                this.columnPassword = new global::System.Data.DataColumn("Password", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPassword);
+                this.columnName = new global::System.Data.DataColumn("Name", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnName);
+                this.columnAvatar = new global::System.Data.DataColumn("Avatar", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnAvatar);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnId}, true));
                 this.columnId.AutoIncrement = true;
@@ -438,8 +452,10 @@ namespace Projeto {
                 this.columnId.Unique = true;
                 this.columnUsername.AllowDBNull = false;
                 this.columnUsername.MaxLength = 2147483647;
-                this.columnPassword.AllowDBNull = false;
-                this.columnPassword.MaxLength = 2147483647;
+                this.columnName.AllowDBNull = false;
+                this.columnName.MaxLength = 2147483647;
+                this.columnAvatar.AllowDBNull = false;
+                this.columnAvatar.MaxLength = 2147483647;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -507,7 +523,7 @@ namespace Projeto {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                BD_DA_ProjetoDataSet ds = new BD_DA_ProjetoDataSet();
+                BD_DA_ProjetoDataSet_Arbitros ds = new BD_DA_ProjetoDataSet_Arbitros();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -604,12 +620,23 @@ namespace Projeto {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-            public string Password {
+            public string Name {
                 get {
-                    return ((string)(this[this.tableUserSet.PasswordColumn]));
+                    return ((string)(this[this.tableUserSet.NameColumn]));
                 }
                 set {
-                    this[this.tableUserSet.PasswordColumn] = value;
+                    this[this.tableUserSet.NameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Avatar {
+                get {
+                    return ((string)(this[this.tableUserSet.AvatarColumn]));
+                }
+                set {
+                    this[this.tableUserSet.AvatarColumn] = value;
                 }
             }
         }
@@ -649,7 +676,7 @@ namespace Projeto {
         }
     }
 }
-namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
+namespace Projeto.BD_DA_ProjetoDataSet_ArbitrosTableAdapters {
     
     
     /// <summary>
@@ -775,7 +802,8 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
             tableMapping.DataSetTable = "UserSet";
             tableMapping.ColumnMappings.Add("Id", "Id");
             tableMapping.ColumnMappings.Add("Username", "Username");
-            tableMapping.ColumnMappings.Add("Password", "Password");
+            tableMapping.ColumnMappings.Add("Name", "Name");
+            tableMapping.ColumnMappings.Add("Avatar", "Avatar");
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
@@ -814,7 +842,9 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
             this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT Id, Username, Password FROM dbo.UserSet";
+            this._commandCollection[0].CommandText = "SELECT        UserSet.Id, UserSet.Username, UserSet_Referee.Name, UserSet_Referee" +
+                ".Avatar\r\nFROM            UserSet INNER JOIN\r\n                         UserSet_Re" +
+                "feree ON UserSet.Id = UserSet_Referee.Id";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -822,7 +852,7 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(BD_DA_ProjetoDataSet.UserSetDataTable dataTable) {
+        public virtual int Fill(BD_DA_ProjetoDataSet_Arbitros.UserSetDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -835,9 +865,9 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual BD_DA_ProjetoDataSet.UserSetDataTable GetData() {
+        public virtual BD_DA_ProjetoDataSet_Arbitros.UserSetDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            BD_DA_ProjetoDataSet.UserSetDataTable dataTable = new BD_DA_ProjetoDataSet.UserSetDataTable();
+            BD_DA_ProjetoDataSet_Arbitros.UserSetDataTable dataTable = new BD_DA_ProjetoDataSet_Arbitros.UserSetDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -845,14 +875,14 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BD_DA_ProjetoDataSet.UserSetDataTable dataTable) {
+        public virtual int Update(BD_DA_ProjetoDataSet_Arbitros.UserSetDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(BD_DA_ProjetoDataSet dataSet) {
+        public virtual int Update(BD_DA_ProjetoDataSet_Arbitros dataSet) {
             return this.Adapter.Update(dataSet, "UserSet");
         }
         
@@ -1061,7 +1091,7 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateUpdatedRows(BD_DA_ProjetoDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(BD_DA_ProjetoDataSet_Arbitros dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._userSetTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.UserSet.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -1080,7 +1110,7 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateInsertedRows(BD_DA_ProjetoDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(BD_DA_ProjetoDataSet_Arbitros dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._userSetTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.UserSet.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -1098,7 +1128,7 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        private int UpdateDeletedRows(BD_DA_ProjetoDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(BD_DA_ProjetoDataSet_Arbitros dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._userSetTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.UserSet.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -1140,7 +1170,7 @@ namespace Projeto.BD_DA_ProjetoDataSetTableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        public virtual int UpdateAll(BD_DA_ProjetoDataSet dataSet) {
+        public virtual int UpdateAll(BD_DA_ProjetoDataSet_Arbitros dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

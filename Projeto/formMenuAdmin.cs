@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Entity;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -41,8 +42,10 @@ namespace Projeto
 
         private void formMenuAdmin_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.UserSet' table. You can move, or remove it, as needed.
-            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
+            // TODO: This line of code loads data into the 'dataSetArbitros.UserSet' table. You can move, or remove it, as needed.
+            this.userSetTableAdapterArbitros.Fill(this.dataSetArbitros.UserSet);
+            // TODO: This line of code loads data into the 'dataSetAdministradores.UserSet' table. You can move, or remove it, as needed.
+            this.userSetTableAdapterAdministradores.Fill(this.dataSetAdministradores.UserSet);
             radioAdmins.Checked = true;
         }
 
@@ -60,16 +63,13 @@ namespace Projeto
 
         /// <summary>
         /// Evento do botão "Inserir" da tab de Utilizadores.
-        /// Verifica qual é o tipo de uilizador selecionado, prepara e mostra o formulário para a inserção de novos dados.
+        /// Verifica qual é o tipo de uilizador selecionado e faz reset ao formulário.
         /// </summary>
         private void BotaoInserirUtilizador(object sender, EventArgs e)
         {
             if(radioAdmins.Checked == true)
             {
-                txtUsernameAdministrador.Clear();
-                txtPasswordAdministrador.Clear();
-                txtEmailAdministrador.Clear();
-
+                ResetFormAdministrador();
                 btnAcaoAdministrador.Text = "Adicionar";
                 gbGAdministradorForm.Visible = true;
                 gbGArbitroForm.Visible = false;
@@ -77,11 +77,7 @@ namespace Projeto
 
             else
             {
-                txtUsernameArbitro.Clear();
-                txtPasswordArbitro.Clear();
-                txtNomeArbitro.Clear();
-                txtAvatarArbitro.Clear();
-
+                ResetFormArbitro();
                 btnAcaoArbitro.Text = "Adicionar";
                 gbGAdministradorForm.Visible = false;
                 gbGArbitroForm.Visible = true;
@@ -109,7 +105,6 @@ namespace Projeto
                     }
                 }
 
-                txtPasswordAdministrador.Clear();
                 btnAcaoAdministrador.Text = "Aplicar";
                 gbGAdministradorForm.Visible = true;
                 gbGArbitroForm.Visible = false;
@@ -126,11 +121,12 @@ namespace Projeto
                         txtUsernameArbitro.Text = arbitro.Username;
                         txtNomeArbitro.Text = arbitro.Name;
                         txtAvatarArbitro.Text = arbitro.Avatar;
+                        pbAvatarArbitro.Image = Image.FromFile(arbitro.Avatar);
                     }
                 }
 
-                txtPasswordArbitro.Clear();
                 btnAcaoArbitro.Text = "Aplicar";
+                txtAvatarArbitro.Enabled = true;
                 gbGAdministradorForm.Visible = false;
                 gbGArbitroForm.Visible = true;
             }
@@ -185,6 +181,7 @@ namespace Projeto
                             if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
                             {
                                 AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                                ResetFormAdministrador();
                                 gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
@@ -198,6 +195,7 @@ namespace Projeto
                             if (VerificarAlteracoesAdministrador(usernameForm, emailForm))
                             {
                                 AlterarAdministrador(usernameForm, emailForm);
+                                ResetFormAdministrador();
                                 gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
@@ -219,6 +217,7 @@ namespace Projeto
                             if (VerificarDadosAdmnistrador(usernameForm, emailForm))
                             {
                                 AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                                ResetFormAdministrador();
                                 gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
@@ -227,6 +226,7 @@ namespace Projeto
                         else
                         {
                             AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
+                            ResetFormAdministrador();
                             gbGUtilizadoresDados.Enabled = true;
                             gbGAdministradorForm.Visible = false;
                         }
@@ -242,7 +242,8 @@ namespace Projeto
         {
             string usernameForm = txtUsernameArbitro.Text.Trim();
             string nomeForm = txtNomeArbitro.Text.Trim();
-            string avatarForm = txtAvatarArbitro.Text.Trim();
+            string avatarPathRelative = GetPathRelativeAvatarArbitro(txtAvatarArbitro.Text.Trim(), usernameForm);
+            string avatarPathAbsoluto = txtAvatarArbitro.Text.Trim();
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
@@ -250,28 +251,38 @@ namespace Projeto
 
                 if (confirmacaoAlterar == DialogResult.Yes)
                 {
-                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0)
                     {
-                        if (containerDados.UserSet.Count() > 0)
+                        if (File.Exists(avatarPathAbsoluto))
                         {
-                            if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                            if (containerDados.UserSet.Count() > 0)
                             {
-                                AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                                gbGUtilizadoresDados.Enabled = true;
-                                gbGArbitroForm.Visible = false;
+                                if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
+                                {
+                                    pbAvatarArbitro.Image = null;
+                                    AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                    ResetFormArbitro();
+                                    gbGUtilizadoresDados.Enabled = true;
+                                    gbGArbitroForm.Visible = false;
+                                }
                             }
                         }
                     }
 
-                    else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                    else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0)
                     {
-                        if (containerDados.UserSet.Count() > 0)
+                        if (File.Exists(avatarPathAbsoluto))
                         {
-                            if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarForm))
+                            if (containerDados.UserSet.Count() > 0)
                             {
-                                AlterarArbitro(usernameForm, nomeForm, avatarForm);
-                                gbGUtilizadoresDados.Enabled = true;
-                                gbGArbitroForm.Visible = false;
+                                if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
+                                {
+                                    pbAvatarArbitro.Image = null;
+                                    AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                    ResetFormArbitro();
+                                    gbGUtilizadoresDados.Enabled = true;
+                                    gbGArbitroForm.Visible = false;
+                                }
                             }
                         }
                     }
@@ -284,23 +295,28 @@ namespace Projeto
 
                 if (confirmacaoAdicionar == DialogResult.Yes)
                 {
-                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarForm.Length > 0)
+                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0)
                     {
-                        if (containerDados.UserSet.Count() > 0)
+                        if (File.Exists(avatarPathAbsoluto))
                         {
-                            if (VerificarDadosArbitro(usernameForm, nomeForm, avatarForm))
+                            if (containerDados.UserSet.Count() > 0)
                             {
-                                AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
+                                if (VerificarDadosArbitro(usernameForm, nomeForm, avatarPathRelative))
+                                {
+                                    AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                    ResetFormArbitro();
+                                    gbGUtilizadoresDados.Enabled = true;
+                                    gbGArbitroForm.Visible = false;
+                                }
+                            }
+
+                            else
+                            {
+                                AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                ResetFormArbitro();
                                 gbGUtilizadoresDados.Enabled = true;
                                 gbGArbitroForm.Visible = false;
                             }
-                        }
-
-                        else
-                        {
-                            AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarForm);
-                            gbGUtilizadoresDados.Enabled = true;
-                            gbGArbitroForm.Visible = false;
                         }
                     }
                 }
@@ -309,20 +325,22 @@ namespace Projeto
 
         /// <summary>
         /// Evento do botão "Cancelar" no formulário de preenchimento do Arbitro.
-        /// Esconde o formulário.
+        /// Faz reset ao formulário.
         /// </summary>
         private void BotaoCancelarArbitro(object sender, EventArgs e)
         {
+            ResetFormArbitro();
             gbGArbitroForm.Visible = false;
             gbGUtilizadoresDados.Enabled = true;
         }
 
         /// <summary>
         /// Evento do botão "Cancelar" no formulário de preenchimento do Administrador.
-        /// Esconde o formulário.
+        /// Faz reset ao formulário.
         /// </summary>
         private void BotaoCancelarAdministrador(object sender, EventArgs e)
         {
+            ResetFormAdministrador();
             gbGAdministradorForm.Visible = false;
             gbGUtilizadoresDados.Enabled = true;
         }
@@ -366,13 +384,14 @@ namespace Projeto
         /// <summary>
         /// Método de inserção de um arbitro.
         /// Cria uma instancia da classe Referee com os dados enviados por parêmetro e insere a instância no DataSet "UserSet".
+        /// Guarda o avatar escolhido na pasta "Documentos" da conta de utilizador atual.
         /// No final, faz refresh da tabela através do método RefreshTabelaUtilizadores.
         /// </summary>
         /// <param name="usernameArbitro">Username do Arbitro</param>
         /// <param name="passArbitro">Password do Arbitro</param>
         /// <param name="nomeArbitro">Nome do Arbitro</param>
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
-        private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
+        private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
             Referee novoArbitro = new Referee
             {
@@ -381,6 +400,8 @@ namespace Projeto
                 Name = nomeArbitro,
                 Avatar = avatarPathArbitro
             };
+
+            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
             containerDados.UserSet.Add(novoArbitro);
             containerDados.SaveChanges();
@@ -433,13 +454,14 @@ namespace Projeto
         /// <summary>
         /// Método da alteração de um árbitro.
         /// Pesquisa pelo árbitro com o id idArbitro, e guarda os novos dados no mesmo.
+        /// Guarda o avatar escolhido na pasta "Documentos" da conta de utilizador atual.
         /// No final, guarda as alterações na base de dados e faz refresh da tabela através do método RefreshTabelaUtilizadores.
         /// </summary>
         /// <param name="usernameArbitro">Username do Arbitro</param>
         /// <param name="passArbitro">Password do Arbitro</param>
         /// <param name="nomeArbitro">Nome do Arbitro</param>
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
-        private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro)
+        private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
             Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
@@ -447,6 +469,8 @@ namespace Projeto
             arbitro.Password = HashPassword(passArbitro);
             arbitro.Name = nomeArbitro;
             arbitro.Avatar = avatarPathArbitro;
+
+            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
             containerDados.Entry(arbitro).State = EntityState.Modified;
 
@@ -460,13 +484,15 @@ namespace Projeto
         /// <param name="usernameArbitro">Username do Arbitro</param>
         /// <param name="nomeArbitro">Nome do Arbitro</param>
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
-        private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro)
+        private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
             Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
             arbitro.Username = usernameArbitro;
             arbitro.Name = nomeArbitro;
             arbitro.Avatar = avatarPathArbitro;
+
+            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
             containerDados.Entry(arbitro).State = EntityState.Modified;
 
@@ -544,6 +570,11 @@ namespace Projeto
             {
                 if (arbitro.Id == idArbitro)
                 {
+                    using (FileStream avatar = new FileStream(arbitro.Avatar, FileMode.Open))
+                    {
+                        File.Delete(arbitro.Avatar);
+                    }
+
                     containerDados.UserSet.Remove(arbitro);
                 }
             }
@@ -553,27 +584,109 @@ namespace Projeto
         }
 
         /// <summary>
+        /// Evento do botão de Procurar o avatar do Arbitro.
+        /// Abre um OpenFileDialog a perguntar ao utilizador qual a imagem a guardar como avatar.
+        /// Coloca no formulário a imagem e o caminho absoluto da imagem selecionada.
+        /// </summary>
+        private void BotaoProcurarAvatar(object sender, EventArgs e)
+        {
+            Image avatarArbitro;
+            string avatarPath;
+
+            ofdAvatarArbitro.Title = "Selecione uma imagem";
+            ofdAvatarArbitro.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
+            ofdAvatarArbitro.FileName = null;
+
+            if (ofdAvatarArbitro.ShowDialog() == DialogResult.OK)
+            {
+                avatarPath = ofdAvatarArbitro.FileName;
+                avatarArbitro = Image.FromFile(avatarPath);
+                txtAvatarArbitro.Text = avatarPath;
+                pbAvatarArbitro.Image = avatarArbitro;
+                txtAvatarArbitro.Enabled = true;
+            }
+
+        }
+
+        /// <summary>
+        /// Método para contruir o caminho relativo, isto é, o caminho onde o avatar irá ser guardado, através do caminho absoluto (onde a imagem se encontra).
+        /// O avatar irá ter como nome, o username do arbitro.
+        /// </summary>
+        /// <param name="avatarPathAbsoluto">Caminho absoluto do avatar</param>
+        /// <param name="usernameArbitro">Username do Arbitro</param>
+        /// <returns></returns>
+        private string GetPathRelativeAvatarArbitro(string avatarPathAbsoluto, string usernameArbitro)
+        {
+            DirectoryInfo avatarPath = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Arcmage/arbitros/avatars");
+
+            string avatarPathRelative = avatarPath.FullName + "\\" + usernameArbitro + ".png";
+
+            return avatarPathRelative;
+        }
+
+        /// <summary>
+        /// Método para guardar a imagem na pasta "Documentos" da conta do utilizador atual.
+        /// Encontra a imagem através do caminho absoluto (a pasta onde se encontra) e faz um cópia para o caminho relativo (onde irá ser guardada).
+        /// </summary>
+        /// <param name="avatarPathRelative">Caminho relativo do avatar</param>
+        /// <param name="avatarPathAbsoluto">Caminho Absoluto do avatar</param>
+        private void GuardarImagem(string avatarPathRelative, string avatarPathAbsoluto)
+        {
+            Image avatarArbitro = Image.FromFile(avatarPathAbsoluto);
+
+            using (FileStream avatar = File.Open(avatarPathRelative, FileMode.Open))
+            {
+                if (File.Exists(avatarPathRelative))
+                {
+                    File.Delete(avatarPathRelative);
+                }
+            }
+
+            avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+        }
+
+        /// <summary>
         /// Método para fazer refresh à DataGridView (Tabela) na tab dos Utilizadores.
         /// </summary>
         private void RefreshTabelaUtilizadores()
         {
-            /*dgvGUtilizadoresLista.DataSource = null;
-            userSetTableAdapter.Fill(bD_DA_ProjetoDataSet.UserSet);
-            dgvGUtilizadoresLista.DataSource = userSetBindingSource;*/
-
             if(radioAdmins.Checked == true)
             {
-                var queryLinq = from admins in containerDados.UserSet.OfType<Administrator>() where admins.Username.Contains(txtGUtilizadoresPesquisa.Text) select admins;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+                dgvGUtilizadoresLista.DataSource = null;
+                userSetTableAdapterAdministradores.Fill(dataSetAdministradores.UserSet);
+                dgvGUtilizadoresLista.DataSource = bindingSourceAdminstradores;
             }
 
             else
             {
-                var queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>() where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text) select arbitros;
-
-                dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
+                dgvGUtilizadoresLista.DataSource = null;
+                userSetTableAdapterArbitros.Fill(dataSetArbitros.UserSet);
+                dgvGUtilizadoresLista.DataSource = bindingSourceArbitros;
             }
+        }
+
+        /// <summary>
+        /// Método para fazer reset ao formulário de preenchimento do Arbitro.
+        /// Limpa os dados presentes de formulário.
+        /// </summary>
+        private void ResetFormAdministrador()
+        {
+            txtUsernameAdministrador.Clear();
+            txtPasswordAdministrador.Clear();
+            txtEmailAdministrador.Clear();
+        }
+
+        /// <summary>
+        /// Método para fazer reset ao formulário de preenchimento do Administrador.
+        /// Limpa os dados presentes de formulário.
+        /// </summary>
+        private void ResetFormArbitro()
+        {
+            txtUsernameArbitro.Clear();
+            txtPasswordArbitro.Clear();
+            txtNomeArbitro.Clear();
+            txtAvatarArbitro.Clear();
+            pbAvatarArbitro.Image = null;
         }
 
         /// <summary>

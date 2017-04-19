@@ -75,10 +75,15 @@
     <Compile Include="Administrator.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
     </Compile>
-    <Compile Include="BD_DA_ProjetoDataSet.Designer.cs">
+    <Compile Include="BD_DA_ProjetoDataSet_Administradores.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+      <DependentUpon>BD_DA_ProjetoDataSet_Administradores.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="BD_DA_ProjetoDataSet_Arbitros.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BD_DA_ProjetoDataSet_Arbitros.xsd</DependentUpon>
     </Compile>
     <Compile Include="Card.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
@@ -173,16 +178,27 @@
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DiagramaArcmage.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="BD_DA_ProjetoDataSet.xsc">
-      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    <None Include="BD_DA_ProjetoDataSet_Administradores.xsc">
+      <DependentUpon>BD_DA_ProjetoDataSet_Administradores.xsd</DependentUpon>
     </None>
-    <None Include="BD_DA_ProjetoDataSet.xsd">
+    <None Include="BD_DA_ProjetoDataSet_Administradores.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>BD_DA_ProjetoDataSet.Designer.cs</LastGenOutput>
+      <LastGenOutput>BD_DA_ProjetoDataSet_Administradores.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="BD_DA_ProjetoDataSet.xss">
-      <DependentUpon>BD_DA_ProjetoDataSet.xsd</DependentUpon>
+    <None Include="BD_DA_ProjetoDataSet_Administradores.xss">
+      <DependentUpon>BD_DA_ProjetoDataSet_Administradores.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet_Arbitros.xsc">
+      <DependentUpon>BD_DA_ProjetoDataSet_Arbitros.xsd</DependentUpon>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet_Arbitros.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BD_DA_ProjetoDataSet_Arbitros.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="BD_DA_ProjetoDataSet_Arbitros.xss">
+      <DependentUpon>BD_DA_ProjetoDataSet_Arbitros.xsd</DependentUpon>
     </None>
     <None Include="DiagramaArcmage.edmx.diagram">
       <DependentUpon>DiagramaArcmage.edmx</DependentUpon>
