@@ -1527,7 +1527,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1234);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1317);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1708,8 +1708,8 @@
             // 
             // tbGestaoUtilizadores
             // 
-            this.tbGestaoUtilizadores.Controls.Add(this.gbGUtilizadoresDados);
             this.tbGestaoUtilizadores.Controls.Add(this.gbGArbitroForm);
+            this.tbGestaoUtilizadores.Controls.Add(this.gbGUtilizadoresDados);
             this.tbGestaoUtilizadores.Controls.Add(this.gbGAdministradorForm);
             this.tbGestaoUtilizadores.Location = new System.Drawing.Point(4, 22);
             this.tbGestaoUtilizadores.Margin = new System.Windows.Forms.Padding(2);

@@ -46,6 +46,7 @@ namespace Projeto
             this.userSetTableAdapterArbitros.Fill(this.dataSetArbitros.UserSet);
             // TODO: This line of code loads data into the 'dataSetAdministradores.UserSet' table. You can move, or remove it, as needed.
             this.userSetTableAdapterAdministradores.Fill(this.dataSetAdministradores.UserSet);
+
             radioAdmins.Checked = true;
         }
 
@@ -121,7 +122,15 @@ namespace Projeto
                         txtUsernameArbitro.Text = arbitro.Username;
                         txtNomeArbitro.Text = arbitro.Name;
                         txtAvatarArbitro.Text = arbitro.Avatar;
-                        pbAvatarArbitro.Image = Image.FromFile(arbitro.Avatar);
+
+                        if (File.Exists(arbitro.Avatar))
+                        {
+                            using (Bitmap imagemAvatar = new Bitmap(arbitro.Avatar))
+                            {
+                                Image avatarArbitro = new Bitmap(imagemAvatar);
+                                pbAvatarArbitro.Image = avatarArbitro;
+                            }
+                        }
                     }
                 }
 
@@ -259,7 +268,8 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    pbAvatarArbitro.Image = null;
+                                    //pbAvatarArbitro.Image = null;
+                                    pbAvatarArbitro.Image.Dispose();
                                     AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGUtilizadoresDados.Enabled = true;
@@ -277,7 +287,8 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    pbAvatarArbitro.Image = null;
+                                    //pbAvatarArbitro.Image = null;
+                                    pbAvatarArbitro.Image.Dispose();
                                     AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGUtilizadoresDados.Enabled = true;
@@ -570,7 +581,7 @@ namespace Projeto
             {
                 if (arbitro.Id == idArbitro)
                 {
-                    using (FileStream avatar = new FileStream(arbitro.Avatar, FileMode.Open))
+                    if (File.Exists(arbitro.Avatar))
                     {
                         File.Delete(arbitro.Avatar);
                     }
@@ -590,22 +601,23 @@ namespace Projeto
         /// </summary>
         private void BotaoProcurarAvatar(object sender, EventArgs e)
         {
-            Image avatarArbitro;
-            string avatarPath;
-
             ofdAvatarArbitro.Title = "Selecione uma imagem";
             ofdAvatarArbitro.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
             ofdAvatarArbitro.FileName = null;
 
             if (ofdAvatarArbitro.ShowDialog() == DialogResult.OK)
             {
-                avatarPath = ofdAvatarArbitro.FileName;
-                avatarArbitro = Image.FromFile(avatarPath);
+                string avatarPath = ofdAvatarArbitro.FileName;
+
+                using (Bitmap imagemAvatar = new Bitmap(avatarPath))
+                {
+                    Image avatarArbitro = new Bitmap(imagemAvatar);
+                    pbAvatarArbitro.Image = avatarArbitro;
+                }
+
                 txtAvatarArbitro.Text = avatarPath;
-                pbAvatarArbitro.Image = avatarArbitro;
                 txtAvatarArbitro.Enabled = true;
             }
-
         }
 
         /// <summary>
@@ -629,24 +641,36 @@ namespace Projeto
         /// Encontra a imagem através do caminho absoluto (a pasta onde se encontra) e faz um cópia para o caminho relativo (onde irá ser guardada).
         /// </summary>
         /// <param name="avatarPathRelative">Caminho relativo do avatar</param>
-        /// <param name="avatarPathAbsoluto">Caminho Absoluto do avatar</param>
+        /// <param name="avatarPathAbsoluto">Caminho absoluto do avatar</param>
         private void GuardarImagem(string avatarPathRelative, string avatarPathAbsoluto)
         {
-            Image avatarArbitro = Image.FromFile(avatarPathAbsoluto);
-
-            using (FileStream avatar = File.Open(avatarPathRelative, FileMode.Open))
+            if (File.Exists(avatarPathRelative))
             {
-                if (File.Exists(avatarPathRelative))
+                if(avatarPathAbsoluto != avatarPathRelative)
                 {
                     File.Delete(avatarPathRelative);
+
+                    using (Bitmap imagemAvatar = new Bitmap(avatarPathAbsoluto))
+                    {
+                        Image avatarArbitro = new Bitmap(imagemAvatar);
+                        avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                    }
                 }
             }
 
-            avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+            else
+            {
+                using (Bitmap imagemAvatar = new Bitmap(avatarPathAbsoluto))
+                {
+                    Image avatarArbitro = new Bitmap(imagemAvatar);
+                    avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                }
+            }
         }
 
         /// <summary>
         /// Método para fazer refresh à DataGridView (Tabela) na tab dos Utilizadores.
+        /// Muda a Data Source da Data Grid View para o tipo do utilizador correspondente.
         /// </summary>
         private void RefreshTabelaUtilizadores()
         {
@@ -686,7 +710,8 @@ namespace Projeto
             txtPasswordArbitro.Clear();
             txtNomeArbitro.Clear();
             txtAvatarArbitro.Clear();
-            pbAvatarArbitro.Image = null;
+            //pbAvatarArbitro.Image = null;
+            pbAvatarArbitro.Image.Dispose();
         }
 
         /// <summary>
@@ -728,7 +753,7 @@ namespace Projeto
         /// <summary>
         /// Método para verificar se o utilizador inseriu dados já existentes na base de dados, sende estes o username, o nome e avtar do arbitro.
         /// Verifica se o username inserido é igual ao username de cada utilizador.
-        /// De seguida, verifica se o nome e avatar inserido é igual ao nome e avatar de cada arbitro.
+        /// De seguida, verifica se o nome inserido é igual ao nome de cada arbitro.
         /// Se for igual para qualquer dos casos, a variável boolean "naoExisteDados" é igual a false.
         /// No final, retorna a variavel anterior.
         /// </summary>
@@ -751,7 +776,7 @@ namespace Projeto
                 {
                     foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                     {
-                        if (arbitro.Name == nomeArbitro && arbitro.Avatar == avatarPathArbitro)
+                        if (arbitro.Name == nomeArbitro)
                         {
                             naoExisteDados = false;
                         }
@@ -847,7 +872,7 @@ namespace Projeto
         /// <summary>
         /// Método para verificar se os dados alterados já existem na base de dados.
         /// Verifica se o username alterado é igual ao username de cada arbitro, exceto o arbitro a ser alterado.
-        /// De seguida, verifica se o nome ou o avatar é igual ao nome ou o avatar de cada arbitro, exceto o arbitro a ser alterado.
+        /// De seguida, verifica se o nome é igual ao nome de cada arbitro, exceto o arbitro a ser alterado.
         /// Se for igual para qualquer dos casos, a variavel Boolean "aplicaAlteracoes" é igual a false.
         /// No final, retorna a variavel anterior.
         /// </summary>
@@ -870,7 +895,7 @@ namespace Projeto
                 {
                     foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                     {
-                        if ((arbitro.Name == nomeArbitro || arbitro.Avatar == avatarPathArbitro) && arbitro.Id != idArbitro)
+                        if (arbitro.Name == nomeArbitro && arbitro.Id != idArbitro)
                         {
                             aplicaAlteracoes = false;
                         }
