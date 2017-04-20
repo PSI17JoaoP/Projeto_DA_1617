@@ -268,8 +268,6 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    //pbAvatarArbitro.Image = null;
-                                    pbAvatarArbitro.Image.Dispose();
                                     AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGUtilizadoresDados.Enabled = true;
@@ -287,8 +285,6 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    //pbAvatarArbitro.Image = null;
-                                    pbAvatarArbitro.Image.Dispose();
                                     AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGUtilizadoresDados.Enabled = true;
@@ -404,19 +400,27 @@ namespace Projeto
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AdicionarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
-            Referee novoArbitro = new Referee
+            try
             {
-                Username = usernameArbitro,
-                Password = HashPassword(passArbitro),
-                Name = nomeArbitro,
-                Avatar = avatarPathArbitro
-            };
+                Referee novoArbitro = new Referee
+                {
+                    Username = usernameArbitro,
+                    Password = HashPassword(passArbitro),
+                    Name = nomeArbitro,
+                    Avatar = avatarPathArbitro
+                };
 
-            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
+                GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
-            containerDados.UserSet.Add(novoArbitro);
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.UserSet.Add(novoArbitro);
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na inserção do arbitro." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -429,16 +433,24 @@ namespace Projeto
         /// <param name="emailAdministrador">Email do Administrador</param>
         private void AdicionarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
-            Administrator novoAdministrador = new Administrator
+            try
             {
-                Username = usernameAdministrador,
-                Password = HashPassword(passAdministrador),
-                Email = emailAdministrador
-            };
+                Administrator novoAdministrador = new Administrator
+                {
+                    Username = usernameAdministrador,
+                    Password = HashPassword(passAdministrador),
+                    Email = emailAdministrador
+                };
 
-            containerDados.UserSet.Add(novoAdministrador);
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.UserSet.Add(novoAdministrador);
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na inserção do administrador." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -474,19 +486,27 @@ namespace Projeto
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AlterarArbitro(string usernameArbitro, string passArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
-            Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
+            try
+            {
+                Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
-            arbitro.Username = usernameArbitro;
-            arbitro.Password = HashPassword(passArbitro);
-            arbitro.Name = nomeArbitro;
-            arbitro.Avatar = avatarPathArbitro;
+                arbitro.Username = usernameArbitro;
+                arbitro.Password = HashPassword(passArbitro);
+                arbitro.Name = nomeArbitro;
+                arbitro.Avatar = avatarPathArbitro;
 
-            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
+                GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
-            containerDados.Entry(arbitro).State = EntityState.Modified;
+                containerDados.Entry(arbitro).State = EntityState.Modified;
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na edição do arbitro." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -497,18 +517,26 @@ namespace Projeto
         /// <param name="avatarPathArbitro">Avatar do Arbitro</param>
         private void AlterarArbitro(string usernameArbitro, string nomeArbitro, string avatarPathArbitro, string avatarPathAbsoluto)
         {
-            Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
+            try
+            {
+                Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
-            arbitro.Username = usernameArbitro;
-            arbitro.Name = nomeArbitro;
-            arbitro.Avatar = avatarPathArbitro;
+                arbitro.Username = usernameArbitro;
+                arbitro.Name = nomeArbitro;
+                arbitro.Avatar = avatarPathArbitro;
 
-            GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
+                GuardarImagem(avatarPathArbitro, avatarPathAbsoluto);
 
-            containerDados.Entry(arbitro).State = EntityState.Modified;
+                containerDados.Entry(arbitro).State = EntityState.Modified;
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na edição do arbitro." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -521,16 +549,24 @@ namespace Projeto
         /// <param name="emailAdministrador">Email do Administrador</param>
         private void AlterarAdministrador(string usernameAdministrador, string passAdministrador, string emailAdministrador)
         {
-            Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+            try
+            {
+                Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
 
-            admin.Username = usernameAdministrador;
-            admin.Password = HashPassword(passAdministrador);
-            admin.Email = emailAdministrador;
+                admin.Username = usernameAdministrador;
+                admin.Password = HashPassword(passAdministrador);
+                admin.Email = emailAdministrador;
 
-            containerDados.Entry(admin).State = EntityState.Modified;
+                containerDados.Entry(admin).State = EntityState.Modified;
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na edição do administrador." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -540,15 +576,23 @@ namespace Projeto
         /// <param name="emailAdministrador">Email do Administrador</param>
         private void AlterarAdministrador(string usernameAdministrador, string emailAdministrador)
         {
-            Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+            try
+            {
+                Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
 
-            admin.Username = usernameAdministrador;
-            admin.Email = emailAdministrador;
+                admin.Username = usernameAdministrador;
+                admin.Email = emailAdministrador;
 
-            containerDados.Entry(admin).State = EntityState.Modified;
+                containerDados.Entry(admin).State = EntityState.Modified;
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
+            }
+
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na edição do administrador." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -558,16 +602,24 @@ namespace Projeto
         /// </summary>
         private void RemoverAdministrador()
         {
-            foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
+            try
             {
-                if(admin.Id == idAdministrador)
+                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
                 {
-                    containerDados.UserSet.Remove(admin);
+                    if (admin.Id == idAdministrador)
+                    {
+                        containerDados.UserSet.Remove(admin);
+                    }
                 }
+
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
             }
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na remoção do administrador." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
@@ -577,21 +629,29 @@ namespace Projeto
         /// </summary>
         private void RemoverArbitro()
         {
-            foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
+            try
             {
-                if (arbitro.Id == idArbitro)
+                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
                 {
-                    if (File.Exists(arbitro.Avatar))
+                    if (arbitro.Id == idArbitro)
                     {
-                        File.Delete(arbitro.Avatar);
-                    }
+                        if (File.Exists(arbitro.Avatar))
+                        {
+                            File.Delete(arbitro.Avatar);
+                        }
 
-                    containerDados.UserSet.Remove(arbitro);
+                        containerDados.UserSet.Remove(arbitro);
+                    }
                 }
+
+                containerDados.SaveChanges();
+                RefreshTabelaUtilizadores();
             }
 
-            containerDados.SaveChanges();
-            RefreshTabelaUtilizadores();
+            catch (Exception excecaoErro)
+            {
+                MessageBox.Show("Ocorreu um erro na remoção do arbitro." + excecaoErro.Message, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         /// <summary>
