@@ -149,7 +149,7 @@ namespace Projeto
         /// </summary>
         private void BotaoEliminarUtilizador(object sender, EventArgs e)
         {
-            DialogResult confirmacaoEliminar = MessageBox.Show("Tem a certeza que quer eliminar o utilizador '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?","Atenção", MessageBoxButtons.YesNo);
+            DialogResult confirmacaoEliminar = MessageBox.Show("Tem a certeza que quer eliminar o utilizador '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
             if (confirmacaoEliminar == DialogResult.Yes)
             {
@@ -179,7 +179,7 @@ namespace Projeto
 
             if (btnAcaoAdministrador.Text == "Aplicar")
             {
-                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAlterar == DialogResult.Yes)
                 {
@@ -215,7 +215,7 @@ namespace Projeto
 
             else if (btnAcaoAdministrador.Text == "Adicionar")
             {
-                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAdicionar == DialogResult.Yes)
                 {
@@ -256,7 +256,7 @@ namespace Projeto
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
-                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAlterar == DialogResult.Yes)
                 {
@@ -298,7 +298,7 @@ namespace Projeto
 
             else if (btnAcaoArbitro.Text == "Adicionar")
             {
-                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo);
+                DialogResult confirmacaoAdicionar = MessageBox.Show("Tem a certeza que quer adicionar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAdicionar == DialogResult.Yes)
                 {
