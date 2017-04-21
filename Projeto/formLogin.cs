@@ -32,6 +32,9 @@ namespace Projeto
             Application.Exit();
         }
 
+        /// <summary>
+        /// Evento do botão Login. Executa o seguinte código para autenticar o utilizador com os dados na base de dados.
+        /// </summary>
         private void BotaoLoginUtilizador(object sender, EventArgs e)
         {
             if (txtLoginUser.Text.Length > 0 && txtLoginPass.Text.Length > 0)
@@ -53,7 +56,7 @@ namespace Projeto
                             Hide();
                         }
 
-                        else
+                        else if(VerificarTipoReferee(idUtilizador))
                         {
                             formMenuArbitro menuArbitro = new formMenuArbitro();
                             menuArbitro.Show();
@@ -69,7 +72,7 @@ namespace Projeto
         /// Encripta a password em hash de SHA1 e devolve a hash da password.
         /// </summary>
         /// <param name="password">Password do utilizador</param>
-        /// <returns></returns>
+        /// <returns>Hash da Password</returns>
         private string HashPassword(string password)
         {
             string passwordHash;
@@ -86,8 +89,8 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Método para verificar se a linha da tabela na tab dos Utilizadores é do tipo Administrator.
-        /// Verifica se o id da linha selecionada é igual ao id de um administrador.
+        /// Método para verificar se o utilizador é do tipo Administrator.
+        /// Verifica se o id do utilizador é igual ao id de um administrador.
         /// Se for igual, a variavel Boolean "isTipoAdministrator" é igual a true.
         /// No final, retorna a variavel anterior.
         /// </summary>
@@ -109,8 +112,8 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Método para verificar se a linha da tabela na tab dos Utilizadores é do tipo Referee.
-        /// Verifica se o id da linha selecionada é igual ao id de um arbitro.
+        /// Método para verificar se o utilizador é do tipo Referee.
+        /// Verifica se o id do utilizador é igual ao id de um arbitro.
         /// Se for igual, a variavel Boolean "isTipoArbitro" é igual a true.
         /// No final, retorna a variavel anterior.
         /// </summary>
