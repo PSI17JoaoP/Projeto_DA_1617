@@ -277,7 +277,7 @@ namespace Projeto
                         }
                     }
 
-                    else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0)
+                    else if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length == 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0 && pbAvatarArbitro.Image.Height <= 128 && pbAvatarArbitro.Image.Width <= 128)
                     {
                         if (File.Exists(avatarPathAbsoluto))
                         {
@@ -302,7 +302,7 @@ namespace Projeto
 
                 if (confirmacaoAdicionar == DialogResult.Yes)
                 {
-                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0)
+                    if (usernameForm.Length > 0 && txtPasswordArbitro.Text.Length > 0 && nomeForm.Length > 0 && avatarPathAbsoluto.Length > 0 && pbAvatarArbitro.Image.Height <= 128 && pbAvatarArbitro.Image.Width <= 128)
                     {
                         if (File.Exists(avatarPathAbsoluto))
                         {
@@ -712,8 +712,11 @@ namespace Projeto
 
                     using (Bitmap imagemAvatar = new Bitmap(avatarPathAbsoluto))
                     {
-                        Image avatarArbitro = new Bitmap(imagemAvatar);
-                        avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                        if (imagemAvatar.Width <= 128 && imagemAvatar.Height <= 128)
+                        {
+                            Image avatarArbitro = new Bitmap(imagemAvatar);
+                            avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                        }
                     }
                 }
             }
@@ -770,8 +773,6 @@ namespace Projeto
             txtPasswordArbitro.Clear();
             txtNomeArbitro.Clear();
             txtAvatarArbitro.Clear();
-            //pbAvatarArbitro.Image = null;
-            pbAvatarArbitro.Image.Dispose();
         }
 
         /// <summary>
