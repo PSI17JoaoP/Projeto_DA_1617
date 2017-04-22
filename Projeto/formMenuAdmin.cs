@@ -372,6 +372,7 @@ namespace Projeto
 
         /// <summary>
         /// Evento de pesquisar utilizadores, quando o utilizador insere dados na Textbox de pesquisar.
+        /// Executa uma query Linq em que o nome do utilizador contem o que for inserido na Textbox e põe os resultados na Data Grid View correspondente.
         /// </summary>
         private void PesquisarUtilizador(object sender, EventArgs e)
         {
@@ -662,7 +663,7 @@ namespace Projeto
         private void BotaoProcurarAvatar(object sender, EventArgs e)
         {
             ofdAvatarArbitro.Title = "Selecione uma imagem";
-            ofdAvatarArbitro.Filter = "Image Files (JPG,PNG,GIF)|*.JPG;*.PNG;*.GIF";
+            ofdAvatarArbitro.Filter = "Image Files (JPG, JPEG,PNG)|*.JPG;*.JPEG;*.PNG";
             ofdAvatarArbitro.FileName = null;
 
             if (ofdAvatarArbitro.ShowDialog() == DialogResult.OK)
