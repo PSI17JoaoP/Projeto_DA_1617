@@ -15,6 +15,9 @@ namespace Projeto
     {
         public DiagramaArcmageContainer containerDados;
 
+        /// <summary>
+        /// Variavel privada que guarda o id do utilizador autenticado.
+        /// </summary>
         private int idUtilizador;
 
         public formLogin()
@@ -31,6 +34,9 @@ namespace Projeto
             Application.Exit();
         }
 
+        /// <summary>
+        /// Evento do botão Sair. Fecha a aplicação.
+        /// </summary>
         private void BotaoSairAplicacao(object sender, EventArgs e)
         {
             Application.Exit();
