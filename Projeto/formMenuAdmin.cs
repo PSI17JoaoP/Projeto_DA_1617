@@ -59,6 +59,7 @@ namespace Projeto
 
         }
 
+        #region GestaoCartas
 
         /// <summary>
         /// Ativa o formulário para preencher os dados da nova carta.
@@ -409,7 +410,9 @@ namespace Projeto
             }
         }
 
+        #endregion
 
+        #region GestaoBaralhos
         private void dgvGBaralhosLista_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGBaralhosLista.SelectedCells.Count > 0)
@@ -441,8 +444,6 @@ namespace Projeto
         ///     Se o registo corresponder á carta, guarda-a na listview respetiva
         /// Guarda a carta na listview respetiva
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnGerirBaralho_Click(object sender, EventArgs e)
         {
             idBaralho = (int)dgvGBaralhosLista.CurrentRow.Cells[0].Value;
@@ -554,8 +555,6 @@ namespace Projeto
         /// Insere o baralho na base de dados
         /// Recarrega a tabela e limpa o formulário
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
         private void btnCriarBaralho_Click(object sender, EventArgs e)
         {
             if (txtNomeBaralho.Text.Length == 0)
@@ -882,5 +881,79 @@ namespace Projeto
             btnRemoverCartaBaralho.Enabled = false;
             panelGestaoBaralho.Enabled = false;
         }
+
+
+        #endregion
+
+        #region VerCartas
+
+        private void pesquisaCartas(object sender, EventArgs e)
+        {
+            string nome = txtVNomeCarta.Text.Trim();
+
+            string facao = "";
+            if (cmbVFacaoCarta.SelectedIndex != -1)
+            {
+                facao = cmbVFacaoCarta.SelectedItem.ToString();
+            }
+            
+            string tipo = "";
+            if (cmbVTipoCarta.SelectedIndex != -1)
+            {
+                tipo = cmbVTipoCarta.SelectedItem.ToString();
+            }
+
+            string custo = txtVCustoCarta.Text.Trim();
+
+            int lealdade = (int)nudVLealdadeCarta.Value;
+            int ataque = (int)nudVAtaqueCarta.Value;
+            int defesa = (int)nudVDefesaCarta.Value;
+
+            //----------------------------------------
+
+            IQueryable<Card> query = container.CardSet;
+
+            if (nome.Length > 0)
+            {
+                query = query.Where(card => card.Name.Contains(nome));
+            }
+
+            if (facao.Length > 0)
+            {
+                query = query.Where(card => card.Faction.Equals(facao));
+            }
+
+            if (tipo.Length > 0)
+            {
+                query = query.Where(card => card.Type.Equals(tipo));
+            }
+
+            if (custo.Length > 0)
+            {
+                query = query.Where(card => card.Cost.Equals(custo));
+            }
+
+            query = query.Where(card => card.Loyalty >= lealdade);
+            query = query.Where(card => card.Attack >= ataque);
+            query = query.Where(card => card.Defense >= defesa);
+
+            dgvVCartasLista.DataSource = query.ToList();
+        }
+
+        private void btnVLimparCartas_Click(object sender, EventArgs e)
+        {
+            dgvVCartasLista.DataSource = cardSetBindingSource;
+
+            txtVNomeCarta.ResetText();
+            cmbVFacaoCarta.SelectedIndex = -1;
+            cmbVTipoCarta.SelectedIndex = -1;
+            txtVCustoCarta.ResetText();
+            nudVLealdadeCarta.Value = 0;
+            nudVAtaqueCarta.Value = 0;
+            nudVDefesaCarta.Value = 0;
+        }
+        #endregion
+
+
     }
 }
