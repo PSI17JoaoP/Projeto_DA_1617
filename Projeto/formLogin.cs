@@ -15,11 +15,15 @@ namespace Projeto
     {
         public DiagramaArcmageContainer containerDados;
 
+        private int idUtilizador;
+
         public formLogin()
         {
             InitializeComponent();
 
             containerDados = new DiagramaArcmageContainer();
+
+            containerDados.Database.Connection.Open();
         }
 
         private void formLogin_FormClosed(object sender, FormClosedEventArgs e)
@@ -43,28 +47,59 @@ namespace Projeto
 
                 string passwordForm = HashPassword(txtLoginPass.Text);
 
-                foreach(User utilizador in containerDados.UserSet)
-                {
-                    if(usernameForm == utilizador.Username && passwordForm == utilizador.Password)
+                if(AutenticarUser(usernameForm, passwordForm))
+                {                
+                    if (VerificarTipoAdministrator(idUtilizador))
                     {
-                        int idUtilizador = utilizador.Id;
+                        formMenuAdmin menuAdmin = new formMenuAdmin();
+                        menuAdmin.Show();
+                        Hide();
+                    }
 
-                        if (VerificarTipoAdministrator(idUtilizador))
-                        {
-                            formMenuAdmin menuAdmin = new formMenuAdmin();
-                            menuAdmin.Show();
-                            Hide();
-                        }
-
-                        else if(VerificarTipoReferee(idUtilizador))
-                        {
-                            formMenuArbitro menuArbitro = new formMenuArbitro();
-                            menuArbitro.Show();
-                            Hide();
-                        }
+                    else if(VerificarTipoReferee(idUtilizador))
+                    {
+                        formMenuArbitro menuArbitro = new formMenuArbitro();
+                        menuArbitro.Show();
+                        Hide();
                     }
                 }
+
+                else
+                {
+                    MessageBox.Show("O utilizador que introduziu não é válido.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
+
+            else
+            {
+                MessageBox.Show("Preencha todos os campos para efetuar login.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Método para efetuar a autenticação do utilizador introduzido.
+        /// Verifica se o username e a hash da password do utilizador inserido é igual ao username e a hash da password de um utilizador.
+        /// Se for igual, a variavel Boolean "userAuteticado" é igual a true.
+        /// No final, retorna a variavel anterior.
+        /// </summary>
+        /// <param name="username">Username do utilizador inserido</param>
+        /// <param name="hashPassword">Hash da password do utlizador inserido</param>
+        /// <returns>Variável Boolean "userAuteticado"</returns>
+        private bool AutenticarUser(string username, string hashPassword)
+        {
+            bool userAuteticado = false;
+
+            foreach (User utilizador in containerDados.UserSet)
+            {
+                if (username == utilizador.Username && hashPassword == utilizador.Password)
+                {
+                    idUtilizador = utilizador.Id;
+
+                    userAuteticado = true;
+                }
+            }
+
+            return userAuteticado;
         }
 
         /// <summary>

@@ -83,8 +83,6 @@ namespace Projeto
                 gbGAdministradorForm.Visible = false;
                 gbGArbitroForm.Visible = true;
             }
-
-            gbGUtilizadoresDados.Enabled = false;
         }
 
         /// <summary>
@@ -139,8 +137,6 @@ namespace Projeto
                 gbGAdministradorForm.Visible = false;
                 gbGArbitroForm.Visible = true;
             }
-
-            gbGUtilizadoresDados.Enabled = false;
         }
 
         /// <summary>
@@ -191,7 +187,6 @@ namespace Projeto
                             {
                                 AlterarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                                 ResetFormAdministrador();
-                                gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
                         }
@@ -205,10 +200,14 @@ namespace Projeto
                             {
                                 AlterarAdministrador(usernameForm, emailForm);
                                 ResetFormAdministrador();
-                                gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
                         }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de preencher os campos necessários para efetuar as alterações.\nSe pretender manter a password atual, deixe o campo da password em branco.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -227,7 +226,6 @@ namespace Projeto
                             {
                                 AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                                 ResetFormAdministrador();
-                                gbGUtilizadoresDados.Enabled = true;
                                 gbGAdministradorForm.Visible = false;
                             }
                         }
@@ -236,9 +234,13 @@ namespace Projeto
                         {
                             AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                             ResetFormAdministrador();
-                            gbGUtilizadoresDados.Enabled = true;
                             gbGAdministradorForm.Visible = false;
                         }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de preencher todos os campos para adicionar o Admin.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -270,7 +272,6 @@ namespace Projeto
                                 {
                                     AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
-                                    gbGUtilizadoresDados.Enabled = true;
                                     gbGArbitroForm.Visible = false;
                                 }
                             }
@@ -287,11 +288,15 @@ namespace Projeto
                                 {
                                     AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
-                                    gbGUtilizadoresDados.Enabled = true;
                                     gbGArbitroForm.Visible = false;
                                 }
                             }
                         }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de preencher os campos necessários para efetuar as alterações.\nSe pretender manter a password atual, deixe o campo da password em branco.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -312,7 +317,6 @@ namespace Projeto
                                 {
                                     AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
-                                    gbGUtilizadoresDados.Enabled = true;
                                     gbGArbitroForm.Visible = false;
                                 }
                             }
@@ -321,10 +325,14 @@ namespace Projeto
                             {
                                 AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                 ResetFormArbitro();
-                                gbGUtilizadoresDados.Enabled = true;
                                 gbGArbitroForm.Visible = false;
                             }
                         }
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de preencher todos os campos para adicionar o Arbitro.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }
@@ -338,7 +346,6 @@ namespace Projeto
         {
             ResetFormArbitro();
             gbGArbitroForm.Visible = false;
-            gbGUtilizadoresDados.Enabled = true;
         }
 
         /// <summary>
@@ -349,7 +356,6 @@ namespace Projeto
         {
             ResetFormAdministrador();
             gbGAdministradorForm.Visible = false;
-            gbGUtilizadoresDados.Enabled = true;
         }
 
         /// <summary>
@@ -672,12 +678,14 @@ namespace Projeto
 
                 using (Bitmap imagemAvatar = new Bitmap(avatarPath))
                 {
-                    Image avatarArbitro = new Bitmap(imagemAvatar);
-                    pbAvatarArbitro.Image = avatarArbitro;
+                    if (imagemAvatar.Width <= 128 && imagemAvatar.Height <= 128)
+                    {
+                        Image avatarArbitro = new Bitmap(imagemAvatar);
+                        pbAvatarArbitro.Image = avatarArbitro;
+                        txtAvatarArbitro.Text = avatarPath;
+                        txtAvatarArbitro.Enabled = true;
+                    }
                 }
-
-                txtAvatarArbitro.Text = avatarPath;
-                txtAvatarArbitro.Enabled = true;
             }
         }
 
@@ -726,8 +734,11 @@ namespace Projeto
             {
                 using (Bitmap imagemAvatar = new Bitmap(avatarPathAbsoluto))
                 {
-                    Image avatarArbitro = new Bitmap(imagemAvatar);
-                    avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                    if (imagemAvatar.Width <= 128 && imagemAvatar.Height <= 128)
+                    {
+                        Image avatarArbitro = new Bitmap(imagemAvatar);
+                        avatarArbitro.Save(avatarPathRelative, System.Drawing.Imaging.ImageFormat.Png);
+                    }
                 }
             }
         }
@@ -774,6 +785,7 @@ namespace Projeto
             txtPasswordArbitro.Clear();
             txtNomeArbitro.Clear();
             txtAvatarArbitro.Clear();
+            pbAvatarArbitro.Image = null;
         }
 
         /// <summary>
