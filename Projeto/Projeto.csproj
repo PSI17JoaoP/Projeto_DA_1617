@@ -91,6 +91,9 @@
     <Compile Include="Deck.cs">
       <DependentUpon>DiagramaArcmage.tt</DependentUpon>
     </Compile>
+    <Compile Include="DeckCards.cs">
+      <DependentUpon>DiagramaArcmage.tt</DependentUpon>
+    </Compile>
     <Compile Include="DiagramaArcmage.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

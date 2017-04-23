@@ -247,9 +247,12 @@ namespace Projeto
         /// </summary>
         private void RefreshTabelaCartas()
         {
-            dgvGCartasLista.DataSource = null;
             this.cardSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.CardSet);
-            dgvGCartasLista.DataSource = this.cardSetBindingSource;
+            dgvGCartasLista.DataSource = cardSetBindingSource;
+
+            int lastrow = dgvGCartasLista.Rows.GetLastRow(DataGridViewElementStates.Visible);
+            dgvGCartasLista.CurrentCell = dgvGCartasLista[0, lastrow];
+    
         }
        
         /// <summary>
@@ -362,13 +365,9 @@ namespace Projeto
 
             try
             {
-                foreach (Card carta in container.CardSet)
-                {
-                    if (carta.Id == idCarta)
-                    {
-                        container.CardSet.Remove(carta);
-                    }
-                }
+                Card carta = container.CardSet.Where(c => c.Id.Equals(idCarta)).Single();
+
+                container.CardSet.Remove(carta);
 
                 container.SaveChanges();
                 result = true;
@@ -434,53 +433,64 @@ namespace Projeto
             gbGBaralhosForm.Visible = true;
         }
 
+        /// <summary>
+        /// Obtém o ID do baralho atual
+        /// Limpa as listviews
+        /// Percorre todas as cartas
+        /// Percorre os registos de cartas no baralho atual
+        ///     Se o registo corresponder á carta, guarda-a na listview respetiva
+        /// Guarda a carta na listview respetiva
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btnGerirBaralho_Click(object sender, EventArgs e)
         {
             idBaralho = (int)dgvGBaralhosLista.CurrentRow.Cells[0].Value;
             int ncartas = 0;
-            Boolean nova = true;
+            int qtdCartas;
 
-            ListViewItem linhaCarta;
+            ListViewItem linhaCartasBaralho;
+            ListViewItem linhaListaCartas;
 
             //---------------------------------
-            //Preencher Lista de cartas
+            //Limpar listviews
             lvListaCartas.Items.Clear();
-
-            foreach (Card carta in container.CardSet)
-            {
-                linhaCarta = new ListViewItem(carta.Name);
-                linhaCarta.SubItems.Add(carta.Type);
-                linhaCarta.SubItems.Add("3");
-                lvListaCartas.Items.Add(linhaCarta);
-            }
-
-            //----------------------------------
-            //Preencher cartas no baralho
             lvCartasBaralho.Items.Clear();
 
-            Deck baralhoGerir = container.DeckSet.Find(idBaralho);
-
-            foreach (Card carta in baralhoGerir.Cards)
+            //Percorrer todas as cartas
+            foreach (Card carta in container.CardSet)
             {
-                foreach (ListViewItem item in lvCartasBaralho.Items)
+                //Recomeçar contador
+                qtdCartas = 0;
+
+                //Percorrer registos de cartas no baralho escolhido
+                foreach (DeckCards registo in container.DeckCardsSet.Where(dc => dc.DeckId.Equals(idBaralho)))
                 {
-                    if (item.Text.Equals(carta.Name))
+                    //Se a carta estiver associada ao baralho, adiciona-a na respetiva listview
+
+                    if (registo.CardId == carta.Id)
                     {
-                        item.SubItems[2].Text = Convert.ToString(Convert.ToInt32(item.SubItems[2].Text) + 1);
-                        nova = false;
+                        qtdCartas = registo.Qtd;
+                        ncartas+=qtdCartas;
+
+                        //----------------------------------------
+                        linhaCartasBaralho = new ListViewItem(carta.Name);
+                        linhaCartasBaralho.SubItems.Add(carta.Type);
+                        linhaCartasBaralho.SubItems.Add(qtdCartas.ToString());
+                        lvCartasBaralho.Items.Add(linhaCartasBaralho);
                     }
                 }
-                if (nova)
-                {
-                    linhaCarta = new ListViewItem(carta.Name);
-                    linhaCarta.SubItems.Add(carta.Type);
-                    linhaCarta.SubItems.Add("1");
-                    lvCartasBaralho.Items.Add(linhaCarta);
-                }
+                
+                //Adiciona a carta á respetiva listview
+                //----------------------------------------
+                linhaListaCartas = new ListViewItem(carta.Name);
+                linhaListaCartas.SubItems.Add(carta.Type);
+                linhaListaCartas.SubItems.Add((3-qtdCartas).ToString());
+                lvListaCartas.Items.Add(linhaListaCartas);
 
-                ncartas++;
             }
 
+            //Atualiza a label com o nº de cartas no baralho
             //----------------------------------
 
             lblNCartasNoBaralho.Text = Convert.ToString(ncartas);
@@ -522,9 +532,11 @@ namespace Projeto
         /// </summary>
         private void RefreshTabelaBaralhos()
         {
-            dgvGBaralhosLista.DataSource = null;
             this.deckSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet1.DeckSet);
-            dgvGBaralhosLista.DataSource = this.deckSetBindingSource;
+            dgvGBaralhosLista.DataSource = deckSetBindingSource;
+
+            int lastrow = dgvGBaralhosLista.Rows.GetLastRow(DataGridViewElementStates.Visible);
+            dgvGBaralhosLista.CurrentCell = dgvGBaralhosLista[0, lastrow];
         }
 
         /// <summary>
@@ -632,6 +644,7 @@ namespace Projeto
         }
 
         /// <summary>
+        /// Remove a associação de quaisquer cartas ao baralho
         /// Procura na base de dados o baralho com o mesmo id do baralho selecionado
         /// Tenta remover o baralho da base de dados
         /// Retorna o resultado da operação
@@ -643,13 +656,18 @@ namespace Projeto
 
             try
             {
-                foreach (Deck baralho in container.DeckSet)
-                {
-                    if (baralho.Id == idBaralho)
-                    {
-                        container.DeckSet.Remove(baralho);
-                    }
-                }
+                //Remover cartas associadas ao baralho
+
+                List<DeckCards> cartasBaralho = container.DeckCardsSet
+                        .Where(dc => dc.DeckId.Equals(idBaralho)).ToList<DeckCards>();
+
+                container.DeckCardsSet.RemoveRange(cartasBaralho);
+
+                //Remover baralho
+
+                Deck baralho = container.DeckSet.Where(d => d.Id.Equals(idBaralho)).Single();
+
+                container.DeckSet.Remove(baralho);
 
                 container.SaveChanges();
                 result = true;
@@ -710,6 +728,13 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Obtem os dados da carta selecionada
+        /// Verifica se já existe na outra listview
+        ///     Se sim, incrementa a quantidade
+        ///     Se não, cria
+        /// Remove carta selecionada da listview se a quantidade for zero
+        /// </summary>
         private void btnAdicionarCartaBaralho_Click(object sender, EventArgs e)
         {
             ListViewItem cartaAdicionar = lvListaCartas.SelectedItems[0];
@@ -757,6 +782,13 @@ namespace Projeto
 
         }
 
+        /// <summary>
+        /// Obtem os dados da carta selecionada
+        /// Verifica se já existe na outra listview
+        ///     Se sim, incrementa a quantidade
+        ///     Se não, cria
+        /// Remove carta selecionada da listview se a quantidade for zero
+        /// </summary>
         private void btnRemoverCartaBaralho_Click(object sender, EventArgs e)
         {
             ListViewItem cartaRemover = lvCartasBaralho.SelectedItems[0];
@@ -805,11 +837,21 @@ namespace Projeto
 
         private void btnGuardarAltBaralho_Click(object sender, EventArgs e)
         {
-            Deck baralhoatual = container.DeckSet.Find(idBaralho);
             Card carta;
+            DeckCards cartaBaralho;
             int qtdcarta;
-            
-            baralhoatual.Cards.Clear();
+
+            //baralhoatual.Cards.Clear();
+
+            //Limpar cartas antigas
+
+            var idCartasAntigas =
+                from bc in container.DeckCardsSet
+                where bc.DeckId == idBaralho
+                select bc;
+ 
+            container.DeckCardsSet.RemoveRange(idCartasAntigas.ToList<DeckCards>());
+            //--------------------------------
 
             foreach (ListViewItem item in lvCartasBaralho.Items)
             {
@@ -818,8 +860,12 @@ namespace Projeto
                 var search = container.CardSet.Where(f => f.Name.Equals(item.Text));
                 carta = search.ToList<Card>().First<Card>();
 
-                baralhoatual.Cards.Add(carta);
-                
+                cartaBaralho = new DeckCards();
+                cartaBaralho.DeckId = idBaralho;
+                cartaBaralho.CardId = carta.Id;
+                cartaBaralho.Qtd = qtdcarta;
+
+                container.DeckCardsSet.Add(cartaBaralho);
             }
 
             container.SaveChanges();

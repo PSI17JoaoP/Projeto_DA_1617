@@ -13,27 +13,19 @@
     <EntitySet Name="TeamSet" EntityType="DiagramaArcmage.Store.TeamSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TournamentSet" EntityType="DiagramaArcmage.Store.TournamentSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PlayerSet" EntityType="DiagramaArcmage.Store.PlayerSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DeckCardsSet" EntityType="DiagramaArcmage.Store.DeckCardsSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserSet_Referee" EntityType="DiagramaArcmage.Store.UserSet_Referee" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GameSet_StandardGame" EntityType="DiagramaArcmage.Store.GameSet_StandardGame" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TournamentSet_StandardTournament" EntityType="DiagramaArcmage.Store.TournamentSet_StandardTournament" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="GameSet_TeamGame" EntityType="DiagramaArcmage.Store.GameSet_TeamGame" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TournamentSet_TeamTournament" EntityType="DiagramaArcmage.Store.TournamentSet_TeamTournament" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UserSet_Administrator" EntityType="DiagramaArcmage.Store.UserSet_Administrator" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="DeckCard" EntityType="DiagramaArcmage.Store.DeckCard" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TeamPlayer" EntityType="DiagramaArcmage.Store.TeamPlayer" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="TeamTeamTournament" EntityType="DiagramaArcmage.Store.TeamTeamTournament" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="StandardTournamentPlayer" EntityType="DiagramaArcmage.Store.StandardTournamentPlayer" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="RefereeGame" Association="DiagramaArcmage.Store.RefereeGame">
       <End Role="Referee" EntitySet="UserSet_Referee" />
       <End Role="Game" EntitySet="GameSet" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DeckCard_Deck" Association="DiagramaArcmage.Store.FK_DeckCard_Deck">
-      <End Role="Deck" EntitySet="DeckSet" />
-      <End Role="DeckCard" EntitySet="DeckCard" />
-    </AssociationSet>
-    <AssociationSet Name="FK_DeckCard_Card" Association="DiagramaArcmage.Store.FK_DeckCard_Card">
-      <End Role="Card" EntitySet="CardSet" />
-      <End Role="DeckCard" EntitySet="DeckCard" />
     </AssociationSet>
     <AssociationSet Name="DeckGame" Association="DiagramaArcmage.Store.DeckGame">
       <End Role="Deck" EntitySet="DeckSet" />
@@ -90,6 +82,14 @@
     <AssociationSet Name="FK_StandardTournamentPlayer_Player" Association="DiagramaArcmage.Store.FK_StandardTournamentPlayer_Player">
       <End Role="Player" EntitySet="PlayerSet" />
       <End Role="StandardTournamentPlayer" EntitySet="StandardTournamentPlayer" />
+    </AssociationSet>
+    <AssociationSet Name="DeckDeckCards" Association="DiagramaArcmage.Store.DeckDeckCards">
+      <End Role="Deck" EntitySet="DeckSet" />
+      <End Role="DeckCards" EntitySet="DeckCardsSet" />
+    </AssociationSet>
+    <AssociationSet Name="CardDeckCards" Association="DiagramaArcmage.Store.CardDeckCards">
+      <End Role="Card" EntitySet="CardSet" />
+      <End Role="DeckCards" EntitySet="DeckCardsSet" />
     </AssociationSet>
     <AssociationSet Name="FK_Referee_inherits_User" Association="DiagramaArcmage.Store.FK_Referee_inherits_User">
       <End Role="User" EntitySet="UserSet" />
@@ -186,6 +186,15 @@
     <Property Name="Age" Type="int" Nullable="false" />
     <Property Name="Avatar" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
+  <EntityType Name="DeckCardsSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeckId" Type="int" Nullable="false" />
+    <Property Name="CardId" Type="int" Nullable="false" />
+    <Property Name="Qtd" Type="int" Nullable="false" />
+  </EntityType>
   <EntityType Name="UserSet_Referee">
     <Key>
       <PropertyRef Name="Id" />
@@ -232,14 +241,6 @@
     </Key>
     <Property Name="email" Type="nvarchar(max)" Nullable="false" />
     <Property Name="Id" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="DeckCard">
-    <Key>
-      <PropertyRef Name="Deck_Id" />
-      <PropertyRef Name="Cards_Id" />
-    </Key>
-    <Property Name="Deck_Id" Type="int" Nullable="false" />
-    <Property Name="Cards_Id" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="TeamPlayer">
     <Key>
@@ -373,27 +374,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DeckCard_Deck">
+  <Association Name="DeckDeckCards">
     <End Role="Deck" Type="DiagramaArcmage.Store.DeckSet" Multiplicity="1" />
-    <End Role="DeckCard" Type="DiagramaArcmage.Store.DeckCard" Multiplicity="*" />
+    <End Role="DeckCards" Type="DiagramaArcmage.Store.DeckCardsSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Deck">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="DeckCard">
-        <PropertyRef Name="Deck_Id" />
+      <Dependent Role="DeckCards">
+        <PropertyRef Name="DeckId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_DeckCard_Card">
-    <End Role="DeckCard" Type="DiagramaArcmage.Store.DeckCard" Multiplicity="*" />
+  <Association Name="CardDeckCards">
     <End Role="Card" Type="DiagramaArcmage.Store.CardSet" Multiplicity="1" />
+    <End Role="DeckCards" Type="DiagramaArcmage.Store.DeckCardsSet" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="Card">
         <PropertyRef Name="Id" />
       </Principal>
-      <Dependent Role="DeckCard">
-        <PropertyRef Name="Cards_Id" />
+      <Dependent Role="DeckCards">
+        <PropertyRef Name="CardId" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -569,10 +570,6 @@
             <End Role="Referee" EntitySet="UserSet" />
             <End Role="Game" EntitySet="GameSet" />
           </AssociationSet>
-          <AssociationSet Name="DeckCard" Association="DiagramaArcmage.DeckCard">
-            <End Role="Deck" EntitySet="DeckSet" />
-            <End Role="Card" EntitySet="CardSet" />
-          </AssociationSet>
           <AssociationSet Name="DeckGame" Association="DiagramaArcmage.DeckGame">
             <End Role="Deck" EntitySet="DeckSet" />
             <End Role="Game" EntitySet="GameSet" />
@@ -617,6 +614,15 @@
             <End Role="StandardTournament" EntitySet="TournamentSet" />
             <End Role="Player" EntitySet="PlayerSet" />
           </AssociationSet>
+          <EntitySet Name="DeckCardsSet" EntityType="DiagramaArcmage.DeckCards" />
+          <AssociationSet Name="DeckDeckCards" Association="DiagramaArcmage.DeckDeckCards">
+            <End Role="Deck" EntitySet="DeckSet" />
+            <End Role="DeckCards" EntitySet="DeckCardsSet" />
+          </AssociationSet>
+          <AssociationSet Name="CardDeckCards" Association="DiagramaArcmage.CardDeckCards">
+            <End Role="Card" EntitySet="CardSet" />
+            <End Role="DeckCards" EntitySet="DeckCardsSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="User">
           <Key>
@@ -655,9 +661,9 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" />
-          <NavigationProperty Name="Cards" Relationship="DiagramaArcmage.DeckCard" FromRole="Deck" ToRole="Card" />
           <NavigationProperty Name="GameAs1" Relationship="DiagramaArcmage.DeckGame" FromRole="Deck" ToRole="Game" />
           <NavigationProperty Name="GameAs2" Relationship="DiagramaArcmage.DeckGame1" FromRole="Deck" ToRole="Game" />
+          <NavigationProperty Name="DeckCards" Relationship="DiagramaArcmage.DeckDeckCards" FromRole="Deck" ToRole="DeckCards" />
         </EntityType>
         <EntityType Name="Card">
           <Key>
@@ -672,7 +678,7 @@
           <Property Name="RuleText" Type="String" Nullable="false" />
           <Property Name="Attack" Type="Int32" Nullable="false" />
           <Property Name="Defense" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Deck" Relationship="DiagramaArcmage.DeckCard" FromRole="Card" ToRole="Deck" />
+          <NavigationProperty Name="DeckCards" Relationship="DiagramaArcmage.CardDeckCards" FromRole="Card" ToRole="DeckCards" />
         </EntityType>
         <EntityType Name="StandardGame" BaseType="DiagramaArcmage.Game">
           <Property Name="StandardTournamentId" Type="Int32" Nullable="false" />
@@ -737,10 +743,6 @@
         <Association Name="RefereeGame">
           <End Type="DiagramaArcmage.Referee" Role="Referee" Multiplicity="0..1" />
           <End Type="DiagramaArcmage.Game" Role="Game" Multiplicity="*" />
-        </Association>
-        <Association Name="DeckCard">
-          <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="*" />
-          <End Type="DiagramaArcmage.Card" Role="Card" Multiplicity="*" />
         </Association>
         <Association Name="DeckGame">
           <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="0..1" />
@@ -833,6 +835,41 @@
         <Association Name="StandardTournamentPlayer">
           <End Type="DiagramaArcmage.StandardTournament" Role="StandardTournament" Multiplicity="*" />
           <End Type="DiagramaArcmage.Player" Role="Player" Multiplicity="*" />
+        </Association>
+        <EntityType Name="DeckCards">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Deck" Relationship="DiagramaArcmage.DeckDeckCards" FromRole="DeckCards" ToRole="Deck" />
+          <Property Name="DeckId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Card" Relationship="DiagramaArcmage.CardDeckCards" FromRole="DeckCards" ToRole="Card" />
+          <Property Name="CardId" Type="Int32" Nullable="false" />
+          <Property Name="Qtd" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="DeckDeckCards">
+          <End Type="DiagramaArcmage.Deck" Role="Deck" Multiplicity="1" />
+          <End Type="DiagramaArcmage.DeckCards" Role="DeckCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deck">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeckCards">
+              <PropertyRef Name="DeckId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="CardDeckCards">
+          <End Type="DiagramaArcmage.Card" Role="Card" Multiplicity="1" />
+          <End Type="DiagramaArcmage.DeckCards" Role="DeckCards" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Card">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="DeckCards">
+              <PropertyRef Name="CardId" />
+            </Dependent>
+          </ReferentialConstraint>
         </Association>
         </Schema>
     </edmx:ConceptualModels>
@@ -955,6 +992,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="DeckCardsSet">
+      <EntityTypeMapping TypeName="IsTypeOf(DiagramaArcmage.DeckCards)">
+        <MappingFragment StoreEntitySet="DeckCardsSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DeckId" ColumnName="DeckId" />
+          <ScalarProperty Name="CardId" ColumnName="CardId" />
+          <ScalarProperty Name="Qtd" ColumnName="Qtd" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="RefereeGame" TypeName="DiagramaArcmage.RefereeGame" StoreEntitySet="GameSet">
       <EndProperty Name="Referee">
         <ScalarProperty Name="Id" ColumnName="Referee_Id" />
@@ -963,14 +1010,6 @@
         <ScalarProperty Name="Id" ColumnName="Id" />
       </EndProperty>
       <Condition ColumnName="Referee_Id" IsNull="false" />
-    </AssociationSetMapping>
-    <AssociationSetMapping Name="DeckCard" TypeName="DiagramaArcmage.DeckCard" StoreEntitySet="DeckCard">
-      <EndProperty Name="Deck">
-        <ScalarProperty Name="Id" ColumnName="Deck_Id" />
-      </EndProperty>
-      <EndProperty Name="Card">
-        <ScalarProperty Name="Id" ColumnName="Cards_Id" />
-      </EndProperty>
     </AssociationSetMapping>
     <AssociationSetMapping Name="StandardGameStandardTournament" TypeName="DiagramaArcmage.StandardGameStandardTournament" StoreEntitySet="GameSet_StandardGame">
       <EndProperty Name="StandardTournament">
