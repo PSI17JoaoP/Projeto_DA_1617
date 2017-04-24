@@ -25,8 +25,6 @@ namespace Projeto
             InitializeComponent();
 
             containerDados = new DiagramaArcmageContainer();
-
-            containerDados.Database.Connection.Open();
         }
 
         private void formLogin_FormClosed(object sender, FormClosedEventArgs e)

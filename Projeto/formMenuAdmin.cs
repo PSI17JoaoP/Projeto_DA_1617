@@ -95,14 +95,10 @@ namespace Projeto
             {
                 idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
-                {
-                    if (admin.Id == idAdministrador)
-                    {
-                        txtUsernameAdministrador.Text = admin.Username;
-                        txtEmailAdministrador.Text = admin.Email;
-                    }
-                }
+                Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+
+                txtUsernameAdministrador.Text = admin.Username;
+                txtEmailAdministrador.Text = admin.Email;
 
                 btnAcaoAdministrador.Text = "Aplicar";
                 gbGAdministradorForm.Visible = true;
@@ -113,22 +109,18 @@ namespace Projeto
             {
                 idArbitro = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
-                {
-                    if (arbitro.Id == idArbitro)
-                    {
-                        txtUsernameArbitro.Text = arbitro.Username;
-                        txtNomeArbitro.Text = arbitro.Name;
-                        txtAvatarArbitro.Text = arbitro.Avatar;
+                Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
-                        if (File.Exists(arbitro.Avatar))
-                        {
-                            using (Bitmap imagemAvatar = new Bitmap(arbitro.Avatar))
-                            {
-                                Image avatarArbitro = new Bitmap(imagemAvatar);
-                                pbAvatarArbitro.Image = avatarArbitro;
-                            }
-                        }
+                txtUsernameArbitro.Text = arbitro.Username;
+                txtNomeArbitro.Text = arbitro.Name;
+                txtAvatarArbitro.Text = arbitro.Avatar;
+
+                if (File.Exists(arbitro.Avatar))
+                {
+                    using (Bitmap imagemAvatar = new Bitmap(arbitro.Avatar))
+                    {
+                        Image avatarArbitro = new Bitmap(imagemAvatar);
+                        pbAvatarArbitro.Image = avatarArbitro;
                     }
                 }
 
@@ -151,9 +143,17 @@ namespace Projeto
             {
                 if (VerificarTipoAdministrator(dgvGUtilizadoresLista.CurrentRow))
                 {
-                    idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
+                    if (containerDados.UserSet.OfType<Administrator>().Count() > 1)
+                    {
+                        idAdministrador = (int)dgvGUtilizadoresLista.CurrentRow.Cells[0].Value;
 
-                    RemoverAdministrador();
+                        RemoverAdministrador();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de existir, no mínimo, uma administrador.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
 
                 else if (VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
@@ -611,13 +611,9 @@ namespace Projeto
         {
             try
             {
-                foreach (Administrator admin in containerDados.UserSet.OfType<Administrator>())
-                {
-                    if (admin.Id == idAdministrador)
-                    {
-                        containerDados.UserSet.Remove(admin);
-                    }
-                }
+                Administrator admin = (Administrator)containerDados.UserSet.Find(idAdministrador);
+
+                containerDados.UserSet.Remove(admin);
 
                 containerDados.SaveChanges();
                 RefreshTabelaUtilizadores();
@@ -638,18 +634,14 @@ namespace Projeto
         {
             try
             {
-                foreach (Referee arbitro in containerDados.UserSet.OfType<Referee>())
-                {
-                    if (arbitro.Id == idArbitro)
-                    {
-                        if (File.Exists(arbitro.Avatar))
-                        {
-                            File.Delete(arbitro.Avatar);
-                        }
+                Referee arbitro = (Referee)containerDados.UserSet.Find(idArbitro);
 
-                        containerDados.UserSet.Remove(arbitro);
-                    }
+                if (File.Exists(arbitro.Avatar))
+                {
+                    File.Delete(arbitro.Avatar);
                 }
+
+                containerDados.UserSet.Remove(arbitro);
 
                 containerDados.SaveChanges();
                 RefreshTabelaUtilizadores();
@@ -685,6 +677,11 @@ namespace Projeto
                         txtAvatarArbitro.Text = avatarPath;
                         txtAvatarArbitro.Enabled = true;
                     }
+
+                    else
+                    {
+                        MessageBox.Show("Tem de escolher um avatar de dimensão igual ou inferior a 128x128.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
         }
@@ -707,7 +704,8 @@ namespace Projeto
 
         /// <summary>
         /// Método para guardar a imagem na pasta "Documentos" da conta do utilizador atual.
-        /// Encontra a imagem através do caminho absoluto (a pasta onde se encontra) e faz um cópia para o caminho relativo (onde irá ser guardada).
+        /// Encontra a imagem através do caminho absoluto (a pasta onde se encontra) e, se for diferente do caminho relativo (onde irá ser guardada),
+        /// isto é, se a imagem escolhida é diferente do que a atual, elimina e faz uma nova cópia para o caminho relativo.
         /// </summary>
         /// <param name="avatarPathRelative">Caminho relativo do avatar</param>
         /// <param name="avatarPathAbsoluto">Caminho absoluto do avatar</param>
