@@ -175,7 +175,7 @@ namespace Projeto
 
             if (btnAcaoAdministrador.Text == "Aplicar")
             {
-                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o administrador '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o administrador '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAlterar == DialogResult.Yes)
                 {
@@ -189,6 +189,11 @@ namespace Projeto
                                 ResetFormAdministrador();
                                 gbGAdministradorForm.Visible = false;
                             }
+
+                            else
+                            {
+                                MessageBox.Show("O administrador editado já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
 
@@ -201,6 +206,11 @@ namespace Projeto
                                 AlterarAdministrador(usernameForm, emailForm);
                                 ResetFormAdministrador();
                                 gbGAdministradorForm.Visible = false;
+                            }
+
+                            else
+                            {
+                                MessageBox.Show("O administrador editado já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                     }
@@ -227,6 +237,11 @@ namespace Projeto
                                 AdicionarAdministrador(usernameForm, txtPasswordAdministrador.Text, emailForm);
                                 ResetFormAdministrador();
                                 gbGAdministradorForm.Visible = false;
+                            }
+
+                            else
+                            {
+                                MessageBox.Show("O administrador inserido já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
 
@@ -258,7 +273,7 @@ namespace Projeto
 
             if (btnAcaoArbitro.Text == "Aplicar")
             {
-                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o arbitro '" + usernameForm + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                DialogResult confirmacaoAlterar = MessageBox.Show("Tem a certeza que quer alterar o arbitro '" + dgvGUtilizadoresLista.CurrentRow.Cells[1].Value.ToString() + "'?", "Atenção", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
 
                 if (confirmacaoAlterar == DialogResult.Yes)
                 {
@@ -273,6 +288,12 @@ namespace Projeto
                                     AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGArbitroForm.Visible = false;
+                                }
+
+
+                                else
+                                {
+                                    MessageBox.Show("O arbitro editado já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -289,6 +310,12 @@ namespace Projeto
                                     AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGArbitroForm.Visible = false;
+                                }
+
+
+                                else
+                                {
+                                    MessageBox.Show("O arbitro editado já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                         }
@@ -318,6 +345,12 @@ namespace Projeto
                                     AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
                                     ResetFormArbitro();
                                     gbGArbitroForm.Visible = false;
+                                }
+
+
+                                else
+                                {
+                                    MessageBox.Show("O arbitro inserido já existe.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
 
