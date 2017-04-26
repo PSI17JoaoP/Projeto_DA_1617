@@ -501,7 +501,7 @@ namespace Projeto
 
         /// <summary>
         /// Confirma a intenção do utilizador de eliminar o baralho selecionado
-        /// Caso confirme, obtém o id do carta e chama a função para remover o baralho
+        /// Caso confirme, obtém o id do baralho e chama a função para remover o baralho
         /// Informa o utilizador do resultado da operação
         /// </summary>
         private void btnEliminarBaralho_Click(object sender, EventArgs e)
