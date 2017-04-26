@@ -887,6 +887,11 @@ namespace Projeto
 
         #region VerCartas
 
+        /// <summary>
+        /// Guarda os valores dos campos em variáveis para uso futuro
+        /// Cria uma query com base nos campos que foram preenchidos
+        /// Carrega o resultado para a datagridview
+        /// </summary>
         private void pesquisaCartas(object sender, EventArgs e)
         {
             string nome = txtVNomeCarta.Text.Trim();
@@ -940,6 +945,10 @@ namespace Projeto
             dgvVCartasLista.DataSource = query.ToList();
         }
 
+        /// <summary>
+        /// Carrega a lista original para a datagridview
+        /// Limpa os valores dos campos de pesquisa
+        /// </summary>
         private void btnVLimparCartas_Click(object sender, EventArgs e)
         {
             dgvVCartasLista.DataSource = cardSetBindingSource;
@@ -952,6 +961,73 @@ namespace Projeto
             nudVAtaqueCarta.Value = 0;
             nudVDefesaCarta.Value = 0;
         }
+        #endregion
+
+        #region VerBaralhos
+
+        private void pesquisaBaralhos(object sender, EventArgs e)
+        {
+            string nome = txtVNomeBaralho.Text.Trim();
+
+            string cartaNome = "";
+            
+            if (cmbVCartasnoBaralho.SelectedIndex != -1)
+            {
+                cartaNome = cmbVCartasnoBaralho.SelectedItem.ToString();
+            }
+
+            //------------------------------------------------------
+
+            var teste =
+                from baralho in container.DeckSet
+                join cartabaralho in container.DeckCardsSet on baralho.Id equals cartabaralho.DeckId
+                join carta in container.CardSet on cartabaralho.CardId equals carta.Id
+                where carta.Name.Contains(cartaNome) && baralho.Name.Contains(nome)
+                select baralho;
+
+            dgvVBaralhosLista.DataSource = teste.ToList();
+
+            /*
+            if (cartaNome.Length > 0)
+            {                    
+                                   
+            }
+
+            if (nome.Length > 0)
+            {
+                query = query.Where(deck => deck.Name.Contains(nome));
+            }
+
+            dgvVBaralhosLista.DataSource = query.ToList();*/
+
+        }
+
+        /// <summary>
+        /// Adiciona as cartas á combobox para uso futuro
+        /// </summary>
+        private void tbVerBaralhos_Enter(object sender, EventArgs e)
+        {
+            cmbVCartasnoBaralho.Items.Clear();
+
+            foreach (Card carta in container.CardSet)
+            {
+                cmbVCartasnoBaralho.Items.Add(carta.Name);
+            }
+            
+        }
+
+        /// <summary>
+        /// Carrega a lista original para a datagridview
+        /// Limpa os campos do formulário
+        /// </summary>
+        private void btnVLimparBaralhos_Click(object sender, EventArgs e)
+        {
+            dgvVBaralhosLista.DataSource = deckSetBindingSource;
+
+            txtVNomeBaralho.ResetText();
+            cmbVCartasnoBaralho.SelectedIndex = -1;
+        }
+
         #endregion
 
 

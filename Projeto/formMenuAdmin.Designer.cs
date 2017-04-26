@@ -208,6 +208,7 @@
             this.tbVerEquipas = new System.Windows.Forms.TabPage();
             this.tbVerTorneios = new System.Windows.Forms.TabPage();
             this.tbVerCartas = new System.Windows.Forms.TabPage();
+            this.btnVLimparCartas = new System.Windows.Forms.Button();
             this.nudVDefesaCarta = new System.Windows.Forms.NumericUpDown();
             this.nudVAtaqueCarta = new System.Windows.Forms.NumericUpDown();
             this.nudVLealdadeCarta = new System.Windows.Forms.NumericUpDown();
@@ -223,10 +224,6 @@
             this.label42 = new System.Windows.Forms.Label();
             this.label43 = new System.Windows.Forms.Label();
             this.dgvVCartasLista = new System.Windows.Forms.DataGridView();
-            this.tbVerBaralhos = new System.Windows.Forms.TabPage();
-            this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
-            this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
-            this.deckSetTableAdapter = new Projeto.BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter();
             this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.factionDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -236,7 +233,18 @@
             this.ruleTextDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attackDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.defenseDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnVLimparCartas = new System.Windows.Forms.Button();
+            this.tbVerBaralhos = new System.Windows.Forms.TabPage();
+            this.dgvVBaralhosLista = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnVLimparBaralhos = new System.Windows.Forms.Button();
+            this.cmbVCartasnoBaralho = new System.Windows.Forms.ComboBox();
+            this.label45 = new System.Windows.Forms.Label();
+            this.label44 = new System.Windows.Forms.Label();
+            this.txtVNomeBaralho = new System.Windows.Forms.TextBox();
+            this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
+            this.cardSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.CardSetTableAdapter();
+            this.deckSetTableAdapter = new Projeto.BD_DA_ProjetoDataSet1TableAdapters.DeckSetTableAdapter();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -288,6 +296,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudVAtaqueCarta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVLealdadeCarta)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVCartasLista)).BeginInit();
+            this.tbVerBaralhos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVBaralhosLista)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -2181,6 +2191,17 @@
             this.tbVerCartas.Text = "Cartas";
             this.tbVerCartas.UseVisualStyleBackColor = true;
             // 
+            // btnVLimparCartas
+            // 
+            this.btnVLimparCartas.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVLimparCartas.Location = new System.Drawing.Point(670, 88);
+            this.btnVLimparCartas.Name = "btnVLimparCartas";
+            this.btnVLimparCartas.Size = new System.Drawing.Size(75, 33);
+            this.btnVLimparCartas.TabIndex = 30;
+            this.btnVLimparCartas.Text = "Limpar";
+            this.btnVLimparCartas.UseVisualStyleBackColor = true;
+            this.btnVLimparCartas.Click += new System.EventHandler(this.btnVLimparCartas_Click);
+            // 
             // nudVDefesaCarta
             // 
             this.nudVDefesaCarta.Anchor = System.Windows.Forms.AnchorStyles.Top;
@@ -2355,34 +2376,6 @@
             this.dgvVCartasLista.Size = new System.Drawing.Size(723, 212);
             this.dgvVCartasLista.TabIndex = 0;
             // 
-            // tbVerBaralhos
-            // 
-            this.tbVerBaralhos.Location = new System.Drawing.Point(4, 25);
-            this.tbVerBaralhos.Name = "tbVerBaralhos";
-            this.tbVerBaralhos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerBaralhos.Size = new System.Drawing.Size(763, 392);
-            this.tbVerBaralhos.TabIndex = 4;
-            this.tbVerBaralhos.Text = "Baralhos";
-            this.tbVerBaralhos.UseVisualStyleBackColor = true;
-            // 
-            // tbVerUtilizadores
-            // 
-            this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 25);
-            this.tbVerUtilizadores.Name = "tbVerUtilizadores";
-            this.tbVerUtilizadores.Padding = new System.Windows.Forms.Padding(3);
-            this.tbVerUtilizadores.Size = new System.Drawing.Size(763, 392);
-            this.tbVerUtilizadores.TabIndex = 5;
-            this.tbVerUtilizadores.Text = "Utilizadores";
-            this.tbVerUtilizadores.UseVisualStyleBackColor = true;
-            // 
-            // cardSetTableAdapter
-            // 
-            this.cardSetTableAdapter.ClearBeforeFill = true;
-            // 
-            // deckSetTableAdapter
-            // 
-            this.deckSetTableAdapter.ClearBeforeFill = true;
-            // 
             // idDataGridViewTextBoxColumn2
             // 
             this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
@@ -2446,16 +2439,126 @@
             this.defenseDataGridViewTextBoxColumn1.Name = "defenseDataGridViewTextBoxColumn1";
             this.defenseDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
-            // btnVLimparCartas
+            // tbVerBaralhos
             // 
-            this.btnVLimparCartas.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnVLimparCartas.Location = new System.Drawing.Point(670, 88);
-            this.btnVLimparCartas.Name = "btnVLimparCartas";
-            this.btnVLimparCartas.Size = new System.Drawing.Size(75, 33);
-            this.btnVLimparCartas.TabIndex = 30;
-            this.btnVLimparCartas.Text = "Limpar";
-            this.btnVLimparCartas.UseVisualStyleBackColor = true;
-            this.btnVLimparCartas.Click += new System.EventHandler(this.btnVLimparCartas_Click);
+            this.tbVerBaralhos.Controls.Add(this.dgvVBaralhosLista);
+            this.tbVerBaralhos.Controls.Add(this.btnVLimparBaralhos);
+            this.tbVerBaralhos.Controls.Add(this.cmbVCartasnoBaralho);
+            this.tbVerBaralhos.Controls.Add(this.label45);
+            this.tbVerBaralhos.Controls.Add(this.label44);
+            this.tbVerBaralhos.Controls.Add(this.txtVNomeBaralho);
+            this.tbVerBaralhos.Location = new System.Drawing.Point(4, 25);
+            this.tbVerBaralhos.Name = "tbVerBaralhos";
+            this.tbVerBaralhos.Padding = new System.Windows.Forms.Padding(3);
+            this.tbVerBaralhos.Size = new System.Drawing.Size(763, 392);
+            this.tbVerBaralhos.TabIndex = 4;
+            this.tbVerBaralhos.Text = "Baralhos";
+            this.tbVerBaralhos.UseVisualStyleBackColor = true;
+            this.tbVerBaralhos.Enter += new System.EventHandler(this.tbVerBaralhos_Enter);
+            // 
+            // dgvVBaralhosLista
+            // 
+            this.dgvVBaralhosLista.AllowUserToAddRows = false;
+            this.dgvVBaralhosLista.AllowUserToDeleteRows = false;
+            this.dgvVBaralhosLista.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvVBaralhosLista.AutoGenerateColumns = false;
+            this.dgvVBaralhosLista.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvVBaralhosLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVBaralhosLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn3,
+            this.nameDataGridViewTextBoxColumn3});
+            this.dgvVBaralhosLista.DataSource = this.deckSetBindingSource;
+            this.dgvVBaralhosLista.Location = new System.Drawing.Point(22, 120);
+            this.dgvVBaralhosLista.Name = "dgvVBaralhosLista";
+            this.dgvVBaralhosLista.ReadOnly = true;
+            this.dgvVBaralhosLista.RowTemplate.Height = 24;
+            this.dgvVBaralhosLista.Size = new System.Drawing.Size(710, 248);
+            this.dgvVBaralhosLista.TabIndex = 32;
+            // 
+            // idDataGridViewTextBoxColumn3
+            // 
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn3
+            // 
+            this.nameDataGridViewTextBoxColumn3.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn3.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn3.Name = "nameDataGridViewTextBoxColumn3";
+            this.nameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // btnVLimparBaralhos
+            // 
+            this.btnVLimparBaralhos.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.btnVLimparBaralhos.Location = new System.Drawing.Point(657, 29);
+            this.btnVLimparBaralhos.Name = "btnVLimparBaralhos";
+            this.btnVLimparBaralhos.Size = new System.Drawing.Size(75, 33);
+            this.btnVLimparBaralhos.TabIndex = 31;
+            this.btnVLimparBaralhos.Text = "Limpar";
+            this.btnVLimparBaralhos.UseVisualStyleBackColor = true;
+            this.btnVLimparBaralhos.Click += new System.EventHandler(this.btnVLimparBaralhos_Click);
+            // 
+            // cmbVCartasnoBaralho
+            // 
+            this.cmbVCartasnoBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.cmbVCartasnoBaralho.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbVCartasnoBaralho.FormattingEnabled = true;
+            this.cmbVCartasnoBaralho.Location = new System.Drawing.Point(434, 34);
+            this.cmbVCartasnoBaralho.Name = "cmbVCartasnoBaralho";
+            this.cmbVCartasnoBaralho.Size = new System.Drawing.Size(157, 24);
+            this.cmbVCartasnoBaralho.TabIndex = 25;
+            this.cmbVCartasnoBaralho.SelectedIndexChanged += new System.EventHandler(this.pesquisaBaralhos);
+            // 
+            // label45
+            // 
+            this.label45.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label45.AutoSize = true;
+            this.label45.Location = new System.Drawing.Point(324, 37);
+            this.label45.Name = "label45";
+            this.label45.Size = new System.Drawing.Size(104, 17);
+            this.label45.TabIndex = 18;
+            this.label45.Text = "Contém a carta";
+            // 
+            // label44
+            // 
+            this.label44.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label44.AutoSize = true;
+            this.label44.Location = new System.Drawing.Point(19, 37);
+            this.label44.Name = "label44";
+            this.label44.Size = new System.Drawing.Size(95, 17);
+            this.label44.TabIndex = 16;
+            this.label44.Text = "Nome contém";
+            // 
+            // txtVNomeBaralho
+            // 
+            this.txtVNomeBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.txtVNomeBaralho.Location = new System.Drawing.Point(120, 34);
+            this.txtVNomeBaralho.Name = "txtVNomeBaralho";
+            this.txtVNomeBaralho.Size = new System.Drawing.Size(164, 22);
+            this.txtVNomeBaralho.TabIndex = 17;
+            this.txtVNomeBaralho.TextChanged += new System.EventHandler(this.pesquisaBaralhos);
+            // 
+            // tbVerUtilizadores
+            // 
+            this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 25);
+            this.tbVerUtilizadores.Name = "tbVerUtilizadores";
+            this.tbVerUtilizadores.Padding = new System.Windows.Forms.Padding(3);
+            this.tbVerUtilizadores.Size = new System.Drawing.Size(763, 392);
+            this.tbVerUtilizadores.TabIndex = 5;
+            this.tbVerUtilizadores.Text = "Utilizadores";
+            this.tbVerUtilizadores.UseVisualStyleBackColor = true;
+            // 
+            // cardSetTableAdapter
+            // 
+            this.cardSetTableAdapter.ClearBeforeFill = true;
+            // 
+            // deckSetTableAdapter
+            // 
+            this.deckSetTableAdapter.ClearBeforeFill = true;
             // 
             // formMenuAdmin
             // 
@@ -2538,6 +2641,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudVAtaqueCarta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudVLealdadeCarta)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVCartasLista)).EndInit();
+            this.tbVerBaralhos.ResumeLayout(false);
+            this.tbVerBaralhos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVBaralhosLista)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2751,5 +2857,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn attackDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn defenseDataGridViewTextBoxColumn1;
         private System.Windows.Forms.Button btnVLimparCartas;
+        private System.Windows.Forms.DataGridView dgvVBaralhosLista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button btnVLimparBaralhos;
+        private System.Windows.Forms.ComboBox cmbVCartasnoBaralho;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label44;
+        private System.Windows.Forms.TextBox txtVNomeBaralho;
     }
 }
