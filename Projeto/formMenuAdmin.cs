@@ -978,27 +978,14 @@ namespace Projeto
 
             //------------------------------------------------------
 
-            var teste =
+            var query =
                 from baralho in container.DeckSet
                 join cartabaralho in container.DeckCardsSet on baralho.Id equals cartabaralho.DeckId
                 join carta in container.CardSet on cartabaralho.CardId equals carta.Id
                 where carta.Name.Contains(cartaNome) && baralho.Name.Contains(nome)
                 select baralho;
 
-            dgvVBaralhosLista.DataSource = teste.ToList();
-
-            /*
-            if (cartaNome.Length > 0)
-            {                    
-                                   
-            }
-
-            if (nome.Length > 0)
-            {
-                query = query.Where(deck => deck.Name.Contains(nome));
-            }
-
-            dgvVBaralhosLista.DataSource = query.ToList();*/
+            dgvVBaralhosLista.DataSource = query.ToList();
 
         }
 
