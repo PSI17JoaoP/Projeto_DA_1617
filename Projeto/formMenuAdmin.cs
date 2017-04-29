@@ -103,6 +103,7 @@ namespace Projeto
                 btnAcaoAdministrador.Text = "Aplicar";
                 gbGAdministradorForm.Visible = true;
                 gbGArbitroForm.Visible = false;
+                gbGUtilizadoresDados.Enabled = false;
             }
 
             else if(VerificarTipoReferee(dgvGUtilizadoresLista.CurrentRow))
@@ -128,6 +129,7 @@ namespace Projeto
                 txtAvatarArbitro.Enabled = true;
                 gbGAdministradorForm.Visible = false;
                 gbGArbitroForm.Visible = true;
+                gbGUtilizadoresDados.Enabled = false;
             }
         }
 
@@ -285,9 +287,12 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
-                                    ResetFormArbitro();
-                                    gbGArbitroForm.Visible = false;
+                                    if (pbAvatarArbitro.Image.Width <= 128 && pbAvatarArbitro.Image.Height <= 128)
+                                    {
+                                        AlterarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                        ResetFormArbitro();
+                                        gbGArbitroForm.Visible = false;
+                                    }
                                 }
 
 
@@ -307,9 +312,12 @@ namespace Projeto
                             {
                                 if (VerificarAlteracoesArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
-                                    ResetFormArbitro();
-                                    gbGArbitroForm.Visible = false;
+                                    if (pbAvatarArbitro.Image.Width <= 128 && pbAvatarArbitro.Image.Height <= 128)
+                                    {
+                                        AlterarArbitro(usernameForm, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                        ResetFormArbitro();
+                                        gbGArbitroForm.Visible = false;
+                                    }
                                 }
 
 
@@ -342,9 +350,12 @@ namespace Projeto
                             {
                                 if (VerificarDadosArbitro(usernameForm, nomeForm, avatarPathRelative))
                                 {
-                                    AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
-                                    ResetFormArbitro();
-                                    gbGArbitroForm.Visible = false;
+                                    if (pbAvatarArbitro.Image.Width <= 128 && pbAvatarArbitro.Image.Height <= 128)
+                                    {
+                                        AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                        ResetFormArbitro();
+                                        gbGArbitroForm.Visible = false;
+                                    }
                                 }
 
 
@@ -356,9 +367,12 @@ namespace Projeto
 
                             else
                             {
-                                AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
-                                ResetFormArbitro();
-                                gbGArbitroForm.Visible = false;
+                                if (pbAvatarArbitro.Image.Width <= 128 && pbAvatarArbitro.Image.Height <= 128)
+                                {
+                                    AdicionarArbitro(usernameForm, txtPasswordArbitro.Text, nomeForm, avatarPathRelative, avatarPathAbsoluto);
+                                    ResetFormArbitro();
+                                    gbGArbitroForm.Visible = false;
+                                }
                             }
                         }
                     }
@@ -728,7 +742,7 @@ namespace Projeto
         /// <returns></returns>
         private string GetPathRelativeAvatarArbitro(string avatarPathAbsoluto, string usernameArbitro)
         {
-            DirectoryInfo avatarPath = Directory.CreateDirectory(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/Arcmage/arbitros/avatars");
+            DirectoryInfo avatarPath = Directory.CreateDirectory(Environment.CurrentDirectory + "/arbitros/avatars");
 
             string avatarPathRelative = avatarPath.FullName + "\\" + usernameArbitro + ".png";
 
@@ -804,6 +818,7 @@ namespace Projeto
             txtUsernameAdministrador.Clear();
             txtPasswordAdministrador.Clear();
             txtEmailAdministrador.Clear();
+            gbGUtilizadoresDados.Enabled = true;
         }
 
         /// <summary>
@@ -817,6 +832,7 @@ namespace Projeto
             txtNomeArbitro.Clear();
             txtAvatarArbitro.Clear();
             pbAvatarArbitro.Image = null;
+            gbGUtilizadoresDados.Enabled = true;
         }
 
         /// <summary>
