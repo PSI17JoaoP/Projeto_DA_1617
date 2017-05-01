@@ -26,12 +26,18 @@ namespace Projeto
         private DiagramaArcmageContainer container;
 
         /// <summary>
-        /// Variáveis usada para guardar o id do objeto selecionado para alterar/remover
+        /// Variável usada para guardar o id da carta selecionada para alterar/remover
         /// </summary>
         private int idCarta;
+        /// <summary>
+        /// Variável usada para guardar o id do baralho selecionado para alterar/remover
+        /// </summary>
         private int idBaralho;
 
-
+        /// <summary>
+        /// Ao fechar o menu do administrador
+        /// O menu de login volta a ser mostrado
+        /// </summary>
         private void formMenuAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
             formLogin Login = new formLogin();
@@ -152,7 +158,7 @@ namespace Projeto
         /// Verifica se os dados obrigatórios do formulário estão preenchidos
         /// Verifica se a carta já existe
         /// Verifica se o utilizador tenta criar ou alterar uma carta
-        /// Realiza a operação adequada
+        /// Chama a função para realizar a operação adequada
         /// Atualiza a tabela com os dados e limpa o formulário
         /// </summary>
         private void btnAcaoCarta_Click(object sender, EventArgs e)
@@ -219,6 +225,9 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Chama a função que prepara o formulário para novo uso
+        /// </summary>
         private void btnCartaCancelar_Click(object sender, EventArgs e)
         {
             ResetFormCartas();
@@ -226,6 +235,7 @@ namespace Projeto
 
         /// <summary>
         /// Limpa os dados do formulário das cartas para novo uso
+        /// Volta a bloquá-lo
         /// </summary>
         private void ResetFormCartas()
         {
@@ -244,7 +254,9 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Atualiza a fonte de dados da tabela e volta a carregá-la
+        /// Atualiza a fonte de dados 
+        /// Atribui a fonte de dados á DataGridView dgvGCartasLista
+        /// Desloca a posição atual na DataGridViw para o último registo
         /// </summary>
         private void RefreshTabelaCartas()
         {
@@ -265,12 +277,11 @@ namespace Projeto
         {
             Boolean result = false;
 
-            foreach (Card carta in container.CardSet)
+            int countResult = container.CardSet.Where(card => card.Name.Equals(nome)).Count();
+
+            if (countResult == 1)
             {
-                if (carta.Name.Equals(nome))
-                {
-                    result = true;
-                }
+                result = true;
             }
 
             return result;
@@ -315,9 +326,9 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Recebe como parãmetros os novos dados da carta
+        /// Recebe como parametros os novos dados da carta
         /// Procura a carta na base de dados
-        /// Atualiza os dados
+        /// Atualiza os dados da carta
         /// Modifica e guarda alterações
         /// Retorna o resultado da operação
         /// </summary>
@@ -388,9 +399,9 @@ namespace Projeto
 
         /// <summary>
         /// Se a caixa de texto tiver algo
-        ///     Cria uma query e procura cartas cujo nome contenha o que foi escrito
+        ///     Cria uma query e seleciona as cartas cujo nome contenha o texto obtido
         /// Senão
-        ///     recarrega a tabela
+        ///     Recarrega a tabela
         /// </summary>
         private void txtGCartasPesquisa_TextChanged(object sender, EventArgs e)
         {
@@ -413,6 +424,11 @@ namespace Projeto
         #endregion
 
         #region GestaoBaralhos
+
+        /// <summary>
+        /// Ativa os botões de Gerir e Eliminar baralhos
+        ///     se estiver um baralho selecionado
+        /// </summary>
         private void dgvGBaralhosLista_CellEnter(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGBaralhosLista.SelectedCells.Count > 0)
@@ -422,6 +438,10 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Desativa os botões de Gerir e Eliminar baralhos
+        ///     se não estiver um baralho selecionado
+        /// </summary>
         private void dgvGBaralhosLista_CellLeave(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvGBaralhosLista.SelectedCells.Count == 0)
@@ -431,6 +451,9 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Mostra a Groupbox com os capos para a criação de um baralho
+        /// </summary>
         private void btnInserirBaralho_Click(object sender, EventArgs e)
         {
             gbGBaralhosForm.Visible = true;
@@ -438,11 +461,12 @@ namespace Projeto
 
         /// <summary>
         /// Obtém o ID do baralho atual
-        /// Limpa as listviews
-        /// Percorre todas as cartas
-        /// Percorre os registos de cartas no baralho atual
-        ///     Se o registo corresponder á carta, guarda-a na listview respetiva
-        /// Guarda a carta na listview respetiva
+        /// Limpa os dados as listviews
+        /// Percorre todas as cartas existentes
+        ///     Percorre os registos de cartas no baralho atual
+        ///         Se o registo corresponder á carta, guarda-a na listview respetiva
+        ///     Guarda a carta na listview respetiva
+        /// Atualiza a label com o número de cartas no baralho
         /// </summary>
         private void btnGerirBaralho_Click(object sender, EventArgs e)
         {
@@ -528,8 +552,11 @@ namespace Projeto
                 RefreshTabelaBaralhos();
             }
         }
+
         /// <summary>
-        /// Atualiza a fonte de dados da tabela e volta a carregá-la
+        /// Atualiza a fonte de dados da tabela 
+        /// Atribui a fonta de dados à DataGridView dgvGBaralhosLista
+        /// Desloca a posição atual na DataGridView para a última linha
         /// </summary>
         private void RefreshTabelaBaralhos()
         {
@@ -588,6 +615,9 @@ namespace Projeto
                        
         }
 
+        /// <summary>
+        /// Chama a função que prepara o formulário para novo uso
+        /// </summary>
         private void btnCancelarNovoBaralho_Click(object sender, EventArgs e)
         {
             ResetFormBaralhos();
@@ -602,12 +632,11 @@ namespace Projeto
         {
             Boolean result = false;
 
-            foreach (Deck baralho in container.DeckSet)
+            int countRegisto = container.DeckSet.Where(deck => deck.Name.Equals(nome)).Count();
+
+            if (countRegisto == 1)
             {
-                if (baralho.Name.Equals(nome))
-                {
-                    result = true;
-                }
+                result = true;
             }
 
             return result;
@@ -648,14 +677,14 @@ namespace Projeto
         /// Tenta remover o baralho da base de dados
         /// Retorna o resultado da operação
         /// </summary>
-        /// <returns></returns>
         private Boolean RemoverBaralho()
         {
             Boolean result;
 
             try
             {
-                //Remover cartas associadas ao baralho
+                //Remover cartas associadas ao baralho 
+                //(Registos de associação que tenham o id do baralho selecionado)
 
                 List<DeckCards> cartasBaralho = container.DeckCardsSet
                         .Where(dc => dc.DeckId.Equals(idBaralho)).ToList<DeckCards>();
@@ -681,9 +710,10 @@ namespace Projeto
 
         /// <summary>
         /// Se a caixa de texto tiver algo
-        ///     Cria uma query e procura baralhos cujo nome contenha o que foi escrito
+        ///     Cria uma query (Linq) e seleciona os baralhos cujo nome contenha o texto obtido
+        ///     Atribui a lista de resultados á DataGridView
         /// Senão
-        ///     recarrega a tabela
+        ///     Recarrega a tabela
         /// </summary>
         private void txtGBaralhosPesquisa_TextChanged(object sender, EventArgs e)
         {
@@ -703,6 +733,12 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Se o utilizador tiver selecionado uma carta na Lista de cartas (e o baralho tiver espaço)
+        ///     Ativa o botão para adicionar a carta ao baralho
+        /// Senão
+        ///     Desativa-o
+        /// </summary>
         private void lvListaCartas_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvListaCartas.SelectedItems.Count > 0 && Convert.ToInt32(lblNCartasNoBaralho.Text) < 45)
@@ -715,6 +751,12 @@ namespace Projeto
             }
         }
 
+        /// <summary>
+        /// Se o utilizador tiver seleciona uma carta na lista de cartas no baralho
+        ///     Ativa o botão para remover a carta do baralho
+        /// Senão
+        ///     Desativa-o
+        /// </summary>
         private void lvCartasBaralho_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (lvCartasBaralho.SelectedItems.Count > 0)
@@ -729,9 +771,10 @@ namespace Projeto
 
         /// <summary>
         /// Obtem os dados da carta selecionada
-        /// Verifica se já existe na outra listview
+        /// Verifica se a carta selecionada já existe na Lista de cartas no baralho
         ///     Se sim, incrementa a quantidade
-        ///     Se não, cria
+        ///     Se não, adiciona
+        /// Decrementa a quantidade da carta na lista de cartas
         /// Remove carta selecionada da listview se a quantidade for zero
         /// </summary>
         private void btnAdicionarCartaBaralho_Click(object sender, EventArgs e)
@@ -783,9 +826,10 @@ namespace Projeto
 
         /// <summary>
         /// Obtem os dados da carta selecionada
-        /// Verifica se já existe na outra listview
+        /// Verifica se a carta selecionada já existe na Lista de cartas
         ///     Se sim, incrementa a quantidade
-        ///     Se não, cria
+        ///     Se não, adiciona
+        /// Decrementa a quantidade da carta na lista de cartas no baralho
         /// Remove carta selecionada da listview se a quantidade for zero
         /// </summary>
         private void btnRemoverCartaBaralho_Click(object sender, EventArgs e)
@@ -829,18 +873,23 @@ namespace Projeto
             lblNCartasNoBaralho.Text = Convert.ToString(--numCartas);           
         }
 
+        /// <summary>
+        /// Chama a função que limpa os dados da gestão de baralhos
+        /// </summary>
         private void btnCancelarAltBaralho_Click(object sender, EventArgs e)
         {
             RefreshGestaoBaralho();
         }
 
+        /// <summary>
+        /// Remova as cartas associadas ao baralho em gestão
+        /// Adiciona a nova lista de cartas ao baralho em gestão
+        /// </summary>
         private void btnGuardarAltBaralho_Click(object sender, EventArgs e)
         {
             Card carta;
             DeckCards cartaBaralho;
             int qtdcarta;
-
-            //baralhoatual.Cards.Clear();
 
             //Limpar cartas antigas
 
@@ -872,6 +921,10 @@ namespace Projeto
             RefreshGestaoBaralho();
         }
 
+        /// <summary>
+        /// Limpa todos os campos e prepara a área de gestão de cartas
+        /// para novo uso
+        /// </summary>
         private void RefreshGestaoBaralho()
         {
             lvCartasBaralho.Items.Clear();
@@ -888,9 +941,9 @@ namespace Projeto
         #region VerCartas
 
         /// <summary>
-        /// Guarda os valores dos campos em variáveis para uso futuro
-        /// Cria uma query com base nos campos que foram preenchidos
-        /// Carrega o resultado para a datagridview
+        /// Guarda os valores dos campos de pesquisa em variáveis
+        /// Cria uma query (Linq) que seleciona as cartas com base nos campos de pesquisa
+        /// Atribui a lista de resultados á DataGridView dgvVCartasLista
         /// </summary>
         private void pesquisaCartas(object sender, EventArgs e)
         {
@@ -946,7 +999,7 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Carrega a lista original para a datagridview
+        /// Atribui á DataGridView dgvVCartasLista a lista de cartas original
         /// Limpa os valores dos campos de pesquisa
         /// </summary>
         private void btnVLimparCartas_Click(object sender, EventArgs e)
@@ -965,6 +1018,13 @@ namespace Projeto
 
         #region VerBaralhos
 
+        /// <summary>
+        /// Obtém os dados necessários dos campos de pesquisa e guarda-os em variáveis
+        /// Cria uma query (Linq) que
+        ///     relaciona as chaves primárias das entidades CardSet, DeckSet e DeckCardsSet
+        ///     seleciona os baralho no DeckSet que correspondam aos filtros existentes
+        /// Atribui a lista de resultados á DataGridView dgvVBaralhosLista
+        /// </summary>
         private void pesquisaBaralhos(object sender, EventArgs e)
         {
             string nome = txtVNomeBaralho.Text.Trim();
@@ -990,6 +1050,7 @@ namespace Projeto
         }
 
         /// <summary>
+        /// Limpa os dados da combobox com a lista de cartas
         /// Adiciona as cartas á combobox para uso futuro
         /// </summary>
         private void tbVerBaralhos_Enter(object sender, EventArgs e)
@@ -1004,8 +1065,8 @@ namespace Projeto
         }
 
         /// <summary>
-        /// Carrega a lista original para a datagridview
-        /// Limpa os campos do formulário
+        /// Atribui á DataGridView dgvVBaralhosLista a lista de baralhos original 
+        /// Limpa os campos do formulário para novo uso
         /// </summary>
         private void btnVLimparBaralhos_Click(object sender, EventArgs e)
         {
