@@ -1038,14 +1038,14 @@ namespace Projeto
 
             //------------------------------------------------------
 
-            var query =
+            IQueryable<Deck> query =
                 from baralho in container.DeckSet
                 join cartabaralho in container.DeckCardsSet on baralho.Id equals cartabaralho.DeckId
                 join carta in container.CardSet on cartabaralho.CardId equals carta.Id
                 where carta.Name.Contains(cartaNome) && baralho.Name.Contains(nome)
                 select baralho;
             
-            dgvVBaralhosLista.DataSource = query.ToList();
+            dgvVBaralhosLista.DataSource = query.Distinct().ToList();
 
         }
 
