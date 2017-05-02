@@ -154,19 +154,6 @@
             this.btnGerirBaralho = new System.Windows.Forms.Button();
             this.btnEliminarBaralho = new System.Windows.Forms.Button();
             this.tbGestaoUtilizadores = new System.Windows.Forms.TabPage();
-            this.gbGArbitroForm = new System.Windows.Forms.GroupBox();
-            this.pbAvatarArbitro = new System.Windows.Forms.PictureBox();
-            this.labUsernameArbitro = new System.Windows.Forms.Label();
-            this.txtUsernameArbitro = new System.Windows.Forms.TextBox();
-            this.labPasswordArbitro = new System.Windows.Forms.Label();
-            this.txtPasswordArbitro = new System.Windows.Forms.TextBox();
-            this.labNomeArbitro = new System.Windows.Forms.Label();
-            this.txtNomeArbitro = new System.Windows.Forms.TextBox();
-            this.labAvatarArbitro = new System.Windows.Forms.Label();
-            this.txtAvatarArbitro = new System.Windows.Forms.TextBox();
-            this.btnProcurarAvatar = new System.Windows.Forms.Button();
-            this.btnAcaoArbitro = new System.Windows.Forms.Button();
-            this.btnCancelarArbitro = new System.Windows.Forms.Button();
             this.gbGUtilizadoresDados = new System.Windows.Forms.GroupBox();
             this.radioAdmins = new System.Windows.Forms.RadioButton();
             this.radioArbitros = new System.Windows.Forms.RadioButton();
@@ -185,6 +172,19 @@
             this.labEmailAdministrador = new System.Windows.Forms.Label();
             this.labPasswordAdministrador = new System.Windows.Forms.Label();
             this.labUsernameAdministrador = new System.Windows.Forms.Label();
+            this.gbGArbitroForm = new System.Windows.Forms.GroupBox();
+            this.pbAvatarArbitro = new System.Windows.Forms.PictureBox();
+            this.labUsernameArbitro = new System.Windows.Forms.Label();
+            this.txtUsernameArbitro = new System.Windows.Forms.TextBox();
+            this.labPasswordArbitro = new System.Windows.Forms.Label();
+            this.txtPasswordArbitro = new System.Windows.Forms.TextBox();
+            this.labNomeArbitro = new System.Windows.Forms.Label();
+            this.txtNomeArbitro = new System.Windows.Forms.TextBox();
+            this.labAvatarArbitro = new System.Windows.Forms.Label();
+            this.txtAvatarArbitro = new System.Windows.Forms.TextBox();
+            this.btnProcurarAvatar = new System.Windows.Forms.Button();
+            this.btnAcaoArbitro = new System.Windows.Forms.Button();
+            this.btnCancelarArbitro = new System.Windows.Forms.Button();
             this.tbVer = new System.Windows.Forms.TabPage();
             this.tcVer = new System.Windows.Forms.TabControl();
             this.tbVerJogadores = new System.Windows.Forms.TabPage();
@@ -200,6 +200,17 @@
             this.bindingSourceArbitros = new System.Windows.Forms.BindingSource(this.components);
             this.userSetTableAdapterAdministradores = new Projeto.BD_DA_ProjetoDataSet_AdministradoresTableAdapters.UserSetTableAdapter();
             this.userSetTableAdapterArbitros = new Projeto.BD_DA_ProjetoDataSet_ArbitrosTableAdapters.UserSetTableAdapter();
+            this.labPesquisarPor = new System.Windows.Forms.Label();
+            this.labPesquisaUsername = new System.Windows.Forms.Label();
+            this.radioPesquisaAdministrador = new System.Windows.Forms.RadioButton();
+            this.radioPesquisaArbitro = new System.Windows.Forms.RadioButton();
+            this.labPesquisaNomeEmail = new System.Windows.Forms.Label();
+            this.tbPesquisaUsername = new System.Windows.Forms.TextBox();
+            this.tbPesquisaEmailAdministrador = new System.Windows.Forms.TextBox();
+            this.tbPesquisaNomeArbitro = new System.Windows.Forms.TextBox();
+            this.dgvPesquisaUtilizadores = new System.Windows.Forms.DataGridView();
+            this.btnPesquisarUtilizador = new System.Windows.Forms.Button();
+            this.checkPesquisaArbitroAtivo = new System.Windows.Forms.CheckBox();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -237,17 +248,19 @@
             this.gbGBaralhosForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGBaralhosLista)).BeginInit();
             this.tbGestaoUtilizadores.SuspendLayout();
-            this.gbGArbitroForm.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAvatarArbitro)).BeginInit();
             this.gbGUtilizadoresDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
             this.gbGAdministradorForm.SuspendLayout();
+            this.gbGArbitroForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAvatarArbitro)).BeginInit();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
+            this.tbVerUtilizadores.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetAdministradores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetArbitros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAdminstradores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArbitros)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -1527,7 +1540,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1400);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1483);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -1719,149 +1732,6 @@
             this.tbGestaoUtilizadores.TabIndex = 5;
             this.tbGestaoUtilizadores.Text = "Utilizadores";
             this.tbGestaoUtilizadores.UseVisualStyleBackColor = true;
-            // 
-            // gbGArbitroForm
-            // 
-            this.gbGArbitroForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbGArbitroForm.Controls.Add(this.pbAvatarArbitro);
-            this.gbGArbitroForm.Controls.Add(this.labUsernameArbitro);
-            this.gbGArbitroForm.Controls.Add(this.txtUsernameArbitro);
-            this.gbGArbitroForm.Controls.Add(this.labPasswordArbitro);
-            this.gbGArbitroForm.Controls.Add(this.txtPasswordArbitro);
-            this.gbGArbitroForm.Controls.Add(this.labNomeArbitro);
-            this.gbGArbitroForm.Controls.Add(this.txtNomeArbitro);
-            this.gbGArbitroForm.Controls.Add(this.labAvatarArbitro);
-            this.gbGArbitroForm.Controls.Add(this.txtAvatarArbitro);
-            this.gbGArbitroForm.Controls.Add(this.btnProcurarAvatar);
-            this.gbGArbitroForm.Controls.Add(this.btnAcaoArbitro);
-            this.gbGArbitroForm.Controls.Add(this.btnCancelarArbitro);
-            this.gbGArbitroForm.Location = new System.Drawing.Point(529, 0);
-            this.gbGArbitroForm.Margin = new System.Windows.Forms.Padding(2);
-            this.gbGArbitroForm.Name = "gbGArbitroForm";
-            this.gbGArbitroForm.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGArbitroForm.Size = new System.Drawing.Size(244, 403);
-            this.gbGArbitroForm.TabIndex = 16;
-            this.gbGArbitroForm.TabStop = false;
-            this.gbGArbitroForm.Text = "Campos";
-            this.gbGArbitroForm.Visible = false;
-            // 
-            // pbAvatarArbitro
-            // 
-            this.pbAvatarArbitro.Location = new System.Drawing.Point(56, 150);
-            this.pbAvatarArbitro.Name = "pbAvatarArbitro";
-            this.pbAvatarArbitro.Size = new System.Drawing.Size(90, 90);
-            this.pbAvatarArbitro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pbAvatarArbitro.TabIndex = 16;
-            this.pbAvatarArbitro.TabStop = false;
-            // 
-            // labUsernameArbitro
-            // 
-            this.labUsernameArbitro.AutoSize = true;
-            this.labUsernameArbitro.Location = new System.Drawing.Point(15, 41);
-            this.labUsernameArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labUsernameArbitro.Name = "labUsernameArbitro";
-            this.labUsernameArbitro.Size = new System.Drawing.Size(55, 13);
-            this.labUsernameArbitro.TabIndex = 1;
-            this.labUsernameArbitro.Text = "Username";
-            // 
-            // txtUsernameArbitro
-            // 
-            this.txtUsernameArbitro.Location = new System.Drawing.Point(74, 38);
-            this.txtUsernameArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.txtUsernameArbitro.Name = "txtUsernameArbitro";
-            this.txtUsernameArbitro.Size = new System.Drawing.Size(149, 20);
-            this.txtUsernameArbitro.TabIndex = 7;
-            // 
-            // labPasswordArbitro
-            // 
-            this.labPasswordArbitro.AutoSize = true;
-            this.labPasswordArbitro.Location = new System.Drawing.Point(15, 68);
-            this.labPasswordArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labPasswordArbitro.Name = "labPasswordArbitro";
-            this.labPasswordArbitro.Size = new System.Drawing.Size(53, 13);
-            this.labPasswordArbitro.TabIndex = 2;
-            this.labPasswordArbitro.Text = "Password";
-            // 
-            // txtPasswordArbitro
-            // 
-            this.txtPasswordArbitro.Location = new System.Drawing.Point(72, 65);
-            this.txtPasswordArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.txtPasswordArbitro.Name = "txtPasswordArbitro";
-            this.txtPasswordArbitro.Size = new System.Drawing.Size(151, 20);
-            this.txtPasswordArbitro.TabIndex = 8;
-            this.txtPasswordArbitro.UseSystemPasswordChar = true;
-            // 
-            // labNomeArbitro
-            // 
-            this.labNomeArbitro.AutoSize = true;
-            this.labNomeArbitro.Location = new System.Drawing.Point(15, 98);
-            this.labNomeArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labNomeArbitro.Name = "labNomeArbitro";
-            this.labNomeArbitro.Size = new System.Drawing.Size(35, 13);
-            this.labNomeArbitro.TabIndex = 3;
-            this.labNomeArbitro.Text = "Nome";
-            // 
-            // txtNomeArbitro
-            // 
-            this.txtNomeArbitro.Location = new System.Drawing.Point(54, 95);
-            this.txtNomeArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.txtNomeArbitro.Name = "txtNomeArbitro";
-            this.txtNomeArbitro.Size = new System.Drawing.Size(169, 20);
-            this.txtNomeArbitro.TabIndex = 10;
-            // 
-            // labAvatarArbitro
-            // 
-            this.labAvatarArbitro.AutoSize = true;
-            this.labAvatarArbitro.Location = new System.Drawing.Point(15, 128);
-            this.labAvatarArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labAvatarArbitro.Name = "labAvatarArbitro";
-            this.labAvatarArbitro.Size = new System.Drawing.Size(38, 13);
-            this.labAvatarArbitro.TabIndex = 5;
-            this.labAvatarArbitro.Text = "Avatar";
-            // 
-            // txtAvatarArbitro
-            // 
-            this.txtAvatarArbitro.Location = new System.Drawing.Point(56, 125);
-            this.txtAvatarArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.txtAvatarArbitro.Name = "txtAvatarArbitro";
-            this.txtAvatarArbitro.Size = new System.Drawing.Size(100, 20);
-            this.txtAvatarArbitro.TabIndex = 11;
-            // 
-            // btnProcurarAvatar
-            // 
-            this.btnProcurarAvatar.Location = new System.Drawing.Point(161, 125);
-            this.btnProcurarAvatar.Margin = new System.Windows.Forms.Padding(2);
-            this.btnProcurarAvatar.Name = "btnProcurarAvatar";
-            this.btnProcurarAvatar.Size = new System.Drawing.Size(62, 20);
-            this.btnProcurarAvatar.TabIndex = 12;
-            this.btnProcurarAvatar.Text = "Procurar";
-            this.btnProcurarAvatar.UseVisualStyleBackColor = true;
-            this.btnProcurarAvatar.Click += new System.EventHandler(this.BotaoProcurarAvatar);
-            // 
-            // btnAcaoArbitro
-            // 
-            this.btnAcaoArbitro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAcaoArbitro.Location = new System.Drawing.Point(97, 367);
-            this.btnAcaoArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.btnAcaoArbitro.Name = "btnAcaoArbitro";
-            this.btnAcaoArbitro.Size = new System.Drawing.Size(60, 25);
-            this.btnAcaoArbitro.TabIndex = 14;
-            this.btnAcaoArbitro.Text = "Ação";
-            this.btnAcaoArbitro.UseVisualStyleBackColor = true;
-            this.btnAcaoArbitro.Click += new System.EventHandler(this.BotaoAcaoArbitro);
-            // 
-            // btnCancelarArbitro
-            // 
-            this.btnCancelarArbitro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelarArbitro.Location = new System.Drawing.Point(161, 367);
-            this.btnCancelarArbitro.Margin = new System.Windows.Forms.Padding(2);
-            this.btnCancelarArbitro.Name = "btnCancelarArbitro";
-            this.btnCancelarArbitro.Size = new System.Drawing.Size(62, 25);
-            this.btnCancelarArbitro.TabIndex = 15;
-            this.btnCancelarArbitro.Text = "Cancelar";
-            this.btnCancelarArbitro.UseVisualStyleBackColor = true;
-            this.btnCancelarArbitro.Click += new System.EventHandler(this.BotaoCancelarArbitro);
             // 
             // gbGUtilizadoresDados
             // 
@@ -2089,6 +1959,149 @@
             this.labUsernameAdministrador.TabIndex = 1;
             this.labUsernameAdministrador.Text = "Username";
             // 
+            // gbGArbitroForm
+            // 
+            this.gbGArbitroForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGArbitroForm.Controls.Add(this.pbAvatarArbitro);
+            this.gbGArbitroForm.Controls.Add(this.labUsernameArbitro);
+            this.gbGArbitroForm.Controls.Add(this.txtUsernameArbitro);
+            this.gbGArbitroForm.Controls.Add(this.labPasswordArbitro);
+            this.gbGArbitroForm.Controls.Add(this.txtPasswordArbitro);
+            this.gbGArbitroForm.Controls.Add(this.labNomeArbitro);
+            this.gbGArbitroForm.Controls.Add(this.txtNomeArbitro);
+            this.gbGArbitroForm.Controls.Add(this.labAvatarArbitro);
+            this.gbGArbitroForm.Controls.Add(this.txtAvatarArbitro);
+            this.gbGArbitroForm.Controls.Add(this.btnProcurarAvatar);
+            this.gbGArbitroForm.Controls.Add(this.btnAcaoArbitro);
+            this.gbGArbitroForm.Controls.Add(this.btnCancelarArbitro);
+            this.gbGArbitroForm.Location = new System.Drawing.Point(529, 0);
+            this.gbGArbitroForm.Margin = new System.Windows.Forms.Padding(2);
+            this.gbGArbitroForm.Name = "gbGArbitroForm";
+            this.gbGArbitroForm.Padding = new System.Windows.Forms.Padding(2);
+            this.gbGArbitroForm.Size = new System.Drawing.Size(244, 403);
+            this.gbGArbitroForm.TabIndex = 16;
+            this.gbGArbitroForm.TabStop = false;
+            this.gbGArbitroForm.Text = "Campos";
+            this.gbGArbitroForm.Visible = false;
+            // 
+            // pbAvatarArbitro
+            // 
+            this.pbAvatarArbitro.Location = new System.Drawing.Point(56, 150);
+            this.pbAvatarArbitro.Name = "pbAvatarArbitro";
+            this.pbAvatarArbitro.Size = new System.Drawing.Size(90, 90);
+            this.pbAvatarArbitro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAvatarArbitro.TabIndex = 16;
+            this.pbAvatarArbitro.TabStop = false;
+            // 
+            // labUsernameArbitro
+            // 
+            this.labUsernameArbitro.AutoSize = true;
+            this.labUsernameArbitro.Location = new System.Drawing.Point(15, 41);
+            this.labUsernameArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labUsernameArbitro.Name = "labUsernameArbitro";
+            this.labUsernameArbitro.Size = new System.Drawing.Size(55, 13);
+            this.labUsernameArbitro.TabIndex = 1;
+            this.labUsernameArbitro.Text = "Username";
+            // 
+            // txtUsernameArbitro
+            // 
+            this.txtUsernameArbitro.Location = new System.Drawing.Point(74, 38);
+            this.txtUsernameArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsernameArbitro.Name = "txtUsernameArbitro";
+            this.txtUsernameArbitro.Size = new System.Drawing.Size(149, 20);
+            this.txtUsernameArbitro.TabIndex = 7;
+            // 
+            // labPasswordArbitro
+            // 
+            this.labPasswordArbitro.AutoSize = true;
+            this.labPasswordArbitro.Location = new System.Drawing.Point(15, 68);
+            this.labPasswordArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labPasswordArbitro.Name = "labPasswordArbitro";
+            this.labPasswordArbitro.Size = new System.Drawing.Size(53, 13);
+            this.labPasswordArbitro.TabIndex = 2;
+            this.labPasswordArbitro.Text = "Password";
+            // 
+            // txtPasswordArbitro
+            // 
+            this.txtPasswordArbitro.Location = new System.Drawing.Point(72, 65);
+            this.txtPasswordArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.txtPasswordArbitro.Name = "txtPasswordArbitro";
+            this.txtPasswordArbitro.Size = new System.Drawing.Size(151, 20);
+            this.txtPasswordArbitro.TabIndex = 8;
+            this.txtPasswordArbitro.UseSystemPasswordChar = true;
+            // 
+            // labNomeArbitro
+            // 
+            this.labNomeArbitro.AutoSize = true;
+            this.labNomeArbitro.Location = new System.Drawing.Point(15, 98);
+            this.labNomeArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labNomeArbitro.Name = "labNomeArbitro";
+            this.labNomeArbitro.Size = new System.Drawing.Size(35, 13);
+            this.labNomeArbitro.TabIndex = 3;
+            this.labNomeArbitro.Text = "Nome";
+            // 
+            // txtNomeArbitro
+            // 
+            this.txtNomeArbitro.Location = new System.Drawing.Point(54, 95);
+            this.txtNomeArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.txtNomeArbitro.Name = "txtNomeArbitro";
+            this.txtNomeArbitro.Size = new System.Drawing.Size(169, 20);
+            this.txtNomeArbitro.TabIndex = 10;
+            // 
+            // labAvatarArbitro
+            // 
+            this.labAvatarArbitro.AutoSize = true;
+            this.labAvatarArbitro.Location = new System.Drawing.Point(15, 128);
+            this.labAvatarArbitro.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labAvatarArbitro.Name = "labAvatarArbitro";
+            this.labAvatarArbitro.Size = new System.Drawing.Size(38, 13);
+            this.labAvatarArbitro.TabIndex = 5;
+            this.labAvatarArbitro.Text = "Avatar";
+            // 
+            // txtAvatarArbitro
+            // 
+            this.txtAvatarArbitro.Location = new System.Drawing.Point(56, 125);
+            this.txtAvatarArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.txtAvatarArbitro.Name = "txtAvatarArbitro";
+            this.txtAvatarArbitro.Size = new System.Drawing.Size(100, 20);
+            this.txtAvatarArbitro.TabIndex = 11;
+            // 
+            // btnProcurarAvatar
+            // 
+            this.btnProcurarAvatar.Location = new System.Drawing.Point(161, 125);
+            this.btnProcurarAvatar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnProcurarAvatar.Name = "btnProcurarAvatar";
+            this.btnProcurarAvatar.Size = new System.Drawing.Size(62, 20);
+            this.btnProcurarAvatar.TabIndex = 12;
+            this.btnProcurarAvatar.Text = "Procurar";
+            this.btnProcurarAvatar.UseVisualStyleBackColor = true;
+            this.btnProcurarAvatar.Click += new System.EventHandler(this.BotaoProcurarAvatar);
+            // 
+            // btnAcaoArbitro
+            // 
+            this.btnAcaoArbitro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnAcaoArbitro.Location = new System.Drawing.Point(97, 367);
+            this.btnAcaoArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.btnAcaoArbitro.Name = "btnAcaoArbitro";
+            this.btnAcaoArbitro.Size = new System.Drawing.Size(60, 25);
+            this.btnAcaoArbitro.TabIndex = 14;
+            this.btnAcaoArbitro.Text = "Ação";
+            this.btnAcaoArbitro.UseVisualStyleBackColor = true;
+            this.btnAcaoArbitro.Click += new System.EventHandler(this.BotaoAcaoArbitro);
+            // 
+            // btnCancelarArbitro
+            // 
+            this.btnCancelarArbitro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelarArbitro.Location = new System.Drawing.Point(161, 367);
+            this.btnCancelarArbitro.Margin = new System.Windows.Forms.Padding(2);
+            this.btnCancelarArbitro.Name = "btnCancelarArbitro";
+            this.btnCancelarArbitro.Size = new System.Drawing.Size(62, 25);
+            this.btnCancelarArbitro.TabIndex = 15;
+            this.btnCancelarArbitro.Text = "Cancelar";
+            this.btnCancelarArbitro.UseVisualStyleBackColor = true;
+            this.btnCancelarArbitro.Click += new System.EventHandler(this.BotaoCancelarArbitro);
+            // 
             // tbVer
             // 
             this.tbVer.Controls.Add(this.tcVer);
@@ -2174,6 +2187,17 @@
             // 
             // tbVerUtilizadores
             // 
+            this.tbVerUtilizadores.Controls.Add(this.labPesquisarPor);
+            this.tbVerUtilizadores.Controls.Add(this.radioPesquisaAdministrador);
+            this.tbVerUtilizadores.Controls.Add(this.radioPesquisaArbitro);
+            this.tbVerUtilizadores.Controls.Add(this.labPesquisaUsername);
+            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaUsername);
+            this.tbVerUtilizadores.Controls.Add(this.labPesquisaNomeEmail);
+            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaNomeArbitro);
+            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaEmailAdministrador);
+            this.tbVerUtilizadores.Controls.Add(this.checkPesquisaArbitroAtivo);
+            this.tbVerUtilizadores.Controls.Add(this.btnPesquisarUtilizador);
+            this.tbVerUtilizadores.Controls.Add(this.dgvPesquisaUtilizadores);
             this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 22);
             this.tbVerUtilizadores.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerUtilizadores.Name = "tbVerUtilizadores";
@@ -2210,6 +2234,111 @@
             // userSetTableAdapterArbitros
             // 
             this.userSetTableAdapterArbitros.ClearBeforeFill = true;
+            // 
+            // labPesquisarPor
+            // 
+            this.labPesquisarPor.AutoSize = true;
+            this.labPesquisarPor.Location = new System.Drawing.Point(30, 32);
+            this.labPesquisarPor.Name = "labPesquisarPor";
+            this.labPesquisarPor.Size = new System.Drawing.Size(74, 13);
+            this.labPesquisarPor.TabIndex = 0;
+            this.labPesquisarPor.Text = "Pesquisar por:";
+            // 
+            // labPesquisaUsername
+            // 
+            this.labPesquisaUsername.AutoSize = true;
+            this.labPesquisaUsername.Location = new System.Drawing.Point(98, 78);
+            this.labPesquisaUsername.Name = "labPesquisaUsername";
+            this.labPesquisaUsername.Size = new System.Drawing.Size(58, 13);
+            this.labPesquisaUsername.TabIndex = 1;
+            this.labPesquisaUsername.Text = "Username:";
+            // 
+            // radioPesquisaAdministrador
+            // 
+            this.radioPesquisaAdministrador.AutoSize = true;
+            this.radioPesquisaAdministrador.Checked = true;
+            this.radioPesquisaAdministrador.Location = new System.Drawing.Point(110, 30);
+            this.radioPesquisaAdministrador.Name = "radioPesquisaAdministrador";
+            this.radioPesquisaAdministrador.Size = new System.Drawing.Size(88, 17);
+            this.radioPesquisaAdministrador.TabIndex = 2;
+            this.radioPesquisaAdministrador.TabStop = true;
+            this.radioPesquisaAdministrador.Text = "Administrador";
+            this.radioPesquisaAdministrador.UseVisualStyleBackColor = true;
+            this.radioPesquisaAdministrador.CheckedChanged += new System.EventHandler(this.RadioPesquisarAdministrador);
+            // 
+            // radioPesquisaArbitro
+            // 
+            this.radioPesquisaArbitro.AutoSize = true;
+            this.radioPesquisaArbitro.Location = new System.Drawing.Point(204, 30);
+            this.radioPesquisaArbitro.Name = "radioPesquisaArbitro";
+            this.radioPesquisaArbitro.Size = new System.Drawing.Size(55, 17);
+            this.radioPesquisaArbitro.TabIndex = 3;
+            this.radioPesquisaArbitro.Text = "Arbitro";
+            this.radioPesquisaArbitro.UseVisualStyleBackColor = true;
+            this.radioPesquisaArbitro.CheckedChanged += new System.EventHandler(this.RadioPesquisarArbitro);
+            // 
+            // labPesquisaNomeEmail
+            // 
+            this.labPesquisaNomeEmail.AutoSize = true;
+            this.labPesquisaNomeEmail.Location = new System.Drawing.Point(275, 78);
+            this.labPesquisaNomeEmail.Name = "labPesquisaNomeEmail";
+            this.labPesquisaNomeEmail.Size = new System.Drawing.Size(38, 13);
+            this.labPesquisaNomeEmail.TabIndex = 5;
+            this.labPesquisaNomeEmail.Text = "Nome:";
+            // 
+            // tbPesquisaUsername
+            // 
+            this.tbPesquisaUsername.Location = new System.Drawing.Point(159, 75);
+            this.tbPesquisaUsername.Name = "tbPesquisaUsername";
+            this.tbPesquisaUsername.Size = new System.Drawing.Size(100, 20);
+            this.tbPesquisaUsername.TabIndex = 6;
+            // 
+            // tbPesquisaEmailAdministrador
+            // 
+            this.tbPesquisaEmailAdministrador.Location = new System.Drawing.Point(319, 75);
+            this.tbPesquisaEmailAdministrador.Name = "tbPesquisaEmailAdministrador";
+            this.tbPesquisaEmailAdministrador.Size = new System.Drawing.Size(156, 20);
+            this.tbPesquisaEmailAdministrador.TabIndex = 7;
+            // 
+            // tbPesquisaNomeArbitro
+            // 
+            this.tbPesquisaNomeArbitro.Location = new System.Drawing.Point(319, 75);
+            this.tbPesquisaNomeArbitro.Name = "tbPesquisaNomeArbitro";
+            this.tbPesquisaNomeArbitro.Size = new System.Drawing.Size(136, 20);
+            this.tbPesquisaNomeArbitro.TabIndex = 8;
+            // 
+            // dgvPesquisaUtilizadores
+            // 
+            this.dgvPesquisaUtilizadores.AllowUserToAddRows = false;
+            this.dgvPesquisaUtilizadores.AllowUserToDeleteRows = false;
+            this.dgvPesquisaUtilizadores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPesquisaUtilizadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPesquisaUtilizadores.Location = new System.Drawing.Point(19, 119);
+            this.dgvPesquisaUtilizadores.Name = "dgvPesquisaUtilizadores";
+            this.dgvPesquisaUtilizadores.ReadOnly = true;
+            this.dgvPesquisaUtilizadores.Size = new System.Drawing.Size(740, 262);
+            this.dgvPesquisaUtilizadores.TabIndex = 9;
+            // 
+            // btnPesquisarUtilizador
+            // 
+            this.btnPesquisarUtilizador.Location = new System.Drawing.Point(564, 73);
+            this.btnPesquisarUtilizador.Name = "btnPesquisarUtilizador";
+            this.btnPesquisarUtilizador.Size = new System.Drawing.Size(75, 23);
+            this.btnPesquisarUtilizador.TabIndex = 10;
+            this.btnPesquisarUtilizador.Text = "Pesquisar";
+            this.btnPesquisarUtilizador.UseVisualStyleBackColor = true;
+            this.btnPesquisarUtilizador.Click += new System.EventHandler(this.PesquisaAvancadaUtilizador);
+            // 
+            // checkPesquisaArbitroAtivo
+            // 
+            this.checkPesquisaArbitroAtivo.AutoSize = true;
+            this.checkPesquisaArbitroAtivo.Location = new System.Drawing.Point(496, 77);
+            this.checkPesquisaArbitroAtivo.Name = "checkPesquisaArbitroAtivo";
+            this.checkPesquisaArbitroAtivo.Size = new System.Drawing.Size(50, 17);
+            this.checkPesquisaArbitroAtivo.TabIndex = 11;
+            this.checkPesquisaArbitroAtivo.Text = "Ativo";
+            this.checkPesquisaArbitroAtivo.UseVisualStyleBackColor = true;
+            this.checkPesquisaArbitroAtivo.CheckedChanged += new System.EventHandler(this.CheckArbitroAtivo);
             // 
             // formMenuAdmin
             // 
@@ -2275,20 +2404,23 @@
             this.gbGBaralhosForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGBaralhosLista)).EndInit();
             this.tbGestaoUtilizadores.ResumeLayout(false);
-            this.gbGArbitroForm.ResumeLayout(false);
-            this.gbGArbitroForm.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pbAvatarArbitro)).EndInit();
             this.gbGUtilizadoresDados.ResumeLayout(false);
             this.gbGUtilizadoresDados.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
             this.gbGAdministradorForm.ResumeLayout(false);
             this.gbGAdministradorForm.PerformLayout();
+            this.gbGArbitroForm.ResumeLayout(false);
+            this.gbGArbitroForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAvatarArbitro)).EndInit();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
+            this.tbVerUtilizadores.ResumeLayout(false);
+            this.tbVerUtilizadores.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetAdministradores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetArbitros)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAdminstradores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArbitros)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2465,5 +2597,16 @@
         private System.Windows.Forms.BindingSource bindingSourceArbitros;
         private BD_DA_ProjetoDataSet_AdministradoresTableAdapters.UserSetTableAdapter userSetTableAdapterAdministradores;
         private BD_DA_ProjetoDataSet_ArbitrosTableAdapters.UserSetTableAdapter userSetTableAdapterArbitros;
+        private System.Windows.Forms.Label labPesquisaUsername;
+        private System.Windows.Forms.Label labPesquisarPor;
+        private System.Windows.Forms.RadioButton radioPesquisaArbitro;
+        private System.Windows.Forms.RadioButton radioPesquisaAdministrador;
+        private System.Windows.Forms.TextBox tbPesquisaNomeArbitro;
+        private System.Windows.Forms.TextBox tbPesquisaEmailAdministrador;
+        private System.Windows.Forms.TextBox tbPesquisaUsername;
+        private System.Windows.Forms.Label labPesquisaNomeEmail;
+        private System.Windows.Forms.DataGridView dgvPesquisaUtilizadores;
+        private System.Windows.Forms.Button btnPesquisarUtilizador;
+        private System.Windows.Forms.CheckBox checkPesquisaArbitroAtivo;
     }
 }
