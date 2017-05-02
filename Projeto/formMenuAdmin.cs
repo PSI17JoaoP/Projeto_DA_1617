@@ -1044,7 +1044,7 @@ namespace Projeto
                 join carta in container.CardSet on cartabaralho.CardId equals carta.Id
                 where carta.Name.Contains(cartaNome) && baralho.Name.Contains(nome)
                 select baralho;
-
+            
             dgvVBaralhosLista.DataSource = query.ToList();
 
         }
