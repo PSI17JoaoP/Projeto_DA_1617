@@ -62,7 +62,6 @@ namespace Projeto
             this.deckSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet1.DeckSet);
             // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.CardSet' table. You can move, or remove it, as needed.
             this.cardSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.CardSet);
-
         }
 
         #region GestaoCartas
