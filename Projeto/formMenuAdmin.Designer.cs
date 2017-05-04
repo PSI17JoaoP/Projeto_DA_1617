@@ -54,25 +54,61 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnAlterarJogador = new System.Windows.Forms.Button();
             this.dgvGListaJogadores = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nicknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nicknameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.playerSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.bD_DA_ProjetoDataSet = new Projeto.BD_DA_ProjetoDataSet();
             this.btnInserirJogador = new System.Windows.Forms.Button();
             this.txtGJogadoresPesquisa = new System.Windows.Forms.TextBox();
             this.tbGestaoEquipas = new System.Windows.Forms.TabPage();
+            this.btnGuardarJogadorEquipa = new System.Windows.Forms.Button();
+            this.btnRetirarJogador = new System.Windows.Forms.Button();
+            this.btnAdicionarJogador = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lcListaJogadores = new System.Windows.Forms.ListView();
+            this.cNome1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cEmail2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cIdade2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cNickname2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lvJogadoresEquipa = new System.Windows.Forms.ListView();
+            this.cNome = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cEmail = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cIdade = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cNickname = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.gbGEquipasDados = new System.Windows.Forms.GroupBox();
+            this.btnGerirEquipa = new System.Windows.Forms.Button();
             this.gbGEquipasForm = new System.Windows.Forms.GroupBox();
+            this.pictureBoxAvatarEquipa = new System.Windows.Forms.PictureBox();
             this.btnAvatarEquipa = new System.Windows.Forms.Button();
             this.txtEquipaCancelar = new System.Windows.Forms.Button();
-            this.txtEquipaAcao = new System.Windows.Forms.Button();
+            this.btnEquipaAcao = new System.Windows.Forms.Button();
             this.txtGAvatarEquipa = new System.Windows.Forms.TextBox();
             this.txtGNomeEquipa = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
-            this.gbGEquipasDados = new System.Windows.Forms.GroupBox();
             this.btnRemoverEquipa = new System.Windows.Forms.Button();
             this.btnAlterarEquipa = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.btnInserirEquipa = new System.Windows.Forms.Button();
             this.dgvGListaEquipas = new System.Windows.Forms.DataGridView();
+            this.IdEquipaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameEquipaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarEquipaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.idDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teamSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.txtGEquipasPesquisa = new System.Windows.Forms.TextBox();
             this.tbGestaoTorneios = new System.Windows.Forms.TabPage();
             this.gbGJogosDados = new System.Windows.Forms.GroupBox();
@@ -186,19 +222,39 @@
             this.tbVer = new System.Windows.Forms.TabPage();
             this.tcVer = new System.Windows.Forms.TabControl();
             this.tbVerJogadores = new System.Windows.Forms.TabPage();
+            this.nudIdadeJogador2 = new System.Windows.Forms.NumericUpDown();
+            this.label39 = new System.Windows.Forms.Label();
+            this.txtNicknameJogador2 = new System.Windows.Forms.TextBox();
+            this.txtnickname = new System.Windows.Forms.Label();
+            this.txtEmailJogador2 = new System.Windows.Forms.TextBox();
+            this.label38 = new System.Windows.Forms.Label();
+            this.txtNomeJogador2 = new System.Windows.Forms.TextBox();
+            this.label37 = new System.Windows.Forms.Label();
+            this.btnExportar = new System.Windows.Forms.Button();
+            this.dgvGListaJogadoresPesquisa = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nicknameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ageDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarDataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbVerEquipas = new System.Windows.Forms.TabPage();
+            this.cbnomejogadorpesquisa = new System.Windows.Forms.ComboBox();
+            this.label41 = new System.Windows.Forms.Label();
+            this.tbxnomeequipapesquisa = new System.Windows.Forms.TextBox();
+            this.label40 = new System.Windows.Forms.Label();
+            this.dgvGListaEquipasPesquisa = new System.Windows.Forms.DataGridView();
+            this.idDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.avatarDataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbVerTorneios = new System.Windows.Forms.TabPage();
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.playerSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.PlayerSetTableAdapter();
-            this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nicknameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.avatarDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.teamSetTableAdapter = new Projeto.BD_DA_ProjetoDataSetTableAdapters.TeamSetTableAdapter();
+            this.btlimpar = new System.Windows.Forms.Button();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -211,9 +267,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.playerSetBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).BeginInit();
             this.tbGestaoEquipas.SuspendLayout();
-            this.gbGEquipasForm.SuspendLayout();
+            this.groupBox2.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.gbGEquipasDados.SuspendLayout();
+            this.gbGEquipasForm.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatarEquipa)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGListaEquipas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamSetBindingSource)).BeginInit();
             this.tbGestaoTorneios.SuspendLayout();
             this.gbGJogosDados.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGJogosLista)).BeginInit();
@@ -244,6 +304,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).BeginInit();
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
+            this.tbVerJogadores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdadeJogador2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGListaJogadoresPesquisa)).BeginInit();
+            this.tbVerEquipas.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGListaEquipasPesquisa)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -255,7 +320,7 @@
             this.tbMenu.Margin = new System.Windows.Forms.Padding(2);
             this.tbMenu.Name = "tbMenu";
             this.tbMenu.SelectedIndex = 0;
-            this.tbMenu.Size = new System.Drawing.Size(590, 377);
+            this.tbMenu.Size = new System.Drawing.Size(612, 377);
             this.tbMenu.TabIndex = 0;
             // 
             // tpGestao
@@ -265,7 +330,7 @@
             this.tpGestao.Margin = new System.Windows.Forms.Padding(2);
             this.tpGestao.Name = "tpGestao";
             this.tpGestao.Padding = new System.Windows.Forms.Padding(2);
-            this.tpGestao.Size = new System.Drawing.Size(582, 351);
+            this.tpGestao.Size = new System.Drawing.Size(604, 351);
             this.tpGestao.TabIndex = 0;
             this.tpGestao.Text = "Gestão";
             this.tpGestao.UseVisualStyleBackColor = true;
@@ -283,7 +348,7 @@
             this.tcGestao.Margin = new System.Windows.Forms.Padding(2);
             this.tcGestao.Name = "tcGestao";
             this.tcGestao.SelectedIndex = 0;
-            this.tcGestao.Size = new System.Drawing.Size(578, 347);
+            this.tcGestao.Size = new System.Drawing.Size(600, 347);
             this.tcGestao.TabIndex = 0;
             // 
             // tbGestaoJogadores
@@ -294,7 +359,7 @@
             this.tbGestaoJogadores.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoJogadores.Name = "tbGestaoJogadores";
             this.tbGestaoJogadores.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoJogadores.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoJogadores.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoJogadores.TabIndex = 0;
             this.tbGestaoJogadores.Text = "Jogadores";
             this.tbGestaoJogadores.UseVisualStyleBackColor = true;
@@ -318,7 +383,7 @@
             this.gbGJogadoresForm.Controls.Add(this.label3);
             this.gbGJogadoresForm.Controls.Add(this.label2);
             this.gbGJogadoresForm.Enabled = false;
-            this.gbGJogadoresForm.Location = new System.Drawing.Point(323, 0);
+            this.gbGJogadoresForm.Location = new System.Drawing.Point(345, 0);
             this.gbGJogadoresForm.Margin = new System.Windows.Forms.Padding(2);
             this.gbGJogadoresForm.Name = "gbGJogadoresForm";
             this.gbGJogadoresForm.Padding = new System.Windows.Forms.Padding(2);
@@ -478,7 +543,7 @@
             this.gbGJogadoresDados.MinimumSize = new System.Drawing.Size(292, 317);
             this.gbGJogadoresDados.Name = "gbGJogadoresDados";
             this.gbGJogadoresDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGJogadoresDados.Size = new System.Drawing.Size(317, 317);
+            this.gbGJogadoresDados.Size = new System.Drawing.Size(339, 317);
             this.gbGJogadoresDados.TabIndex = 3;
             this.gbGJogadoresDados.TabStop = false;
             this.gbGJogadoresDados.Text = "Jogadores";
@@ -487,7 +552,7 @@
             // 
             this.btnRemoverJogador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnRemoverJogador.Enabled = false;
-            this.btnRemoverJogador.Location = new System.Drawing.Point(232, 289);
+            this.btnRemoverJogador.Location = new System.Drawing.Point(254, 289);
             this.btnRemoverJogador.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoverJogador.Name = "btnRemoverJogador";
             this.btnRemoverJogador.Size = new System.Drawing.Size(62, 24);
@@ -510,7 +575,7 @@
             // 
             this.btnAlterarJogador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAlterarJogador.Enabled = false;
-            this.btnAlterarJogador.Location = new System.Drawing.Point(170, 289);
+            this.btnAlterarJogador.Location = new System.Drawing.Point(192, 289);
             this.btnAlterarJogador.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlterarJogador.Name = "btnAlterarJogador";
             this.btnAlterarJogador.Size = new System.Drawing.Size(58, 24);
@@ -531,7 +596,13 @@
             this.emailDataGridViewTextBoxColumn,
             this.nicknameDataGridViewTextBoxColumn,
             this.ageDataGridViewTextBoxColumn,
-            this.avatarDataGridViewTextBoxColumn});
+            this.avatarDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn1,
+            this.nameDataGridViewTextBoxColumn1,
+            this.emailDataGridViewTextBoxColumn1,
+            this.nicknameDataGridViewTextBoxColumn1,
+            this.ageDataGridViewTextBoxColumn1,
+            this.avatarDataGridViewTextBoxColumn1});
             this.dgvGListaJogadores.DataSource = this.playerSetBindingSource;
             this.dgvGListaJogadores.Location = new System.Drawing.Point(19, 76);
             this.dgvGListaJogadores.Margin = new System.Windows.Forms.Padding(2);
@@ -545,6 +616,90 @@
             this.dgvGListaJogadores.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGListaJogadores_CellMouseClick);
             this.dgvGListaJogadores.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGListaJogadores_CellMouseDoubleClick);
             this.dgvGListaJogadores.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGListaJogadores_CellMouseEnter);
+            // 
+            // idDataGridViewTextBoxColumn
+            // 
+            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
+            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nicknameDataGridViewTextBoxColumn
+            // 
+            this.nicknameDataGridViewTextBoxColumn.DataPropertyName = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn.HeaderText = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn.Name = "nicknameDataGridViewTextBoxColumn";
+            this.nicknameDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // ageDataGridViewTextBoxColumn
+            // 
+            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
+            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // avatarDataGridViewTextBoxColumn
+            // 
+            this.avatarDataGridViewTextBoxColumn.DataPropertyName = "Avatar";
+            this.avatarDataGridViewTextBoxColumn.HeaderText = "Avatar";
+            this.avatarDataGridViewTextBoxColumn.Name = "avatarDataGridViewTextBoxColumn";
+            this.avatarDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn1
+            // 
+            this.idDataGridViewTextBoxColumn1.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn1.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn1.Name = "idDataGridViewTextBoxColumn1";
+            this.idDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn1
+            // 
+            this.emailDataGridViewTextBoxColumn1.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn1.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn1.Name = "emailDataGridViewTextBoxColumn1";
+            this.emailDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // nicknameDataGridViewTextBoxColumn1
+            // 
+            this.nicknameDataGridViewTextBoxColumn1.DataPropertyName = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn1.HeaderText = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn1.Name = "nicknameDataGridViewTextBoxColumn1";
+            this.nicknameDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ageDataGridViewTextBoxColumn1
+            // 
+            this.ageDataGridViewTextBoxColumn1.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn1.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn1.Name = "ageDataGridViewTextBoxColumn1";
+            this.ageDataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // avatarDataGridViewTextBoxColumn1
+            // 
+            this.avatarDataGridViewTextBoxColumn1.DataPropertyName = "Avatar";
+            this.avatarDataGridViewTextBoxColumn1.HeaderText = "Avatar";
+            this.avatarDataGridViewTextBoxColumn1.Name = "avatarDataGridViewTextBoxColumn1";
+            this.avatarDataGridViewTextBoxColumn1.ReadOnly = true;
             // 
             // playerSetBindingSource
             // 
@@ -560,7 +715,7 @@
             // btnInserirJogador
             // 
             this.btnInserirJogador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirJogador.Location = new System.Drawing.Point(103, 289);
+            this.btnInserirJogador.Location = new System.Drawing.Point(125, 289);
             this.btnInserirJogador.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirJogador.Name = "btnInserirJogador";
             this.btnInserirJogador.Size = new System.Drawing.Size(62, 24);
@@ -576,86 +731,252 @@
             this.txtGJogadoresPesquisa.Location = new System.Drawing.Point(74, 35);
             this.txtGJogadoresPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGJogadoresPesquisa.Name = "txtGJogadoresPesquisa";
-            this.txtGJogadoresPesquisa.Size = new System.Drawing.Size(152, 20);
+            this.txtGJogadoresPesquisa.Size = new System.Drawing.Size(174, 20);
             this.txtGJogadoresPesquisa.TabIndex = 1;
             this.txtGJogadoresPesquisa.TextChanged += new System.EventHandler(this.txtGJogadoresPesquisa_TextChanged);
             // 
             // tbGestaoEquipas
             // 
-            this.tbGestaoEquipas.Controls.Add(this.gbGEquipasForm);
+            this.tbGestaoEquipas.Controls.Add(this.btnGuardarJogadorEquipa);
+            this.tbGestaoEquipas.Controls.Add(this.btnRetirarJogador);
+            this.tbGestaoEquipas.Controls.Add(this.btnAdicionarJogador);
+            this.tbGestaoEquipas.Controls.Add(this.groupBox2);
+            this.tbGestaoEquipas.Controls.Add(this.groupBox1);
             this.tbGestaoEquipas.Controls.Add(this.gbGEquipasDados);
             this.tbGestaoEquipas.Location = new System.Drawing.Point(4, 22);
             this.tbGestaoEquipas.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoEquipas.Name = "tbGestaoEquipas";
             this.tbGestaoEquipas.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoEquipas.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoEquipas.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoEquipas.TabIndex = 1;
             this.tbGestaoEquipas.Text = "Equipas";
             this.tbGestaoEquipas.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardarJogadorEquipa
+            // 
+            this.btnGuardarJogadorEquipa.Enabled = false;
+            this.btnGuardarJogadorEquipa.Location = new System.Drawing.Point(263, 254);
+            this.btnGuardarJogadorEquipa.Name = "btnGuardarJogadorEquipa";
+            this.btnGuardarJogadorEquipa.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarJogadorEquipa.TabIndex = 5;
+            this.btnGuardarJogadorEquipa.Text = "Guardar";
+            this.btnGuardarJogadorEquipa.UseVisualStyleBackColor = true;
+            this.btnGuardarJogadorEquipa.Click += new System.EventHandler(this.btnGuardarJogadorEquipa_Click);
+            // 
+            // btnRetirarJogador
+            // 
+            this.btnRetirarJogador.Location = new System.Drawing.Point(263, 216);
+            this.btnRetirarJogador.Name = "btnRetirarJogador";
+            this.btnRetirarJogador.Size = new System.Drawing.Size(75, 23);
+            this.btnRetirarJogador.TabIndex = 4;
+            this.btnRetirarJogador.Text = ">>";
+            this.btnRetirarJogador.UseVisualStyleBackColor = true;
+            this.btnRetirarJogador.Click += new System.EventHandler(this.btnRetirarJogador_Click);
+            // 
+            // btnAdicionarJogador
+            // 
+            this.btnAdicionarJogador.Location = new System.Drawing.Point(263, 187);
+            this.btnAdicionarJogador.Name = "btnAdicionarJogador";
+            this.btnAdicionarJogador.Size = new System.Drawing.Size(75, 23);
+            this.btnAdicionarJogador.TabIndex = 3;
+            this.btnAdicionarJogador.Text = "<<";
+            this.btnAdicionarJogador.UseVisualStyleBackColor = true;
+            this.btnAdicionarJogador.Click += new System.EventHandler(this.btnAdicionarJogador_Click);
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.lcListaJogadores);
+            this.groupBox2.Location = new System.Drawing.Point(344, 168);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(243, 144);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Lista de Jogadores";
+            // 
+            // lcListaJogadores
+            // 
+            this.lcListaJogadores.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cNome1,
+            this.cEmail2,
+            this.cIdade2,
+            this.cNickname2});
+            this.lcListaJogadores.FullRowSelect = true;
+            this.lcListaJogadores.Location = new System.Drawing.Point(6, 19);
+            this.lcListaJogadores.Name = "lcListaJogadores";
+            this.lcListaJogadores.Size = new System.Drawing.Size(231, 118);
+            this.lcListaJogadores.TabIndex = 0;
+            this.lcListaJogadores.UseCompatibleStateImageBehavior = false;
+            this.lcListaJogadores.View = System.Windows.Forms.View.Details;
+            // 
+            // cNome1
+            // 
+            this.cNome1.Text = "Nome";
+            // 
+            // cEmail2
+            // 
+            this.cEmail2.Text = "Email";
+            // 
+            // cIdade2
+            // 
+            this.cIdade2.Text = "Idade";
+            // 
+            // cNickname2
+            // 
+            this.cNickname2.Text = "Nickname";
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.lvJogadoresEquipa);
+            this.groupBox1.Location = new System.Drawing.Point(5, 168);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(243, 144);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Jogadores na Equipa";
+            // 
+            // lvJogadoresEquipa
+            // 
+            this.lvJogadoresEquipa.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.cNome,
+            this.cEmail,
+            this.cIdade,
+            this.cNickname});
+            this.lvJogadoresEquipa.FullRowSelect = true;
+            this.lvJogadoresEquipa.Location = new System.Drawing.Point(6, 19);
+            this.lvJogadoresEquipa.Name = "lvJogadoresEquipa";
+            this.lvJogadoresEquipa.Size = new System.Drawing.Size(231, 118);
+            this.lvJogadoresEquipa.TabIndex = 3;
+            this.lvJogadoresEquipa.UseCompatibleStateImageBehavior = false;
+            this.lvJogadoresEquipa.View = System.Windows.Forms.View.Details;
+            // 
+            // cNome
+            // 
+            this.cNome.Text = "Nome";
+            // 
+            // cEmail
+            // 
+            this.cEmail.Text = "Email";
+            // 
+            // cIdade
+            // 
+            this.cIdade.Text = "Idade";
+            // 
+            // cNickname
+            // 
+            this.cNickname.Text = "Nickname";
+            // 
+            // gbGEquipasDados
+            // 
+            this.gbGEquipasDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGEquipasDados.Controls.Add(this.btnGerirEquipa);
+            this.gbGEquipasDados.Controls.Add(this.gbGEquipasForm);
+            this.gbGEquipasDados.Controls.Add(this.btnRemoverEquipa);
+            this.gbGEquipasDados.Controls.Add(this.btnAlterarEquipa);
+            this.gbGEquipasDados.Controls.Add(this.label6);
+            this.gbGEquipasDados.Controls.Add(this.btnInserirEquipa);
+            this.gbGEquipasDados.Controls.Add(this.dgvGListaEquipas);
+            this.gbGEquipasDados.Controls.Add(this.txtGEquipasPesquisa);
+            this.gbGEquipasDados.Location = new System.Drawing.Point(4, 0);
+            this.gbGEquipasDados.Margin = new System.Windows.Forms.Padding(2);
+            this.gbGEquipasDados.Name = "gbGEquipasDados";
+            this.gbGEquipasDados.Padding = new System.Windows.Forms.Padding(2);
+            this.gbGEquipasDados.Size = new System.Drawing.Size(586, 163);
+            this.gbGEquipasDados.TabIndex = 0;
+            this.gbGEquipasDados.TabStop = false;
+            this.gbGEquipasDados.Text = "Equipas";
+            // 
+            // btnGerirEquipa
+            // 
+            this.btnGerirEquipa.Location = new System.Drawing.Point(296, 103);
+            this.btnGerirEquipa.Name = "btnGerirEquipa";
+            this.btnGerirEquipa.Size = new System.Drawing.Size(62, 23);
+            this.btnGerirEquipa.TabIndex = 7;
+            this.btnGerirEquipa.Text = "Gerir";
+            this.btnGerirEquipa.UseVisualStyleBackColor = true;
+            this.btnGerirEquipa.Click += new System.EventHandler(this.btnGerirEquipa_Click);
             // 
             // gbGEquipasForm
             // 
             this.gbGEquipasForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.gbGEquipasForm.Controls.Add(this.pictureBoxAvatarEquipa);
             this.gbGEquipasForm.Controls.Add(this.btnAvatarEquipa);
             this.gbGEquipasForm.Controls.Add(this.txtEquipaCancelar);
-            this.gbGEquipasForm.Controls.Add(this.txtEquipaAcao);
+            this.gbGEquipasForm.Controls.Add(this.btnEquipaAcao);
             this.gbGEquipasForm.Controls.Add(this.txtGAvatarEquipa);
             this.gbGEquipasForm.Controls.Add(this.txtGNomeEquipa);
             this.gbGEquipasForm.Controls.Add(this.label8);
             this.gbGEquipasForm.Controls.Add(this.label7);
-            this.gbGEquipasForm.Location = new System.Drawing.Point(323, 0);
+            this.gbGEquipasForm.Enabled = false;
+            this.gbGEquipasForm.Location = new System.Drawing.Point(362, 46);
             this.gbGEquipasForm.Margin = new System.Windows.Forms.Padding(2);
             this.gbGEquipasForm.Name = "gbGEquipasForm";
             this.gbGEquipasForm.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGEquipasForm.Size = new System.Drawing.Size(244, 325);
+            this.gbGEquipasForm.Size = new System.Drawing.Size(244, 113);
             this.gbGEquipasForm.TabIndex = 6;
             this.gbGEquipasForm.TabStop = false;
             this.gbGEquipasForm.Text = "Campos";
+            this.gbGEquipasForm.Enter += new System.EventHandler(this.gbGEquipasForm_Enter);
+            // 
+            // pictureBoxAvatarEquipa
+            // 
+            this.pictureBoxAvatarEquipa.Location = new System.Drawing.Point(23, 126);
+            this.pictureBoxAvatarEquipa.Name = "pictureBoxAvatarEquipa";
+            this.pictureBoxAvatarEquipa.Size = new System.Drawing.Size(205, 133);
+            this.pictureBoxAvatarEquipa.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBoxAvatarEquipa.TabIndex = 13;
+            this.pictureBoxAvatarEquipa.TabStop = false;
             // 
             // btnAvatarEquipa
             // 
-            this.btnAvatarEquipa.Location = new System.Drawing.Point(207, 84);
+            this.btnAvatarEquipa.Location = new System.Drawing.Point(204, 44);
             this.btnAvatarEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnAvatarEquipa.Name = "btnAvatarEquipa";
             this.btnAvatarEquipa.Size = new System.Drawing.Size(20, 19);
             this.btnAvatarEquipa.TabIndex = 12;
             this.btnAvatarEquipa.Text = "Q";
             this.btnAvatarEquipa.UseVisualStyleBackColor = true;
+            this.btnAvatarEquipa.Click += new System.EventHandler(this.btnAvatarEquipa_Click);
             // 
             // txtEquipaCancelar
             // 
             this.txtEquipaCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEquipaCancelar.Location = new System.Drawing.Point(164, 285);
+            this.txtEquipaCancelar.Location = new System.Drawing.Point(164, 73);
             this.txtEquipaCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.txtEquipaCancelar.Name = "txtEquipaCancelar";
             this.txtEquipaCancelar.Size = new System.Drawing.Size(62, 21);
             this.txtEquipaCancelar.TabIndex = 11;
             this.txtEquipaCancelar.Text = "Cancelar";
             this.txtEquipaCancelar.UseVisualStyleBackColor = true;
+            this.txtEquipaCancelar.Click += new System.EventHandler(this.txtEquipaCancelar_Click);
             // 
-            // txtEquipaAcao
+            // btnEquipaAcao
             // 
-            this.txtEquipaAcao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtEquipaAcao.Location = new System.Drawing.Point(104, 285);
-            this.txtEquipaAcao.Margin = new System.Windows.Forms.Padding(2);
-            this.txtEquipaAcao.Name = "txtEquipaAcao";
-            this.txtEquipaAcao.Size = new System.Drawing.Size(56, 21);
-            this.txtEquipaAcao.TabIndex = 10;
-            this.txtEquipaAcao.Text = "Ação";
-            this.txtEquipaAcao.UseVisualStyleBackColor = true;
+            this.btnEquipaAcao.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnEquipaAcao.Location = new System.Drawing.Point(104, 73);
+            this.btnEquipaAcao.Margin = new System.Windows.Forms.Padding(2);
+            this.btnEquipaAcao.Name = "btnEquipaAcao";
+            this.btnEquipaAcao.Size = new System.Drawing.Size(56, 21);
+            this.btnEquipaAcao.TabIndex = 10;
+            this.btnEquipaAcao.Text = "Ação";
+            this.btnEquipaAcao.UseVisualStyleBackColor = true;
+            this.btnEquipaAcao.Click += new System.EventHandler(this.btnEquipaAcao_Click);
             // 
             // txtGAvatarEquipa
             // 
-            this.txtGAvatarEquipa.Location = new System.Drawing.Point(80, 84);
+            this.txtGAvatarEquipa.Enabled = false;
+            this.txtGAvatarEquipa.Location = new System.Drawing.Point(56, 43);
             this.txtGAvatarEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGAvatarEquipa.Name = "txtGAvatarEquipa";
-            this.txtGAvatarEquipa.Size = new System.Drawing.Size(124, 20);
+            this.txtGAvatarEquipa.ReadOnly = true;
+            this.txtGAvatarEquipa.Size = new System.Drawing.Size(144, 20);
             this.txtGAvatarEquipa.TabIndex = 4;
             // 
             // txtGNomeEquipa
             // 
-            this.txtGNomeEquipa.Location = new System.Drawing.Point(80, 47);
+            this.txtGNomeEquipa.Location = new System.Drawing.Point(56, 17);
             this.txtGNomeEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGNomeEquipa.Name = "txtGNomeEquipa";
             this.txtGNomeEquipa.Size = new System.Drawing.Size(148, 20);
@@ -664,7 +985,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(18, 88);
+            this.label8.Location = new System.Drawing.Point(20, 50);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(38, 13);
@@ -674,61 +995,44 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(18, 51);
+            this.label7.Location = new System.Drawing.Point(17, 20);
             this.label7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(35, 13);
             this.label7.TabIndex = 0;
             this.label7.Text = "Nome";
-            // 
-            // gbGEquipasDados
-            // 
-            this.gbGEquipasDados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbGEquipasDados.Controls.Add(this.btnRemoverEquipa);
-            this.gbGEquipasDados.Controls.Add(this.btnAlterarEquipa);
-            this.gbGEquipasDados.Controls.Add(this.label6);
-            this.gbGEquipasDados.Controls.Add(this.btnInserirEquipa);
-            this.gbGEquipasDados.Controls.Add(this.dgvGListaEquipas);
-            this.gbGEquipasDados.Controls.Add(this.txtGEquipasPesquisa);
-            this.gbGEquipasDados.Location = new System.Drawing.Point(4, 0);
-            this.gbGEquipasDados.Margin = new System.Windows.Forms.Padding(2);
-            this.gbGEquipasDados.MaximumSize = new System.Drawing.Size(525, 0);
-            this.gbGEquipasDados.MinimumSize = new System.Drawing.Size(292, 317);
-            this.gbGEquipasDados.Name = "gbGEquipasDados";
-            this.gbGEquipasDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGEquipasDados.Size = new System.Drawing.Size(317, 317);
-            this.gbGEquipasDados.TabIndex = 0;
-            this.gbGEquipasDados.TabStop = false;
-            this.gbGEquipasDados.Text = "Equipas";
+            this.label7.Click += new System.EventHandler(this.label7_Click);
             // 
             // btnRemoverEquipa
             // 
             this.btnRemoverEquipa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoverEquipa.Location = new System.Drawing.Point(232, 285);
+            this.btnRemoverEquipa.Enabled = false;
+            this.btnRemoverEquipa.Location = new System.Drawing.Point(296, 135);
             this.btnRemoverEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoverEquipa.Name = "btnRemoverEquipa";
             this.btnRemoverEquipa.Size = new System.Drawing.Size(62, 24);
             this.btnRemoverEquipa.TabIndex = 2;
             this.btnRemoverEquipa.Text = "Eliminar";
             this.btnRemoverEquipa.UseVisualStyleBackColor = true;
+            this.btnRemoverEquipa.Click += new System.EventHandler(this.btnRemoverEquipa_Click);
             // 
             // btnAlterarEquipa
             // 
             this.btnAlterarEquipa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterarEquipa.Location = new System.Drawing.Point(170, 285);
+            this.btnAlterarEquipa.Enabled = false;
+            this.btnAlterarEquipa.Location = new System.Drawing.Point(296, 74);
             this.btnAlterarEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlterarEquipa.Name = "btnAlterarEquipa";
-            this.btnAlterarEquipa.Size = new System.Drawing.Size(58, 24);
+            this.btnAlterarEquipa.Size = new System.Drawing.Size(62, 24);
             this.btnAlterarEquipa.TabIndex = 1;
             this.btnAlterarEquipa.Text = "Alterar";
             this.btnAlterarEquipa.UseVisualStyleBackColor = true;
+            this.btnAlterarEquipa.Click += new System.EventHandler(this.btnAlterarEquipa_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(16, 37);
+            this.label6.Location = new System.Drawing.Point(16, 25);
             this.label6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 13);
@@ -738,36 +1042,100 @@
             // btnInserirEquipa
             // 
             this.btnInserirEquipa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirEquipa.Location = new System.Drawing.Point(103, 285);
+            this.btnInserirEquipa.Location = new System.Drawing.Point(296, 46);
             this.btnInserirEquipa.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirEquipa.Name = "btnInserirEquipa";
             this.btnInserirEquipa.Size = new System.Drawing.Size(62, 24);
             this.btnInserirEquipa.TabIndex = 0;
             this.btnInserirEquipa.Text = "Inserir";
             this.btnInserirEquipa.UseVisualStyleBackColor = true;
+            this.btnInserirEquipa.Click += new System.EventHandler(this.btnInserirEquipa_Click);
             // 
             // dgvGListaEquipas
             // 
+            this.dgvGListaEquipas.AllowUserToAddRows = false;
+            this.dgvGListaEquipas.AllowUserToDeleteRows = false;
             this.dgvGListaEquipas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvGListaEquipas.AutoGenerateColumns = false;
             this.dgvGListaEquipas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvGListaEquipas.Location = new System.Drawing.Point(19, 76);
+            this.dgvGListaEquipas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdEquipaDataGridViewTextBoxColumn,
+            this.nameEquipaDataGridViewTextBoxColumn,
+            this.avatarEquipaDataGridViewTextBoxColumn,
+            this.idDataGridViewTextBoxColumn2,
+            this.nameDataGridViewTextBoxColumn2,
+            this.avatarDataGridViewTextBoxColumn2});
+            this.dgvGListaEquipas.DataSource = this.teamSetBindingSource;
+            this.dgvGListaEquipas.Location = new System.Drawing.Point(19, 57);
             this.dgvGListaEquipas.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGListaEquipas.Name = "dgvGListaEquipas";
+            this.dgvGListaEquipas.ReadOnly = true;
+            this.dgvGListaEquipas.RowHeadersVisible = false;
             this.dgvGListaEquipas.RowTemplate.Height = 24;
-            this.dgvGListaEquipas.Size = new System.Drawing.Size(275, 183);
+            this.dgvGListaEquipas.Size = new System.Drawing.Size(264, 102);
             this.dgvGListaEquipas.TabIndex = 3;
+            this.dgvGListaEquipas.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvGListaEquipas_CellContentClick);
+            this.dgvGListaEquipas.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvGListaEquipas_CellMouseClick);
+            // 
+            // IdEquipaDataGridViewTextBoxColumn
+            // 
+            this.IdEquipaDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.IdEquipaDataGridViewTextBoxColumn.HeaderText = "Id";
+            this.IdEquipaDataGridViewTextBoxColumn.Name = "IdEquipaDataGridViewTextBoxColumn";
+            this.IdEquipaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameEquipaDataGridViewTextBoxColumn
+            // 
+            this.nameEquipaDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameEquipaDataGridViewTextBoxColumn.HeaderText = "Name";
+            this.nameEquipaDataGridViewTextBoxColumn.Name = "nameEquipaDataGridViewTextBoxColumn";
+            this.nameEquipaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // avatarEquipaDataGridViewTextBoxColumn
+            // 
+            this.avatarEquipaDataGridViewTextBoxColumn.DataPropertyName = "Avatar";
+            this.avatarEquipaDataGridViewTextBoxColumn.HeaderText = "Avatar";
+            this.avatarEquipaDataGridViewTextBoxColumn.Name = "avatarEquipaDataGridViewTextBoxColumn";
+            this.avatarEquipaDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // idDataGridViewTextBoxColumn2
+            // 
+            this.idDataGridViewTextBoxColumn2.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn2.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn2.Name = "idDataGridViewTextBoxColumn2";
+            this.idDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn2
+            // 
+            this.nameDataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn2.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
+            this.nameDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // avatarDataGridViewTextBoxColumn2
+            // 
+            this.avatarDataGridViewTextBoxColumn2.DataPropertyName = "Avatar";
+            this.avatarDataGridViewTextBoxColumn2.HeaderText = "Avatar";
+            this.avatarDataGridViewTextBoxColumn2.Name = "avatarDataGridViewTextBoxColumn2";
+            this.avatarDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // teamSetBindingSource
+            // 
+            this.teamSetBindingSource.DataMember = "TeamSet";
+            this.teamSetBindingSource.DataSource = this.bD_DA_ProjetoDataSet;
             // 
             // txtGEquipasPesquisa
             // 
             this.txtGEquipasPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtGEquipasPesquisa.Location = new System.Drawing.Point(74, 35);
+            this.txtGEquipasPesquisa.Location = new System.Drawing.Point(73, 22);
             this.txtGEquipasPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGEquipasPesquisa.Name = "txtGEquipasPesquisa";
-            this.txtGEquipasPesquisa.Size = new System.Drawing.Size(152, 20);
+            this.txtGEquipasPesquisa.Size = new System.Drawing.Size(179, 20);
             this.txtGEquipasPesquisa.TabIndex = 4;
+            this.txtGEquipasPesquisa.TextChanged += new System.EventHandler(this.txtGEquipasPesquisa_TextChanged);
             // 
             // tbGestaoTorneios
             // 
@@ -778,7 +1146,7 @@
             this.tbGestaoTorneios.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoTorneios.Name = "tbGestaoTorneios";
             this.tbGestaoTorneios.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoTorneios.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoTorneios.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoTorneios.TabIndex = 2;
             this.tbGestaoTorneios.Text = "Torneios";
             this.tbGestaoTorneios.UseVisualStyleBackColor = true;
@@ -796,7 +1164,7 @@
             this.gbGJogosDados.Margin = new System.Windows.Forms.Padding(2);
             this.gbGJogosDados.Name = "gbGJogosDados";
             this.gbGJogosDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGJogosDados.Size = new System.Drawing.Size(229, 156);
+            this.gbGJogosDados.Size = new System.Drawing.Size(251, 156);
             this.gbGJogosDados.TabIndex = 1;
             this.gbGJogosDados.TabStop = false;
             this.gbGJogosDados.Text = "Jogos";
@@ -818,7 +1186,7 @@
             this.txtGJogosPesquisa.Location = new System.Drawing.Point(74, 24);
             this.txtGJogosPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGJogosPesquisa.Name = "txtGJogosPesquisa";
-            this.txtGJogosPesquisa.Size = new System.Drawing.Size(112, 20);
+            this.txtGJogosPesquisa.Size = new System.Drawing.Size(134, 20);
             this.txtGJogosPesquisa.TabIndex = 8;
             // 
             // dgvGJogosLista
@@ -831,13 +1199,13 @@
             this.dgvGJogosLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGJogosLista.Name = "dgvGJogosLista";
             this.dgvGJogosLista.RowTemplate.Height = 24;
-            this.dgvGJogosLista.Size = new System.Drawing.Size(197, 60);
+            this.dgvGJogosLista.Size = new System.Drawing.Size(219, 60);
             this.dgvGJogosLista.TabIndex = 4;
             // 
             // btnAlterarJogo
             // 
             this.btnAlterarJogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterarJogo.Location = new System.Drawing.Point(96, 133);
+            this.btnAlterarJogo.Location = new System.Drawing.Point(118, 133);
             this.btnAlterarJogo.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlterarJogo.Name = "btnAlterarJogo";
             this.btnAlterarJogo.Size = new System.Drawing.Size(58, 19);
@@ -848,7 +1216,7 @@
             // btnInserirJogo
             // 
             this.btnInserirJogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirJogo.Location = new System.Drawing.Point(33, 133);
+            this.btnInserirJogo.Location = new System.Drawing.Point(55, 133);
             this.btnInserirJogo.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirJogo.Name = "btnInserirJogo";
             this.btnInserirJogo.Size = new System.Drawing.Size(58, 19);
@@ -859,7 +1227,7 @@
             // btnRemoverJogo
             // 
             this.btnRemoverJogo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoverJogo.Location = new System.Drawing.Point(158, 133);
+            this.btnRemoverJogo.Location = new System.Drawing.Point(180, 133);
             this.btnRemoverJogo.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoverJogo.Name = "btnRemoverJogo";
             this.btnRemoverJogo.Size = new System.Drawing.Size(58, 19);
@@ -881,7 +1249,7 @@
             this.gbGTorneiosDados.Margin = new System.Windows.Forms.Padding(2);
             this.gbGTorneiosDados.Name = "gbGTorneiosDados";
             this.gbGTorneiosDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGTorneiosDados.Size = new System.Drawing.Size(229, 161);
+            this.gbGTorneiosDados.Size = new System.Drawing.Size(251, 161);
             this.gbGTorneiosDados.TabIndex = 0;
             this.gbGTorneiosDados.TabStop = false;
             this.gbGTorneiosDados.Text = "Torneios";
@@ -903,13 +1271,13 @@
             this.txtGTorneiosPesquisa.Location = new System.Drawing.Point(74, 20);
             this.txtGTorneiosPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGTorneiosPesquisa.Name = "txtGTorneiosPesquisa";
-            this.txtGTorneiosPesquisa.Size = new System.Drawing.Size(112, 20);
+            this.txtGTorneiosPesquisa.Size = new System.Drawing.Size(134, 20);
             this.txtGTorneiosPesquisa.TabIndex = 6;
             // 
             // btnAlterarTorneio
             // 
             this.btnAlterarTorneio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterarTorneio.Location = new System.Drawing.Point(96, 124);
+            this.btnAlterarTorneio.Location = new System.Drawing.Point(118, 124);
             this.btnAlterarTorneio.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlterarTorneio.Name = "btnAlterarTorneio";
             this.btnAlterarTorneio.Size = new System.Drawing.Size(58, 19);
@@ -920,7 +1288,7 @@
             // btnInserirTorneio
             // 
             this.btnInserirTorneio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirTorneio.Location = new System.Drawing.Point(33, 124);
+            this.btnInserirTorneio.Location = new System.Drawing.Point(55, 124);
             this.btnInserirTorneio.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirTorneio.Name = "btnInserirTorneio";
             this.btnInserirTorneio.Size = new System.Drawing.Size(58, 19);
@@ -938,13 +1306,13 @@
             this.dgvGTorneiosLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGTorneiosLista.Name = "dgvGTorneiosLista";
             this.dgvGTorneiosLista.RowTemplate.Height = 24;
-            this.dgvGTorneiosLista.Size = new System.Drawing.Size(197, 60);
+            this.dgvGTorneiosLista.Size = new System.Drawing.Size(219, 60);
             this.dgvGTorneiosLista.TabIndex = 1;
             // 
             // btnRemoverTorneio
             // 
             this.btnRemoverTorneio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRemoverTorneio.Location = new System.Drawing.Point(158, 124);
+            this.btnRemoverTorneio.Location = new System.Drawing.Point(180, 124);
             this.btnRemoverTorneio.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoverTorneio.Name = "btnRemoverTorneio";
             this.btnRemoverTorneio.Size = new System.Drawing.Size(58, 19);
@@ -958,7 +1326,7 @@
             this.gbGTorneiosInfo.Controls.Add(this.gbGJogosForm);
             this.gbGTorneiosInfo.Controls.Add(this.gbGTorneiosForm);
             this.gbGTorneiosInfo.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gbGTorneiosInfo.Location = new System.Drawing.Point(231, 2);
+            this.gbGTorneiosInfo.Location = new System.Drawing.Point(253, 2);
             this.gbGTorneiosInfo.Margin = new System.Windows.Forms.Padding(2);
             this.gbGTorneiosInfo.Name = "gbGTorneiosInfo";
             this.gbGTorneiosInfo.Padding = new System.Windows.Forms.Padding(2);
@@ -1211,7 +1579,7 @@
             this.tbGestaoCartas.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoCartas.Name = "tbGestaoCartas";
             this.tbGestaoCartas.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoCartas.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoCartas.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoCartas.TabIndex = 3;
             this.tbGestaoCartas.Text = "Cartas";
             this.tbGestaoCartas.UseVisualStyleBackColor = true;
@@ -1238,7 +1606,7 @@
             this.gbGCartasForm.Controls.Add(this.label21);
             this.gbGCartasForm.Controls.Add(this.label20);
             this.gbGCartasForm.Controls.Add(this.label19);
-            this.gbGCartasForm.Location = new System.Drawing.Point(323, 0);
+            this.gbGCartasForm.Location = new System.Drawing.Point(345, 0);
             this.gbGCartasForm.Margin = new System.Windows.Forms.Padding(2);
             this.gbGCartasForm.Name = "gbGCartasForm";
             this.gbGCartasForm.Padding = new System.Windows.Forms.Padding(2);
@@ -1452,7 +1820,7 @@
             this.gbGCartasDados.MinimumSize = new System.Drawing.Size(292, 317);
             this.gbGCartasDados.Name = "gbGCartasDados";
             this.gbGCartasDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGCartasDados.Size = new System.Drawing.Size(317, 317);
+            this.gbGCartasDados.Size = new System.Drawing.Size(339, 317);
             this.gbGCartasDados.TabIndex = 0;
             this.gbGCartasDados.TabStop = false;
             this.gbGCartasDados.Text = "Cartas";
@@ -1460,7 +1828,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(232, 289);
+            this.button1.Location = new System.Drawing.Point(254, 289);
             this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(62, 24);
@@ -1471,7 +1839,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(170, 289);
+            this.button2.Location = new System.Drawing.Point(192, 289);
             this.button2.Margin = new System.Windows.Forms.Padding(2);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(58, 24);
@@ -1482,7 +1850,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(103, 289);
+            this.button3.Location = new System.Drawing.Point(125, 289);
             this.button3.Margin = new System.Windows.Forms.Padding(2);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(62, 24);
@@ -1500,7 +1868,7 @@
             this.dgvGCartasLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGCartasLista.Name = "dgvGCartasLista";
             this.dgvGCartasLista.RowTemplate.Height = 24;
-            this.dgvGCartasLista.Size = new System.Drawing.Size(275, 184);
+            this.dgvGCartasLista.Size = new System.Drawing.Size(297, 184);
             this.dgvGCartasLista.TabIndex = 8;
             // 
             // label18
@@ -1520,7 +1888,7 @@
             this.txtGCartasPesquisa.Location = new System.Drawing.Point(74, 37);
             this.txtGCartasPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGCartasPesquisa.Name = "txtGCartasPesquisa";
-            this.txtGCartasPesquisa.Size = new System.Drawing.Size(152, 20);
+            this.txtGCartasPesquisa.Size = new System.Drawing.Size(174, 20);
             this.txtGCartasPesquisa.TabIndex = 6;
             // 
             // tbGestaoBaralhos
@@ -1536,7 +1904,7 @@
             this.tbGestaoBaralhos.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoBaralhos.Name = "tbGestaoBaralhos";
             this.tbGestaoBaralhos.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoBaralhos.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoBaralhos.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoBaralhos.TabIndex = 4;
             this.tbGestaoBaralhos.Text = "Baralhos";
             this.tbGestaoBaralhos.UseVisualStyleBackColor = true;
@@ -1544,7 +1912,7 @@
             // btnGuardarAltBaralho
             // 
             this.btnGuardarAltBaralho.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnGuardarAltBaralho.Location = new System.Drawing.Point(254, 267);
+            this.btnGuardarAltBaralho.Location = new System.Drawing.Point(265, 267);
             this.btnGuardarAltBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarAltBaralho.Name = "btnGuardarAltBaralho";
             this.btnGuardarAltBaralho.Size = new System.Drawing.Size(64, 19);
@@ -1555,7 +1923,7 @@
             // btnRemoverCartaBaralho
             // 
             this.btnRemoverCartaBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnRemoverCartaBaralho.Location = new System.Drawing.Point(266, 218);
+            this.btnRemoverCartaBaralho.Location = new System.Drawing.Point(277, 218);
             this.btnRemoverCartaBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnRemoverCartaBaralho.Name = "btnRemoverCartaBaralho";
             this.btnRemoverCartaBaralho.Size = new System.Drawing.Size(41, 24);
@@ -1566,7 +1934,7 @@
             // btnCancelarAltBaralho
             // 
             this.btnCancelarAltBaralho.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.btnCancelarAltBaralho.Location = new System.Drawing.Point(254, 291);
+            this.btnCancelarAltBaralho.Location = new System.Drawing.Point(265, 291);
             this.btnCancelarAltBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelarAltBaralho.Name = "btnCancelarAltBaralho";
             this.btnCancelarAltBaralho.Size = new System.Drawing.Size(64, 19);
@@ -1606,7 +1974,7 @@
             // btnAdicionarCartaBaralho
             // 
             this.btnAdicionarCartaBaralho.Anchor = System.Windows.Forms.AnchorStyles.Top;
-            this.btnAdicionarCartaBaralho.Location = new System.Drawing.Point(266, 158);
+            this.btnAdicionarCartaBaralho.Location = new System.Drawing.Point(277, 158);
             this.btnAdicionarCartaBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnAdicionarCartaBaralho.Name = "btnAdicionarCartaBaralho";
             this.btnAdicionarCartaBaralho.Size = new System.Drawing.Size(41, 24);
@@ -1618,7 +1986,7 @@
             // 
             this.gbGCartasparaBaralho.Controls.Add(this.dataGridView3);
             this.gbGCartasparaBaralho.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gbGCartasparaBaralho.Location = new System.Drawing.Point(320, 131);
+            this.gbGCartasparaBaralho.Location = new System.Drawing.Point(342, 131);
             this.gbGCartasparaBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.gbGCartasparaBaralho.Name = "gbGCartasparaBaralho";
             this.gbGCartasparaBaralho.Padding = new System.Windows.Forms.Padding(2);
@@ -1654,7 +2022,7 @@
             this.gbGBaralhosDados.Margin = new System.Windows.Forms.Padding(2);
             this.gbGBaralhosDados.Name = "gbGBaralhosDados";
             this.gbGBaralhosDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGBaralhosDados.Size = new System.Drawing.Size(566, 129);
+            this.gbGBaralhosDados.Size = new System.Drawing.Size(588, 129);
             this.gbGBaralhosDados.TabIndex = 0;
             this.gbGBaralhosDados.TabStop = false;
             this.gbGBaralhosDados.Text = "Baralhos";
@@ -1666,7 +2034,7 @@
             this.gbGBaralhosForm.Controls.Add(this.btnCancelarNovoBaralho);
             this.gbGBaralhosForm.Controls.Add(this.txtNomeBaralho);
             this.gbGBaralhosForm.Dock = System.Windows.Forms.DockStyle.Right;
-            this.gbGBaralhosForm.Location = new System.Drawing.Point(357, 15);
+            this.gbGBaralhosForm.Location = new System.Drawing.Point(379, 15);
             this.gbGBaralhosForm.Margin = new System.Windows.Forms.Padding(2);
             this.gbGBaralhosForm.Name = "gbGBaralhosForm";
             this.gbGBaralhosForm.Padding = new System.Windows.Forms.Padding(2);
@@ -1735,13 +2103,13 @@
             this.dgvGBaralhosLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGBaralhosLista.Name = "dgvGBaralhosLista";
             this.dgvGBaralhosLista.RowTemplate.Height = 24;
-            this.dgvGBaralhosLista.Size = new System.Drawing.Size(250, 62);
+            this.dgvGBaralhosLista.Size = new System.Drawing.Size(272, 62);
             this.dgvGBaralhosLista.TabIndex = 9;
             // 
             // btnInserirBaralho
             // 
             this.btnInserirBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirBaralho.Location = new System.Drawing.Point(283, 17);
+            this.btnInserirBaralho.Location = new System.Drawing.Point(305, 17);
             this.btnInserirBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirBaralho.Name = "btnInserirBaralho";
             this.btnInserirBaralho.Size = new System.Drawing.Size(58, 19);
@@ -1760,7 +2128,7 @@
             // btnGerirBaralho
             // 
             this.btnGerirBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGerirBaralho.Location = new System.Drawing.Point(283, 56);
+            this.btnGerirBaralho.Location = new System.Drawing.Point(305, 56);
             this.btnGerirBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnGerirBaralho.Name = "btnGerirBaralho";
             this.btnGerirBaralho.Size = new System.Drawing.Size(58, 19);
@@ -1771,7 +2139,7 @@
             // btnEliminarBaralho
             // 
             this.btnEliminarBaralho.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminarBaralho.Location = new System.Drawing.Point(283, 97);
+            this.btnEliminarBaralho.Location = new System.Drawing.Point(305, 97);
             this.btnEliminarBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarBaralho.Name = "btnEliminarBaralho";
             this.btnEliminarBaralho.Size = new System.Drawing.Size(58, 19);
@@ -1787,7 +2155,7 @@
             this.tbGestaoUtilizadores.Margin = new System.Windows.Forms.Padding(2);
             this.tbGestaoUtilizadores.Name = "tbGestaoUtilizadores";
             this.tbGestaoUtilizadores.Padding = new System.Windows.Forms.Padding(2);
-            this.tbGestaoUtilizadores.Size = new System.Drawing.Size(570, 321);
+            this.tbGestaoUtilizadores.Size = new System.Drawing.Size(592, 321);
             this.tbGestaoUtilizadores.TabIndex = 5;
             this.tbGestaoUtilizadores.Text = "Utilizadores";
             this.tbGestaoUtilizadores.UseVisualStyleBackColor = true;
@@ -1811,7 +2179,7 @@
             this.gbGUtilizadoresForm.Controls.Add(this.label32);
             this.gbGUtilizadoresForm.Controls.Add(this.label31);
             this.gbGUtilizadoresForm.Controls.Add(this.label30);
-            this.gbGUtilizadoresForm.Location = new System.Drawing.Point(323, 0);
+            this.gbGUtilizadoresForm.Location = new System.Drawing.Point(345, 0);
             this.gbGUtilizadoresForm.Margin = new System.Windows.Forms.Padding(2);
             this.gbGUtilizadoresForm.Name = "gbGUtilizadoresForm";
             this.gbGUtilizadoresForm.Padding = new System.Windows.Forms.Padding(2);
@@ -1983,7 +2351,7 @@
             this.gbGUtilizadoresDados.MinimumSize = new System.Drawing.Size(292, 317);
             this.gbGUtilizadoresDados.Name = "gbGUtilizadoresDados";
             this.gbGUtilizadoresDados.Padding = new System.Windows.Forms.Padding(2);
-            this.gbGUtilizadoresDados.Size = new System.Drawing.Size(317, 317);
+            this.gbGUtilizadoresDados.Size = new System.Drawing.Size(339, 317);
             this.gbGUtilizadoresDados.TabIndex = 0;
             this.gbGUtilizadoresDados.TabStop = false;
             this.gbGUtilizadoresDados.Text = "Utilizadores";
@@ -1991,7 +2359,7 @@
             // btnEliminarUtilizador
             // 
             this.btnEliminarUtilizador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEliminarUtilizador.Location = new System.Drawing.Point(250, 293);
+            this.btnEliminarUtilizador.Location = new System.Drawing.Point(272, 293);
             this.btnEliminarUtilizador.Margin = new System.Windows.Forms.Padding(2);
             this.btnEliminarUtilizador.Name = "btnEliminarUtilizador";
             this.btnEliminarUtilizador.Size = new System.Drawing.Size(62, 24);
@@ -2012,7 +2380,7 @@
             // btnAlterarUtilizador
             // 
             this.btnAlterarUtilizador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlterarUtilizador.Location = new System.Drawing.Point(188, 293);
+            this.btnAlterarUtilizador.Location = new System.Drawing.Point(210, 293);
             this.btnAlterarUtilizador.Margin = new System.Windows.Forms.Padding(2);
             this.btnAlterarUtilizador.Name = "btnAlterarUtilizador";
             this.btnAlterarUtilizador.Size = new System.Drawing.Size(58, 24);
@@ -2030,13 +2398,13 @@
             this.dgvGUtilizadoresLista.Margin = new System.Windows.Forms.Padding(2);
             this.dgvGUtilizadoresLista.Name = "dgvGUtilizadoresLista";
             this.dgvGUtilizadoresLista.RowTemplate.Height = 24;
-            this.dgvGUtilizadoresLista.Size = new System.Drawing.Size(302, 187);
+            this.dgvGUtilizadoresLista.Size = new System.Drawing.Size(324, 187);
             this.dgvGUtilizadoresLista.TabIndex = 3;
             // 
             // btnInserirUtilizador
             // 
             this.btnInserirUtilizador.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnInserirUtilizador.Location = new System.Drawing.Point(122, 293);
+            this.btnInserirUtilizador.Location = new System.Drawing.Point(144, 293);
             this.btnInserirUtilizador.Margin = new System.Windows.Forms.Padding(2);
             this.btnInserirUtilizador.Name = "btnInserirUtilizador";
             this.btnInserirUtilizador.Size = new System.Drawing.Size(62, 24);
@@ -2051,7 +2419,7 @@
             this.txtGUtilizadoresPesquisa.Location = new System.Drawing.Point(66, 38);
             this.txtGUtilizadoresPesquisa.Margin = new System.Windows.Forms.Padding(2);
             this.txtGUtilizadoresPesquisa.Name = "txtGUtilizadoresPesquisa";
-            this.txtGUtilizadoresPesquisa.Size = new System.Drawing.Size(179, 20);
+            this.txtGUtilizadoresPesquisa.Size = new System.Drawing.Size(201, 20);
             this.txtGUtilizadoresPesquisa.TabIndex = 6;
             // 
             // tbVer
@@ -2061,7 +2429,7 @@
             this.tbVer.Margin = new System.Windows.Forms.Padding(2);
             this.tbVer.Name = "tbVer";
             this.tbVer.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVer.Size = new System.Drawing.Size(582, 351);
+            this.tbVer.Size = new System.Drawing.Size(604, 351);
             this.tbVer.TabIndex = 1;
             this.tbVer.Text = "Ver";
             this.tbVer.UseVisualStyleBackColor = true;
@@ -2079,30 +2447,269 @@
             this.tcVer.Margin = new System.Windows.Forms.Padding(2);
             this.tcVer.Name = "tcVer";
             this.tcVer.SelectedIndex = 0;
-            this.tcVer.Size = new System.Drawing.Size(578, 347);
+            this.tcVer.Size = new System.Drawing.Size(600, 347);
             this.tcVer.TabIndex = 0;
             // 
             // tbVerJogadores
             // 
+            this.tbVerJogadores.Controls.Add(this.nudIdadeJogador2);
+            this.tbVerJogadores.Controls.Add(this.label39);
+            this.tbVerJogadores.Controls.Add(this.txtNicknameJogador2);
+            this.tbVerJogadores.Controls.Add(this.txtnickname);
+            this.tbVerJogadores.Controls.Add(this.txtEmailJogador2);
+            this.tbVerJogadores.Controls.Add(this.label38);
+            this.tbVerJogadores.Controls.Add(this.txtNomeJogador2);
+            this.tbVerJogadores.Controls.Add(this.label37);
+            this.tbVerJogadores.Controls.Add(this.btnExportar);
+            this.tbVerJogadores.Controls.Add(this.dgvGListaJogadoresPesquisa);
             this.tbVerJogadores.Location = new System.Drawing.Point(4, 22);
             this.tbVerJogadores.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerJogadores.Name = "tbVerJogadores";
             this.tbVerJogadores.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerJogadores.Size = new System.Drawing.Size(570, 321);
+            this.tbVerJogadores.Size = new System.Drawing.Size(592, 321);
             this.tbVerJogadores.TabIndex = 0;
             this.tbVerJogadores.Text = "Jogadores";
             this.tbVerJogadores.UseVisualStyleBackColor = true;
+            this.tbVerJogadores.Click += new System.EventHandler(this.tbVerJogadores_Click);
+            // 
+            // nudIdadeJogador2
+            // 
+            this.nudIdadeJogador2.Location = new System.Drawing.Point(339, 48);
+            this.nudIdadeJogador2.Name = "nudIdadeJogador2";
+            this.nudIdadeJogador2.Size = new System.Drawing.Size(63, 20);
+            this.nudIdadeJogador2.TabIndex = 13;
+            this.nudIdadeJogador2.ValueChanged += new System.EventHandler(this.pesquisarJogadores);
+            // 
+            // label39
+            // 
+            this.label39.AutoSize = true;
+            this.label39.Location = new System.Drawing.Point(298, 51);
+            this.label39.Name = "label39";
+            this.label39.Size = new System.Drawing.Size(37, 13);
+            this.label39.TabIndex = 12;
+            this.label39.Text = "Idade:";
+            // 
+            // txtNicknameJogador2
+            // 
+            this.txtNicknameJogador2.Location = new System.Drawing.Point(78, 48);
+            this.txtNicknameJogador2.Name = "txtNicknameJogador2";
+            this.txtNicknameJogador2.Size = new System.Drawing.Size(214, 20);
+            this.txtNicknameJogador2.TabIndex = 11;
+            this.txtNicknameJogador2.TextChanged += new System.EventHandler(this.pesquisarJogadores);
+            // 
+            // txtnickname
+            // 
+            this.txtnickname.AutoSize = true;
+            this.txtnickname.Location = new System.Drawing.Point(19, 51);
+            this.txtnickname.Name = "txtnickname";
+            this.txtnickname.Size = new System.Drawing.Size(58, 13);
+            this.txtnickname.TabIndex = 10;
+            this.txtnickname.Text = "Nickname:";
+            // 
+            // txtEmailJogador2
+            // 
+            this.txtEmailJogador2.Location = new System.Drawing.Point(339, 18);
+            this.txtEmailJogador2.Name = "txtEmailJogador2";
+            this.txtEmailJogador2.Size = new System.Drawing.Size(214, 20);
+            this.txtEmailJogador2.TabIndex = 9;
+            this.txtEmailJogador2.TextChanged += new System.EventHandler(this.pesquisarJogadores);
+            // 
+            // label38
+            // 
+            this.label38.AutoSize = true;
+            this.label38.Location = new System.Drawing.Point(298, 21);
+            this.label38.Name = "label38";
+            this.label38.Size = new System.Drawing.Size(35, 13);
+            this.label38.TabIndex = 8;
+            this.label38.Text = "Email:";
+            // 
+            // txtNomeJogador2
+            // 
+            this.txtNomeJogador2.Location = new System.Drawing.Point(78, 18);
+            this.txtNomeJogador2.Name = "txtNomeJogador2";
+            this.txtNomeJogador2.Size = new System.Drawing.Size(214, 20);
+            this.txtNomeJogador2.TabIndex = 7;
+            this.txtNomeJogador2.TextChanged += new System.EventHandler(this.pesquisarJogadores);
+            // 
+            // label37
+            // 
+            this.label37.AutoSize = true;
+            this.label37.Location = new System.Drawing.Point(19, 21);
+            this.label37.Name = "label37";
+            this.label37.Size = new System.Drawing.Size(38, 13);
+            this.label37.TabIndex = 6;
+            this.label37.Text = "Nome:";
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Location = new System.Drawing.Point(478, 62);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(75, 23);
+            this.btnExportar.TabIndex = 5;
+            this.btnExportar.Text = "Exportar";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.button4_Click_1);
+            // 
+            // dgvGListaJogadoresPesquisa
+            // 
+            this.dgvGListaJogadoresPesquisa.AllowUserToAddRows = false;
+            this.dgvGListaJogadoresPesquisa.AllowUserToDeleteRows = false;
+            this.dgvGListaJogadoresPesquisa.AutoGenerateColumns = false;
+            this.dgvGListaJogadoresPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGListaJogadoresPesquisa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn3,
+            this.nameDataGridViewTextBoxColumn3,
+            this.emailDataGridViewTextBoxColumn2,
+            this.nicknameDataGridViewTextBoxColumn2,
+            this.ageDataGridViewTextBoxColumn2,
+            this.avatarDataGridViewTextBoxColumn3});
+            this.dgvGListaJogadoresPesquisa.DataSource = this.playerSetBindingSource;
+            this.dgvGListaJogadoresPesquisa.Location = new System.Drawing.Point(5, 105);
+            this.dgvGListaJogadoresPesquisa.Name = "dgvGListaJogadoresPesquisa";
+            this.dgvGListaJogadoresPesquisa.ReadOnly = true;
+            this.dgvGListaJogadoresPesquisa.RowHeadersVisible = false;
+            this.dgvGListaJogadoresPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvGListaJogadoresPesquisa.Size = new System.Drawing.Size(560, 211);
+            this.dgvGListaJogadoresPesquisa.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn3
+            // 
+            this.idDataGridViewTextBoxColumn3.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn3.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn3.Name = "idDataGridViewTextBoxColumn3";
+            this.idDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn3
+            // 
+            this.nameDataGridViewTextBoxColumn3.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn3.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn3.Name = "nameDataGridViewTextBoxColumn3";
+            this.nameDataGridViewTextBoxColumn3.ReadOnly = true;
+            // 
+            // emailDataGridViewTextBoxColumn2
+            // 
+            this.emailDataGridViewTextBoxColumn2.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn2.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn2.Name = "emailDataGridViewTextBoxColumn2";
+            this.emailDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // nicknameDataGridViewTextBoxColumn2
+            // 
+            this.nicknameDataGridViewTextBoxColumn2.DataPropertyName = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn2.HeaderText = "Nickname";
+            this.nicknameDataGridViewTextBoxColumn2.Name = "nicknameDataGridViewTextBoxColumn2";
+            this.nicknameDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // ageDataGridViewTextBoxColumn2
+            // 
+            this.ageDataGridViewTextBoxColumn2.DataPropertyName = "Age";
+            this.ageDataGridViewTextBoxColumn2.HeaderText = "Age";
+            this.ageDataGridViewTextBoxColumn2.Name = "ageDataGridViewTextBoxColumn2";
+            this.ageDataGridViewTextBoxColumn2.ReadOnly = true;
+            // 
+            // avatarDataGridViewTextBoxColumn3
+            // 
+            this.avatarDataGridViewTextBoxColumn3.DataPropertyName = "Avatar";
+            this.avatarDataGridViewTextBoxColumn3.HeaderText = "Avatar";
+            this.avatarDataGridViewTextBoxColumn3.Name = "avatarDataGridViewTextBoxColumn3";
+            this.avatarDataGridViewTextBoxColumn3.ReadOnly = true;
             // 
             // tbVerEquipas
             // 
+            this.tbVerEquipas.Controls.Add(this.btlimpar);
+            this.tbVerEquipas.Controls.Add(this.cbnomejogadorpesquisa);
+            this.tbVerEquipas.Controls.Add(this.label41);
+            this.tbVerEquipas.Controls.Add(this.tbxnomeequipapesquisa);
+            this.tbVerEquipas.Controls.Add(this.label40);
+            this.tbVerEquipas.Controls.Add(this.dgvGListaEquipasPesquisa);
             this.tbVerEquipas.Location = new System.Drawing.Point(4, 22);
             this.tbVerEquipas.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerEquipas.Name = "tbVerEquipas";
             this.tbVerEquipas.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerEquipas.Size = new System.Drawing.Size(570, 321);
+            this.tbVerEquipas.Size = new System.Drawing.Size(592, 321);
             this.tbVerEquipas.TabIndex = 1;
             this.tbVerEquipas.Text = "Equipas";
             this.tbVerEquipas.UseVisualStyleBackColor = true;
+            this.tbVerEquipas.Enter += new System.EventHandler(this.tbVerEquipas_Enter);
+            // 
+            // cbnomejogadorpesquisa
+            // 
+            this.cbnomejogadorpesquisa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbnomejogadorpesquisa.FormattingEnabled = true;
+            this.cbnomejogadorpesquisa.Location = new System.Drawing.Point(344, 13);
+            this.cbnomejogadorpesquisa.Name = "cbnomejogadorpesquisa";
+            this.cbnomejogadorpesquisa.Size = new System.Drawing.Size(131, 21);
+            this.cbnomejogadorpesquisa.TabIndex = 4;
+            this.cbnomejogadorpesquisa.SelectedIndexChanged += new System.EventHandler(this.pesquisarEquipas);
+            // 
+            // label41
+            // 
+            this.label41.AutoSize = true;
+            this.label41.Location = new System.Drawing.Point(245, 17);
+            this.label41.Name = "label41";
+            this.label41.Size = new System.Drawing.Size(93, 13);
+            this.label41.TabIndex = 3;
+            this.label41.Text = "Contém o jogador:";
+            // 
+            // tbxnomeequipapesquisa
+            // 
+            this.tbxnomeequipapesquisa.Location = new System.Drawing.Point(55, 14);
+            this.tbxnomeequipapesquisa.Name = "tbxnomeequipapesquisa";
+            this.tbxnomeequipapesquisa.Size = new System.Drawing.Size(163, 20);
+            this.tbxnomeequipapesquisa.TabIndex = 2;
+            this.tbxnomeequipapesquisa.TextChanged += new System.EventHandler(this.pesquisarEquipas);
+            // 
+            // label40
+            // 
+            this.label40.AutoSize = true;
+            this.label40.Location = new System.Drawing.Point(11, 17);
+            this.label40.Name = "label40";
+            this.label40.Size = new System.Drawing.Size(38, 13);
+            this.label40.TabIndex = 1;
+            this.label40.Text = "Nome:";
+            // 
+            // dgvGListaEquipasPesquisa
+            // 
+            this.dgvGListaEquipasPesquisa.AllowUserToAddRows = false;
+            this.dgvGListaEquipasPesquisa.AllowUserToDeleteRows = false;
+            this.dgvGListaEquipasPesquisa.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dgvGListaEquipasPesquisa.AutoGenerateColumns = false;
+            this.dgvGListaEquipasPesquisa.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvGListaEquipasPesquisa.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.idDataGridViewTextBoxColumn4,
+            this.nameDataGridViewTextBoxColumn4,
+            this.avatarDataGridViewTextBoxColumn4});
+            this.dgvGListaEquipasPesquisa.DataSource = this.teamSetBindingSource;
+            this.dgvGListaEquipasPesquisa.Location = new System.Drawing.Point(14, 53);
+            this.dgvGListaEquipasPesquisa.Name = "dgvGListaEquipasPesquisa";
+            this.dgvGListaEquipasPesquisa.ReadOnly = true;
+            this.dgvGListaEquipasPesquisa.RowHeadersVisible = false;
+            this.dgvGListaEquipasPesquisa.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvGListaEquipasPesquisa.Size = new System.Drawing.Size(562, 251);
+            this.dgvGListaEquipasPesquisa.TabIndex = 0;
+            // 
+            // idDataGridViewTextBoxColumn4
+            // 
+            this.idDataGridViewTextBoxColumn4.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn4.HeaderText = "Id";
+            this.idDataGridViewTextBoxColumn4.Name = "idDataGridViewTextBoxColumn4";
+            this.idDataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn4
+            // 
+            this.nameDataGridViewTextBoxColumn4.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn4.HeaderText = "Name";
+            this.nameDataGridViewTextBoxColumn4.Name = "nameDataGridViewTextBoxColumn4";
+            this.nameDataGridViewTextBoxColumn4.ReadOnly = true;
+            // 
+            // avatarDataGridViewTextBoxColumn4
+            // 
+            this.avatarDataGridViewTextBoxColumn4.DataPropertyName = "Avatar";
+            this.avatarDataGridViewTextBoxColumn4.HeaderText = "Avatar";
+            this.avatarDataGridViewTextBoxColumn4.Name = "avatarDataGridViewTextBoxColumn4";
+            this.avatarDataGridViewTextBoxColumn4.ReadOnly = true;
             // 
             // tbVerTorneios
             // 
@@ -2110,7 +2717,7 @@
             this.tbVerTorneios.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerTorneios.Name = "tbVerTorneios";
             this.tbVerTorneios.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerTorneios.Size = new System.Drawing.Size(570, 321);
+            this.tbVerTorneios.Size = new System.Drawing.Size(592, 321);
             this.tbVerTorneios.TabIndex = 2;
             this.tbVerTorneios.Text = "Torneios";
             this.tbVerTorneios.UseVisualStyleBackColor = true;
@@ -2121,7 +2728,7 @@
             this.tbVerCartas.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerCartas.Name = "tbVerCartas";
             this.tbVerCartas.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerCartas.Size = new System.Drawing.Size(570, 321);
+            this.tbVerCartas.Size = new System.Drawing.Size(592, 321);
             this.tbVerCartas.TabIndex = 3;
             this.tbVerCartas.Text = "Cartas";
             this.tbVerCartas.UseVisualStyleBackColor = true;
@@ -2132,7 +2739,7 @@
             this.tbVerBaralhos.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerBaralhos.Name = "tbVerBaralhos";
             this.tbVerBaralhos.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerBaralhos.Size = new System.Drawing.Size(570, 321);
+            this.tbVerBaralhos.Size = new System.Drawing.Size(592, 321);
             this.tbVerBaralhos.TabIndex = 4;
             this.tbVerBaralhos.Text = "Baralhos";
             this.tbVerBaralhos.UseVisualStyleBackColor = true;
@@ -2143,7 +2750,7 @@
             this.tbVerUtilizadores.Margin = new System.Windows.Forms.Padding(2);
             this.tbVerUtilizadores.Name = "tbVerUtilizadores";
             this.tbVerUtilizadores.Padding = new System.Windows.Forms.Padding(2);
-            this.tbVerUtilizadores.Size = new System.Drawing.Size(570, 321);
+            this.tbVerUtilizadores.Size = new System.Drawing.Size(592, 321);
             this.tbVerUtilizadores.TabIndex = 5;
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
@@ -2156,53 +2763,25 @@
             // 
             this.playerSetTableAdapter.ClearBeforeFill = true;
             // 
-            // idDataGridViewTextBoxColumn
+            // teamSetTableAdapter
             // 
-            this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
-            this.idDataGridViewTextBoxColumn.HeaderText = "Id";
-            this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
-            this.idDataGridViewTextBoxColumn.ReadOnly = true;
+            this.teamSetTableAdapter.ClearBeforeFill = true;
             // 
-            // nameDataGridViewTextBoxColumn
+            // btlimpar
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Name";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nicknameDataGridViewTextBoxColumn
-            // 
-            this.nicknameDataGridViewTextBoxColumn.DataPropertyName = "Nickname";
-            this.nicknameDataGridViewTextBoxColumn.HeaderText = "Nickname";
-            this.nicknameDataGridViewTextBoxColumn.Name = "nicknameDataGridViewTextBoxColumn";
-            this.nicknameDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // ageDataGridViewTextBoxColumn
-            // 
-            this.ageDataGridViewTextBoxColumn.DataPropertyName = "Age";
-            this.ageDataGridViewTextBoxColumn.HeaderText = "Age";
-            this.ageDataGridViewTextBoxColumn.Name = "ageDataGridViewTextBoxColumn";
-            this.ageDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // avatarDataGridViewTextBoxColumn
-            // 
-            this.avatarDataGridViewTextBoxColumn.DataPropertyName = "Avatar";
-            this.avatarDataGridViewTextBoxColumn.HeaderText = "Avatar";
-            this.avatarDataGridViewTextBoxColumn.Name = "avatarDataGridViewTextBoxColumn";
-            this.avatarDataGridViewTextBoxColumn.ReadOnly = true;
+            this.btlimpar.Location = new System.Drawing.Point(501, 12);
+            this.btlimpar.Name = "btlimpar";
+            this.btlimpar.Size = new System.Drawing.Size(75, 23);
+            this.btlimpar.TabIndex = 5;
+            this.btlimpar.Text = "Limpar";
+            this.btlimpar.UseVisualStyleBackColor = true;
+            this.btlimpar.Click += new System.EventHandler(this.btlimpar_Click);
             // 
             // formMenuAdmin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(590, 377);
+            this.ClientSize = new System.Drawing.Size(612, 377);
             this.Controls.Add(this.tbMenu);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
@@ -2227,11 +2806,15 @@
             ((System.ComponentModel.ISupportInitialize)(this.playerSetBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bD_DA_ProjetoDataSet)).EndInit();
             this.tbGestaoEquipas.ResumeLayout(false);
-            this.gbGEquipasForm.ResumeLayout(false);
-            this.gbGEquipasForm.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox1.ResumeLayout(false);
             this.gbGEquipasDados.ResumeLayout(false);
             this.gbGEquipasDados.PerformLayout();
+            this.gbGEquipasForm.ResumeLayout(false);
+            this.gbGEquipasForm.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAvatarEquipa)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvGListaEquipas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.teamSetBindingSource)).EndInit();
             this.tbGestaoTorneios.ResumeLayout(false);
             this.gbGJogosDados.ResumeLayout(false);
             this.gbGJogosDados.PerformLayout();
@@ -2272,6 +2855,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvGUtilizadoresLista)).EndInit();
             this.tbVer.ResumeLayout(false);
             this.tcVer.ResumeLayout(false);
+            this.tbVerJogadores.ResumeLayout(false);
+            this.tbVerJogadores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudIdadeJogador2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGListaJogadoresPesquisa)).EndInit();
+            this.tbVerEquipas.ResumeLayout(false);
+            this.tbVerEquipas.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvGListaEquipasPesquisa)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2326,7 +2916,7 @@
         private System.Windows.Forms.TextBox txtGNomeEquipa;
         private System.Windows.Forms.TextBox txtGAvatarEquipa;
         private System.Windows.Forms.Button txtEquipaCancelar;
-        private System.Windows.Forms.Button txtEquipaAcao;
+        private System.Windows.Forms.Button btnEquipaAcao;
         private System.Windows.Forms.GroupBox gbGJogosDados;
         private System.Windows.Forms.GroupBox gbGTorneiosDados;
         private System.Windows.Forms.GroupBox gbGTorneiosInfo;
@@ -2447,5 +3037,61 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nicknameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn avatarDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nicknameDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avatarDataGridViewTextBoxColumn1;
+        private System.Windows.Forms.BindingSource teamSetBindingSource;
+        private BD_DA_ProjetoDataSetTableAdapters.TeamSetTableAdapter teamSetTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdEquipaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameEquipaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avatarEquipaDataGridViewTextBoxColumn;
+        private System.Windows.Forms.PictureBox pictureBoxAvatarEquipa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avatarDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridView dgvGListaJogadoresPesquisa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nicknameDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ageDataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avatarDataGridViewTextBoxColumn3;
+        private System.Windows.Forms.Button btnExportar;
+        private System.Windows.Forms.NumericUpDown nudIdadeJogador2;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.TextBox txtNicknameJogador2;
+        private System.Windows.Forms.Label txtnickname;
+        private System.Windows.Forms.TextBox txtEmailJogador2;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.TextBox txtNomeJogador2;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.ListView lcListaJogadores;
+        private System.Windows.Forms.ColumnHeader cNome1;
+        private System.Windows.Forms.ColumnHeader cEmail2;
+        private System.Windows.Forms.ColumnHeader cIdade2;
+        private System.Windows.Forms.ColumnHeader cNickname2;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.ListView lvJogadoresEquipa;
+        private System.Windows.Forms.ColumnHeader cNome;
+        private System.Windows.Forms.ColumnHeader cEmail;
+        private System.Windows.Forms.ColumnHeader cIdade;
+        private System.Windows.Forms.ColumnHeader cNickname;
+        private System.Windows.Forms.Button btnGerirEquipa;
+        private System.Windows.Forms.Button btnRetirarJogador;
+        private System.Windows.Forms.Button btnAdicionarJogador;
+        private System.Windows.Forms.Button btnGuardarJogadorEquipa;
+        private System.Windows.Forms.DataGridView dgvGListaEquipasPesquisa;
+        private System.Windows.Forms.ComboBox cbnomejogadorpesquisa;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.TextBox tbxnomeequipapesquisa;
+        private System.Windows.Forms.Label label40;
+        private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn avatarDataGridViewTextBoxColumn4;
+        private System.Windows.Forms.Button btlimpar;
     }
 }

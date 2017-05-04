@@ -1,4 +1,6 @@
-﻿using System;
+﻿//using iTextSharp.text;
+//using iTextSharp.text.pdf;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -18,10 +20,12 @@ namespace Projeto
         {
             InitializeComponent();
             container = new DiagramaArcmageContainer();
+            //cbxpesquisarpor.SelectedIndex = 0;
         }
 
         private DiagramaArcmageContainer container;
         private int idJogador;
+        private int idEquipa;
 
         private void formMenuAdmin_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -247,6 +251,7 @@ namespace Projeto
                 //coloca a imagem na picture box.
                 pictureBox1.Image = file;
             }
+            
         }
 
         private void bindingSource1_CurrentChanged(object sender, EventArgs e)
@@ -278,6 +283,8 @@ namespace Projeto
 
         private void formMenuAdmin_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet.TeamSet' table. You can move, or remove it, as needed.
+            this.teamSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.TeamSet);
             // TODO: This line of code loads data into the 'bD_DA_ProjetoDataSet1.PlayerSet' table. You can move, or remove it, as needed.
             this.playerSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.PlayerSet);
 
@@ -379,10 +386,15 @@ namespace Projeto
                 }
                 container.SaveChanges();
             }
+            catch(System.Data.Entity.Infrastructure.DbUpdateException ex)
+            {
+                MessageBox.Show("Não é possível eliminar um jogador que está associado a uma equipa. Erro:" + ex.Message, "Eliminar dados");
+            }
             catch (Exception)
             {
                 MessageBox.Show("Erro ao eliminar o jogador.", "Eliminar dados");
             }
+            
 
         }
 
@@ -401,6 +413,705 @@ namespace Projeto
             {
                 atualizarTabelaJogadores();
             }
+        }
+
+        private void btnInserirEquipa_Click(object sender, EventArgs e)
+        {
+            gbGEquipasForm.Enabled = true;
+            btnEquipaAcao.Text = "Criar";
+        }
+
+        private void btnEquipaAcao_Click(object sender, EventArgs e)
+        {
+            string nome = txtGNomeEquipa.Text;
+            string caminho = txtGAvatarEquipa.Text;
+
+            if(nome.Equals("") || caminho.Equals(""))
+            {
+                MessageBox.Show("Preencha os dados.", "Preenchimento de dados");
+            }
+            else
+            {
+                if (verificarNomeEquipa(nome) == false)
+                {
+                    if (btnEquipaAcao.Text.Equals("Criar"))
+                    {
+                        inserirNovaEquipa(nome, caminho);
+                        atualizarTabelaEquipas();
+                    }
+
+                    else if (btnEquipaAcao.Text == "Guardar")
+                    {
+                        alterarEquipaExistente(nome, caminho);
+                        atualizarTabelaEquipas();
+                    }
+                }
+            }
+        }
+
+        private Boolean verificarNomeEquipa(string nome)
+        {
+            Boolean existe = false;
+            foreach(Team team in container.TeamSet.OfType<Team>())
+            {
+                if (btnEquipaAcao.Text.Equals("Criar"))
+                {
+                    if (nome.Equals(team.Name))
+                    {
+                        existe = true;
+                        MessageBox.Show("O nome tem de ser único.");
+                    }
+                }
+
+                if (btnEquipaAcao.Text.Equals("Guardar"))
+                {
+                    if(team.Id != idEquipa)
+                    {
+                        if (nome.Equals(team.Name))
+                        {
+                            existe = true;
+                            MessageBox.Show("O nome tem de ser único.");
+                        }
+                    }
+                }
+
+            }
+            return existe;
+        }
+
+        private void alterarEquipaExistente(string nome, string caminho)
+        {
+            Team equipa;
+
+            equipa = container.TeamSet.Find(idEquipa);
+
+            equipa.Name = nome;
+            equipa.Avatar = caminho;
+
+            container.Entry(equipa).State = EntityState.Modified;
+            container.SaveChanges();
+        }
+
+        private void atualizarTabelaEquipas()
+        {
+            dgvGListaEquipas.DataSource = null;
+            this.teamSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.TeamSet);
+            dgvGListaEquipas.DataSource = this.teamSetBindingSource;
+
+            int i = dgvGListaEquipas.Rows.Count;
+
+            dgvGListaEquipas.CurrentCell = dgvGListaEquipas.Rows[i - 1].Cells[0];
+        }
+
+        private void inserirNovaEquipa(string nome, string caminho)
+        {
+
+            try
+            {
+                Team equipa = new Team
+                {
+                    Name = nome,
+                    Avatar = caminho
+                };
+
+                container.TeamSet.Add(equipa);
+                container.SaveChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("A equipa não foi inserida.", "Registo de Equipas");
+            }
+        }
+
+        private void btnAvatarEquipa_Click(object sender, EventArgs e)
+        {
+            openFileDialog1.Filter = "Image File (JPG,PNG,GIF)|*.JPG;*.JPG;*.PNG;*.GIF";
+            Image file;
+            if(openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                string caminho = openFileDialog1.FileName;
+                openFileDialog1.Title = "Selecione uma imagem";
+                txtGAvatarEquipa.Text = caminho;
+                file = Image.FromFile(caminho);
+                pictureBoxAvatarEquipa.Image = file;
+            }
+            
+        }
+
+        private void txtEquipaCancelar_Click(object sender, EventArgs e)
+        {
+            carregarCancelarEquipas();
+        }
+
+        private void carregarCancelarEquipas()
+        {
+            txtGNomeEquipa.ResetText();
+            txtGAvatarEquipa.ResetText();
+            pictureBoxAvatarEquipa.Image = null;
+
+            btnEquipaAcao.Text = "Acção";
+
+            gbGEquipasForm.Enabled = false;
+
+            btnAlterarEquipa.Enabled = false;
+            btnRemoverEquipa.Enabled = false;
+        }
+
+        private void btnAlterarEquipa_Click(object sender, EventArgs e)
+        {
+            carregarCancelarEquipas();
+            gbGEquipasForm.Enabled = true;
+            btnEquipaAcao.Text = "Guardar";
+
+            Image file;
+            if(dgvGListaEquipas.SelectedCells.Count > 0)
+            {
+                gbGEquipasForm.Enabled = true;
+                idEquipa = (int)dgvGListaEquipas.CurrentRow.Cells[0].Value;
+
+                foreach(Team team in container.TeamSet.OfType<Team>())
+                {
+                    if(team.Id == idEquipa)
+                    {
+                        txtGNomeEquipa.Text = team.Name;
+                        txtGAvatarEquipa.Text = team.Avatar;
+                        file = Image.FromFile(team.Avatar);
+                        pictureBoxAvatarEquipa.Image = file;
+                    }
+                }
+            }
+        }
+
+        private void gbGEquipasForm_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvGListaEquipas_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvGListaEquipas_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if(dgvGListaEquipas.RowCount>0 && dgvGListaEquipas.SelectedCells.Count > 0)
+            {
+                btnAlterarEquipa.Enabled = true;
+                btnRemoverEquipa.Enabled = true;
+            }
+        }
+
+        private void btnRemoverEquipa_Click(object sender, EventArgs e)
+        {
+            if(dgvGListaEquipas.SelectedCells.Count > 0)
+            {
+                idEquipa = (int)dgvGListaEquipas.CurrentRow.Cells[0].Value;
+                string nome = dgvGListaEquipas.CurrentRow.Cells[1].Value.ToString();
+
+                DialogResult confirmar = MessageBox.Show("Deseja eliminar a equipa com o nome " + nome + "?", "Eliminar dados", MessageBoxButtons.YesNo);
+
+                if(confirmar == DialogResult.Yes)
+                {
+                    removerEquipa();
+                    atualizarTabelaEquipas();
+                }
+            }
+        }
+
+        private void removerEquipa()
+        {
+            try
+            {
+                foreach(Team equipa in container.TeamSet)
+                {
+                    if(equipa.Id == idEquipa) {
+                        container.TeamSet.Remove(equipa);
+                    }
+                }
+                container.SaveChanges();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Erro ao eliminar a equipa.", "Eliminar dados");
+            }
+        }
+
+        private void txtGEquipasPesquisa_TextChanged(object sender, EventArgs e)
+        {
+            if(txtGEquipasPesquisa.Text.Length > 0)
+            {
+                var query = from team in container.TeamSet
+                            where team.Name.Contains(txtGEquipasPesquisa.Text)
+                            select team;
+
+                dgvGListaEquipas.DataSource = query.ToList();
+            }
+            else
+            {
+                atualizarTabelaEquipas();
+            }
+        }
+
+        
+
+        /*private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            if(cbxpesquisarpor.SelectedIndex != -1)
+            {
+                string pesquisapor = cbxpesquisarpor.SelectedItem.ToString();
+                string pesquisa = txtpesquisa.Text;
+                if (!pesquisa.Equals(""))
+                {
+                    
+                    if (pesquisapor.Equals("Nome"))
+                    {
+                        var query = from player in container.PlayerSet
+                                    where player.Name.Contains(pesquisa)
+                                    select player;
+                        dgvGListaJogadoresPesquisa.DataSource = query.ToList();
+                    }
+                    else if (pesquisapor.Equals("Email"))
+                    {
+                        var query1 = from player in container.PlayerSet
+                                where player.Email.Contains(pesquisa)
+                                select player;
+                        dgvGListaJogadoresPesquisa.DataSource = query1.ToList();
+                    }
+                    else if (pesquisapor.Equals("Nickname"))
+                    {
+                        var query2 = from player in container.PlayerSet
+                                    where player.Nickname.Contains(pesquisa)
+                                    select player;
+                        dgvGListaJogadoresPesquisa.DataSource = query2.ToList();
+                    }
+                    else if (pesquisapor.Equals("Idade"))
+                    {
+                        //int idade = int.Parse(txtpesquisa.Text);
+                        int idade = 0;
+                       
+                        if(int.TryParse(pesquisa, out idade))
+                        {
+                          var query3 = from player in container.PlayerSet
+                                        where player.Age == idade
+                                        select player;
+                          dgvGListaJogadoresPesquisa.DataSource = query3.ToList();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Insira valores numéricos.");
+                        }
+
+
+                            
+                    
+                        
+                    }
+                    
+                }
+                else
+                {
+                    atualizarTabelaJogadoresPesquisa();
+                }
+            }
+        }
+        */
+
+        private void atualizarTabelaJogadoresPesquisa()
+        {
+            dgvGListaJogadoresPesquisa.DataSource = null;
+            this.playerSetTableAdapter.Fill(this.bD_DA_ProjetoDataSet.PlayerSet);
+            dgvGListaJogadoresPesquisa.DataSource = this.playerSetBindingSource;
+
+            int i = dgvGListaJogadoresPesquisa.Rows.Count;
+
+            dgvGListaJogadoresPesquisa.CurrentCell = dgvGListaJogadoresPesquisa.Rows[i - 1].Cells[0];
+        }
+
+        private void button4_Click_1(object sender, EventArgs e)
+        {
+
+            /*string filtro = " ";
+            if (txtNomeJogador2.Text.Equals("") && txtEmailJogador2.Text.Equals("") && txtNicknameJogador2.Text.Equals("") && nudIdadeJogador2.Value == 0)
+            {
+                filtro = "Nenhum filtro aplicado. Todos os jogadores.";
+            }
+            else
+            {
+                filtro = "Filtro Aplicado\n";
+                if (!txtNomeJogador2.Text.Equals(""))
+                {
+                    filtro += "Nome: " + txtNomeJogador2.Text;
+                }
+                if (!txtEmailJogador2.Text.Equals(""))
+                {
+                    filtro += "\nEmail: " + txtEmailJogador2.Text;
+                }
+                if (!txtNicknameJogador2.Text.Equals(""))
+                {
+                    filtro += "\nNickname: " + txtNicknameJogador2.Text;
+                }
+                if ((int)nudIdadeJogador2.Value != 0)
+                {
+                    filtro += "\nIdade: " + nudIdadeJogador2.Value;
+                }
+
+
+
+                Document doc = new Document(iTextSharp.text.PageSize.LETTER, 10, 10, 42, 35);
+                PdfWriter wri = PdfWriter.GetInstance(doc, new FileStream("Test.pdf", FileMode.Create));
+                doc.Open();
+
+                Paragraph paragraph = new Paragraph(filtro);
+
+                doc.Add(paragraph);
+                
+
+                string[] tit = { "Id", "Nome", "Email", "Nickname", "Idade" };
+                float[] larg = { 0.08f, 0.3f, 0.2f, 0.2f, 0.1f };
+
+                PdfPTable tabela = new PdfPTable(tit.Length);
+
+                tabela.SetWidths(larg);
+
+                for(int i=0, n=tit.Length; i<n; i++){
+                    string titulo = tit[i];
+                    Paragraph p = new Paragraph(tit[i]);
+                    iTextSharp.text.Font tipoletra = FontFactory.GetFont("Arial", 12.0f, 3, new BaseColor(255, 255, 255));
+                    PdfPCell cel = new PdfPCell(p);
+                    tabela.AddCell(cel);
+                }
+
+                //List<Class> myClass = DataGridView.Datasource as List<Class>;
+
+                List<Player> jogadores = dgvGListaJogadoresPesquisa.DataSource as List<Player>;
+                for(int i=0; i<jogadores.Count; i++)
+                {
+                    Player jogador = jogadores[i];
+                    Paragraph id = new Paragraph(jogador.Id.ToString());
+                    PdfPCell cel1 = new PdfPCell(id);
+                    Paragraph nome = new Paragraph(jogador.Name);
+                    PdfPCell cel = new PdfPCell(nome);
+                    Paragraph email = new Paragraph(jogador.Email);
+                    PdfPCell cel2 = new PdfPCell(email);
+                    Paragraph nickname = new Paragraph(jogador.Nickname);
+                    PdfPCell cel3 = new PdfPCell(nickname);
+                    Paragraph idade = new Paragraph(jogador.Age.ToString());
+                    PdfPCell cel4 = new PdfPCell(idade);
+                    tabela.AddCell(cel1);
+                    tabela.AddCell(cel);
+                    tabela.AddCell(cel2);
+                    tabela.AddCell(cel3);
+                    tabela.AddCell(cel4);
+
+
+                }
+
+
+
+                doc.Add(tabela);
+                doc.Close();
+
+                
+
+
+
+            }
+            */
+            
+
+            
+
+        }
+
+
+        private void pesquisarJogadores(object sender, EventArgs e)
+        {
+            string nome = txtNomeJogador2.Text;
+            string email = txtEmailJogador2.Text;
+            string nickname = txtNicknameJogador2.Text;
+            int idade = (int)nudIdadeJogador2.Value;
+
+            IQueryable<Player> query = container.PlayerSet;
+
+            if(nome.Length > 0)
+            {
+                query = query.Where(player => player.Name.Contains(nome));
+            }
+
+            if(email.Length > 0)
+            {
+                query = query.Where(player => player.Email.Contains(email));
+            }
+
+            if(nickname.Length > 0)
+            {
+                query = query.Where(player => player.Nickname.Contains(nickname));
+            }
+            if(idade != 0)
+            {
+                query = query.Where(player => player.Age == idade);
+            }
+
+            dgvGListaJogadoresPesquisa.DataSource = query.ToList();
+
+
+            
+                         
+
+        }
+
+        private void tbVerJogadores_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGerirEquipa_Click(object sender, EventArgs e)
+        {
+            idEquipa = (int)dgvGListaEquipas.CurrentRow.Cells[0].Value;
+            int nrjogadores = 0;
+            int nrequipas = 0;
+
+            ListViewItem linhaJogadoresEquipa;
+            ListViewItem linhaListaJogadores;
+
+            lcListaJogadores.Items.Clear();
+            lvJogadoresEquipa.Items.Clear();
+
+            foreach(Player jogador in container.PlayerSet)
+            {
+                nrjogadores = 0;
+
+                foreach(TeamPlayers equipasjogadores in container.TeamPlayersSet.Where(tp => tp.TeamId.Equals(idEquipa)))
+                {
+                    if(equipasjogadores.PlayerId == jogador.Id)
+                    {
+                        nrjogadores += 1;
+
+                        linhaJogadoresEquipa = new ListViewItem(jogador.Name);
+                        linhaJogadoresEquipa.SubItems.Add(jogador.Email);
+                        linhaJogadoresEquipa.SubItems.Add(jogador.Age.ToString());
+                        linhaJogadoresEquipa.SubItems.Add(jogador.Nickname);
+
+                        lvJogadoresEquipa.Items.Add(linhaJogadoresEquipa);
+
+                    }
+                }
+            }
+            
+            
+            foreach (Player jogador in container.PlayerSet)
+            {
+                Boolean temEquipa = false;
+                foreach(TeamPlayers equipasjogadores in container.TeamPlayersSet)
+                {
+                    if(equipasjogadores.PlayerId == jogador.Id)
+                    {
+                        temEquipa = true;
+                    }
+                }
+
+                if(temEquipa == false)
+                {
+                    linhaListaJogadores = new ListViewItem(jogador.Name);
+                    linhaListaJogadores.SubItems.Add(jogador.Email);
+                    linhaListaJogadores.SubItems.Add(jogador.Age.ToString());
+                    linhaListaJogadores.SubItems.Add(jogador.Nickname);
+                    lcListaJogadores.Items.Add(linhaListaJogadores);
+                }
+            }
+            
+        }
+
+        private void btnAdicionarJogador_Click(object sender, EventArgs e)
+        {
+            if (lcListaJogadores.SelectedItems.Count > 0)
+            {
+                ListViewItem jogador = lcListaJogadores.SelectedItems[0];
+                //ListViewItem jogador1 = lcListaJogadores.SelectedItems;
+                lcListaJogadores.Items.Remove(jogador);
+                lvJogadoresEquipa.Items.Add(jogador);
+            }
+            int nrjogadores = lvJogadoresEquipa.Items.Count;
+
+            if(nrjogadores < 2)
+            {
+                btnAdicionarJogador.Enabled = true;
+                btnRetirarJogador.Enabled = true;
+                btnGuardarJogadorEquipa.Enabled = false;
+
+            }
+            else
+            {
+                btnAdicionarJogador.Enabled = false;
+                btnRetirarJogador.Enabled = true;
+                btnGuardarJogadorEquipa.Enabled = true;
+            }
+
+
+
+            
+            
+
+            /*var selectedItems = lcListaJogadores.SelectedItems;
+            foreach(ListViewItem selectedItem in selectedItems)
+            {
+                
+            }*/
+
+            
+            
+
+            //MessageBox.Show(jogador1.Text);
+            //Player jogador = getJogador(jogador.Text);
+            
+        }
+
+        private void btnGuardarJogadorEquipa_Click(object sender, EventArgs e)
+        {
+            Player jogador;
+            TeamPlayers equipajogadores;
+
+            /*var idJogadoresAnteriores = from equipasjogadores in container.TeamPlayersSet
+                                        where equipasjogadores.TeamId == idEquipa
+                                        select equipasjogadores;
+            */
+
+            /*context.Projects.Where(p => p.ProjectId == projectId)
+               .ToList().ForEach(p => context.Projects.Remove(p));
+            context.SaveChanges();
+            */
+    
+            container.TeamPlayersSet.Where(tp => tp.TeamId == idEquipa)
+                .ToList().ForEach(tp => container.TeamPlayersSet.Remove(tp));
+            container.SaveChanges();
+
+            foreach(ListViewItem item in lvJogadoresEquipa.Items)
+            {
+                var pesquisa = container.PlayerSet.Where(p => p.Name.Equals(item.Text));
+                jogador = pesquisa.ToList().First<Player>();
+
+                equipajogadores = new TeamPlayers();
+                equipajogadores.TeamId = idEquipa;
+                equipajogadores.PlayerId = jogador.Id;
+
+                container.TeamPlayersSet.Add(equipajogadores);
+            }
+
+            container.SaveChanges();
+
+        }
+
+        private void btnRetirarJogador_Click(object sender, EventArgs e)
+        {
+            if(lvJogadoresEquipa.SelectedItems.Count > 0)
+            {
+                ListViewItem jogador = lvJogadoresEquipa.SelectedItems[0];
+                lvJogadoresEquipa.Items.Remove(jogador);
+                lcListaJogadores.Items.Add(jogador);
+            }
+
+            int nrjogadoresequipa = lvJogadoresEquipa.Items.Count;
+
+            if(nrjogadoresequipa == 0)
+            {
+                btnRetirarJogador.Enabled = false;
+            }
+            else
+            {
+                btnRetirarJogador.Enabled = true;
+
+                if(nrjogadoresequipa < 2)
+                {
+                    btnGuardarJogadorEquipa.Enabled = false;
+                    btnAdicionarJogador.Enabled = true;
+                }
+            }
+        }
+
+        private void tbVerEquipas_Enter(object sender, EventArgs e)
+        {
+            cbnomejogadorpesquisa.Items.Clear();
+
+
+            foreach(Player jogador in container.PlayerSet)
+            {
+                cbnomejogadorpesquisa.Items.Add(jogador.Name);
+            }
+        }
+
+        private void pesquisarEquipas(object sender, EventArgs e)
+        {
+            string nomeequipa = tbxnomeequipapesquisa.Text;
+
+            string nomejogador = "";
+
+            if(cbnomejogadorpesquisa.SelectedIndex != -1)
+            {
+                nomejogador = cbnomejogadorpesquisa.SelectedItem.ToString();
+            }
+
+            
+            if(!nomeequipa.Equals("") && cbnomejogadorpesquisa.SelectedIndex != -1) {
+                //MessageBox.Show("Olá1");
+                var query =
+                    from equipa in container.TeamSet
+                    join equipajogadores in container.TeamPlayersSet on equipa.Id equals equipajogadores.TeamId
+                    join jogador in container.PlayerSet on equipajogadores.PlayerId equals jogador.Id
+                    where jogador.Name.Equals(nomejogador) && equipa.Name.Contains(nomeequipa)
+                    select equipa;
+            
+                dgvGListaEquipasPesquisa.DataSource = query.ToList();
+            }
+            else
+            {
+                if (!nomeequipa.Equals(""))
+                {
+                    //MessageBox.Show("Ola2");
+                    var query =
+                        from equipa in container.TeamSet
+                        where equipa.Name.Contains(nomeequipa)
+                        select equipa;
+
+                    dgvGListaEquipasPesquisa.DataSource = query.ToList();
+                }
+                if (cbnomejogadorpesquisa.SelectedIndex != -1){
+                    //MessageBox.Show("Olá3");
+                    var query =
+                    from equipa in container.TeamSet
+                    join equipajogadores in container.TeamPlayersSet on equipa.Id equals equipajogadores.TeamId
+                    join jogador in container.PlayerSet on equipajogadores.PlayerId equals jogador.Id
+                    where jogador.Name.Equals(nomejogador) 
+                    select equipa;
+
+                    dgvGListaEquipasPesquisa.DataSource = query.ToList();
+                }
+            }
+
+        }
+
+        
+
+        private void btlimpar_Click(object sender, EventArgs e)
+        {
+            tbxnomeequipapesquisa.ResetText();
+            cbnomejogadorpesquisa.SelectedIndex = -1;
+            dgvGListaEquipasPesquisa.DataSource = teamSetBindingSource;
+            
+            
+
+        }
+
+        private void limparTabelaPesquisas()
+        {
+            dgvGListaEquipasPesquisa.DataSource = teamSetBindingSource;
+
+            tbxnomeequipapesquisa.ResetText();
+            cbnomejogadorpesquisa.SelectedIndex = -1;
         }
     }
 }

@@ -32,5 +32,6 @@ namespace Projeto
         public DbSet<Team> TeamSet { get; set; }
         public DbSet<Tournament> TournamentSet { get; set; }
         public DbSet<Player> PlayerSet { get; set; }
+        public DbSet<TeamPlayers> TeamPlayersSet { get; set; }
     }
 }

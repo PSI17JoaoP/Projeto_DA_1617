@@ -18,8 +18,9 @@ namespace Projeto
         {
             this.GameAsTeam1 = new HashSet<TeamGame>();
             this.GameAsTeam2 = new HashSet<TeamGame>();
-            this.Players = new HashSet<Player>();
             this.TeamTournaments = new HashSet<TeamTournament>();
+            this.TeamPlayers = new HashSet<TeamPlayers>();
+            this.PlayerSet = new HashSet<Player>();
         }
     
         public int Id { get; set; }
@@ -28,7 +29,8 @@ namespace Projeto
     
         public virtual ICollection<TeamGame> GameAsTeam1 { get; set; }
         public virtual ICollection<TeamGame> GameAsTeam2 { get; set; }
-        public virtual ICollection<Player> Players { get; set; }
         public virtual ICollection<TeamTournament> TeamTournaments { get; set; }
+        public virtual ICollection<TeamPlayers> TeamPlayers { get; set; }
+        public virtual ICollection<Player> PlayerSet { get; set; }
     }
 }
