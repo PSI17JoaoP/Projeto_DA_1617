@@ -193,6 +193,18 @@
             this.tbVerCartas = new System.Windows.Forms.TabPage();
             this.tbVerBaralhos = new System.Windows.Forms.TabPage();
             this.tbVerUtilizadores = new System.Windows.Forms.TabPage();
+            this.labPesquisarPor = new System.Windows.Forms.Label();
+            this.radioPesquisaAdministrador = new System.Windows.Forms.RadioButton();
+            this.radioPesquisaArbitro = new System.Windows.Forms.RadioButton();
+            this.labPesquisaUsername = new System.Windows.Forms.Label();
+            this.txtPesquisaUsername = new System.Windows.Forms.TextBox();
+            this.labPesquisaNomeEmail = new System.Windows.Forms.Label();
+            this.txtPesquisaNomeArbitro = new System.Windows.Forms.TextBox();
+            this.txtPesquisaEmailAdministrador = new System.Windows.Forms.TextBox();
+            this.checkPesquisaArbitroAtivo = new System.Windows.Forms.CheckBox();
+            this.btnPesquisarUtilizador = new System.Windows.Forms.Button();
+            this.btnResetPesquisa = new System.Windows.Forms.Button();
+            this.dgvPesquisaUtilizadores = new System.Windows.Forms.DataGridView();
             this.ofdAvatarArbitro = new System.Windows.Forms.OpenFileDialog();
             this.dataSetAdministradores = new Projeto.BD_DA_ProjetoDataSet_Administradores();
             this.dataSetArbitros = new Projeto.BD_DA_ProjetoDataSet_Arbitros();
@@ -200,17 +212,6 @@
             this.bindingSourceArbitros = new System.Windows.Forms.BindingSource(this.components);
             this.userSetTableAdapterAdministradores = new Projeto.BD_DA_ProjetoDataSet_AdministradoresTableAdapters.UserSetTableAdapter();
             this.userSetTableAdapterArbitros = new Projeto.BD_DA_ProjetoDataSet_ArbitrosTableAdapters.UserSetTableAdapter();
-            this.labPesquisarPor = new System.Windows.Forms.Label();
-            this.labPesquisaUsername = new System.Windows.Forms.Label();
-            this.radioPesquisaAdministrador = new System.Windows.Forms.RadioButton();
-            this.radioPesquisaArbitro = new System.Windows.Forms.RadioButton();
-            this.labPesquisaNomeEmail = new System.Windows.Forms.Label();
-            this.tbPesquisaUsername = new System.Windows.Forms.TextBox();
-            this.tbPesquisaEmailAdministrador = new System.Windows.Forms.TextBox();
-            this.tbPesquisaNomeArbitro = new System.Windows.Forms.TextBox();
-            this.dgvPesquisaUtilizadores = new System.Windows.Forms.DataGridView();
-            this.btnPesquisarUtilizador = new System.Windows.Forms.Button();
-            this.checkPesquisaArbitroAtivo = new System.Windows.Forms.CheckBox();
             this.tbMenu.SuspendLayout();
             this.tpGestao.SuspendLayout();
             this.tcGestao.SuspendLayout();
@@ -256,11 +257,11 @@
             this.tbVer.SuspendLayout();
             this.tcVer.SuspendLayout();
             this.tbVerUtilizadores.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetAdministradores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetArbitros)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAdminstradores)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArbitros)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).BeginInit();
             this.SuspendLayout();
             // 
             // tbMenu
@@ -1540,7 +1541,7 @@
             this.dgvCartasnoBaralho.Margin = new System.Windows.Forms.Padding(2);
             this.dgvCartasnoBaralho.Name = "dgvCartasnoBaralho";
             this.dgvCartasnoBaralho.RowTemplate.Height = 24;
-            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1483);
+            this.dgvCartasnoBaralho.Size = new System.Drawing.Size(229, 1649);
             this.dgvCartasnoBaralho.TabIndex = 10;
             // 
             // btnAdicionarCartaBaralho
@@ -2129,6 +2130,7 @@
             this.tcVer.SelectedIndex = 0;
             this.tcVer.Size = new System.Drawing.Size(785, 425);
             this.tcVer.TabIndex = 0;
+            this.tcVer.Enter += new System.EventHandler(this.TabPesquisaUtilizadores);
             // 
             // tbVerJogadores
             // 
@@ -2191,12 +2193,13 @@
             this.tbVerUtilizadores.Controls.Add(this.radioPesquisaAdministrador);
             this.tbVerUtilizadores.Controls.Add(this.radioPesquisaArbitro);
             this.tbVerUtilizadores.Controls.Add(this.labPesquisaUsername);
-            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaUsername);
+            this.tbVerUtilizadores.Controls.Add(this.txtPesquisaUsername);
             this.tbVerUtilizadores.Controls.Add(this.labPesquisaNomeEmail);
-            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaNomeArbitro);
-            this.tbVerUtilizadores.Controls.Add(this.tbPesquisaEmailAdministrador);
+            this.tbVerUtilizadores.Controls.Add(this.txtPesquisaNomeArbitro);
+            this.tbVerUtilizadores.Controls.Add(this.txtPesquisaEmailAdministrador);
             this.tbVerUtilizadores.Controls.Add(this.checkPesquisaArbitroAtivo);
             this.tbVerUtilizadores.Controls.Add(this.btnPesquisarUtilizador);
+            this.tbVerUtilizadores.Controls.Add(this.btnResetPesquisa);
             this.tbVerUtilizadores.Controls.Add(this.dgvPesquisaUtilizadores);
             this.tbVerUtilizadores.Location = new System.Drawing.Point(4, 22);
             this.tbVerUtilizadores.Margin = new System.Windows.Forms.Padding(2);
@@ -2206,6 +2209,121 @@
             this.tbVerUtilizadores.TabIndex = 5;
             this.tbVerUtilizadores.Text = "Utilizadores";
             this.tbVerUtilizadores.UseVisualStyleBackColor = true;
+            // 
+            // labPesquisarPor
+            // 
+            this.labPesquisarPor.AutoSize = true;
+            this.labPesquisarPor.Location = new System.Drawing.Point(30, 32);
+            this.labPesquisarPor.Name = "labPesquisarPor";
+            this.labPesquisarPor.Size = new System.Drawing.Size(74, 13);
+            this.labPesquisarPor.TabIndex = 0;
+            this.labPesquisarPor.Text = "Pesquisar por:";
+            // 
+            // radioPesquisaAdministrador
+            // 
+            this.radioPesquisaAdministrador.AutoSize = true;
+            this.radioPesquisaAdministrador.Checked = true;
+            this.radioPesquisaAdministrador.Location = new System.Drawing.Point(110, 30);
+            this.radioPesquisaAdministrador.Name = "radioPesquisaAdministrador";
+            this.radioPesquisaAdministrador.Size = new System.Drawing.Size(88, 17);
+            this.radioPesquisaAdministrador.TabIndex = 2;
+            this.radioPesquisaAdministrador.TabStop = true;
+            this.radioPesquisaAdministrador.Text = "Administrador";
+            this.radioPesquisaAdministrador.UseVisualStyleBackColor = true;
+            this.radioPesquisaAdministrador.CheckedChanged += new System.EventHandler(this.RadioPesquisarAdministrador);
+            // 
+            // radioPesquisaArbitro
+            // 
+            this.radioPesquisaArbitro.AutoSize = true;
+            this.radioPesquisaArbitro.Location = new System.Drawing.Point(204, 30);
+            this.radioPesquisaArbitro.Name = "radioPesquisaArbitro";
+            this.radioPesquisaArbitro.Size = new System.Drawing.Size(55, 17);
+            this.radioPesquisaArbitro.TabIndex = 3;
+            this.radioPesquisaArbitro.Text = "Arbitro";
+            this.radioPesquisaArbitro.UseVisualStyleBackColor = true;
+            this.radioPesquisaArbitro.CheckedChanged += new System.EventHandler(this.RadioPesquisarArbitro);
+            // 
+            // labPesquisaUsername
+            // 
+            this.labPesquisaUsername.AutoSize = true;
+            this.labPesquisaUsername.Location = new System.Drawing.Point(98, 78);
+            this.labPesquisaUsername.Name = "labPesquisaUsername";
+            this.labPesquisaUsername.Size = new System.Drawing.Size(58, 13);
+            this.labPesquisaUsername.TabIndex = 1;
+            this.labPesquisaUsername.Text = "Username:";
+            // 
+            // txtPesquisaUsername
+            // 
+            this.txtPesquisaUsername.Location = new System.Drawing.Point(159, 75);
+            this.txtPesquisaUsername.Name = "txtPesquisaUsername";
+            this.txtPesquisaUsername.Size = new System.Drawing.Size(100, 20);
+            this.txtPesquisaUsername.TabIndex = 6;
+            // 
+            // labPesquisaNomeEmail
+            // 
+            this.labPesquisaNomeEmail.AutoSize = true;
+            this.labPesquisaNomeEmail.Location = new System.Drawing.Point(275, 78);
+            this.labPesquisaNomeEmail.Name = "labPesquisaNomeEmail";
+            this.labPesquisaNomeEmail.Size = new System.Drawing.Size(38, 13);
+            this.labPesquisaNomeEmail.TabIndex = 5;
+            this.labPesquisaNomeEmail.Text = "Nome:";
+            // 
+            // txtPesquisaNomeArbitro
+            // 
+            this.txtPesquisaNomeArbitro.Location = new System.Drawing.Point(319, 75);
+            this.txtPesquisaNomeArbitro.Name = "txtPesquisaNomeArbitro";
+            this.txtPesquisaNomeArbitro.Size = new System.Drawing.Size(136, 20);
+            this.txtPesquisaNomeArbitro.TabIndex = 8;
+            // 
+            // txtPesquisaEmailAdministrador
+            // 
+            this.txtPesquisaEmailAdministrador.Location = new System.Drawing.Point(319, 75);
+            this.txtPesquisaEmailAdministrador.Name = "txtPesquisaEmailAdministrador";
+            this.txtPesquisaEmailAdministrador.Size = new System.Drawing.Size(156, 20);
+            this.txtPesquisaEmailAdministrador.TabIndex = 7;
+            // 
+            // checkPesquisaArbitroAtivo
+            // 
+            this.checkPesquisaArbitroAtivo.AutoSize = true;
+            this.checkPesquisaArbitroAtivo.Location = new System.Drawing.Point(496, 77);
+            this.checkPesquisaArbitroAtivo.Name = "checkPesquisaArbitroAtivo";
+            this.checkPesquisaArbitroAtivo.Size = new System.Drawing.Size(50, 17);
+            this.checkPesquisaArbitroAtivo.TabIndex = 11;
+            this.checkPesquisaArbitroAtivo.Text = "Ativo";
+            this.checkPesquisaArbitroAtivo.UseVisualStyleBackColor = true;
+            this.checkPesquisaArbitroAtivo.CheckedChanged += new System.EventHandler(this.CheckArbitroAtivo);
+            // 
+            // btnPesquisarUtilizador
+            // 
+            this.btnPesquisarUtilizador.Location = new System.Drawing.Point(564, 73);
+            this.btnPesquisarUtilizador.Name = "btnPesquisarUtilizador";
+            this.btnPesquisarUtilizador.Size = new System.Drawing.Size(75, 23);
+            this.btnPesquisarUtilizador.TabIndex = 10;
+            this.btnPesquisarUtilizador.Text = "Pesquisar";
+            this.btnPesquisarUtilizador.UseVisualStyleBackColor = true;
+            this.btnPesquisarUtilizador.Click += new System.EventHandler(this.PesquisaAvancadaUtilizador);
+            // 
+            // btnResetPesquisa
+            // 
+            this.btnResetPesquisa.Location = new System.Drawing.Point(654, 73);
+            this.btnResetPesquisa.Name = "btnResetPesquisa";
+            this.btnResetPesquisa.Size = new System.Drawing.Size(75, 23);
+            this.btnResetPesquisa.TabIndex = 12;
+            this.btnResetPesquisa.Text = "Reset";
+            this.btnResetPesquisa.UseVisualStyleBackColor = true;
+            this.btnResetPesquisa.Click += new System.EventHandler(this.BotaoResetPesquisa);
+            // 
+            // dgvPesquisaUtilizadores
+            // 
+            this.dgvPesquisaUtilizadores.AllowUserToAddRows = false;
+            this.dgvPesquisaUtilizadores.AllowUserToDeleteRows = false;
+            this.dgvPesquisaUtilizadores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvPesquisaUtilizadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPesquisaUtilizadores.Location = new System.Drawing.Point(19, 119);
+            this.dgvPesquisaUtilizadores.Name = "dgvPesquisaUtilizadores";
+            this.dgvPesquisaUtilizadores.ReadOnly = true;
+            this.dgvPesquisaUtilizadores.Size = new System.Drawing.Size(740, 262);
+            this.dgvPesquisaUtilizadores.TabIndex = 9;
             // 
             // dataSetAdministradores
             // 
@@ -2234,111 +2352,6 @@
             // userSetTableAdapterArbitros
             // 
             this.userSetTableAdapterArbitros.ClearBeforeFill = true;
-            // 
-            // labPesquisarPor
-            // 
-            this.labPesquisarPor.AutoSize = true;
-            this.labPesquisarPor.Location = new System.Drawing.Point(30, 32);
-            this.labPesquisarPor.Name = "labPesquisarPor";
-            this.labPesquisarPor.Size = new System.Drawing.Size(74, 13);
-            this.labPesquisarPor.TabIndex = 0;
-            this.labPesquisarPor.Text = "Pesquisar por:";
-            // 
-            // labPesquisaUsername
-            // 
-            this.labPesquisaUsername.AutoSize = true;
-            this.labPesquisaUsername.Location = new System.Drawing.Point(98, 78);
-            this.labPesquisaUsername.Name = "labPesquisaUsername";
-            this.labPesquisaUsername.Size = new System.Drawing.Size(58, 13);
-            this.labPesquisaUsername.TabIndex = 1;
-            this.labPesquisaUsername.Text = "Username:";
-            // 
-            // radioPesquisaAdministrador
-            // 
-            this.radioPesquisaAdministrador.AutoSize = true;
-            this.radioPesquisaAdministrador.Checked = true;
-            this.radioPesquisaAdministrador.Location = new System.Drawing.Point(110, 30);
-            this.radioPesquisaAdministrador.Name = "radioPesquisaAdministrador";
-            this.radioPesquisaAdministrador.Size = new System.Drawing.Size(88, 17);
-            this.radioPesquisaAdministrador.TabIndex = 2;
-            this.radioPesquisaAdministrador.TabStop = true;
-            this.radioPesquisaAdministrador.Text = "Administrador";
-            this.radioPesquisaAdministrador.UseVisualStyleBackColor = true;
-            this.radioPesquisaAdministrador.CheckedChanged += new System.EventHandler(this.RadioPesquisarAdministrador);
-            // 
-            // radioPesquisaArbitro
-            // 
-            this.radioPesquisaArbitro.AutoSize = true;
-            this.radioPesquisaArbitro.Location = new System.Drawing.Point(204, 30);
-            this.radioPesquisaArbitro.Name = "radioPesquisaArbitro";
-            this.radioPesquisaArbitro.Size = new System.Drawing.Size(55, 17);
-            this.radioPesquisaArbitro.TabIndex = 3;
-            this.radioPesquisaArbitro.Text = "Arbitro";
-            this.radioPesquisaArbitro.UseVisualStyleBackColor = true;
-            this.radioPesquisaArbitro.CheckedChanged += new System.EventHandler(this.RadioPesquisarArbitro);
-            // 
-            // labPesquisaNomeEmail
-            // 
-            this.labPesquisaNomeEmail.AutoSize = true;
-            this.labPesquisaNomeEmail.Location = new System.Drawing.Point(275, 78);
-            this.labPesquisaNomeEmail.Name = "labPesquisaNomeEmail";
-            this.labPesquisaNomeEmail.Size = new System.Drawing.Size(38, 13);
-            this.labPesquisaNomeEmail.TabIndex = 5;
-            this.labPesquisaNomeEmail.Text = "Nome:";
-            // 
-            // tbPesquisaUsername
-            // 
-            this.tbPesquisaUsername.Location = new System.Drawing.Point(159, 75);
-            this.tbPesquisaUsername.Name = "tbPesquisaUsername";
-            this.tbPesquisaUsername.Size = new System.Drawing.Size(100, 20);
-            this.tbPesquisaUsername.TabIndex = 6;
-            // 
-            // tbPesquisaEmailAdministrador
-            // 
-            this.tbPesquisaEmailAdministrador.Location = new System.Drawing.Point(319, 75);
-            this.tbPesquisaEmailAdministrador.Name = "tbPesquisaEmailAdministrador";
-            this.tbPesquisaEmailAdministrador.Size = new System.Drawing.Size(156, 20);
-            this.tbPesquisaEmailAdministrador.TabIndex = 7;
-            // 
-            // tbPesquisaNomeArbitro
-            // 
-            this.tbPesquisaNomeArbitro.Location = new System.Drawing.Point(319, 75);
-            this.tbPesquisaNomeArbitro.Name = "tbPesquisaNomeArbitro";
-            this.tbPesquisaNomeArbitro.Size = new System.Drawing.Size(136, 20);
-            this.tbPesquisaNomeArbitro.TabIndex = 8;
-            // 
-            // dgvPesquisaUtilizadores
-            // 
-            this.dgvPesquisaUtilizadores.AllowUserToAddRows = false;
-            this.dgvPesquisaUtilizadores.AllowUserToDeleteRows = false;
-            this.dgvPesquisaUtilizadores.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvPesquisaUtilizadores.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPesquisaUtilizadores.Location = new System.Drawing.Point(19, 119);
-            this.dgvPesquisaUtilizadores.Name = "dgvPesquisaUtilizadores";
-            this.dgvPesquisaUtilizadores.ReadOnly = true;
-            this.dgvPesquisaUtilizadores.Size = new System.Drawing.Size(740, 262);
-            this.dgvPesquisaUtilizadores.TabIndex = 9;
-            // 
-            // btnPesquisarUtilizador
-            // 
-            this.btnPesquisarUtilizador.Location = new System.Drawing.Point(564, 73);
-            this.btnPesquisarUtilizador.Name = "btnPesquisarUtilizador";
-            this.btnPesquisarUtilizador.Size = new System.Drawing.Size(75, 23);
-            this.btnPesquisarUtilizador.TabIndex = 10;
-            this.btnPesquisarUtilizador.Text = "Pesquisar";
-            this.btnPesquisarUtilizador.UseVisualStyleBackColor = true;
-            this.btnPesquisarUtilizador.Click += new System.EventHandler(this.PesquisaAvancadaUtilizador);
-            // 
-            // checkPesquisaArbitroAtivo
-            // 
-            this.checkPesquisaArbitroAtivo.AutoSize = true;
-            this.checkPesquisaArbitroAtivo.Location = new System.Drawing.Point(496, 77);
-            this.checkPesquisaArbitroAtivo.Name = "checkPesquisaArbitroAtivo";
-            this.checkPesquisaArbitroAtivo.Size = new System.Drawing.Size(50, 17);
-            this.checkPesquisaArbitroAtivo.TabIndex = 11;
-            this.checkPesquisaArbitroAtivo.Text = "Ativo";
-            this.checkPesquisaArbitroAtivo.UseVisualStyleBackColor = true;
-            this.checkPesquisaArbitroAtivo.CheckedChanged += new System.EventHandler(this.CheckArbitroAtivo);
             // 
             // formMenuAdmin
             // 
@@ -2416,11 +2429,11 @@
             this.tcVer.ResumeLayout(false);
             this.tbVerUtilizadores.ResumeLayout(false);
             this.tbVerUtilizadores.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetAdministradores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetArbitros)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceAdminstradores)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSourceArbitros)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPesquisaUtilizadores)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -2601,12 +2614,13 @@
         private System.Windows.Forms.Label labPesquisarPor;
         private System.Windows.Forms.RadioButton radioPesquisaArbitro;
         private System.Windows.Forms.RadioButton radioPesquisaAdministrador;
-        private System.Windows.Forms.TextBox tbPesquisaNomeArbitro;
-        private System.Windows.Forms.TextBox tbPesquisaEmailAdministrador;
-        private System.Windows.Forms.TextBox tbPesquisaUsername;
+        private System.Windows.Forms.TextBox txtPesquisaNomeArbitro;
+        private System.Windows.Forms.TextBox txtPesquisaEmailAdministrador;
+        private System.Windows.Forms.TextBox txtPesquisaUsername;
         private System.Windows.Forms.Label labPesquisaNomeEmail;
         private System.Windows.Forms.DataGridView dgvPesquisaUtilizadores;
         private System.Windows.Forms.Button btnPesquisarUtilizador;
         private System.Windows.Forms.CheckBox checkPesquisaArbitroAtivo;
+        private System.Windows.Forms.Button btnResetPesquisa;
     }
 }

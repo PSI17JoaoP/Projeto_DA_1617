@@ -48,6 +48,7 @@ namespace Projeto
             this.userSetTableAdapterAdministradores.Fill(this.dataSetAdministradores.UserSet);
 
             radioAdmins.Checked = true;
+            radioPesquisaAdministrador.Checked = true;
         }
 
         private void btnRemoverTorneio_Click(object sender, EventArgs e)
@@ -441,16 +442,6 @@ namespace Projeto
             {
                 if (radioAdmins.Checked == true)
                 {
-                    //IQueryable<Administrator> queryLinq = containerDados.UserSet.OfType<Administrator>().Where(admin => admin.Username.Contains(txtGUtilizadoresPesquisa.Text)));
-
-                    /*IQueryable<Administrator> queryLinq = from admins in containerDados.UserSet.OfType<Administrator>()
-                                                          where admins.Username.Contains(txtGUtilizadoresPesquisa.Text)
-                                                          select admins;
-
-                    dgvGUtilizadoresLista.DataSource = queryLinq.ToList();*/
-
-
-
                     IEnumerable<BD_DA_ProjetoDataSet_Administradores.UserSetRow> queryLinq = from admins in dataSetAdministradores.UserSet
                                                                                              where admins.Field<string>("Username").Contains(txtGUtilizadoresPesquisa.Text)
                                                                                              select admins;
@@ -465,23 +456,12 @@ namespace Projeto
 
                     else
                     {
-                        dgvGUtilizadoresLista.DataSource = queryLinq.ToList();
-
-                        List<BD_DA_ProjetoDataSet_Administradores.UserSetRow> listQuery = queryLinq.ToList();
-                        dgvGUtilizadoresLista.DataSource = listQuery;
+                        dgvGUtilizadoresLista.DataSource = null;
                     }
                 }
 
                 else if (radioArbitros.Checked == true)
                 {
-                    /*IQueryable<Referee> queryLinq = from arbitros in containerDados.UserSet.OfType<Referee>()
-                                                      where arbitros.Username.Contains(txtGUtilizadoresPesquisa.Text)
-                                                      select arbitros;
-
-                    dgvGUtilizadoresLista.DataSource = queryLinq.ToList();*/
-
-                    //DataTable arbitrosTable = dataSetArbitros.UserSet;
-
                     IEnumerable<BD_DA_ProjetoDataSet_Arbitros.UserSetRow> queryLinq = from arbitros in dataSetArbitros.UserSet
                                                                                       where arbitros.Field<string>("Username").Contains(txtGUtilizadoresPesquisa.Text)
                                                                                       select arbitros;
@@ -489,15 +469,14 @@ namespace Projeto
                     {
                         DataTable queryTable = queryLinq.CopyToDataTable();
 
-                        bindingSourceAdminstradores.DataSource = queryTable;
+                        bindingSourceArbitros.DataSource = queryTable;
 
-                        dgvGUtilizadoresLista.DataSource = bindingSourceAdminstradores;
+                        dgvGUtilizadoresLista.DataSource = bindingSourceArbitros;
                     }
 
                     else
                     {
-                        List<BD_DA_ProjetoDataSet_Arbitros.UserSetRow> listQuery = queryLinq.ToList();
-                        dgvGUtilizadoresLista.DataSource = listQuery;
+                        dgvGUtilizadoresLista.DataSource = null;
                     }
                 }
             }
@@ -863,12 +842,14 @@ namespace Projeto
         {
             if(radioAdmins.Checked == true)
             {
+                bindingSourceAdminstradores.DataSource = dataSetAdministradores.UserSet;
                 userSetTableAdapterAdministradores.Fill(dataSetAdministradores.UserSet);
                 dgvGUtilizadoresLista.DataSource = bindingSourceAdminstradores;
             }
 
             else if (radioArbitros.Checked == true)
             {
+                bindingSourceArbitros.DataSource = dataSetArbitros.UserSet;
                 userSetTableAdapterArbitros.Fill(dataSetArbitros.UserSet);
                 dgvGUtilizadoresLista.DataSource = bindingSourceArbitros;
             }
@@ -1108,12 +1089,12 @@ namespace Projeto
         {
             if (checkPesquisaArbitroAtivo.Checked == true)
             {
-                dgvPesquisaUtilizadores.DataSource = PesquisarArbitrosAtivos();
+                PesquisarArbitrosAtivos(txtPesquisaUsername.Text.Trim(), txtPesquisaNomeArbitro.Text.Trim());
             }
 
             else
             {
-                dgvPesquisaUtilizadores.DataSource = PesquisarArbitros();
+                PesquisarArbitros(txtPesquisaUsername.Text.Trim(), txtPesquisaNomeArbitro.Text.Trim());
             }
         }
 
@@ -1121,148 +1102,190 @@ namespace Projeto
         {
             if (radioPesquisaAdministrador.Checked == true)
             {
-                dgvPesquisaUtilizadores.DataSource = PesquisarAdminstrador();
+                PesquisarAdminstrador(txtPesquisaUsername.Text.Trim(), txtPesquisaEmailAdministrador.Text.Trim());
             }
 
             else if (radioPesquisaArbitro.Checked == true)
             {
                 if(checkPesquisaArbitroAtivo.Checked == true)
                 {
-                    dgvPesquisaUtilizadores.DataSource = PesquisarArbitrosAtivos();
+                    PesquisarArbitrosAtivos(txtPesquisaUsername.Text.Trim(), txtPesquisaNomeArbitro.Text.Trim());
                 }
 
                 else
                 {
-                    dgvPesquisaUtilizadores.DataSource = PesquisarArbitros();
+                    PesquisarArbitros(txtPesquisaUsername.Text.Trim(), txtPesquisaNomeArbitro.Text.Trim());
                 }
             }
         }
 
-        private List<Administrator> PesquisarAdminstrador()
+        private void BotaoResetPesquisa(object sender, EventArgs e)
         {
-            List<Administrator> queryLinq;
+            ResetPesquisaUtilizadoresForm();
+            RefreshTabelaPesquisaUtilizadores();
+        }
 
-            if (tbPesquisaUsername.Text.Length > 0 && tbPesquisaEmailAdministrador.Text.Length > 0)
+        private void PesquisarAdminstrador(string username, string email)
+        {
+            IEnumerable<BD_DA_ProjetoDataSet_Administradores.UserSetRow> queryLinq;
+
+            if (username.Length > 0 && email.Length > 0)
             {
-                queryLinq = (from admin in containerDados.UserSet.OfType<Administrator>()
-                             where admin.Username.Contains(tbPesquisaUsername.Text)
-                             && admin.Email.Contains(tbPesquisaEmailAdministrador.Text)
-                             select admin).ToList();
+                queryLinq = from admins in dataSetAdministradores.UserSet
+                            where admins.Field<string>("Username").Contains(username)
+                            && admins.Field<string>("Email").Contains(email)
+                            select admins;
             }
 
-            else if(tbPesquisaUsername.Text.Length > 0)
+            else if(username.Length > 0)
             {
-                queryLinq = (from admin in containerDados.UserSet.OfType<Administrator>()
-                             where admin.Username.Contains(tbPesquisaUsername.Text)
-                             select admin).ToList();
+                queryLinq = from admins in dataSetAdministradores.UserSet
+                            where admins.Field<string>("Username").Contains(username)
+                            select admins;
             }
 
-            else if(tbPesquisaEmailAdministrador.Text.Length > 0)
+            else if(email.Length > 0)
             {
-                queryLinq = (from admin in containerDados.UserSet.OfType<Administrator>()
-                             where admin.Email.Contains(tbPesquisaEmailAdministrador.Text)
-                             select admin).ToList();
+                queryLinq = from admins in dataSetAdministradores.UserSet
+                            where admins.Field<string>("Email").Contains(email)
+                            select admins;
             }
 
             else
             {
-                queryLinq = (from admin in containerDados.UserSet.OfType<Administrator>()
-                             select admin).ToList();
+                queryLinq = from admins in dataSetAdministradores.UserSet
+                            select admins;
             }
 
-            return queryLinq;
-        }
-
-        private List<Referee> PesquisarArbitros()
-        {
-            List<Referee> queryLinq;
-
-            if (tbPesquisaUsername.Text.Length > 0 && tbPesquisaNomeArbitro.Text.Length > 0)
+            if (queryLinq.Any() == true)
             {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()                            
-                             where arbitro.Username.Contains(tbPesquisaUsername.Text)
-                             && arbitro.Name.Contains(tbPesquisaNomeArbitro.Text)
-                             select arbitro).ToList();
-            }
+                DataTable queryTable = queryLinq.CopyToDataTable();
 
-            else if (tbPesquisaUsername.Text.Length > 0)
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()                             
-                             where arbitro.Username.Contains(tbPesquisaUsername.Text)
-                             select arbitro).ToList();
-            }
+                bindingSourceAdminstradores.DataSource = queryTable;
 
-            else if (tbPesquisaNomeArbitro.Text.Length > 0)
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()                            
-                             where arbitro.Name.Contains(tbPesquisaNomeArbitro.Text)
-                             select arbitro).ToList();
-            }
-
-            else
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()
-                             select arbitro).ToList();
-            }
-
-            return queryLinq;
-        }
-
-        private List<Referee> PesquisarArbitrosAtivos()
-        {
-            List<Referee> queryLinq;
-
-            if (tbPesquisaUsername.Text.Length > 0 && tbPesquisaNomeArbitro.Text.Length > 0)
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()
-                             join jogo in containerDados.GameSet
-                             on arbitro.Id equals jogo.RefereeId
-                             where arbitro.Username.Contains(tbPesquisaUsername.Text)
-                             && arbitro.Name.Contains(tbPesquisaNomeArbitro.Text)
-                             select arbitro).ToList();
-            }
-
-            else if (tbPesquisaUsername.Text.Length > 0)
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()
-                             join jogo in containerDados.GameSet
-                             on arbitro.Id equals jogo.RefereeId
-                             where arbitro.Username.Contains(tbPesquisaUsername.Text)
-                             select arbitro).ToList();
-            }
-
-            else if (tbPesquisaNomeArbitro.Text.Length > 0)
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()
-                             join jogo in containerDados.GameSet
-                             on arbitro.Id equals jogo.RefereeId
-                             where arbitro.Name.Contains(tbPesquisaNomeArbitro.Text)
-                             select arbitro).ToList();
-            }
-
-            else
-            {
-                queryLinq = (from arbitro in containerDados.UserSet.OfType<Referee>()
-                             join jogo in containerDados.GameSet
-                             on arbitro.Id equals jogo.RefereeId
-                             select arbitro).ToList();
-            }
-
-            return queryLinq;
-        }
-
-        private void RefreshTabelaPesquisaUtilizadores()
-        {
-            if (radioPesquisaAdministrador.Checked == true)
-            {
-                dgvPesquisaUtilizadores.DataSource = null;
-                userSetTableAdapterAdministradores.Fill(dataSetAdministradores.UserSet);
                 dgvPesquisaUtilizadores.DataSource = bindingSourceAdminstradores;
             }
 
             else
             {
                 dgvPesquisaUtilizadores.DataSource = null;
+            }
+        }
+
+        private void PesquisarArbitros(string username, string name)
+        {
+            IEnumerable<BD_DA_ProjetoDataSet_Arbitros.UserSetRow> queryLinq;
+
+            if (username.Length > 0 && name.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            where arbitros.Field<string>("Username").Contains(username)
+                            && arbitros.Field<string>("Name").Contains(name)
+                            select arbitros;
+            }
+
+            else if (username.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            where arbitros.Field<string>("Username").Contains(username)
+                            select arbitros;
+            }
+
+            else if (name.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            where arbitros.Field<string>("Name").Contains(name)
+                            select arbitros;
+            }
+
+            else
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            select arbitros;
+            }
+
+            if (queryLinq.Any() == true)
+            {
+                DataTable queryTable = queryLinq.CopyToDataTable();
+
+                bindingSourceArbitros.DataSource = queryTable;
+
+                dgvPesquisaUtilizadores.DataSource = bindingSourceArbitros;
+            }
+
+            else
+            {
+                dgvPesquisaUtilizadores.DataSource = null;
+            }
+        }
+
+        private void PesquisarArbitrosAtivos(string username, string name)
+        {
+            IEnumerable<BD_DA_ProjetoDataSet_Arbitros.UserSetRow> queryLinq;
+
+            if (txtPesquisaUsername.Text.Length > 0 && txtPesquisaNomeArbitro.Text.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            join jogo in containerDados.GameSet
+                            on arbitros.Id equals jogo.RefereeId
+                            where arbitros.Field<string>("Username").Contains(username)
+                            && arbitros.Field<string>("Name").Contains(name)
+                            select arbitros;
+            }
+
+            else if (txtPesquisaUsername.Text.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            join jogo in containerDados.GameSet
+                            on arbitros.Id equals jogo.RefereeId
+                            where arbitros.Field<string>("Username").Contains(username)
+                            select arbitros;
+            }
+
+            else if (txtPesquisaNomeArbitro.Text.Length > 0)
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            join jogo in containerDados.GameSet
+                            on arbitros.Id equals jogo.RefereeId
+                            where arbitros.Field<string>("Name").Contains(name)
+                            select arbitros;
+            }
+
+            else
+            {
+                queryLinq = from arbitros in dataSetArbitros.UserSet
+                            join jogo in containerDados.GameSet
+                            on arbitros.Id equals jogo.RefereeId
+                            select arbitros;
+            }
+
+            if (queryLinq.Any() == true)
+            {
+                DataTable queryTable = queryLinq.CopyToDataTable();
+
+                bindingSourceArbitros.DataSource = queryTable;
+
+                dgvPesquisaUtilizadores.DataSource = bindingSourceArbitros;
+            }
+
+            else
+            {
+                dgvPesquisaUtilizadores.DataSource = null;
+            }
+        }
+
+        private void RefreshTabelaPesquisaUtilizadores()
+        {
+            if (radioPesquisaAdministrador.Checked == true)
+            {
+                bindingSourceAdminstradores.DataSource = dataSetAdministradores.UserSet;
+                userSetTableAdapterAdministradores.Fill(dataSetAdministradores.UserSet);
+                dgvPesquisaUtilizadores.DataSource = bindingSourceAdminstradores;
+            }
+
+            else
+            {
+                bindingSourceArbitros.DataSource = dataSetArbitros.UserSet;
                 userSetTableAdapterArbitros.Fill(dataSetArbitros.UserSet);
                 dgvPesquisaUtilizadores.DataSource = bindingSourceArbitros;
             }
@@ -1273,25 +1296,30 @@ namespace Projeto
             if (radioPesquisaAdministrador.Checked == true)
             {
                 labPesquisaNomeEmail.Text = "Email:";
-                tbPesquisaUsername.Clear();
-                tbPesquisaEmailAdministrador.Clear();
-                tbPesquisaEmailAdministrador.Visible = true;
-                tbPesquisaNomeArbitro.Clear();
-                tbPesquisaNomeArbitro.Visible = false;
+                txtPesquisaUsername.Clear();
+                txtPesquisaEmailAdministrador.Clear();
+                txtPesquisaEmailAdministrador.Visible = true;
+                txtPesquisaNomeArbitro.Clear();
+                txtPesquisaNomeArbitro.Visible = false;
                 checkPesquisaArbitroAtivo.Visible = false;
             }
 
             else if (radioPesquisaArbitro.Checked == true)
             {
                 labPesquisaNomeEmail.Text = "Nome:";
-                tbPesquisaUsername.Clear();
-                tbPesquisaEmailAdministrador.Clear();
-                tbPesquisaEmailAdministrador.Visible = false;
-                tbPesquisaNomeArbitro.Clear();
-                tbPesquisaNomeArbitro.Visible = true;
+                txtPesquisaUsername.Clear();
+                txtPesquisaEmailAdministrador.Clear();
+                txtPesquisaEmailAdministrador.Visible = false;
+                txtPesquisaNomeArbitro.Clear();
+                txtPesquisaNomeArbitro.Visible = true;
                 checkPesquisaArbitroAtivo.Checked = false;
                 checkPesquisaArbitroAtivo.Visible = true;
             }
+        }
+
+        private void TabPesquisaUtilizadores(object sender, EventArgs e)
+        {
+            RefreshTabelaPesquisaUtilizadores();
         }
     }
 }
