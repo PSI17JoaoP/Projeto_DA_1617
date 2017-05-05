@@ -139,7 +139,7 @@ GO
 
 -- Creating table 'UserSet_Administrator'
 CREATE TABLE [dbo].[UserSet_Administrator] (
-    [email] nvarchar(max)  NOT NULL,
+    [Email] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
 );
 GO
