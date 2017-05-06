@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 04/10/2017 17:20:54
+-- Date Created: 05/06/2017 12:21:02
 -- Generated from EDMX file: D:\Desktop\TESP - PSI\S2\PL\DA\Projeto\Etapa 2\Projeto_DA_1617\Projeto\DiagramaArcmage.edmx
 -- --------------------------------------------------
 
@@ -17,11 +17,131 @@ GO
 -- Dropping existing FOREIGN KEY constraints
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[FK_Administrator_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet_Administrator] DROP CONSTRAINT [FK_Administrator_inherits_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_CardDeckCards]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DeckCardsSet] DROP CONSTRAINT [FK_CardDeckCards];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckDeckCards]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[DeckCardsSet] DROP CONSTRAINT [FK_DeckDeckCards];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_DeckGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_DeckGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_DeckGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerStandardGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_PlayerStandardGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_PlayerStandardGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_PlayerStandardGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_Referee_inherits_User]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[UserSet_Referee] DROP CONSTRAINT [FK_Referee_inherits_User];
+GO
+IF OBJECT_ID(N'[dbo].[FK_RefereeGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet] DROP CONSTRAINT [FK_RefereeGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardGame_inherits_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_StandardGame_inherits_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardGameStandardTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_StandardGame] DROP CONSTRAINT [FK_StandardGameStandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournament_inherits_Tournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TournamentSet_StandardTournament] DROP CONSTRAINT [FK_StandardTournament_inherits_Tournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournamentPlayer_Player]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StandardTournamentPlayer] DROP CONSTRAINT [FK_StandardTournamentPlayer_Player];
+GO
+IF OBJECT_ID(N'[dbo].[FK_StandardTournamentPlayer_StandardTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[StandardTournamentPlayer] DROP CONSTRAINT [FK_StandardTournamentPlayer_StandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamGame_inherits_Game]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamGame_inherits_Game];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamGameTeamTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamGameTeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamPlayersPlayer]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamPlayersSet] DROP CONSTRAINT [FK_TeamPlayersPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamGame]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamTeamGame];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamGame1]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[GameSet_TeamGame] DROP CONSTRAINT [FK_TeamTeamGame1];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamPlayers]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamPlayersSet] DROP CONSTRAINT [FK_TeamTeamPlayers];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamTournament_Team]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamTeamTournament] DROP CONSTRAINT [FK_TeamTeamTournament_Team];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTeamTournament_TeamTournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TeamTeamTournament] DROP CONSTRAINT [FK_TeamTeamTournament_TeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[FK_TeamTournament_inherits_Tournament]', 'F') IS NOT NULL
+    ALTER TABLE [dbo].[TournamentSet_TeamTournament] DROP CONSTRAINT [FK_TeamTournament_inherits_Tournament];
+GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
+IF OBJECT_ID(N'[dbo].[CardSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[CardSet];
+GO
+IF OBJECT_ID(N'[dbo].[DeckCardsSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DeckCardsSet];
+GO
+IF OBJECT_ID(N'[dbo].[DeckSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[DeckSet];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet_StandardGame]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet_StandardGame];
+GO
+IF OBJECT_ID(N'[dbo].[GameSet_TeamGame]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[GameSet_TeamGame];
+GO
+IF OBJECT_ID(N'[dbo].[PlayerSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[PlayerSet];
+GO
+IF OBJECT_ID(N'[dbo].[StandardTournamentPlayer]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StandardTournamentPlayer];
+GO
+IF OBJECT_ID(N'[dbo].[TeamPlayersSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamPlayersSet];
+GO
+IF OBJECT_ID(N'[dbo].[TeamSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamSet];
+GO
+IF OBJECT_ID(N'[dbo].[TeamTeamTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TeamTeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet_StandardTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet_StandardTournament];
+GO
+IF OBJECT_ID(N'[dbo].[TournamentSet_TeamTournament]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[TournamentSet_TeamTournament];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet_Administrator]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet_Administrator];
+GO
+IF OBJECT_ID(N'[dbo].[UserSet_Referee]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[UserSet_Referee];
+GO
 
 -- --------------------------------------------------
 -- Creating all tables
@@ -97,6 +217,23 @@ CREATE TABLE [dbo].[PlayerSet] (
 );
 GO
 
+-- Creating table 'DeckCardsSet'
+CREATE TABLE [dbo].[DeckCardsSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [CardId] int  NOT NULL,
+    [DeckId] int  NOT NULL,
+    [Qtd] int  NOT NULL
+);
+GO
+
+-- Creating table 'TeamPlayersSet'
+CREATE TABLE [dbo].[TeamPlayersSet] (
+    [Id] int IDENTITY(1,1) NOT NULL,
+    [TeamId] int  NOT NULL,
+    [PlayerId] int  NOT NULL
+);
+GO
+
 -- Creating table 'UserSet_Referee'
 CREATE TABLE [dbo].[UserSet_Referee] (
     [Name] nvarchar(max)  NOT NULL,
@@ -141,20 +278,6 @@ GO
 CREATE TABLE [dbo].[UserSet_Administrator] (
     [Email] nvarchar(max)  NOT NULL,
     [Id] int  NOT NULL
-);
-GO
-
--- Creating table 'DeckCard'
-CREATE TABLE [dbo].[DeckCard] (
-    [Deck_Id] int  NOT NULL,
-    [Cards_Id] int  NOT NULL
-);
-GO
-
--- Creating table 'TeamPlayer'
-CREATE TABLE [dbo].[TeamPlayer] (
-    [Teams_Id] int  NOT NULL,
-    [Players_Id] int  NOT NULL
 );
 GO
 
@@ -218,6 +341,18 @@ ADD CONSTRAINT [PK_PlayerSet]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
+-- Creating primary key on [Id] in table 'DeckCardsSet'
+ALTER TABLE [dbo].[DeckCardsSet]
+ADD CONSTRAINT [PK_DeckCardsSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
+-- Creating primary key on [Id] in table 'TeamPlayersSet'
+ALTER TABLE [dbo].[TeamPlayersSet]
+ADD CONSTRAINT [PK_TeamPlayersSet]
+    PRIMARY KEY CLUSTERED ([Id] ASC);
+GO
+
 -- Creating primary key on [Id] in table 'UserSet_Referee'
 ALTER TABLE [dbo].[UserSet_Referee]
 ADD CONSTRAINT [PK_UserSet_Referee]
@@ -254,18 +389,6 @@ ADD CONSTRAINT [PK_UserSet_Administrator]
     PRIMARY KEY CLUSTERED ([Id] ASC);
 GO
 
--- Creating primary key on [Deck_Id], [Cards_Id] in table 'DeckCard'
-ALTER TABLE [dbo].[DeckCard]
-ADD CONSTRAINT [PK_DeckCard]
-    PRIMARY KEY CLUSTERED ([Deck_Id], [Cards_Id] ASC);
-GO
-
--- Creating primary key on [Teams_Id], [Players_Id] in table 'TeamPlayer'
-ALTER TABLE [dbo].[TeamPlayer]
-ADD CONSTRAINT [PK_TeamPlayer]
-    PRIMARY KEY CLUSTERED ([Teams_Id], [Players_Id] ASC);
-GO
-
 -- Creating primary key on [Teams_Id], [TeamTournaments_Id] in table 'TeamTeamTournament'
 ALTER TABLE [dbo].[TeamTeamTournament]
 ADD CONSTRAINT [PK_TeamTeamTournament]
@@ -295,30 +418,6 @@ GO
 CREATE INDEX [IX_FK_RefereeGame]
 ON [dbo].[GameSet]
     ([Referee_Id]);
-GO
-
--- Creating foreign key on [Deck_Id] in table 'DeckCard'
-ALTER TABLE [dbo].[DeckCard]
-ADD CONSTRAINT [FK_DeckCard_Deck]
-    FOREIGN KEY ([Deck_Id])
-    REFERENCES [dbo].[DeckSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Cards_Id] in table 'DeckCard'
-ALTER TABLE [dbo].[DeckCard]
-ADD CONSTRAINT [FK_DeckCard_Card]
-    FOREIGN KEY ([Cards_Id])
-    REFERENCES [dbo].[CardSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_DeckCard_Card'
-CREATE INDEX [IX_FK_DeckCard_Card]
-ON [dbo].[DeckCard]
-    ([Cards_Id]);
 GO
 
 -- Creating foreign key on [DeckId1] in table 'GameSet'
@@ -441,30 +540,6 @@ ON [dbo].[GameSet_TeamGame]
     ([TeamId2]);
 GO
 
--- Creating foreign key on [Teams_Id] in table 'TeamPlayer'
-ALTER TABLE [dbo].[TeamPlayer]
-ADD CONSTRAINT [FK_TeamPlayer_Team]
-    FOREIGN KEY ([Teams_Id])
-    REFERENCES [dbo].[TeamSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating foreign key on [Players_Id] in table 'TeamPlayer'
-ALTER TABLE [dbo].[TeamPlayer]
-ADD CONSTRAINT [FK_TeamPlayer_Player]
-    FOREIGN KEY ([Players_Id])
-    REFERENCES [dbo].[PlayerSet]
-        ([Id])
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-GO
-
--- Creating non-clustered index for FOREIGN KEY 'FK_TeamPlayer_Player'
-CREATE INDEX [IX_FK_TeamPlayer_Player]
-ON [dbo].[TeamPlayer]
-    ([Players_Id]);
-GO
-
 -- Creating foreign key on [Teams_Id] in table 'TeamTeamTournament'
 ALTER TABLE [dbo].[TeamTeamTournament]
 ADD CONSTRAINT [FK_TeamTeamTournament_Team]
@@ -511,6 +586,66 @@ GO
 CREATE INDEX [IX_FK_StandardTournamentPlayer_Player]
 ON [dbo].[StandardTournamentPlayer]
     ([Players_Id]);
+GO
+
+-- Creating foreign key on [CardId] in table 'DeckCardsSet'
+ALTER TABLE [dbo].[DeckCardsSet]
+ADD CONSTRAINT [FK_CardDeckCards]
+    FOREIGN KEY ([CardId])
+    REFERENCES [dbo].[CardSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_CardDeckCards'
+CREATE INDEX [IX_FK_CardDeckCards]
+ON [dbo].[DeckCardsSet]
+    ([CardId]);
+GO
+
+-- Creating foreign key on [DeckId] in table 'DeckCardsSet'
+ALTER TABLE [dbo].[DeckCardsSet]
+ADD CONSTRAINT [FK_DeckDeckCards]
+    FOREIGN KEY ([DeckId])
+    REFERENCES [dbo].[DeckSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_DeckDeckCards'
+CREATE INDEX [IX_FK_DeckDeckCards]
+ON [dbo].[DeckCardsSet]
+    ([DeckId]);
+GO
+
+-- Creating foreign key on [TeamId] in table 'TeamPlayersSet'
+ALTER TABLE [dbo].[TeamPlayersSet]
+ADD CONSTRAINT [FK_TeamTeamPlayers]
+    FOREIGN KEY ([TeamId])
+    REFERENCES [dbo].[TeamSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamTeamPlayers'
+CREATE INDEX [IX_FK_TeamTeamPlayers]
+ON [dbo].[TeamPlayersSet]
+    ([TeamId]);
+GO
+
+-- Creating foreign key on [PlayerId] in table 'TeamPlayersSet'
+ALTER TABLE [dbo].[TeamPlayersSet]
+ADD CONSTRAINT [FK_TeamPlayersPlayer]
+    FOREIGN KEY ([PlayerId])
+    REFERENCES [dbo].[PlayerSet]
+        ([Id])
+    ON DELETE NO ACTION ON UPDATE NO ACTION;
+GO
+
+-- Creating non-clustered index for FOREIGN KEY 'FK_TeamPlayersPlayer'
+CREATE INDEX [IX_FK_TeamPlayersPlayer]
+ON [dbo].[TeamPlayersSet]
+    ([PlayerId]);
 GO
 
 -- Creating foreign key on [Id] in table 'UserSet_Referee'

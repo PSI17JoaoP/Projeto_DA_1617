@@ -19,8 +19,8 @@ namespace Projeto
         {
             this.StandardGame1 = new HashSet<StandardGame>();
             this.StandardGame2 = new HashSet<StandardGame>();
-            this.Teams = new HashSet<Team>();
             this.StandardTournaments = new HashSet<StandardTournament>();
+            this.TeamPlayers = new HashSet<TeamPlayers>();
         }
     
         public int Id { get; set; }
@@ -35,8 +35,8 @@ namespace Projeto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StandardGame> StandardGame2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Team> Teams { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<StandardTournament> StandardTournaments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TeamPlayers> TeamPlayers { get; set; }
     }
 }

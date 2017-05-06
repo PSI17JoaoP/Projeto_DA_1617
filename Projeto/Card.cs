@@ -17,7 +17,7 @@ namespace Projeto
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Card()
         {
-            this.Deck = new HashSet<Deck>();
+            this.DeckCards = new HashSet<DeckCards>();
         }
     
         public int Id { get; set; }
@@ -31,6 +31,6 @@ namespace Projeto
         public int Defense { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Deck> Deck { get; set; }
+        public virtual ICollection<DeckCards> DeckCards { get; set; }
     }
 }

@@ -32,5 +32,7 @@ namespace Projeto
         public virtual DbSet<Team> TeamSet { get; set; }
         public virtual DbSet<Tournament> TournamentSet { get; set; }
         public virtual DbSet<Player> PlayerSet { get; set; }
+        public virtual DbSet<DeckCards> DeckCardsSet { get; set; }
+        public virtual DbSet<TeamPlayers> TeamPlayersSet { get; set; }
     }
 }
